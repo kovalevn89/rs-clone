@@ -1,32 +1,33 @@
 # Регистрация пользователя:
-method: POST
-endpoint: /api/register
+* **method:** POST
+* **endpoint:** /api/register
 
-Headers:
+* **Headers:**
   'Content-Type': 'application/json'
 
-body: JSON
-{
-    "username": "superadmin",
-    "password": "admin123"
-}
+* **body:** JSON  
+```
+  {  
+    "username": "superadmin",  
+    "password": "admin123"  
+  }  
+```
+* **Response:**
 
-Response:
+**200 - OK**  
+>{  
+> "message": "user registered"  
+>}  
 
-200 - OK
-  {
-      "message": "user registered"
-  }
-
-400 - error
-  {
-      "message": "registration error"
-      "message": "user exists"
-      "message": "input validation error: invalid username length"
-      "message": "input validation error: invalid password length"   
-  }
-
-
+**400 - error**  
+  {  
+    "message": "registration error"  
+    "message": "user exists"  
+    "message": "input validation error: invalid username length"  
+    "message": "input validation error: invalid password length"  
+  }  
+  
+  
 # Авторизация пользователя:
 method: POST
 endpoint: /api/auth
