@@ -1,15 +1,17 @@
-import express from 'express';
-import mongoose from 'mongoose';
+import Express from 'express';
+import Mongoose from 'mongoose';
+import router from './src/route.js';
+import {PORT, DBLOGIN, DBPASSWORD} from './src/constants.js';
 
-const PORT = 5000;
-const app = express();
+const app = Express();
 
-app.use(express.json());
+app.use(Express.json());
+app.use('/api', router);
 
 async function run() {
   try {
-    mongoose.set("strictQuery", false);
-    await mongoose.connect('mongodb+srv://typego:pa123sword@cluster0.il8qg3f.mongodb.net/?retryWrites=true&w=majority');
+    Mongoose.set("strictQuery", false);
+    await Mongoose.connect(`mongodb+srv://${DBLOGIN}:${DBPASSWORD}@cluster0.il8qg3f.mongodb.net/?retryWrites=true&w=majority`);
     app.listen(PORT, () => console.log(`Server started on port ${PORT}.`));
   } catch (error) {
     console.log(error);
