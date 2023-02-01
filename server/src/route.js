@@ -9,5 +9,6 @@ router.post('/register', [
   check('password', 'invalid password length').isLength({min: 3, max: 12}),
 ], Controller.register);
 router.post('/auth', Controller.auth);
+router.delete('/user', Controller.deleteUser);
 
 export default router;
