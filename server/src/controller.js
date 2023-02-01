@@ -1,7 +1,8 @@
 import User from '../models/user.js';
 import Lesson from '../models/lesson.js';
 import game from '../models/game.js';
-import bcrypt from 'bcryptjs';
+import Bcrypt from 'bcryptjs';
+import generateToken from './helper.js';
 import { validationResult } from 'express-validator'; 
 
 class Controller {
@@ -25,7 +26,7 @@ class Controller {
       }
 
       // crypt password
-      const passwordHash = bcrypt.hashSync(password, 5);
+      const passwordHash = Bcrypt.hashSync(password, 5);
 
       // save user
       const user = new User({username, password: passwordHash});
@@ -41,9 +42,28 @@ class Controller {
 
   async auth(req, res) {
     try {
-      res.json('auth');
+      const username = req.body.username;
+      const password = req.body.password;
+
+      // check for user exist
+      const findUserName = await User.findOne({username});
+
+      if (findUserName === null) {
+        return res.status(400).json({message: 'user not exists'});
+      }
+
+      // check password
+      if (!Bcrypt.compareSync(password, findUserName.password)) {
+        return res.status(400).json({message: 'invalid password'});
+      }
+
+      // generate token
+      const token = generateToken(findUserName._id, findUserName.username);
+
+      return res.json({token}); 
     } catch (error) {
       console.log(error);
+      res.status(400).json({message: 'login error'});
     }
   }
 }
