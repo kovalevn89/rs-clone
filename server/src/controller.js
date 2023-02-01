@@ -66,7 +66,7 @@ class Controller {
       const token = req.headers.authorization;
 
       if (!token) {
-        return res.status(403).json({message: 'not authorization'});
+        return res.status(403).json({message: 'not authorized'});
       }
 
       const user = verifyToken(token);
@@ -78,7 +78,7 @@ class Controller {
       const deleteResult = await User.deleteOne({_id: user.id});
 
       if (deleteResult.deletedCount === 1) {
-        return res.json('user deleted');
+        return res.json({message: 'user deleted'});
       }
 
       return res.status(400).json({message: 'delete user error'});
