@@ -1,0 +1,16 @@
+.keybord {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+
+}
+.key,
+.st0 {
+  fill: none;
+  fill: rgba(96, 157, 159, 0.1);
+  stroke: #3b6061 ;
+  // opacity: 0.1;
+  &.active {
+    fill: cadetblue;
+  }
+}
