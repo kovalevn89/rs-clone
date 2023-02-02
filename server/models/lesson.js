@@ -16,7 +16,7 @@ const Lesson = new Schema({
     requared: true
   },
   levels: [{
-    type: String,
+    type: Schema.Types.ObjectId,
     ref: 'Level'
   }]
 });

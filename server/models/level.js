@@ -3,7 +3,6 @@ import { Schema, model } from 'mongoose';
 const Level = new Schema({
   index: {
     type: Number,
-    unique: true,
     requared: true
   },
   name: {

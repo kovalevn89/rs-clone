@@ -174,6 +174,74 @@ class Controller {
       res.status(400).json({message: 'delete user error'});
     }
   }
+
+  async getLessons(req, res) {
+    try {
+      const token = req.headers.authorization;
+
+      if (!token) {
+        return res.status(403).json({message: 'not authorized'});
+      }
+
+      const user = verifyToken(token);
+
+      if (user === null) {
+        return res.status(403).json({message: 'invalid token'});
+      }
+
+      // by ID
+      if (req.query.lang!==undefined && req.query.id!==undefined) {
+        const index = req.query.id;
+        const lang = req.query.lang;
+
+        const find = await Lesson.findOne({index, lang}).populate('levels');
+
+        if(!find) {
+          return res.status(400).json('bad request');
+        }
+
+        return res.json({'index:': find.index, 'name': find.name, 'lang': find.lang, 'levels': find.levels.map(
+            value => ({'index:': value.index, 'name': value.name, 'text': value.text})
+          )});
+      }
+
+      // by lang
+      if (req.query.lang!==undefined && req.query.id===undefined) {
+        const lang = req.query.lang;
+
+        const find = await Lesson.find({lang});
+
+        if(!find) {
+          return res.status(400).json('bad request');
+        }
+
+        return res.json(find.map(value => ({'index:': value.index, 'name': value.name, 'lang': value.lang})));
+      }
+
+      return res.status(400).json({message: 'lessons error'});
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({message: 'lessons error'});
+    }
+  }
+
+  // async nk(req, res) {
+  //   try {
+  //     // -----------------------------------------------------
+      
+  //     const find = await Lesson.findOne({index: 1, lang: 'en'}).populate('levels');
+
+  //     if(!find) {
+  //       return res.json(`none`);
+  //     }
+
+  //     console.log(find.levels);
+  //     return res.json(`ok - ${find}`);
+  //   } catch (error) {
+  //     console.log(error);
+  //     return res.json('lol');
+  //   }
+  // }
 }
 
 export default new Controller();

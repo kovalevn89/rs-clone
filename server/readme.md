@@ -1,3 +1,17 @@
+# type-go-api #  
+Api for Rolling Scopes School task "RS-Clone".  
+  
+* Setup and Running  
+* Use node 18.x or higher.  
+* Clone this repo: $ git clone https://github.com/kovalevn89/rs-clone.git.  
+* Go to downloaded folder: $ cd rs-clone/server.  
+* Install dependencies: $ npm install.  
+* Start server: $ npm start.  
+* Now you can send requests to the address: http://127.0.0.1:5000.  
+  
+    
+  
+  
 # Регистрация пользователя:  
 * **Method:** POST  
 * **Endpoint:** /api/register  
@@ -119,6 +133,7 @@ GET
 PUT
 
 Headers:
+  'Content-Type': 'application/json'  
   'Authorization': 'token'  
 
 Body: JSON  
@@ -166,6 +181,82 @@ Body: JSON
 400
 {
   message: 'get user error'
+}
+
+403
+  {  
+      "message": "not authorized"  
+      "message": "invalid token"  
+  }  
+
+
+  // получение списка уроков для заданного языка
+  http://localhost:5000/api/lessons?lang=[ru|en]
+    GET
+
+  Headers:
+  'Authorization': 'token'  
+
+
+200
+[
+    {
+        "index:": 1,
+        "name": "Home Row Position",
+        "lang": "ru"
+    },
+    {
+        "index:": 2,
+        "name": "Index Fingers",
+        "lang": "ru"
+    }
+    ...
+]
+
+  400
+{
+  message: 'lessons error'
+  message: 'bad request'
+}
+
+403
+  {  
+      "message": "not authorized"  
+      "message": "invalid token"  
+  }  
+
+
+    // получение списка упражнений для заданного урока и языка
+  http://localhost:5000/api/lessons?lang=[ru|en]&id=[number]
+    GET
+
+  Headers:
+  'Authorization': 'token'  
+
+200
+{
+    "index:": 2,
+    "name": "Index Fingers",
+    "lang": "ru",
+    "levels": [
+        {
+            "index:": 1,
+            "name": "пррпр",
+            "text": "пррпр рпррп прппр ррпрп ппрпр прпрр рпрпп прпрп ррпрп ппрпр"
+        },
+        {
+            "index:": 2,
+            "name": "ров",
+            "text": "ров пол жар фары пора лорд парад пожар форвард водопровод"
+        },
+        ...
+      ]
+}
+
+    400
+{
+  message: 'lessons error'
+  message: 'bad request'
 }
 
 403
