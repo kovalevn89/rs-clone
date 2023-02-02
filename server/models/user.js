@@ -10,6 +10,14 @@ const User = new Schema({
     type: String,
     requared: true
   },
+  accuracy:{
+    type: Number,
+    requared: true
+  },
+  speed: {
+    type: Number,
+    requared: true
+  },
   gamespace:{
     type: String,
     ref: 'Game'

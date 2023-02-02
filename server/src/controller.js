@@ -81,6 +81,44 @@ class Controller {
     }
   }
 
+  async updateUserTest(req, res) {
+    try {
+      const token = req.headers.authorization;
+
+      if (!token) {
+        return res.status(403).json({message: 'not authorized'});
+      }
+
+      const user = verifyToken(token);
+
+      if (user === null) {
+        return res.status(403).json({message: 'invalid token'});
+      }
+
+      if(req.body.speed && req.body.accuracy) {
+        const speed = req.body.speed;
+        const accuracy = req.body.accuracy;
+  
+        if (!speed || !accuracy) {
+          return res.status(400).json({message: 'bad parametrs'});
+        }
+
+        const updateResult = await User.updateOne({_id: user.id}, {$set: {accuracy, speed}});
+
+        if (updateResult.modifiedCount === 1) {
+          return res.json({message: 'user updated'});
+        }
+
+        return res.json({message: 'nothing to update'});
+      }
+      
+      return res.status(400).json({message: 'update error'});
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({message: 'update error'});
+    }
+  }
+
   async deleteUser(req, res) {
     try {
       const token = req.headers.authorization;

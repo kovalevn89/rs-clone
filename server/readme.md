@@ -95,8 +95,8 @@
 
 
 
-
-http://localhost:5000/api/test?lang=en
+// получение рандомного текста для теста
+http://localhost:5000/api/test?lang=[en|ru]
 GET
 
 
@@ -112,3 +112,35 @@ GET
   message: 'get test error'
 }
 
+
+//  обновление статистики теста
+
+/api/user  
+PUT
+
+Headers:
+  'Authorization': 'token'  
+
+Body: JSON  
+{
+    "speed": 134,
+    "accuracy": 99.4
+}
+
+200
+{
+  message: 'user updated'
+  message: 'nothing to update'
+}
+
+400
+{
+  message: 'update error'
+  message: 'bad parametrs'
+}
+
+403
+  {  
+      "message": "not authorized"  
+      "message": "invalid token"  
+  }  

@@ -10,6 +10,7 @@ router.post('/register', [
 ], Controller.register);
 router.post('/auth', Controller.auth);
 router.delete('/user', Controller.deleteUser);
+router.put('/user', Controller.updateUserTest);
 router.get('/test', Controller.randomTest);
 
 export default router;
