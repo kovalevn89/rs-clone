@@ -62,6 +62,34 @@ class Controller {
     }
   }
 
+  async userInfo(req, res) {
+    try {
+      const token = req.headers.authorization;
+
+      if (!token) {
+        return res.status(403).json({message: 'not authorized'});
+      }
+
+      const user = verifyToken(token);
+
+      if (user === null) {
+        return res.status(403).json({message: 'invalid token'});
+      }
+
+      const userFined = await User.findOne({_id: user.id});
+
+      if (userFined !== null) {
+        const {_id, username, accuracy, speed, gamespace, gamewhac, gameshoter, lessons} = userFined;
+        return res.json({_id, username, accuracy, speed, gamespace, gamewhac, gameshoter, lessons});
+      }
+
+      return res.status(400).json({message: 'get user error'});
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({message: 'get user error'});
+    }
+  }
+
   async randomTest(req, res) {
     try {
       if (req.query.lang) {
@@ -111,7 +139,7 @@ class Controller {
 
         return res.json({message: 'nothing to update'});
       }
-      
+
       return res.status(400).json({message: 'update error'});
     } catch (error) {
       console.log(error);

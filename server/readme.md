@@ -144,3 +144,32 @@ Body: JSON
       "message": "not authorized"  
       "message": "invalid token"  
   }  
+
+
+// получение инфы о пользователе
+  http://localhost:5000/api/user
+  GET
+
+  Headers:
+  'Authorization': 'token'  
+
+200
+{
+    "_id": "63dbaf9cdcfe2d760c226ccd",
+    "username": "admin",
+    "accuracy": 99.4,
+    "speed": 134,
+    "lessons": []
+}
+// возвращаются только те поля которые есть в базе.
+
+400
+{
+  message: 'get user error'
+}
+
+403
+  {  
+      "message": "not authorized"  
+      "message": "invalid token"  
+  }  
