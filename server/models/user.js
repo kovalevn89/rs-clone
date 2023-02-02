@@ -30,10 +30,10 @@ const User = new Schema({
     type: String,
     ref: 'Game'
   },
-  lessons: [{
-    type: String,
-    ref: 'Lesson'
-  }]
+  // lessons: [{
+  //   type: String,
+  //   ref: 'Lesson'
+  // }]
 });
 
 export default model('User', User);

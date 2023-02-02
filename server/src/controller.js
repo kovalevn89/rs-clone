@@ -1,5 +1,6 @@
 import User from '../models/user.js';
 import Lesson from '../models/lesson.js';
+import Level from '../models/level.js';
 import Game from '../models/game.js';
 import Test from '../models/test.js';
 import Bcrypt from 'bcryptjs';
