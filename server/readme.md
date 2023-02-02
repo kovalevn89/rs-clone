@@ -92,3 +92,23 @@
       "message": "invalid token"  
   }  
 ```
+
+
+
+
+http://localhost:5000/api/test?lang=en
+GET
+
+
+{
+    "text": "text of the test",
+    "lang": "en"
+}
+
+400
+{
+  message: 'not found'
+  message: 'bad request'
+  message: 'get test error'
+}
+

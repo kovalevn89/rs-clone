@@ -1,6 +1,7 @@
 import User from '../models/user.js';
 import Lesson from '../models/lesson.js';
-import game from '../models/game.js';
+import Game from '../models/game.js';
+import Test from '../models/test.js';
 import Bcrypt from 'bcryptjs';
 import {generateToken, verifyToken} from './helper.js';
 import {validationResult} from 'express-validator'; 
@@ -58,6 +59,25 @@ class Controller {
     } catch (error) {
       console.log(error);
       res.status(400).json({message: 'login error'});
+    }
+  }
+
+  async randomTest(req, res) {
+    try {
+      if (req.query.lang) {
+        const tests = await Test.find({lang: req.query.lang});
+
+        if (tests.length !== 0) {
+          const test = tests[Math.floor(Math.random() * tests.length)];
+          return res.json({text: test.text, lang: test.lang});
+        }
+
+        return res.status(400).json({message: 'not found'});
+      }
+      res.status(400).json({message: 'bad request'});
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({message: 'get test error'});
     }
   }
 
