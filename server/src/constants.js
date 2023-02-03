@@ -3,6 +3,6 @@ const DBLOGIN = 'typego';
 const DBPASSWORD = 'pa123sword';
 const TOKEN_KEY = 'lkejwlckkfjd';
 const TOKEN_EXP = '72h';
-const GAMES_NAMES = ['whac', 'space', 'shooter'];
+const GAMES_NAME = ['whac', 'space', 'shooter'];
 
-export {PORT, DBLOGIN, DBPASSWORD, TOKEN_KEY, TOKEN_EXP, GAMES_NAMES};
+export {PORT, DBLOGIN, DBPASSWORD, TOKEN_KEY, TOKEN_EXP, GAMES_NAME};

@@ -7,7 +7,7 @@ import Test from '../models/test.js';
 import Bcrypt from 'bcryptjs';
 import {generateToken, verifyToken} from './helper.js';
 import {validationResult} from 'express-validator'; 
-import {GAMES_NAMES} from '../src/constants.js';
+import {GAMES_NAME} from '../src/constants.js';
 
 
 class Controller {
@@ -195,7 +195,7 @@ class Controller {
         if(updateResult.some(value => value.value)) {
           return res.json({message: 'game score updated'});
         } else {
-          if(GAMES_NAMES.includes(name)) {
+          if(GAMES_NAME.includes(name)) {
             const game = new Game({name, level, score});
             findUser.gamesScore.push(game);
             findUser.save();
