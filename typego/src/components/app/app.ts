@@ -1,6 +1,6 @@
 import Model from '../model/model';
 import Controller from '../controller/controler';
-import { View } from '../view/view';
+import View from '../view/view';
 
 class App {
   model;

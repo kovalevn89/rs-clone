@@ -23,7 +23,7 @@ class Keyboard {
     });
   }
 
-  activate(id: string) {
+  activate(id: string): void {
     this.keys.forEach((key) => {
       if (key.id === id) {
         console.log(id, key.id);
@@ -32,11 +32,10 @@ class Keyboard {
     });
   }
 
-  render = (): void => {
-    const root = document.querySelector('body');
-    root?.append(this.keyboard);
+  render(): void {
     console.log(this.keys);
-  };
+    this.keys.forEach((key) => console.log(key.id));
+  }
 }
 
 export default Keyboard;

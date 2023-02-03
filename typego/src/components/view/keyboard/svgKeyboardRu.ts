@@ -1,4 +1,4 @@
-export const svgKeybordRu = `<svg class="standard-kb" viewBox="0 0 683.3 254" xmlns="http://www.w3.org/2000/svg">
+export const svgKeybordRu = `<svg class="default__kb" viewBox="0 0 683.3 254" xmlns="http://www.w3.org/2000/svg">
 <g id="keys">
   <path id="tilda" class="key" d="M58.4,53.7c0,1.7-1.4,3-3,3H18.9c-1.6,0-3-1.3-3-3V18.3c0-1.7,1.3-3,3-3h36.5c1.6,0,3,1.3,3,3V53.7z"></path>
   <path id="key-1" class="key" d="M103.4,53.7c0,1.7-1.3,3-3,3H63.9c-1.7,0-3-1.3-3-3V18.3c0-1.6,1.3-3,3-3h36.5c1.7,0,3,1.4,3,3V53.7z"></path>

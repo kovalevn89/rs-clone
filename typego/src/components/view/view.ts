@@ -1,20 +1,20 @@
 import Footer from './footer';
 import Header from './header';
-import { Training } from './training.ts/training';
+import Training from './training/training';
 
-export class View {
+class View {
   header;
   footer;
-  level;
+  training;
 
   constructor() {
     this.header = new Header();
     this.footer = new Footer();
-    this.level = new Training();
+    this.training = new Training();
   }
 
   run(): void {
-    this.level.render();
+    this.training.render();
   }
 }
 
