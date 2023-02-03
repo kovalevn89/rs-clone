@@ -1,20 +1,20 @@
 import Footer from './footer';
 import Header from './header';
-import Keyboard from './keyboard/keyboard';
+import { Training } from './training.ts/training';
 
 export class View {
   header;
   footer;
-  keybord;
+  level;
 
   constructor() {
     this.header = new Header();
     this.footer = new Footer();
-    this.keybord = new Keyboard();
+    this.level = new Training();
   }
 
   run(): void {
-    this.keybord.render();
+    this.level.render();
   }
 }
 
