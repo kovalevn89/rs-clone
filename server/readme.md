@@ -295,7 +295,7 @@ Body: JSON
 
 
 
-  // Обновление тгровой статистики
+  // Обновление игровой статистики
   http://localhost:5000/api/game
   PUT
 
@@ -313,6 +313,42 @@ Body: JSON
 200
 {
     "message": "game score updated"
+}
+
+400
+{
+  message: 'update error'
+  message: 'nothing to update'
+  message: 'bad parametrs'
+}
+
+403
+  {  
+      "message": "not authorized"  
+      "message": "invalid token"  
+  }  
+
+
+
+    // Обновление прогресса обучения
+  http://localhost:5000/api/lessons
+  PUT
+
+  Headers:
+  'Content-Type': 'application/json'  
+  'Authorization': 'token'  
+
+Body: JSON  
+{
+    "lesson": 1,
+    "level": 3,
+    "accuracy": 83,
+    "speed": 115
+}
+
+200
+{
+    "message": "study progress updated"
 }
 
 400

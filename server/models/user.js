@@ -22,10 +22,10 @@ const User = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Game'
   }],
-  // lessons: [{
-  //   type: String,
-  //   ref: 'Lesson'
-  // }]
+  progress: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Study'
+  }]
 });
 
 export default model('User', User);

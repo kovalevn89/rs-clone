@@ -1,6 +1,7 @@
 import User from '../models/user.js';
 import Lesson from '../models/lesson.js';
 import Level from '../models/level.js';
+import Study from '../models/study.js';
 import Game from '../models/game.js';
 import Test from '../models/test.js';
 import Bcrypt from 'bcryptjs';
@@ -78,11 +79,11 @@ class Controller {
         return res.status(403).json({message: 'invalid token'});
       }
 
-      const userFined = await User.findOne({_id: user.id}).populate('gamesScore');
+      const userFined = await User.findOne({_id: user.id}).populate('gamesScore').populate('progress');
 
       if (userFined !== null) {
-        const {_id, username, accuracy, speed, gamesScore, lessons} = userFined;
-        return res.json({_id, username, accuracy, speed, gamesScore, lessons});
+        const {_id, username, accuracy, speed, gamesScore, progress} = userFined;
+        return res.json({_id, username, accuracy, speed, gamesScore, progress});
       }
 
       return res.status(400).json({message: 'get user error'});
@@ -182,7 +183,7 @@ class Controller {
           const game = await Game.findOne({'_id': value});
           if (game !== null) {
             if(game.name === name){
-              const updateResult = await Game.updateOne({'_id': value}, {$set: {level, score}});
+              await Game.updateOne({'_id': value}, {$set: {level, score}});
 
               return true;
             }
@@ -202,6 +203,66 @@ class Controller {
             
             return res.json({message: 'game score updated'});
           }
+        }
+      }
+
+      return res.status(400).json({message: 'update error'});
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({message: 'update error'});
+    }
+  }
+
+  async updateStadyProgress(req, res) {
+    try {
+      const token = req.headers.authorization;
+
+      if (!token) {
+        return res.status(403).json({message: 'not authorized'});
+      }
+
+      const user = verifyToken(token);
+
+      if (user === null) {
+        return res.status(403).json({message: 'invalid token'});
+      }
+
+      if(req.body.lesson && req.body.level && req.body.accuracy && req.body.speed) {
+        const lesson = req.body.lesson;
+        const level = req.body.level;
+        const accuracy = req.body.accuracy;
+        const speed = req.body.speed;
+  
+        if (!lesson || !level|| !accuracy || !speed) {
+          return res.status(400).json({message: 'bad parametrs'});
+        }
+
+        const findUser = await User.findOne({username: user.name});
+
+        if(!findUser) {
+          return res.json({message: 'nothing to update'});
+        }
+
+        const updateResult = await Promise.allSettled(findUser.progress.map(async (value) => {
+          const task = await Study.findOne({'_id': value});
+          if (task !== null) {
+            if(task.lesson === lesson && task.level === level){
+              await Study.updateOne({'_id': value}, {$set: {accuracy, speed}});
+              return true;
+            }
+          }
+          return false;
+        }));
+
+        if(updateResult.some(value => value.value)) {
+          return res.json({message: 'study progress updated'});
+        } else {
+          const game = new Study({lesson, level, accuracy, speed});
+          findUser.progress.push(game);
+          findUser.save();
+          game.save();
+          
+          return res.json({message: 'study progress updated'});
         }
       }
 
@@ -303,24 +364,6 @@ class Controller {
       res.status(400).json({message: 'top score error'});
     }
   }
-
-  // async nk(req, res) {
-  //   try {
-  //     // -----------------------------------------------------
-      
-  //     const find = await Lesson.findOne({index: 1, lang: 'en'}).populate('levels');
-
-  //     if(!find) {
-  //       return res.json(`none`);
-  //     }
-
-  //     console.log(find.levels);
-  //     return res.json(`ok - ${find}`);
-  //   } catch (error) {
-  //     console.log(error);
-  //     return res.json('lol');
-  //   }
-  // }
 }
 
 export default new Controller();

@@ -15,7 +15,7 @@ router.put('/user', Controller.updateUserTest);
 router.put('/game', Controller.updateUserGameScore);
 router.get('/test', Controller.randomTest);
 router.get('/lessons', Controller.getLessons);
+router.put('/lessons', Controller.updateStadyProgress);
 router.get('/top', Controller.getTopScore);
-// router.get('/nk', Controller.nk);
 
 export default router;
