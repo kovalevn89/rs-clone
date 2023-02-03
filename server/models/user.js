@@ -18,18 +18,10 @@ const User = new Schema({
     type: Number,
     requared: true
   },
-  gamespace:{
-    type: String,
+  gamesScore:[{
+    type: Schema.Types.ObjectId,
     ref: 'Game'
-  },
-  gamewhac: {
-    type: String,
-    ref: 'Game'
-  },
-  gameshoter: {
-    type: String,
-    ref: 'Game'
-  },
+  }],
   // lessons: [{
   //   type: String,
   //   ref: 'Lesson'

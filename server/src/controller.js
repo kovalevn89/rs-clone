@@ -6,6 +6,7 @@ import Test from '../models/test.js';
 import Bcrypt from 'bcryptjs';
 import {generateToken, verifyToken} from './helper.js';
 import {validationResult} from 'express-validator'; 
+import {GAMES_NAMES} from '../src/constants.js';
 
 
 class Controller {
@@ -77,11 +78,11 @@ class Controller {
         return res.status(403).json({message: 'invalid token'});
       }
 
-      const userFined = await User.findOne({_id: user.id});
+      const userFined = await User.findOne({_id: user.id}).populate('gamesScore');
 
       if (userFined !== null) {
-        const {_id, username, accuracy, speed, gamespace, gamewhac, gameshoter, lessons} = userFined;
-        return res.json({_id, username, accuracy, speed, gamespace, gamewhac, gameshoter, lessons});
+        const {_id, username, accuracy, speed, gamesScore, lessons} = userFined;
+        return res.json({_id, username, accuracy, speed, gamesScore, lessons});
       }
 
       return res.status(400).json({message: 'get user error'});
@@ -139,6 +140,69 @@ class Controller {
         }
 
         return res.json({message: 'nothing to update'});
+      }
+
+      return res.status(400).json({message: 'update error'});
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({message: 'update error'});
+    }
+  }
+
+  async updateUserGameScore(req, res) {
+    try {
+      const token = req.headers.authorization;
+
+      if (!token) {
+        return res.status(403).json({message: 'not authorized'});
+      }
+
+      const user = verifyToken(token);
+
+      if (user === null) {
+        return res.status(403).json({message: 'invalid token'});
+      }
+
+      if(req.body.name && req.body.level && req.body.score) {
+        const name = req.body.name;
+        const level = req.body.level;
+        const score = req.body.score;
+  
+        if (!level || !score|| !name) {
+          return res.status(400).json({message: 'bad parametrs'});
+        }
+
+        const findUser = await User.findOne({username: user.name});
+
+        if(!findUser) {
+          return res.json({message: 'nothing to update'});
+        }
+
+        const updateResult = await Promise.allSettled(findUser.gamesScore.map(async (value) => {
+          const game = await Game.findOne({'_id': value});
+          if (game !== null) {
+            if(game.name === name){
+              const updateResult = await Game.updateOne({'_id': value}, {$set: {level, score}});
+
+              return true;
+            }
+          }
+
+          return false;
+        }));
+
+        if(updateResult.some(value => value.value)) {
+          return res.json({message: 'game score updated'});
+        } else {
+          if(GAMES_NAMES.includes(name)) {
+            const game = new Game({name, level, score});
+            findUser.gamesScore.push(game);
+            findUser.save();
+            game.save();
+            
+            return res.json({message: 'game score updated'});
+          }
+        }
       }
 
       return res.status(400).json({message: 'update error'});

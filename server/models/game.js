@@ -3,15 +3,14 @@ import { Schema, model } from 'mongoose';
 const Game = new Schema({
   name: {
     type: String,
-    unique: true,
     requared: true
   },
   level: {
-    type: String,
+    type: Number,
     requared: true
   },
-  result: {
-    type: String,
+  score: {
+    type: Number,
     requared: true
   }
 });

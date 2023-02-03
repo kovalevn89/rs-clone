@@ -292,3 +292,38 @@ Body: JSON
     message: 'top score error'
     message: 'not found'
   }
+
+
+
+  // Обновление тгровой статистики
+  http://localhost:5000/api/game
+  PUT
+
+  Headers:
+  'Content-Type': 'application/json'  
+  'Authorization': 'token'  
+
+Body: JSON  
+{
+    "name": ['whac' | 'space' | 'shooter'],
+    "level": 1,
+    "score": 1
+}
+
+200
+{
+    "message": "game score updated"
+}
+
+400
+{
+  message: 'update error'
+  message: 'nothing to update'
+  message: 'bad parametrs'
+}
+
+403
+  {  
+      "message": "not authorized"  
+      "message": "invalid token"  
+  }  

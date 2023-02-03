@@ -12,6 +12,7 @@ router.post('/auth', Controller.auth);
 router.get('/user', Controller.userInfo);
 router.delete('/user', Controller.deleteUser);
 router.put('/user', Controller.updateUserTest);
+router.put('/game', Controller.updateUserGameScore);
 router.get('/test', Controller.randomTest);
 router.get('/lessons', Controller.getLessons);
 router.get('/top', Controller.getTopScore);
