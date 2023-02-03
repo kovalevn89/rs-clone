@@ -96,7 +96,293 @@ Api for Rolling Scopes School task "RS-Clone".
 **400 - error**  
 ```
   {  
-      "message": "delete user error"  
+    "message": "delete user error"  
+  }  
+```
+**403 - auth error**  
+```
+  {  
+    "message": "not authorized"  
+    "message": "invalid token"  
+  }  
+```
+  
+  
+# Получение случайного текста для теста: 
+* **Method:** GET   
+* **Endpoint:**  /api/test?lang=[en|ru]  
+  
+**200 - OK**  
+```
+  {  
+      "text": "text of the test",  
+      "lang": "en"  
+  }  
+```
+  
+**400 - error**  
+```
+  {  
+    message: 'not found'  
+    message: 'bad request'  
+    message: 'get test error'  
+  }  
+```
+  
+  
+# Обновление статистики теста для пользователя
+* **Method:** PUT  
+* **Endpoint:** /api/user  
+  
+* **Headers:** 
+  'Content-Type': 'application/json'  
+  'Authorization': 'token'  
+  
+* **Body:** JSON  
+```  
+  {  
+    "speed": 134,  
+    "accuracy": 99.4  
+  }  
+``` 
+**200 - OK**  
+```  
+  {  
+    message: 'user updated'  
+    message: 'nothing to update'  
+  }  
+```  
+**400 - error**  
+```  
+  {  
+    message: 'update error'  
+    message: 'bad parametrs'  
+  }  
+```  
+**403 - auth error**  
+```
+  {  
+      "message": "not authorized"  
+      "message": "invalid token"  
+  }  
+```
+  
+  
+# Получение инфомации о пользователе
+* **Method:** GET  
+* **Endpoint:** /api/user  
+  
+* **Headers:**  
+  'Authorization': 'token'  
+
+**200 - OK**  
+```
+  {  
+    "_id": "63dbaf9cdcfe2d760c226ccd",  
+    "username": "admin",  
+    "accuracy": 99.4,  
+    "speed": 134,  
+    "lessons": []  
+  }  
+  // возвращаются только те поля которые есть в базе.  
+```  
+  
+**400 - error**  
+```  
+  {  
+    message: 'get user error'  
+  }  
+```  
+**403 - auth error**  
+```
+  {  
+    "message": "not authorized"  
+    "message": "invalid token"  
+  }  
+```
+
+
+# получение списка уроков для заданного языка
+* **Method:** GET  
+* **Endpoint:** /api/lessons?lang=[ru|en]
+  
+* **Headers:**  
+  'Authorization': 'token'  
+  
+**200 - OK**  
+```  
+  [  
+    {  
+      "index:": 1,  
+      "name": "Home Row Position",  
+      "lang": "ru"  
+    },  
+    {  
+      "index:": 2,  
+      "name": "Index Fingers",  
+      "lang": "ru"  
+    }  
+    ...  
+  ]  
+```
+**400 - error**  
+```  
+  {  
+    message: 'lessons error'  
+    message: 'bad request'  
+  }  
+```  
+**403 - auth error**  
+```
+  {  
+    "message": "not authorized"  
+    "message": "invalid token"  
+  }  
+``` 
+  
+  
+# Получение списка упражнений для заданного урока и языка  
+* **Method:** GET   
+* **Endpoint:**  /api/lessons?lang=[ru|en]&id=[number]  
+  
+* **Headers:**  
+  'Authorization': 'token'  
+
+**200 - OK**  
+```  
+  {  
+    "index:": 2,  
+    "name": "Index Fingers",  
+    "lang": "ru",  
+    "levels": [  
+        {  
+          "index:": 1,   
+          "name": "пррпр",  
+          "text": "пррпр рпррп прппр ррпрп ппрпр прпрр рпрпп прпрп ррпрп ппрпр"  
+        },  
+        {  
+          "index:": 2,  
+          "name": "ров",  
+          "text": "ров пол жар фары пора лорд парад пожар форвард водопровод"  
+        },  
+        ...  
+      ]  
+  }  
+```  
+**400 - error**  
+```  
+  {  
+    message: 'lessons error'  
+    message: 'bad request'  
+  }  
+```
+**403 - auth error**  
+```  
+  {  
+    "message": "not authorized"  
+    "message": "invalid token"  
+  }   
+```  
+  
+  
+# Получение ТОП 10 результатов пользователей (сортировка по скорости набора)
+* **Method:** GET   
+* **Endpoint:**  /api/top
+  
+**200 - OK**  
+```  
+  [  
+    {  
+      "username": "admin2",  
+      "accuracy": 82,  
+      "speed": 139  
+    },  
+    {  
+      "username": "admin",  
+      "accuracy": 99.4,  
+      "speed": 134  
+    },  
+    ...  
+  ]  
+```
+  
+**400 - error**  
+```  
+  {  
+    message: 'top score error'  
+    message: 'not found'  
+  }  
+```  
+  
+  
+ # Обновление статистики пройденных игр
+* **Method:** PUT   
+* **Endpoint:**  /api/game  
+  
+* **Headers:** 
+  'Content-Type': 'application/json'   
+  'Authorization': 'token'  
+
+* **Body:** JSON  
+```  
+  {  
+    "name": ['whac' | 'space' | 'shooter'],  
+    "level": 1,  
+    "score": 1  
+  }  
+```
+**200 - OK**  
+```  
+  {  
+    "message": "game score updated"  
+  }  
+```  
+**400 - error**  
+```  
+  {  
+    message: 'update error'  
+    message: 'nothing to update'  
+    message: 'bad parametrs'  
+  }  
+```  
+**403 - auth error**  
+```
+  {  
+    "message": "not authorized"  
+    "message": "invalid token"  
+  }  
+```
+   
+  
+# Обновление прогресса обучения пользователя  
+* **Method:** PUT  
+* **Endpoint:** /api/lessons  
+  
+* **Headers:**  
+  'Content-Type': 'application/json'   
+  'Authorization': 'token'  
+  
+* **Body:** JSON  
+```  
+  {  
+    "lesson": 1,  
+    "level": 3,  
+    "accuracy": 83,  
+    "speed": 115  
+  }  
+```
+**200 - OK**  
+```  
+  {  
+    "message": "study progress updated"  
+  }  
+```  
+**400 - error**  
+```   
+  {  
+    message: 'update error'  
+    message: 'nothing to update'  
+    message: 'bad parametrs'  
   }  
 ```
 **403 - auth error**  
@@ -106,260 +392,3 @@ Api for Rolling Scopes School task "RS-Clone".
       "message": "invalid token"  
   }  
 ```
-
-
-
-// получение рандомного текста для теста
-http://localhost:5000/api/test?lang=[en|ru]
-GET
-
-
-{
-    "text": "text of the test",
-    "lang": "en"
-}
-
-400
-{
-  message: 'not found'
-  message: 'bad request'
-  message: 'get test error'
-}
-
-
-//  обновление статистики теста
-
-/api/user  
-PUT
-
-Headers:
-  'Content-Type': 'application/json'  
-  'Authorization': 'token'  
-
-Body: JSON  
-{
-    "speed": 134,
-    "accuracy": 99.4
-}
-
-200
-{
-  message: 'user updated'
-  message: 'nothing to update'
-}
-
-400
-{
-  message: 'update error'
-  message: 'bad parametrs'
-}
-
-403
-  {  
-      "message": "not authorized"  
-      "message": "invalid token"  
-  }  
-
-
-// получение инфы о пользователе
-  http://localhost:5000/api/user
-  GET
-
-  Headers:
-  'Authorization': 'token'  
-
-200
-{
-    "_id": "63dbaf9cdcfe2d760c226ccd",
-    "username": "admin",
-    "accuracy": 99.4,
-    "speed": 134,
-    "lessons": []
-}
-// возвращаются только те поля которые есть в базе.
-
-400
-{
-  message: 'get user error'
-}
-
-403
-  {  
-      "message": "not authorized"  
-      "message": "invalid token"  
-  }  
-
-
-  // получение списка уроков для заданного языка
-  http://localhost:5000/api/lessons?lang=[ru|en]
-    GET
-
-  Headers:
-  'Authorization': 'token'  
-
-
-200
-[
-    {
-        "index:": 1,
-        "name": "Home Row Position",
-        "lang": "ru"
-    },
-    {
-        "index:": 2,
-        "name": "Index Fingers",
-        "lang": "ru"
-    }
-    ...
-]
-
-  400
-{
-  message: 'lessons error'
-  message: 'bad request'
-}
-
-403
-  {  
-      "message": "not authorized"  
-      "message": "invalid token"  
-  }  
-
-
-    // получение списка упражнений для заданного урока и языка
-  http://localhost:5000/api/lessons?lang=[ru|en]&id=[number]
-    GET
-
-  Headers:
-  'Authorization': 'token'  
-
-200
-{
-    "index:": 2,
-    "name": "Index Fingers",
-    "lang": "ru",
-    "levels": [
-        {
-            "index:": 1,
-            "name": "пррпр",
-            "text": "пррпр рпррп прппр ррпрп ппрпр прпрр рпрпп прпрп ррпрп ппрпр"
-        },
-        {
-            "index:": 2,
-            "name": "ров",
-            "text": "ров пол жар фары пора лорд парад пожар форвард водопровод"
-        },
-        ...
-      ]
-}
-
-    400
-{
-  message: 'lessons error'
-  message: 'bad request'
-}
-
-403
-  {  
-      "message": "not authorized"  
-      "message": "invalid token"  
-  }  
-
-
-
-  //Получение ТОП 10 результатов пользователей (сортировка по скорости набора)
-  http://localhost:5000/api/top
-  GET
-
-
-  200
-  [
-      {
-          "username": "admin2",
-          "accuracy": 82,
-          "speed": 139
-      },
-      {
-          "username": "admin",
-          "accuracy": 99.4,
-          "speed": 134
-      },
-      ...
-  ]
-
-  400
-  {
-    message: 'top score error'
-    message: 'not found'
-  }
-
-
-
-  // Обновление игровой статистики
-  http://localhost:5000/api/game
-  PUT
-
-  Headers:
-  'Content-Type': 'application/json'  
-  'Authorization': 'token'  
-
-Body: JSON  
-{
-    "name": ['whac' | 'space' | 'shooter'],
-    "level": 1,
-    "score": 1
-}
-
-200
-{
-    "message": "game score updated"
-}
-
-400
-{
-  message: 'update error'
-  message: 'nothing to update'
-  message: 'bad parametrs'
-}
-
-403
-  {  
-      "message": "not authorized"  
-      "message": "invalid token"  
-  }  
-
-
-
-    // Обновление прогресса обучения
-  http://localhost:5000/api/lessons
-  PUT
-
-  Headers:
-  'Content-Type': 'application/json'  
-  'Authorization': 'token'  
-
-Body: JSON  
-{
-    "lesson": 1,
-    "level": 3,
-    "accuracy": 83,
-    "speed": 115
-}
-
-200
-{
-    "message": "study progress updated"
-}
-
-400
-{
-  message: 'update error'
-  message: 'nothing to update'
-  message: 'bad parametrs'
-}
-
-403
-  {  
-      "message": "not authorized"  
-      "message": "invalid token"  
-  }  
