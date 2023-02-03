@@ -1,0 +1,192 @@
+.drop-game-startpage-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #55c5ff;
+  padding: 1rem;
+  color: #fff;
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 400;
+}
+
+// .drop-game-startpage-wrapper p {
+//   font-family: 'Barlow';
+//   font-style: normal;
+//   font-weight: 400;
+// }
+
+
+.drop-game-startpage-container{
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.drop-game-startpage-header {
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  background-color: #2ea3f8;
+  background-image: linear-gradient(to bottom,#39b5fa,#2ea3f8);
+  border: none;
+  border-top: 1px solid #73ccfb;
+  box-shadow: #48a8d9 0 1px 2px;
+  border-radius: 10px;
+}
+
+.drop-game-startpage-btn {
+  margin-right: 0;
+  font-size: 1.6rem;
+  font-weight: 400;
+  border-radius: 1rem;
+  background-color: #27a2e8;
+  background-image: linear-gradient(to bottom,#29a5e8,#27a2e8);
+  border-radius: 15px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #fff;
+  
+}
+
+.drop-game-startpage-title-container {
+  display: flex;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  gap: 1rem;
+}
+
+.drop-game-startpage-main-title {
+  color: #fff;
+  margin: 1rem;
+  font-family: 'Noto Serif Tamil';
+  font-style: italic;
+  font-weight: 700;
+}
+
+.drop-game-startpage-box-container{
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.drop-game-startpage-left-container{
+  flex: 0 1 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.drop-game-startpage-right-container{
+  flex: 0 1 50%;
+}
+
+.drop-game-startpage-reset-button {
+  font-size: 1.5rem;
+  font-weight: 400;
+  width: 20rem;
+  height: 4.5rem;
+  border-radius: 10px;
+  color: #fff;
+  margin: 0 auto;
+  background-color: #2ea3f8;
+  background-image: linear-gradient(to bottom,#39b5fa,#2ea3f8);
+  border: none;
+  border-top: 1px solid #fff;
+  box-shadow: #48a8d9 0 1px 2px;
+  transition: 1s;
+  &:hover{
+    border-top: 1px solid #2ea3f8;
+  }
+}
+
+.drop-game-startpage-points-container {
+  padding: 0 1rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.drop-game-startpage-levels {
+  margin: 2rem auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+  column-gap: 3rem;
+}
+
+.level-btn {
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  color: #fff;
+  background-color: #2ea3f8;
+  background-image: linear-gradient(to bottom,#39b5fa,#2ea3f8);
+  border: none;
+  border-top: 1px solid #fff;
+  box-shadow: #48a8d9 0 1px 2px;
+  border-radius: 50%;
+  transition: 1s;
+  &:hover{
+    border-top: 1px solid #2ea3f8;
+  }
+}
+
+button {
+  font-family: inherit;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.level-title {
+  font-size: 2rem;
+  font-weight: 400;
+
+}
+
+.drop-game-startpage-points-title, .drop-game-startpage-rule-title{
+  font-size: 2rem;
+  font-family: 'Montserrat Alternates';
+  font-style: normal;
+  font-weight: 700;
+  text-align: center;
+  margin: 2rem auto 1rem;
+
+}
+.drop-game-startpage-scores{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 2rem;
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 400;
+  p{
+    margin: 0.2rem;
+  }
+}
+.score, .accuracy {
+  font-size: 1.5rem;
+  position: relative;
+  display: flex;
+  gap: 10px;
+ 
+}
+.score-title, .accuracy-title{
+  font-family: 'Barlow' !important;
+  font-style: normal;
+  font-weight: 400;
+}
+.drop-game-startpage-rule-text{
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-align: center;
+}
