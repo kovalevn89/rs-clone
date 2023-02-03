@@ -1,10 +1,12 @@
 import Express from 'express';
 import Mongoose from 'mongoose';
 import router from './src/route.js';
+import morgan from 'morgan';
 import {PORT, DBLOGIN, DBPASSWORD} from './src/constants.js';
 
 const app = Express();
 
+app.use(morgan('combined'));
 app.use(Express.json());
 app.use('/api', router);
 
