@@ -227,8 +227,9 @@ class Controller {
         return res.status(403).json({message: 'invalid token'});
       }
 
-      if(req.body.lesson && req.body.level && req.body.accuracy && req.body.speed) {
+      if(req.body.lesson && req.body.level && req.body.accuracy && req.body.speed && req.body.lang) {
         const lesson = req.body.lesson;
+        const lang = req.body.lang;
         const level = req.body.level;
         const accuracy = req.body.accuracy;
         const speed = req.body.speed;
@@ -246,7 +247,7 @@ class Controller {
         const updateResult = await Promise.allSettled(findUser.progress.map(async (value) => {
           const task = await Study.findOne({'_id': value});
           if (task !== null) {
-            if(task.lesson === lesson && task.level === level){
+            if(task.lesson === lesson && task.level === level && task.lang === lang){
               await Study.updateOne({'_id': value}, {$set: {accuracy, speed}});
               return true;
             }
@@ -257,7 +258,7 @@ class Controller {
         if(updateResult.some(value => value.value)) {
           return res.json({message: 'study progress updated'});
         } else {
-          const game = new Study({lesson, level, accuracy, speed});
+          const game = new Study({lesson, lang, level, accuracy, speed});
           findUser.progress.push(game);
           findUser.save();
           game.save();

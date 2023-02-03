@@ -5,6 +5,10 @@ const Study = new Schema({
     type: Number,
     requared: true
   },
+  lang: {
+    type: String,
+    requared: true
+  },
   level: {
     type: Number,
     requared: true

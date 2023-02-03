@@ -366,6 +366,7 @@ Api for Rolling Scopes School task "RS-Clone".
 ```  
   {  
     "lesson": 1,  
+    "lang": "ru",
     "level": 3,  
     "accuracy": 83,  
     "speed": 115  
