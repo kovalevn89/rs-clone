@@ -7,7 +7,6 @@ const Level = new Schema({
   },
   name: {
     type: String,
-    unique: true,
     requared: true
   },
   text: {
