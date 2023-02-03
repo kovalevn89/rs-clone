@@ -103,10 +103,10 @@ class Controller {
 
         return res.status(400).json({message: 'not found'});
       }
-      res.status(400).json({message: 'bad request'});
+      return res.status(400).json({message: 'bad request'});
     } catch (error) {
       console.log(error);
-      res.status(400).json({message: 'get test error'});
+      return res.status(400).json({message: 'get test error'});
     }
   }
 
@@ -222,6 +222,21 @@ class Controller {
     } catch (error) {
       console.log(error);
       res.status(400).json({message: 'lessons error'});
+    }
+  }
+
+  async getTopScore(req, res) {
+    try {
+      const topUsers = await User.find().sort({speed: -1}).limit(10);
+
+      if (topUsers.length !== 0) {
+        return res.json(topUsers.map(value => ({'username': value.username, 'accuracy': value.accuracy, 'speed': value.speed})));
+      }
+
+      return res.status(400).json({message: 'not found'});
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({message: 'top score error'});
     }
   }
 

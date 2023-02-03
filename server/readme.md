@@ -264,3 +264,31 @@ Body: JSON
       "message": "not authorized"  
       "message": "invalid token"  
   }  
+
+
+
+  //Получение ТОП 10 результатов пользователей (сортировка по скорости набора)
+  http://localhost:5000/api/top
+  GET
+
+
+  200
+  [
+      {
+          "username": "admin2",
+          "accuracy": 82,
+          "speed": 139
+      },
+      {
+          "username": "admin",
+          "accuracy": 99.4,
+          "speed": 134
+      },
+      ...
+  ]
+
+  400
+  {
+    message: 'top score error'
+    message: 'not found'
+  }

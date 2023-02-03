@@ -14,6 +14,7 @@ router.delete('/user', Controller.deleteUser);
 router.put('/user', Controller.updateUserTest);
 router.get('/test', Controller.randomTest);
 router.get('/lessons', Controller.getLessons);
+router.get('/top', Controller.getTopScore);
 // router.get('/nk', Controller.nk);
 
 export default router;
