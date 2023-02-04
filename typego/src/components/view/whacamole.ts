@@ -1,6 +1,8 @@
 import { createElement, removeChild } from '../helper/index';
-import whackBackground from '../../assets/whac_background.png';
-import whackHole from '../../assets/whac_hole.png';
+import whackBackground from '../../assets/png/whac_background.png';
+import whackHoleImg from '../../assets/png/whac_hole.png';
+import whackHoleEmptyImg from '../../assets/png/whac_hole_empty.png';
+import moleImg from '../../assets/png/mole.png';
 
 class WhacAMole {
   // constructor() {
@@ -27,8 +29,22 @@ class WhacAMole {
       createElement('div', 'stats', game);
       const gameAgea = createElement('div', 'game-area', game);
       for (let i = 0; i < 6; i += 1) {
-        const hole = createElement('div', 'hole', gameAgea);
-        this.setBackground(hole, whackHole);
+        const cell = createElement('div', 'cell', gameAgea);
+        const hole = createElement('div', 'layer1', cell); // hole
+        const mole = createElement('div', 'layer2', cell); // mole
+
+        createElement('div', 'char', mole).textContent = 'A'; // character
+
+        const holeEmpty = createElement('div', 'layer3', cell); // hole empty
+
+        this.setBackground(hole, whackHoleImg);
+        this.setBackground(holeEmpty, whackHoleEmptyImg);
+        this.setBackground(mole, moleImg);
+
+        // for test
+        holeEmpty.addEventListener('click', () => {
+          mole.classList.toggle('go');
+        });
       }
     }
   }
