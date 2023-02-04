@@ -25,7 +25,7 @@ class Keyboard {
 
   activate(id: string): void {
     this.keys.forEach((key) => {
-      if (key.id === id) {
+      if (key.id.toLowerCase() === id) {
         console.log(id, key.id);
         key.classList.add('active');
       }

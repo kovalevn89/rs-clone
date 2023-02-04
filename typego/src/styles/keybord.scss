@@ -1,8 +1,9 @@
 .keyboard {
   display: flex;
-  width: 90%;
+  width: 95%;
   margin: 0 auto;
 
+  font-family: 'ArialMT', Verdana, Geneva, Tahoma, sans-serif;
 }
 .key {
   fill: none;
@@ -11,5 +12,16 @@
   // opacity: 0.1;
   &.active {
     fill: cadetblue;
+  }
+}
+.letter {
+  font-size: 18px;
+
+  &.num {
+    font-size: 12px;
+  }
+
+  &.special {
+    font-size: 10px;
   }
 }
