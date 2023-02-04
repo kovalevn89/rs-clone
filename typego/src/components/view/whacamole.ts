@@ -33,7 +33,7 @@ class WhacAMole {
         const hole = createElement('div', 'layer1', cell); // hole
         const mole = createElement('div', 'layer2', cell); // mole
 
-        createElement('div', 'char', mole).textContent = 'A'; // character
+        createElement('div', 'char', mole).textContent = 'TEST'; // character
 
         const holeEmpty = createElement('div', 'layer3', cell); // hole empty
 
