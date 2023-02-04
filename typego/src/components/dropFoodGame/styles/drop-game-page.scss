@@ -1,4 +1,4 @@
-.drop-game-startpage-wrapper {
+.drop-game-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -11,18 +11,12 @@
   font-weight: 400;
 }
 
-// .drop-game-startpage-wrapper p {
-//   font-family: 'Barlow';
-//   font-style: normal;
-//   font-weight: 400;
-// }
-
-
 .drop-game-startpage-container{
   max-width: 1440px;
   margin: 0 auto;
 }
 .drop-game-startpage-header {
+  // min-width: 90vw;
   margin: 20px auto 0;
   padding: 10px 20px;
   display: flex;
@@ -181,7 +175,7 @@ button {
  
 }
 .score-title, .accuracy-title{
-  font-family: 'Barlow' !important;
+  font-family: 'Barlow';
   font-style: normal;
   font-weight: 400;
 }
