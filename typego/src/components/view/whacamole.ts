@@ -1,4 +1,4 @@
-import { createElement, removeChild } from '../helper/index';
+import { createElement, removeChild } from '../helper/index'; // getLetter
 import whackBackground from '../../assets/png/whac_background.png';
 import whackHoleImg from '../../assets/png/whac_hole.png';
 import whackHoleEmptyImg from '../../assets/png/whac_hole_empty.png';
@@ -33,7 +33,8 @@ class WhacAMole {
         const hole = createElement('div', 'layer1', cell); // hole
         const mole = createElement('div', 'layer2', cell); // mole
 
-        createElement('div', 'char', mole).textContent = 'TEST'; // character
+        const charBlock = createElement('div', 'char_block', mole); // .textContent = 'TEST'; // character
+        createElement('div', 'char', charBlock);
 
         const holeEmpty = createElement('div', 'layer3', cell); // hole empty
 
@@ -46,6 +47,15 @@ class WhacAMole {
           mole.classList.toggle('go');
         });
       }
+
+      // for (let i = 0; i < 26; i += 1) {
+      //   const test = createElement('div', 'test', app);
+      //   const t = getLetter('en', i);
+      //   if (t) {
+      //     createElement('div', 'test1', test).innerHTML = t.letter;
+      //     createElement('div', 'test2', test).innerHTML = t.svg;
+      //   }
+      // }
     }
   }
 
