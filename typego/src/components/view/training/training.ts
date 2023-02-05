@@ -21,7 +21,7 @@ class Training {
     this.container.append(textTraining.container);
     this.container.append(keyboard.keyboard);
 
-    input.listen(keyboard);
+    input.listen(keyboard, textTraining.text);
     keyboard.render();
     textTraining.updateProgress({ speed: 5, accurancy: 62 });
   }

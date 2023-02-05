@@ -1,4 +1,6 @@
+import { Status } from '../../types';
 import Keyboard from '../keyboard/keyboard';
+import Text from './text';
 // import keyPressSound from '../../../assets/sounds/9.mp3';
 
 class TextInput {
@@ -17,14 +19,17 @@ class TextInput {
     this.input = input;
   }
 
-  listen(keyboard: Keyboard): void {
+  listen(keyboard: Keyboard, text: Text): void {
     const press = new Audio();
     // press.src = keyPressSound;
     this.input.addEventListener('keydown', (e) => {
       keyboard.init();
-      const id = e.key ? e.key.toLowerCase() : e.code;
+      const id = e.code.toLowerCase();
+      // console.log(e.code, e.key);
       keyboard.activate(id);
       press.play();
+      const word = text.words.find((item) => item.textContent === e.key);
+      word?.classList.add(Status.correct);
     });
 
     this.input.addEventListener('blur', () => {
