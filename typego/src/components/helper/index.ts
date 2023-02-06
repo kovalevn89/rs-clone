@@ -41,7 +41,7 @@ export function removeChild(element: HTMLElement): void {
   }
 }
 
-const CHAR_COLOR = 'red';
+const CHAR_COLOR = '#9966ff';
 
 const LETTER_RU = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я'];
 const LETTER_RU_SVG = [
@@ -128,7 +128,7 @@ function getRandomLetterIndex(letterArray: Array<string>): number {
   const maxLen: number = letterArray.length;
 
   if (maxLen > 0) {
-    return Math.floor(Math.random() * maxLen);
+    return Math.floor(Math.random() * 11); // maxLen);
   }
 
   return 0;
