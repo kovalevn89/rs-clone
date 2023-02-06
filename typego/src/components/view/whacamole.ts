@@ -3,6 +3,8 @@ import whackBackground from '../../assets/png/whac_background.png';
 import whackHoleImg from '../../assets/png/whac_hole.png';
 import whackHoleEmptyImg from '../../assets/png/whac_hole_empty.png';
 import moleImg from '../../assets/png/mole.png';
+import hitSound from '../../assets/media/hit.ogg';
+import clickSound from '../../assets/media/click.ogg';
 
 /*
  В зависимости от сложности регулировать
@@ -11,8 +13,6 @@ import moleImg from '../../assets/png/mole.png';
  - Кол-во кротов
  - скорость анимации появления / исчезновения.
  - увеличивать сложнолсть по таймеру каждых 30с.
-
- ! Ю не влазит
 */
 
 interface IMole {
@@ -30,10 +30,12 @@ interface ILetter {
 
 class WhacAMole {
   language: string;
+  isSound: boolean;
   gameField: Array<IMole>;
 
   constructor() {
     this.language = 'ru';
+    this.isSound = true;
     this.gameField = [];
   }
 
@@ -49,6 +51,18 @@ class WhacAMole {
 
   checkLetterShowed(letter: string): boolean {
     return this.gameField.some((value) => value.curentLetter === letter);
+  }
+
+  clickSound(type: string): void {
+    if (this.isSound === true) {
+      switch (type) {
+        case 'hit': (new Audio(hitSound)).play(); break;
+        case 'click': (new Audio(clickSound)).play(); break;
+        default: {
+          // console.log();
+        }
+      }
+    }
   }
 
   showMole(mole: IMole): void {
@@ -126,8 +140,10 @@ class WhacAMole {
             })
         ) {
           console.log('WIN!!!');
+          this.clickSound('hit');
         } else {
           console.log('LOOSE!!!');
+          this.clickSound('click');
         }
       };
 
