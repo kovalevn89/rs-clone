@@ -62,7 +62,7 @@
           z-index: 2;
           bottom: -100%;
 
-          transition: bottom 0.8s linear; 
+          transition: bottom 0.7s linear; 
 
           &.go {
             bottom: 0%;
@@ -80,10 +80,15 @@
             align-items: center;
             
             .char {
-              width: 32%;
-              height: 70%;
+              // width: 32%;
+              // height: 70%;
+              // margin: 0;
+              // margin-top: 5px;
+              // margin-right: 14%;
+              width: 18%;
+              height: 75%;
               margin: 0;
-              margin-top: 5px;
+              margin-top: 8px;
               margin-right: 14%;
               padding: 0;
               // background-color: orange;
@@ -93,6 +98,20 @@
                 height: 100%;
                 margin: 0; 
                 padding: 0;
+
+                path {
+                  fill:#9966ff;
+                  opacity: 1;
+                  transition: opacity 0.9s linear;
+                }
+
+                &.handle{
+                  path {
+                    fill:rgb(250, 48, 48);
+                    opacity: 0;
+                  }
+                }
+                
               }
             }
           }

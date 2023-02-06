@@ -11,6 +11,8 @@ import moleImg from '../../assets/png/mole.png';
  - Кол-во кротов
  - скорость анимации появления / исчезновения.
  - увеличивать сложнолсть по таймеру каждых 30с.
+
+ ! Ю не влазит
 */
 
 interface IMole {
@@ -18,7 +20,7 @@ interface IMole {
   isShowed: boolean;
   letterElement: HTMLElement | null;
   curentLetter: string;
-  timestamp: number;
+  timer: NodeJS.Timeout | null;
 }
 
 interface ILetter {
@@ -63,14 +65,13 @@ class WhacAMole {
     }
 
     currentMole.curentLetter = letter.letter;
-    // currentMole.timestamp = Date.now();
 
     currentMole.isShowed = true;
 
     if (currentMole.moleElement !== null) {
       currentMole.moleElement.classList.add('go');
 
-      setTimeout(() => {
+      currentMole.timer = setTimeout(() => {
         if (currentMole.moleElement !== null) {
           currentMole.moleElement.classList.remove('go');
           setTimeout(() => {
@@ -92,6 +93,45 @@ class WhacAMole {
       this.setBackground(game, whackBackground);
       createElement('div', 'stats', game);
       const gameAgea = createElement('div', 'game-area', game);
+
+      // ADD KEYPRESS EVENT
+      const keyPressHandle = (e: Event) => {
+        const event: KeyboardEvent = e as KeyboardEvent;
+        console.log(event.key);
+        if (
+          this.gameField
+            .filter((value) => value.isShowed === true)
+            .some((value) => {
+              if (value.curentLetter === event.key.toLocaleLowerCase()) {
+                if (value.letterElement !== null) {
+                  const svgPath = value.letterElement.querySelector('.letter_img');
+                  // console.log(p);
+                  if (svgPath !== null) {
+                    svgPath.classList.add('handle');
+                  }
+                }
+
+                if (value.moleElement !== null) {
+                  value.moleElement.classList.remove('go');
+                  setTimeout((v: IMole) => {
+                    const tempValue = v;
+                    tempValue.isShowed = false;
+                    tempValue.curentLetter = '';
+                  }, 800, value);
+                }
+                return true;
+              }
+
+              return false;
+            })
+        ) {
+          console.log('WIN!!!');
+        } else {
+          console.log('LOOSE!!!');
+        }
+      };
+
+      document.addEventListener('keypress', keyPressHandle);
 
       // SHOW INTERVAL
       const intervalId = setInterval(() => {
@@ -115,6 +155,7 @@ class WhacAMole {
 
         if (!document.querySelector('.whac')) {
           clearInterval(intervalId);
+          document.removeEventListener('keypress', keyPressHandle);
         }
       }, 3900);
       // END INTERVAL
@@ -125,7 +166,7 @@ class WhacAMole {
           isShowed: false,
           letterElement: null,
           curentLetter: '',
-          timestamp: 0,
+          timer: null,
         };
         const cell = createElement('div', 'cell', gameAgea);
         const hole = createElement('div', 'layer1', cell); // hole
@@ -133,7 +174,7 @@ class WhacAMole {
 
         currentMole.moleElement = mole;
 
-        const charBlock = createElement('div', 'char_block', mole); // .textContent = 'TEST'; // character
+        const charBlock = createElement('div', 'char_block', mole); // character
         const char = createElement('div', 'char', charBlock);
 
         currentMole.letterElement = char;
@@ -172,6 +213,11 @@ class WhacAMole {
 
       console.log(getLetter(this.language));
     }
+  }
+
+  handleKey(event: KeyboardEvent) {
+    console.log(event.key);
+    console.log(this.gameField);
   }
 
   run(): void {
