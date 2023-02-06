@@ -1,12 +1,30 @@
-import { createElement, removeChild } from '../helper/index'; // getLetter
+import { createElement, removeChild, getLetter } from '../helper/index'; //
 import whackBackground from '../../assets/png/whac_background.png';
 import whackHoleImg from '../../assets/png/whac_hole.png';
 import whackHoleEmptyImg from '../../assets/png/whac_hole_empty.png';
 import moleImg from '../../assets/png/mole.png';
 
+interface IMole {
+  moleElement: HTMLElement | null;
+  isShowed: boolean;
+  letterElement: HTMLElement | null;
+  curentLetter: string;
+  timestamp: number;
+}
+
+interface ILetter {
+  letter: string;
+  svg: string;
+}
+
 class WhacAMole {
-  // constructor() {
-  // }
+  language: string;
+  gameField: Array<IMole>;
+
+  constructor() {
+    this.language = 'en';
+    this.gameField = [];
+  }
 
   setBackground(element: HTMLElement, backgroundImage: string): HTMLElement {
     const el = element;
@@ -16,6 +34,10 @@ class WhacAMole {
     el.style.backgroundSize = 'cover';
 
     return el;
+  }
+
+  checkLetterShowed(letter: string): boolean {
+    return this.gameField.some((value) => value.curentLetter === letter);
   }
 
   render(): void {
@@ -29,12 +51,23 @@ class WhacAMole {
       createElement('div', 'stats', game);
       const gameAgea = createElement('div', 'game-area', game);
       for (let i = 0; i < 6; i += 1) {
+        const currentMole: IMole = {
+          moleElement: null,
+          isShowed: false,
+          letterElement: null,
+          curentLetter: '',
+          timestamp: 0,
+        };
         const cell = createElement('div', 'cell', gameAgea);
         const hole = createElement('div', 'layer1', cell); // hole
         const mole = createElement('div', 'layer2', cell); // mole
 
+        currentMole.moleElement = mole;
+
         const charBlock = createElement('div', 'char_block', mole); // .textContent = 'TEST'; // character
-        createElement('div', 'char', charBlock);
+        const char = createElement('div', 'char', charBlock);
+
+        currentMole.letterElement = char;
 
         const holeEmpty = createElement('div', 'layer3', cell); // hole empty
 
@@ -44,18 +77,31 @@ class WhacAMole {
 
         // for test
         holeEmpty.addEventListener('click', () => {
-          mole.classList.toggle('go');
+          if (currentMole.isShowed === true) {
+            currentMole.isShowed = false;
+            mole.classList.remove('go');
+
+            currentMole.curentLetter = '';
+          } else {
+            currentMole.isShowed = true;
+            mole.classList.add('go');
+
+            if (currentMole.letterElement) {
+              let letter: ILetter | null = null;
+              do {
+                letter = getLetter(this.language);
+                console.log(letter);
+              } while (this.checkLetterShowed(letter.letter));
+              currentMole.letterElement.innerHTML = letter.svg;
+              currentMole.curentLetter = letter.letter;
+            }
+          }
         });
+
+        this.gameField.push(currentMole);
       }
 
-      // for (let i = 0; i < 26; i += 1) {
-      //   const test = createElement('div', 'test', app);
-      //   const t = getLetter('en', i);
-      //   if (t) {
-      //     createElement('div', 'test1', test).innerHTML = t.letter;
-      //     createElement('div', 'test2', test).innerHTML = t.svg;
-      //   }
-      // }
+      console.log(getLetter(this.language));
     }
   }
 

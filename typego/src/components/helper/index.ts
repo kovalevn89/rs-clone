@@ -82,7 +82,7 @@ const LETTER_RU_SVG = [
 
 function getLetterRU(position: number) {
   const letter: string = LETTER_RU[position];
-  const svg: string = `<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="40mm" height="40mm" viewBox="0 0 4000 4000" xmlns:xlink="http://www.w3.org/1999/xlink">${LETTER_RU_SVG[position]}</svg>`;
+  const svg: string = `<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="800, 800, 2500, 2500" xmlns:xlink="http://www.w3.org/1999/xlink">${LETTER_RU_SVG[position]}</svg>`;
 
   return { letter, svg };
 }
@@ -119,15 +119,25 @@ const LETTER_EN_SVG = [
 
 function getLetterEN(position: number) {
   const letter: string = LETTER_EN[position];
-  const svg: string = `<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="40mm" height="40mm" viewBox="0 0 4000 4000" xmlns:xlink="http://www.w3.org/1999/xlink">${LETTER_EN_SVG[position]}</svg>`;
+  const svg: string = `<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="800, 800, 2500, 2500" xmlns:xlink="http://www.w3.org/1999/xlink">${LETTER_EN_SVG[position]}</svg>`;
 
   return { letter, svg };
 }
 
-export function getLetter(lang: string, position: number) {
-  switch (lang) {
-    case 'ru': return getLetterRU(position);
-    case 'en': return getLetterEN(position);
+function getRandomLetterIndex(letterArray: Array<string>): number {
+  const maxLen: number = letterArray.length;
+
+  if (maxLen > 0) {
+    return Math.floor(Math.random() * maxLen);
+  }
+
+  return 0;
+}
+
+export function getLetter(language: string) {
+  switch (language) {
+    case 'ru': return getLetterRU(getRandomLetterIndex(LETTER_RU));
+    case 'en': return getLetterEN(getRandomLetterIndex(LETTER_EN));
     default: return {
       letter: '-1',
       svg: '',
