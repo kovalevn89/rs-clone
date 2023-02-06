@@ -80,7 +80,7 @@ class DropStartPage {
     const levelBtns = document.querySelectorAll('.level-btn');
     levelBtns.forEach((levelBtn) => {
       levelBtn.addEventListener('click', (e) => {
-        const target = e.target as HTMLElement;
+        const target = e.currentTarget as HTMLElement;
         const levelTitle = target.querySelector('.level-title') as HTMLElement;
         const currentLvl = levelTitle.textContent?.split(' ').reverse()[0] as string;
         console.log(currentLvl);

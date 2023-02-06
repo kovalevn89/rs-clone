@@ -1,4 +1,7 @@
 import { createElement } from '../helper/index';
+// import state from './data/state';
+import GameData from './types/enum';
+import { arrRu } from './data/data';
 
 class DropGamePage {
   container: HTMLElement;
@@ -8,7 +11,7 @@ class DropGamePage {
     // this.id = id;
     this.container = document.body;
   }
-  // add param lvl: string, speed: number, duration: number, columnsNum: number
+
   createDropGamePage(lvl: string, speed: number, duration: number, columnsNum: number) {
     const wrapper = createElement('div', 'drop-game-wrapper', this.container);
     wrapper.innerHTML = `
@@ -32,35 +35,66 @@ class DropGamePage {
             <p class="accuracy-points">0</p>
           </div>
         </div>
-      </div>
-      <div class="drop-game-page-field-container">
-        <div class="field-column">
-          <div class="field-letter">А</div>
-        </div>
-        <div class="field-column">
-          <div class="field-letter">Б</div>
-        </div>
-        <div class="field-column">
-          <div class="field-letter">В</div>
-        </div>
-        <div class="field-column">
-          <div class="field-letter">Г</div>
-        </div>
-        <div class="field-column">
-          <div class="field-letter">Д</div>
-        </div>
-        <div class="field-column">
-          <div class="field-letter">Е</div>
-        </div>
-        <div class="field-column">
-          <div class="field-letter">Ж</div>
-        </div>
+        <div class="drop-game-page-field-container">
+        
         <div class="field-img-box-right"></div>
         <div class="field-img-box-left"></div>
+      </div>
       </div>
     </div>
   </div>`;
     console.log(lvl, speed, duration, columnsNum);
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const сolumnsArr: HTMLElement[] = [];
+    const fieldContainer = document.querySelector('.drop-game-page-field-container') as HTMLElement;
+    for (let i = 0; i < columnsNum; i += 1) {
+      const column = createElement('div', 'field-column', fieldContainer);
+      сolumnsArr.push(column);
+    }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const animInterval = setInterval(() => {
+      this.createFood(speed, сolumnsArr);
+    }, speed);
+
+    // window.addEventListener('keypress', this.checkLetter);
+
+    fieldContainer.append(...сolumnsArr);
+  }
+
+  // checkLetter(e: KeyboardEvent) {}
+
+  createFood(speed: number, columns: HTMLElement[]) {
+    columns.forEach((col) => {
+      setTimeout(() => {
+        const fieldColumn = document.querySelector('.field-column') as HTMLElement;
+        const food = createElement('div', 'field-letter', fieldColumn);
+        const foodLetter = this.getFoodLetter();
+
+        // добавить бэкграунд
+        // const foodLetter = this.getFoodLetter();
+        food.textContent = foodLetter;
+
+        setTimeout(() => {
+          food.style.transition = `margin ${speed}ms linear`;
+          food.style.margin = `${GameData.margin}vh auto`;
+        }, GameData.foodTime);
+
+        food.addEventListener('transitionend', () => food.remove());
+
+        col.append(food);
+      }, this.randomNum(speed));
+    });
+  }
+
+  getFoodLetter() {
+    const randomLetterNum = this.randomNum(arrRu.length);
+    const randomLetter = arrRu[randomLetterNum];
+    return randomLetter;
+  }
+  randomNum(num: number) {
+    const randomNum = Math.floor(Math.random() * num);
+    return randomNum;
   }
 
   // run(): void {
