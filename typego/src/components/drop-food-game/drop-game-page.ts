@@ -1,5 +1,5 @@
 import { createElement } from '../helper/index';
-// import state from './data/state';
+import { gameState } from './data/state';
 import GameData from './types/enum';
 import { arrRu } from './data/data';
 
@@ -57,12 +57,39 @@ class DropGamePage {
       this.createFood(speed, сolumnsArr);
     }, speed);
 
-    // window.addEventListener('keypress', this.checkLetter);
+    window.addEventListener('keypress', this.checkLetter);
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const animEnd = setTimeout(() => {
+      clearInterval(animInterval);
+
+      // сохранить результат
+      // добавить модалку
+    }, duration);
 
     fieldContainer.append(...сolumnsArr);
   }
 
-  // checkLetter(e: KeyboardEvent) {}
+  checkLetter(e: KeyboardEvent) {
+    const curLetter = e.key;
+    const curBigLetter = e.key.toUpperCase();
+
+    gameState.letterPressed.push(curLetter);
+
+    gameState.letterOnField.forEach((key, index) => {
+      if (key === null) return;
+
+      if (key.classList.contains(curLetter) || key.classList.contains(curBigLetter)) {
+        key.classList.add('right');
+        gameState.letterMatched.push(curLetter);
+        // поменять счет
+        gameState.letterOnField.splice(index, 1);
+        console.log(gameState.letterOnField);
+      }
+    });
+
+    // поменять точность
+  }
 
   createFood(speed: number, columns: HTMLElement[]) {
     columns.forEach((col) => {
@@ -72,15 +99,26 @@ class DropGamePage {
         const foodLetter = this.getFoodLetter();
 
         // добавить бэкграунд
-        // const foodLetter = this.getFoodLetter();
+
         food.textContent = foodLetter;
+        food.classList.add(foodLetter);
+        gameState.letterOnField.push(food);
 
         setTimeout(() => {
-          food.style.transition = `margin ${speed}ms linear`;
+          food.style.transition = `margin ${speed}ms linear, color 500ms, background 500ms`;
           food.style.margin = `${GameData.margin}vh auto`;
         }, GameData.foodTime);
 
         food.addEventListener('transitionend', () => food.remove());
+
+        // setTimeout(() => {
+        //   gameState.letterOnField = gameState.letterOnField.map((arrKey) => {
+        //     if (arrKey === food) return null;
+        //     return arrKey;
+        //   });
+        //   console.log(44444);
+        //   food.remove();
+        // }, speed + 500);
 
         col.append(food);
       }, this.randomNum(speed));

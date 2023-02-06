@@ -29,7 +29,7 @@
   border-top: 1px solid #73ccfb;
   box-shadow: #48a8d9 0 1px 2px;
   border-radius: 10px;
-  column-gap: 30%;
+  column-gap: calc(50% - 13rem);
 }
 
 .drop-game-page-btn {
@@ -150,8 +150,10 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
   &.right {
-    color: #c04c1f;
+    color: #d9ff02;
+    // background: none ;
   }
 }
 
