@@ -4,6 +4,7 @@ import { Status } from '../../types';
 export default class Text {
   container;
   words;
+  index;
 
   // todo add words
 
@@ -17,15 +18,28 @@ export default class Text {
       this.container.append(element);
       return element;
     });
+    this.index = 0;
+  }
+
+  updateActive() {
+    this.words.forEach((el) => {
+      el.classList.remove(Status.active);
+    });
+    this.words[this.index].classList.add(Status.active);
+  }
+
+  updateIndex(i: number): void {
+    this.index = i;
   }
 
   reset(): void {
     this.words.forEach((el) => {
-      el.classList.remove('active');
-      el.classList.remove('fixed');
-      el.classList.remove('correct');
-      el.classList.remove('incorrect');
+      el.classList.remove(Status.active);
+      el.classList.remove(Status.fixed);
+      el.classList.remove(Status.correct);
+      el.classList.remove(Status.incorrect);
     });
+    this.index = 0;
   }
 
   updateLetterStatus(i: number, status: Status): void {

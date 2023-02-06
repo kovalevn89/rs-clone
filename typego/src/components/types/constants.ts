@@ -10,4 +10,6 @@ export const DEFAULT_RESPONSE: TextResponse = {
   lang: 'en',
 };
 
+// export const SPECIAL_KEYS = ['Tab', 'Shi']
+
 export default { DEFAULT_RESPONSE_RU, DEFAULT_RESPONSE };

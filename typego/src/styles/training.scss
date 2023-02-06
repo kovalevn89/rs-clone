@@ -54,3 +54,17 @@
     background-color: rgba(197, 200, 3, 0.3);
   }
 }
+
+.separator {
+  display: flex;
+  width: 100%;
+  // height: 1px;
+  border: 1px solid #888999;
+  border-radius: 1px;
+  margin: 10px;
+}
+.text__progress {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+}

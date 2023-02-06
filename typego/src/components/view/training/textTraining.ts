@@ -13,18 +13,17 @@ class TextTraining {
   constructor(response: TextResponse) {
     this.container = createElement('div', 'level__text__container');
     this.text = new Text(response.text);
-    this.separator = createElement('div', 'separator');
-    this.progress = createElement('div', 'text__progress');
-    this.speed = createElement('div', 'speed__container');
-    this.accurancy = createElement('div', 'accurancy__container');
+    this.container.append(this.text.container);
 
-    this.container.append(this.text.container, this.progress);
-    this.progress.append(this.speed, this.accurancy);
+    this.separator = createElement('div', 'separator', this.container);
+    this.progress = createElement('div', 'text__progress', this.container);
+    this.speed = createElement('div', 'speed__container', this.progress);
+    this.accurancy = createElement('div', 'accurancy__container', this.progress);
   }
 
   updateProgress(progress: Progress): void {
-    this.speed.textContent = `${progress.speed} wpm`;
-    this.accurancy.textContent = `${progress.accurancy}%`;
+    this.speed.textContent = `Speed: ${progress.speed} wpm`;
+    this.accurancy.textContent = `Accurancy: ${progress.accurancy}%`;
   }
 }
 

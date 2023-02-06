@@ -1,33 +1,32 @@
 /* eslint-disable no-param-reassign */
 import { createElement } from '../../helper';
-// import { Lang } from '../../types';
-// import { svgKeyboard } from './svgKeyboard';
+import { Lang, Status } from '../../types';
+import { svgKeyboard } from './svgKeyboard';
 import { svgKeybordRu } from './svgKeyboardRu';
 
 class Keyboard {
   keyboard;
   keys;
 
-  constructor() {
+  constructor(lang = Lang.en) {
     // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/naming-convention
     const _keyboard = createElement('div', 'keyboard');
-    _keyboard.innerHTML = svgKeybordRu;
+    _keyboard.innerHTML = lang === Lang.en ? svgKeyboard : svgKeybordRu;
 
     this.keyboard = _keyboard;
     this.keys = this.keyboard.querySelectorAll('.key');
   }
 
-  init() {
+  init(): void {
     this.keys.forEach((key) => {
-      key.classList.remove('active');
+      key.classList.remove(Status.active, Status.correct, Status.incorrect);
     });
   }
 
-  activate(id: string): void {
+  activate(id: string, status: Status): void {
     this.keys.forEach((key) => {
       if (key.id.toLowerCase() === id) {
-        // console.log(id, key.id);
-        key.classList.add('active');
+        key.classList.add(status);
       }
     });
   }

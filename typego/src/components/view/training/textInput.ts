@@ -5,7 +5,6 @@ import Text from './text';
 
 class TextInput {
   input;
-  // text;
 
   constructor() {
     const input = document.createElement('input');
@@ -22,14 +21,45 @@ class TextInput {
   listen(keyboard: Keyboard, text: Text): void {
     const press = new Audio();
     // press.src = keyPressSound;
+    const { words } = text;
+    let { index } = text;
     this.input.addEventListener('keydown', (e) => {
+      e.preventDefault();
       keyboard.init();
       const id = e.code.toLowerCase();
-      // console.log(e.code, e.key);
-      keyboard.activate(id);
+      console.log(e.code);
+      keyboard.activate(id, Status.active);
       press.play();
-      const word = text.words.find((item) => item.textContent === e.key);
-      word?.classList.add(Status.correct);
+
+      if (e.code === 'ShiftRight' || e.code === 'CapsLock' || e.code === 'ShiftLeft') {
+        text.updateIndex(index);
+      } else if (e.code === 'Backspace') {
+        text.updateLetterStatus(index, Status.reset);
+        if (index > 0) {
+          index -= 1;
+          words[index].dataset.fix = 'true';
+        }
+        text.updateLetterStatus(index, Status.reset);
+      } else if (words[index].textContent === e.key) {
+        if (words[index].dataset.fix && !words[index].dataset.correct) {
+          text.updateLetterStatus(index, Status.fixed);
+        } else {
+          text.updateLetterStatus(index, Status.correct);
+          words[index].dataset.correct = 'true';
+        }
+        index += 1;
+      } else {
+        text.updateLetterStatus(index, Status.incorrect);
+        words[index].dataset.correct = '';
+        index += 1;
+      }
+
+      text.updateIndex(index);
+      text.updateActive();
+    });
+
+    this.input.addEventListener('keyup', () => {
+      keyboard.init();
     });
 
     this.input.addEventListener('blur', () => {
