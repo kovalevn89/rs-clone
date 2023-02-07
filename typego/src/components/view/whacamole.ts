@@ -14,6 +14,14 @@ import moleResettBtn from '../../assets/png/mole_restart_btn.png';
  - Кол-во кротов
  - скорость анимации появления / исчезновения.
  - увеличивать сложнолсть по таймеру каждых 30с.
+
+ ! отключение звука из игры.
+ ! остановка таймеров и хуков при окончании игры.
+ ! пофиксить множественные нажатия на клавиши
+ ! скачат размер блока часов.
+ ! выводить статистику при завершении игры.
+ ! переключение языка в игре.
+ ! заставка окончания игры модалка.
 */
 
 interface IMole {
@@ -39,6 +47,9 @@ class WhacAMole {
   clickCount: number;
   gameClock: number;
   level: number;
+  gameClockId: NodeJS.Timeout | null;
+  gameShowMoleId: NodeJS.Timeout | null;
+  keyHandler: (event: Event) => void;
 
   constructor() {
     this.language = 'ru';
@@ -50,9 +61,34 @@ class WhacAMole {
     this.clickCount = 0;
     this.gameClock = 0;
     this.level = 1;
+    this.gameClockId = null;
+    this.gameShowMoleId = null;
+    this.keyHandler = () => {};
   }
 
-  setBackground(element: HTMLElement, backgroundImage: string): HTMLElement {
+  private resetGame(): void {
+    this.gameField = [];
+    this.score = 0;
+    this.accuracy = 0;
+    this.missClickCount = 0;
+    this.clickCount = 0;
+    this.gameClock = 0;
+
+    if (this.gameClockId !== null) {
+      clearInterval(this.gameClockId);
+    }
+  }
+
+  private getTimeWithSeconds(seconds: number): string {
+    if (seconds >= 60) {
+      const min = Math.floor(seconds / 60);
+      const sec = seconds % 60;
+      return `${String(min).padStart(2, '0')}m ${String(sec).padStart(2, '0')}s`;
+    }
+    return `${String(seconds).padStart(2, '0')}s`;
+  }
+
+  private setBackground(element: HTMLElement, backgroundImage: string): HTMLElement {
     const el = element;
     el.style.backgroundImage = `url(${backgroundImage})`;
     el.style.backgroundPosition = 'center';
@@ -62,11 +98,11 @@ class WhacAMole {
     return el;
   }
 
-  checkLetterShowed(letter: string): boolean {
+  private checkLetterShowed(letter: string): boolean {
     return this.gameField.some((value) => value.curentLetter === letter);
   }
 
-  clickSound(type: string): void {
+  private clickSound(type: string): void {
     if (this.isSound === true) {
       switch (type) {
         case 'hit': (new Audio(hitSound)).play(); break;
@@ -78,7 +114,7 @@ class WhacAMole {
     }
   }
 
-  showMole(mole: IMole): void {
+  private showMole(mole: IMole): void {
     const currentMole: IMole = mole;
     let letter: ILetter | null = null;
 
@@ -92,7 +128,6 @@ class WhacAMole {
     }
 
     currentMole.curentLetter = letter.letter;
-
     currentMole.isShowed = true;
 
     if (currentMole.moleElement !== null) {
@@ -110,22 +145,115 @@ class WhacAMole {
     }
   }
 
-  resetGame(): void {
-    this.gameField = [];
-    this.score = 0;
-    this.accuracy = 0;
-    this.missClickCount = 0;
-    this.clickCount = 0;
-    this.gameClock = 0;
+  private showMoleTimer(): void {
+    this.gameShowMoleId = setInterval(() => {
+      if (this.gameField.length > 0) {
+        let randomCount = Math.floor(Math.random() * 2) + 1;
+        console.log(`Show ${randomCount} moles.`);
+
+        this.gameField
+          .slice(0)
+          .filter((value) => value.isShowed === false)
+          .sort(() => Math.random() - 0.5)
+          .forEach((value) => {
+            if (randomCount) {
+              randomCount -= 1;
+
+              this.showMole(value);
+            }
+          });
+      }
+    }, 3900);
   }
 
-  getTimeWithSeconds(seconds: number): string {
-    if (seconds >= 60) {
-      const min = Math.floor(seconds / 60);
-      const sec = seconds % 60;
-      return `${String(min).padStart(2, '0')}m ${String(sec).padStart(2, '0')}s`;
+  private clearTimers(): void {
+    // остановка интервала отображения кротов
+    if (this.gameShowMoleId !== null) {
+      clearInterval(this.gameShowMoleId);
     }
-    return `${String(seconds).padStart(2, '0')}s`;
+    // остановка часов
+    if (this.gameClockId !== null) {
+      clearInterval(this.gameClockId);
+    }
+
+    document.removeEventListener('keypress', this.keyHandler);
+  }
+
+  private startGameClock(Clock: HTMLElement) {
+    this.gameClockId = setInterval(() => {
+      const tempCLock = Clock;
+      this.gameClock += 1;
+
+      tempCLock.textContent = this.getTimeWithSeconds(this.gameClock);
+
+      if (this.gameClock === 60) {
+        // next level
+      }
+
+      if (this.gameClock === 61) { // 180
+        // stop game
+        this.renderEndGame();
+        this.clearTimers();
+      }
+
+      if (!document.querySelector('.whac')) {
+        this.clearTimers();
+      }
+    }, 1000);
+  }
+
+  private keyHandle(e: Event, scoreValue: HTMLElement, accuracyValue: HTMLElement) {
+    const event: KeyboardEvent = e as KeyboardEvent;
+    console.log(event.key);
+    if (
+      this.gameField
+        .filter((value) => value.isShowed === true)
+        .some((value) => {
+          if (value.curentLetter === event.key.toLocaleLowerCase()) {
+            if (value.letterElement !== null) {
+              const svgPath = value.letterElement.querySelector('.letter_img');
+              // console.log(p);
+              if (svgPath !== null) {
+                svgPath.classList.add('handle');
+              }
+            }
+
+            if (value.moleElement !== null) {
+              if (value.timer) {
+                clearInterval(value.timer);
+              }
+              value.moleElement.classList.remove('go');
+              setTimeout((v: IMole) => {
+                // const tempValue = v;
+                v.isShowed = false;
+                v.curentLetter = '';
+              }, 800, value);
+            }
+            return true;
+          }
+
+          return false;
+        })
+    ) {
+      console.log('WIN!!!');
+      this.clickSound('hit');
+      this.score += 1;
+
+      // const scoreValue = document.querySelector('.stats_score > value');
+      if (scoreValue !== null) {
+        scoreValue.textContent = `${this.score}`;
+      }
+    } else {
+      console.log('LOOSE!!!');
+      this.missClickCount += 1;
+      this.clickSound('click');
+    }
+
+    this.clickCount += 1;
+    this.accuracy = Number(Number((this.score / this.clickCount) * 100).toFixed(1));
+    if (accuracyValue !== null) {
+      accuracyValue.textContent = `${this.accuracy}%`;
+    }
   }
 
   renderGame(): void {
@@ -164,102 +292,19 @@ class WhacAMole {
 
       const gameAgea = createElement('div', 'game-area', game);
 
-      // GAME TIMER
-      const gameTimerID = setInterval(() => {
-        this.gameClock += 1;
-
-        timerValue.textContent = this.getTimeWithSeconds(this.gameClock);
-
-        if (this.gameClock === 60) {
-          // next level
-        }
-
-        if (this.gameClock === 180) {
-          // stop game
-          this.renderEndGame();
-        }
-      }, 1000);
+      // SET GAME TIMER
+      this.startGameClock(timerValue);
 
       // ADD KEYPRESS EVENT
-      const keyPressHandle = (e: Event) => {
-        const event: KeyboardEvent = e as KeyboardEvent;
-        console.log(event.key);
-        if (
-          this.gameField
-            .filter((value) => value.isShowed === true)
-            .some((value) => {
-              if (value.curentLetter === event.key.toLocaleLowerCase()) {
-                if (value.letterElement !== null) {
-                  const svgPath = value.letterElement.querySelector('.letter_img');
-                  // console.log(p);
-                  if (svgPath !== null) {
-                    svgPath.classList.add('handle');
-                  }
-                }
-
-                if (value.moleElement !== null) {
-                  if (value.timer) {
-                    clearInterval(value.timer);
-                  }
-                  value.moleElement.classList.remove('go');
-                  setTimeout((v: IMole) => {
-                    const tempValue = v;
-                    tempValue.isShowed = false;
-                    tempValue.curentLetter = '';
-                  }, 800, value);
-                }
-                return true;
-              }
-
-              return false;
-            })
-        ) {
-          console.log('WIN!!!');
-          this.clickSound('hit');
-          this.score += 1;
-          if (scoreValue !== null) {
-            scoreValue.textContent = `${this.score}`;
-          }
-        } else {
-          console.log('LOOSE!!!');
-          this.missClickCount += 1;
-          this.clickSound('click');
-        }
-
-        this.clickCount += 1;
-        this.accuracy = Number(Number((this.score / this.clickCount) * 100).toFixed(1));
-        accuracyValue.textContent = `${this.accuracy}%`;
+      const handlerWrapper = (e: Event) => {
+        this.keyHandle(e, scoreValue, accuracyValue);
       };
 
-      document.addEventListener('keypress', keyPressHandle);
+      this.keyHandler = handlerWrapper;
+      document.addEventListener('keypress', this.keyHandler);
 
-      // SHOW INTERVAL
-      const intervalId = setInterval(() => {
-        // this.gameField.forEach
-        if (this.gameField.length > 0) {
-          let randomCount = Math.floor(Math.random() * 2) + 1;
-          console.log(`Show ${randomCount} moles.`);
-
-          this.gameField
-            .slice(0)
-            .filter((value) => value.isShowed === false)
-            .sort(() => Math.random() - 0.5)
-            .forEach((value) => {
-              if (randomCount) {
-                randomCount -= 1;
-
-                this.showMole(value);
-              }
-            });
-        }
-
-        if (!document.querySelector('.whac')) {
-          clearInterval(intervalId);
-          clearInterval(gameTimerID);
-          document.removeEventListener('keypress', keyPressHandle);
-        }
-      }, 3900);
-      // END INTERVAL
+      // SET SHOW MОLE INTERVAL
+      this.showMoleTimer();
 
       for (let i = 0; i < 6; i += 1) {
         const currentMole: IMole = {
@@ -270,17 +315,17 @@ class WhacAMole {
           timer: null,
         };
         const cell = createElement('div', 'cell', gameAgea);
-        const hole = createElement('div', 'layer1', cell); // hole
-        const mole = createElement('div', 'layer2', cell); // mole
+        const hole = createElement('div', 'layer1', cell);
+        const mole = createElement('div', 'layer2', cell);
 
         currentMole.moleElement = mole;
 
-        const charBlock = createElement('div', 'char_block', mole); // character
+        const charBlock = createElement('div', 'char_block', mole);
         const char = createElement('div', 'char', charBlock);
 
         currentMole.letterElement = char;
 
-        const holeEmpty = createElement('div', 'layer3', cell); // hole empty
+        const holeEmpty = createElement('div', 'layer3', cell);
 
         this.setBackground(hole, whackHoleImg);
         this.setBackground(holeEmpty, whackHoleEmptyImg);
@@ -291,11 +336,6 @@ class WhacAMole {
 
       console.log(getLetter(this.language));
     }
-  }
-
-  handleKey(event: KeyboardEvent) {
-    console.log(event.key);
-    console.log(this.gameField);
   }
 
   renderMenu(): void {
@@ -326,7 +366,7 @@ class WhacAMole {
       const menu = createElement('div', 'menu', whac);
       this.setBackground(menu, whackBackground);
       const caption = createElement('div', 'game_caption', menu);
-      caption.textContent = 'End game...';
+      caption.textContent = 'Game end...';
       const controls = createElement('div', 'game_controls', menu);
       const startButton = createElement('div', 'controls_start-btn', controls);
       this.setBackground(startButton, moleResettBtn);
