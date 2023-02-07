@@ -4,13 +4,10 @@
   width: 100%;
   min-height: calc(100vh - 300px);
   max-width: 1120px;
-
   margin: 0 160px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   overflow: hidden;
 
   .menu{
@@ -18,57 +15,50 @@
     margin: 10px 20px;
     max-width: 800px;
     aspect-ratio: 1 / 1;
-
     border-radius: 10px;
-
     overflow: hidden;
 
+    .game_caption,
     .game_caption{
       width: 100%;
       height: 15%;
       margin-top: 5%;
       text-align: center;
-
       font-family: 'AmaticSC Bold';
       font-size: 10vw;
       font-weight: 600;
-
       color: rgb(254, 110, 0);
-
       user-select: none;
     }
     
     .game_result {
-      margin-top: 5%;
+      margin-top: 10%;
+
       .result_line {
         width: 100%;
-
         display: flex;
-
         font-family: 'AmaticSC Bold';
         font-size: 3.5vw;
-
         color: rgb(254, 110, 0);
 
         .caption {
           width: 50%;
           text-align: right;
           padding-right: 1%;
-          
           user-select: none;
         }
 
         .value{
           width: 50%;
           padding-left: 1%;
+          user-select: none;
         }
       }
     }
 
     .game_controls{
       width: 100%;
-      height: 20%;
-
+      height: 70%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -76,7 +66,6 @@
       .controls_start-btn {
         width: 10vw;
         height: 10vw;
-
         transition: transform 0.1s linear;
 
         &:hover {
@@ -87,7 +76,7 @@
       .controls_restart-btn {
         width: 6vw;
         height: 6vw;
-
+        margin-top: -10vw;
         transition: transform 0.1s linear;
 
         &:hover {
@@ -102,28 +91,11 @@
     margin: 10px 20px;
     max-width: 800px;
     aspect-ratio: 1 / 0.9;
-
     border-radius: 10px;
-
     overflow: hidden;
-
-    // position: relative;
-
-    // .menu_modal {
-    //   position: absolute; 
-    //   z-index: 5; 
-    //   left: 0;
-    //   top: 0;
-    //   width: 100%;
-    //   height: 100%;
-    //   // border-radius: 10px;
-    //   background-color: red;
-    // }
 
     .stats{
       width: 100%;
-      //height: 20%;
-      //background-color: red;
       font-family: 'AmaticSC Regular';
 
       display: flex;
@@ -134,69 +106,39 @@
       .stats_score,
       .stats_accuracy,
       .stats_time {
-        // width: 12vw;
-        height: 10vh;
+        min-width: 6vw;
+        height: 5vw;
         margin: 10px;
         margin-top: 15px;
-
         padding: 5px;
-
         border-radius: 5px;
-
         background-color: rgba($color: #ffffff, $alpha: 0.4);
         backdrop-filter: blur(5px);
-
         overflow: hidden;
-
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
         .label {
-          //width: 60%;
           height: 100%;
-
-          //margin: 2px 15px;
-
           font-family: 'AmaticSC Bold';
           font-size: 2vw;
-    
           color: rgb(254, 110, 0);
-
           user-select: none;
-
           display: flex;
           justify-content: center;
           align-items: center;
         }
 
         .value {
-          //width: 40%;
           height: 100%;
-
-         // margin: 2px 15px;
-
           font-family: 'AmaticSC Bold';
           font-size: 2.5vw;
-    
           color: rgb(254, 110, 0);
-
           user-select: none;
         }
       }
-
-      // .stats_level {
-      // }
-
-      // .stats_score {
-      // }
-
-      // .stats_accuracy {
-      // }
-
-      // .stats_time {
-      // }
     }
 
     .game-area {
@@ -208,7 +150,7 @@
       justify-content: center;
       align-items: center;
       gap: 5px;
-      //background-color: rgb(89, 0, 255);
+
       .cell{
         width: 30%;
         aspect-ratio: 1 / 1;
@@ -242,25 +184,17 @@
             width: 100%;
             height: 30%;
             text-align: center;
-            // font-family: 'AmaticSC Regular';
-
             display: flex;
             justify-content: center;
             align-items: center;
             
             .char {
-              // width: 32%;
-              // height: 70%;
-              // margin: 0;
-              // margin-top: 5px;
-              // margin-right: 14%;
               width: 18%;
               height: 75%;
               margin: 0;
               margin-top: 8px;
               margin-right: 14%;
               padding: 0;
-              // background-color: orange;
 
               svg{
                 width: 100%; 

@@ -8,23 +8,18 @@ import clickSound from '../../assets/media/click.mp3';
 import moleStartBtn from '../../assets/png/mole_start_btn.png';
 import moleResettBtn from '../../assets/png/mole_restart_btn.png';
 /*
- В зависимости от сложности регулировать
- - Время через которое кроты пропадают.
- - Время появления новых кротов
- - Кол-во кротов
- - скорость анимации появления / исчезновения.
- - увеличивать сложнолсть по таймеру каждых 30с.
-
+ !+ кол-во кротов меняется в зависимости от уровня.
  ! отключение звука из игры.
+ ! переключение языка в игре.
+ ! очистить консоль логи.
+ ! сохранение настроек звука в Local storage.
  !+ остановка таймеров и хуков при окончании игры.
  !+ пофиксить множественные нажатия на клавиши.
  !+ показывать кротов в начале игры без задержки.
- ! скачат размер блока часов.
+ !+ скачат размер блока часов.
  !+ выводить статистику при завершении игры.
- ! переключение языка в игре.
- ! очистить консоль логи.
- ! почистить CSS
- ! адаптив
+ !+ почистить CSS
+ !+ адаптив
 */
 
 interface IMole {
@@ -76,10 +71,9 @@ class WhacAMole {
     this.missClickCount = 0;
     this.clickCount = 0;
     this.gameClock = 0;
+    this.level = 1;
 
-    if (this.gameClockId !== null) {
-      clearInterval(this.gameClockId);
-    }
+    this.clearTimers();
   }
 
   private getTimeWithSeconds(seconds: number): string {
@@ -139,7 +133,7 @@ class WhacAMole {
       currentMole.timer = setTimeout(() => {
         if (currentMole.moleElement !== null) {
           currentMole.moleElement.classList.remove('go');
-          setTimeout(() => {
+          currentMole.timer = setTimeout(() => {
             currentMole.isShowed = false;
             currentMole.curentLetter = '';
           }, 800);
@@ -151,7 +145,13 @@ class WhacAMole {
   private showMoleTimer(): void {
     const showFun = () => {
       if (this.gameField.length > 0) {
-        let randomCount = Math.floor(Math.random() * 2) + 1;
+        let randomCount = 1;
+        switch (this.level) {
+          case 1: randomCount = Math.floor(Math.random() * 2) + 1; break;
+          case 2: randomCount = Math.floor(Math.random() * 3) + 1; break;
+          case 3: randomCount = Math.floor(Math.random() * 3) + 2; break;
+          default: randomCount = 1; break;
+        }
         console.log(`Show ${randomCount} moles.`);
 
         this.gameField
@@ -186,18 +186,25 @@ class WhacAMole {
     document.removeEventListener('keypress', this.keyHandler);
   }
 
-  private startGameClock(Clock: HTMLElement) {
+  private startGameClock(Clock: HTMLElement, Level: HTMLElement) {
     this.gameClockId = setInterval(() => {
       const tempCLock = Clock;
       this.gameClock += 1;
 
       tempCLock.textContent = this.getTimeWithSeconds(this.gameClock);
 
-      if (this.gameClock === 60) {
+      if (this.gameClock % 60 === 0) {
         // next level
+        this.level += 1;
+
+        if (this.level === 4) {
+          this.level = 3;
+        }
+
+        Level.textContent = `${this.level}`;
       }
 
-      if (this.gameClock === 61) { // 180
+      if (this.gameClock === 180) { // 180
         // stop game
         this.renderEndGame();
         this.clearTimers();
@@ -301,7 +308,7 @@ class WhacAMole {
       const gameAgea = createElement('div', 'game-area', game);
 
       // SET GAME TIMER
-      this.startGameClock(timerValue);
+      this.startGameClock(timerValue, levelValue);
 
       // ADD KEYPRESS EVENT
       const handlerWrapper = (e: Event) => {
@@ -387,7 +394,7 @@ class WhacAMole {
       createElement('div', 'value', line2).textContent = `${this.score}`;
       const line3 = createElement('div', 'result_line', result);
       createElement('div', 'caption', line3).textContent = 'Accuracy:';
-      createElement('div', 'value', line3).textContent = `${this.accuracy}`;
+      createElement('div', 'value', line3).textContent = `${this.accuracy}%`;
       const controls = createElement('div', 'game_controls', menu);
       const startButton = createElement('div', 'controls_restart-btn', controls);
       this.setBackground(startButton, moleResettBtn);
