@@ -16,13 +16,15 @@ import moleResettBtn from '../../assets/png/mole_restart_btn.png';
  - увеличивать сложнолсть по таймеру каждых 30с.
 
  ! отключение звука из игры.
- ! + остановка таймеров и хуков при окончании игры.
- ! + пофиксить множественные нажатия на клавиши
+ !+ остановка таймеров и хуков при окончании игры.
+ !+ пофиксить множественные нажатия на клавиши.
+ !+ показывать кротов в начале игры без задержки.
  ! скачат размер блока часов.
  ! выводить статистику при завершении игры.
  ! переключение языка в игре.
  ! заставка окончания игры модалка.
  ! очистить консоль логи.
+ ! почистить CSS
 */
 
 interface IMole {
@@ -380,6 +382,22 @@ class WhacAMole {
       startButton.addEventListener('click', () => {
         this.renderGame();
       });
+      // const whac: HTMLElement | null = document.querySelector('.whac');
+      // if (whac) {
+      //   const game: HTMLElement | null = document.querySelector('.game');
+      //   if (game) {
+      //     const menu = createElement('div', 'menu_modal', game);
+      //     this.setBackground(menu, whackBackground);
+      //     const caption = createElement('div', 'game_caption', menu);
+      //     caption.textContent = 'Game end...';
+      //     const controls = createElement('div', 'game_controls', menu);
+      //     const startButton = createElement('div', 'controls_start-btn', controls);
+      //     this.setBackground(startButton, moleResettBtn);
+      //     startButton.addEventListener('click', () => {
+      //       this.renderGame();
+      //     });
+      //   }
+      // }
     }
   }
 
