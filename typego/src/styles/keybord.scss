@@ -10,10 +10,20 @@
   fill: rgba(96, 157, 159, 0.1);
   stroke: #3b6061 ;
   // opacity: 0.1;
+
   &.active {
     fill: cadetblue;
   }
+
+  &.correct {
+    fill: rgb(110, 160, 95)
+  }
+
+  &.incorrect {
+    fill:rgb(160, 95, 95);
+  }
 }
+
 .letter {
   font-size: 18px;
 

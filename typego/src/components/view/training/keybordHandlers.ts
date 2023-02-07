@@ -22,13 +22,16 @@ export const keyDowmHandler = (e: KeyboardEvent, keyboard: Keyboard, text: Text)
   } else if (words[index].textContent === e.key) {
     if (words[index].dataset.fix && !words[index].dataset.correct) {
       text.updateLetterStatus(index, Status.fixed);
+      keyboard.activate(id, Status.correct);
     } else {
       text.updateLetterStatus(index, Status.correct);
       words[index].dataset.correct = 'true';
+      keyboard.activate(id, Status.correct);
     }
     index += 1;
   } else {
     text.updateLetterStatus(index, Status.incorrect);
+    keyboard.activate(id, Status.incorrect);
     words[index].dataset.correct = '';
     index += 1;
   }

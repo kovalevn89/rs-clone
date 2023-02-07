@@ -1,10 +1,13 @@
 import { createElement } from '../../helper';
 import { Status } from '../../types';
+import { KEYS_EN, KEYS_EN_SHIFT } from '../../types/constants';
+import Keyboard from '../keyboard/keyboard';
 
 export default class Text {
   container;
-  words;
-  index;
+  words: HTMLElement[];
+  index: number;
+  mistakes: number;
 
   // todo add words
 
@@ -12,17 +15,20 @@ export default class Text {
     this.container = createElement('div', 'text__container');
     this.container.innerHTML = '';
     this.words = content.split('').map((letter, index) => {
-      const element = createElement('div', 'word__letter', this.container, ['id', letter], ['index', `i_${index}`]);
+      const id = KEYS_EN[letter];
+      const ID = KEYS_EN_SHIFT[letter];
+      const element = createElement('div', 'word__letter', this.container, ['id', id || ID], ['caps', ID ? 'true' : ''], ['index', `i_${index}`]);
       element.textContent = letter;
 
       this.container.append(element);
       return element;
     });
     this.index = 0;
+    this.mistakes = 0;
   }
 
   updateActive() {
-    this.words.forEach((el) => {
+    this.words.forEach((el: HTMLElement) => {
       el.classList.remove(Status.active);
     });
     this.words[this.index].classList.add(Status.active);
@@ -30,6 +36,10 @@ export default class Text {
 
   updateIndex(i: number): void {
     this.index = i;
+  }
+
+  updateMistakes(m: number): void {
+    this.mistakes = m;
   }
 
   reset(): void {
@@ -52,7 +62,20 @@ export default class Text {
     } else {
       this.words[i].classList.add(status);
     }
-    // const el = this.words.find((word) => words.dataset.index === `i_${i}`);
-    // el?.classList.add(status);
+  }
+
+  keyboardHint(keyboard: Keyboard): void {
+    const { id } = this.words[this.index];
+    const ID = this.words[this.index].dataset.caps;
+    console.log(this.words);
+    console.log(ID, id);
+    if (id) {
+      keyboard.activate('shiftleft', Status.reset);
+      keyboard.activate(id.toLowerCase(), Status.active);
+    }
+    if (ID) {
+      keyboard.activate(ID.toLowerCase(), Status.active);
+      keyboard.activate('shiftleft', Status.active);
+    }
   }
 }

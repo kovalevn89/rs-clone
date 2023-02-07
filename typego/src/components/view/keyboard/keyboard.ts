@@ -9,11 +9,9 @@ class Keyboard {
   keys;
 
   constructor(lang = Lang.en) {
-    // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/naming-convention
-    const _keyboard = createElement('div', 'keyboard');
-    _keyboard.innerHTML = lang === Lang.en ? svgKeyboard : svgKeybordRu;
+    this.keyboard = createElement('div', 'keyboard');
+    this.keyboard.innerHTML = lang === Lang.en ? svgKeyboard : svgKeybordRu;
 
-    this.keyboard = _keyboard;
     this.keys = this.keyboard.querySelectorAll('.key');
   }
 
@@ -26,14 +24,15 @@ class Keyboard {
   activate(id: string, status: Status): void {
     this.keys.forEach((key) => {
       if (key.id.toLowerCase() === id) {
+        // if (status !== Status.reset)
         key.classList.add(status);
       }
     });
   }
 
   render(): void {
-    console.log(this.keys);
-    this.keys.forEach((key) => console.log(key.id));
+    // console.log(this.keys);
+    // this.keys.forEach((key) => console.log(key.id));
   }
 }
 
