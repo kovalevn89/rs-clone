@@ -146,7 +146,7 @@ class WhacAMole {
   }
 
   private showMoleTimer(): void {
-    this.gameShowMoleId = setInterval(() => {
+    const showFun = () => {
       if (this.gameField.length > 0) {
         let randomCount = Math.floor(Math.random() * 2) + 1;
         console.log(`Show ${randomCount} moles.`);
@@ -163,7 +163,11 @@ class WhacAMole {
             }
           });
       }
-    }, 3900);
+    };
+
+    showFun();
+
+    this.gameShowMoleId = setInterval(showFun, 3900);
   }
 
   private clearTimers(): void {
@@ -222,11 +226,12 @@ class WhacAMole {
               if (value.timer) {
                 clearInterval(value.timer);
               }
+              value.curentLetter = '';
               value.moleElement.classList.remove('go');
               setTimeout((v: IMole) => {
                 // const tempValue = v;
                 v.isShowed = false;
-                v.curentLetter = '';
+                // v.curentLetter = '';
               }, 800, value);
             }
             return true;
