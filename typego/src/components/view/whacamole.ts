@@ -16,12 +16,13 @@ import moleResettBtn from '../../assets/png/mole_restart_btn.png';
  - увеличивать сложнолсть по таймеру каждых 30с.
 
  ! отключение звука из игры.
- ! остановка таймеров и хуков при окончании игры.
- ! пофиксить множественные нажатия на клавиши
+ ! + остановка таймеров и хуков при окончании игры.
+ ! + пофиксить множественные нажатия на клавиши
  ! скачат размер блока часов.
  ! выводить статистику при завершении игры.
  ! переключение языка в игре.
  ! заставка окончания игры модалка.
+ ! очистить консоль логи.
 */
 
 interface IMole {
@@ -165,7 +166,7 @@ class WhacAMole {
       }
     };
 
-    showFun();
+    setTimeout(showFun, 500);
 
     this.gameShowMoleId = setInterval(showFun, 3900);
   }
@@ -311,6 +312,7 @@ class WhacAMole {
       // SET SHOW MОLE INTERVAL
       this.showMoleTimer();
 
+      // GENERATE MOLES
       for (let i = 0; i < 6; i += 1) {
         const currentMole: IMole = {
           moleElement: null,
