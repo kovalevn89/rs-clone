@@ -303,7 +303,15 @@ class WhacAMole {
       const timerValue = createElement('div', 'value', statsTime);
       timerValue.textContent = '00s';
 
-      // createElement('div', 'sound_control', statsBlock);
+      const controls = createElement('div', 'controls', statsBlock);
+      const soundButton = createElement('div', 'control_sound', controls);
+      soundButton.addEventListener('click', () => {
+        this.isSound = !this.isSound;
+      });
+      const langButton = createElement('div', 'control_lang', controls);
+      langButton.addEventListener('click', () => {
+        this.language = this.language === 'ru' ? 'en' : 'ru';
+      });
 
       const gameAgea = createElement('div', 'game-area', game);
 
