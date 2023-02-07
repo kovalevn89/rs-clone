@@ -20,11 +20,11 @@ import moleResettBtn from '../../assets/png/mole_restart_btn.png';
  !+ пофиксить множественные нажатия на клавиши.
  !+ показывать кротов в начале игры без задержки.
  ! скачат размер блока часов.
- ! выводить статистику при завершении игры.
+ !+ выводить статистику при завершении игры.
  ! переключение языка в игре.
- ! заставка окончания игры модалка.
  ! очистить консоль логи.
  ! почистить CSS
+ ! адаптив
 */
 
 interface IMole {
@@ -264,7 +264,7 @@ class WhacAMole {
     }
   }
 
-  renderGame(): void {
+  private renderGame(): void {
     this.resetGame();
 
     const app: HTMLElement | null = document.querySelector('.app');
@@ -347,7 +347,7 @@ class WhacAMole {
     }
   }
 
-  renderMenu(): void {
+  private renderMenu(): void {
     const app: HTMLElement | null = document.querySelector('.app');
 
     if (app !== null) {
@@ -366,7 +366,7 @@ class WhacAMole {
     }
   }
 
-  renderEndGame(): void {
+  private renderEndGame(): void {
     const app: HTMLElement | null = document.querySelector('.app');
 
     if (app !== null) {
@@ -376,28 +376,24 @@ class WhacAMole {
       this.setBackground(menu, whackBackground);
       const caption = createElement('div', 'game_caption', menu);
       caption.textContent = 'Game end...';
+      caption.style.fontSize = '8vw';
+
+      const result = createElement('div', 'game_result', menu);
+      const line1 = createElement('div', 'result_line', result);
+      createElement('div', 'caption', line1).textContent = 'Level:';
+      createElement('div', 'value', line1).textContent = `${this.level}`;
+      const line2 = createElement('div', 'result_line', result);
+      createElement('div', 'caption', line2).textContent = 'Score:';
+      createElement('div', 'value', line2).textContent = `${this.score}`;
+      const line3 = createElement('div', 'result_line', result);
+      createElement('div', 'caption', line3).textContent = 'Accuracy:';
+      createElement('div', 'value', line3).textContent = `${this.accuracy}`;
       const controls = createElement('div', 'game_controls', menu);
-      const startButton = createElement('div', 'controls_start-btn', controls);
+      const startButton = createElement('div', 'controls_restart-btn', controls);
       this.setBackground(startButton, moleResettBtn);
       startButton.addEventListener('click', () => {
         this.renderGame();
       });
-      // const whac: HTMLElement | null = document.querySelector('.whac');
-      // if (whac) {
-      //   const game: HTMLElement | null = document.querySelector('.game');
-      //   if (game) {
-      //     const menu = createElement('div', 'menu_modal', game);
-      //     this.setBackground(menu, whackBackground);
-      //     const caption = createElement('div', 'game_caption', menu);
-      //     caption.textContent = 'Game end...';
-      //     const controls = createElement('div', 'game_controls', menu);
-      //     const startButton = createElement('div', 'controls_start-btn', controls);
-      //     this.setBackground(startButton, moleResettBtn);
-      //     startButton.addEventListener('click', () => {
-      //       this.renderGame();
-      //     });
-      //   }
-      // }
     }
   }
 
