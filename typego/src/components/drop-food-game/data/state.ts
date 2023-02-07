@@ -1,6 +1,6 @@
 import { State, GameState } from '../types';
 
-const state: State = {
+export const state: State = {
   totalScore: 0,
   averageAccuracy: 0,
   lib: {},
@@ -11,6 +11,6 @@ export const gameState: GameState = {
   letterOnField: [],
   letterPressed: [],
   letterMatched: [],
+  curScore: 0,
+  curAccuracy: 0,
 };
-
-export default state;

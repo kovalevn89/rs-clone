@@ -1,6 +1,6 @@
 export interface State {
-  totalScore: Number;
-  averageAccuracy: Number;
+  totalScore: number;
+  averageAccuracy: number;
   lib: Record<string, string>;
   keys: string[];
 }
@@ -17,4 +17,6 @@ export interface GameState {
   letterOnField: (HTMLElement | null)[];
   letterPressed: string[];
   letterMatched: string[];
+  curScore: number;
+  curAccuracy: number;
 }

@@ -1,7 +1,9 @@
 import { createElement, removeChild } from '../helper/index';
-import DropGamePage from './drop-game-page';
+
 import { levelValues } from './data/data';
-// import { levelValues, levelMaxScore } from './data/data';
+import { state } from './data/state';
+// eslint-disable-next-line import/no-cycle
+import DropGamePage from './drop-game-page';
 
 class DropStartPage {
   container: HTMLElement;
@@ -55,8 +57,8 @@ class DropStartPage {
                 <p class="score-points">0</p>
               </div>
               <div class="accuracy">
-                <p class="accuracy-title">Средний процент попаданий:</p>
-                <p class="accuracy-points">0</p>
+                <p class="accuracy-title">Средний процент ловли:</p>
+                <p class="accuracy-points">0%</p>
               </div>
             </div>
           </div>
@@ -68,8 +70,9 @@ class DropStartPage {
               Не дайте им упасть на землю!
               Наслаждайтесь этой игрой.
               Вы получите массу удовольствия!
-              Нажимайте клавиши на клавиатуре в соответствии с буквами, указанными на падающей еде
-              Соберите всю еду, чтобы заработать максимальные очки! Также будет учитываться статистика неправильных попаданий (ваша точность набора букв)
+              Нажимайте клавиши на клавиатуре в соответствии с буквами, указанными на падающей еде.
+              Соберите всю еду, чтобы заработать максимальные очки! Также будет учитываться статистика неправильных попаданий (ваша точность набора букв).
+              В зависимости от выбранного уровня сложности, будет менятся количество и скорость падения еды, а также продолжительность уровня.
 
               </p>
           </div>
@@ -95,10 +98,23 @@ class DropStartPage {
         );
       });
     });
-  }
 
+    const backBtn = document.querySelector('.drop-game-startpage-btn') as HTMLElement;
+
+    backBtn.addEventListener('click', () => {
+      // this.resetState();
+      removeChild(this.container);
+    });
+  }
+  changeAccuracy() {
+    const scorePoints = document.querySelector('.score-points') as HTMLElement;
+    const accuracyPoints = document.querySelector('.accuracy-points') as HTMLElement;
+    accuracyPoints.textContent = `${state.averageAccuracy} %`;
+    scorePoints.textContent = `${state.totalScore}`;
+  }
   run(): void {
     this.createDropStartPage();
+    this.changeAccuracy();
   }
 }
 

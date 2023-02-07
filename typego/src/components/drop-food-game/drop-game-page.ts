@@ -1,6 +1,9 @@
-import { createElement } from '../helper/index';
-import { gameState } from './data/state';
+// eslint-disable-next-line import/no-cycle
+import DropStartPage from './drop-start-page';
+import { createElement, removeChild } from '../helper/index';
+import { gameState, state } from './data/state';
 import GameData from './types/enum';
+
 import { arrRu } from './data/data';
 
 class DropGamePage {
@@ -31,48 +34,71 @@ class DropGamePage {
             <p class="score-points">0</p>
           </div>
           <div class="accuracy">
-            <p class="accuracy-title">Средний процент попаданий:</p>
-            <p class="accuracy-points">0</p>
+            <p class="accuracy-title">Средний процент ловли:</p>
+            <p class="accuracy-points">0%</p>
           </div>
         </div>
         <div class="drop-game-page-field-container">
         
         <div class="field-img-box-right"></div>
         <div class="field-img-box-left"></div>
+        <div class="popup">
+        <div class="popup-content">
+          НЯЬ-НЯМ. Спасибо за еду!
+        </div>
+        <div class="popup_back"></div>
+      </div>
       </div>
       </div>
     </div>
   </div>`;
-    console.log(lvl, speed, duration, columnsNum);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const сolumnsArr: HTMLElement[] = [];
     const fieldContainer = document.querySelector('.drop-game-page-field-container') as HTMLElement;
     for (let i = 0; i < columnsNum; i += 1) {
       const column = createElement('div', 'field-column', fieldContainer);
       сolumnsArr.push(column);
     }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     const animInterval = setInterval(() => {
       this.createFood(speed, сolumnsArr);
     }, speed);
 
     window.addEventListener('keypress', this.checkLetter);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const animEnd = setTimeout(() => {
       clearInterval(animInterval);
 
-      // сохранить результат
+      const popup = document.querySelector('.popup') as HTMLElement;
+      setTimeout(() => {
+        popup.style.display = 'block';
+        this.setTotalScoreAccuracy();
+        this.resetState();
+        setTimeout(() => {
+          popup.style.display = 'none';
+        }, 3000);
+      }, 1.1 * speed);
+
       // добавить модалку
     }, duration);
+    const backBtn = document.querySelector('.drop-game-page-btn') as HTMLElement;
 
+    backBtn.addEventListener('click', () => {
+      clearInterval(animInterval);
+      clearTimeout(animEnd);
+      window.removeEventListener('keypress', this.checkLetter);
+      this.resetState();
+      removeChild(this.container);
+      const startPage = new DropStartPage();
+      startPage.run();
+    });
     fieldContainer.append(...сolumnsArr);
   }
 
   checkLetter(e: KeyboardEvent) {
     const curLetter = e.key;
     const curBigLetter = e.key.toUpperCase();
+    let keyCounter = 1;
 
     gameState.letterPressed.push(curLetter);
 
@@ -80,27 +106,30 @@ class DropGamePage {
       if (key === null) return;
 
       if (key.classList.contains(curLetter) || key.classList.contains(curBigLetter)) {
-        key.classList.add('right');
-        gameState.letterMatched.push(curLetter);
-        // поменять счет
-        gameState.letterOnField.splice(index, 1);
-        console.log(gameState.letterOnField);
+        if (keyCounter === 1) {
+          key.classList.add('right');
+          gameState.letterMatched.push(curLetter);
+          DropGamePage.changeScore();
+          gameState.letterOnField.splice(index, 1);
+
+          keyCounter += 1;
+        }
       }
     });
-
-    // поменять точность
+    DropGamePage.changeAccuracy();
   }
 
   createFood(speed: number, columns: HTMLElement[]) {
+    const foodBgrNum = 5;
     columns.forEach((col) => {
       setTimeout(() => {
         const fieldColumn = document.querySelector('.field-column') as HTMLElement;
         const food = createElement('div', 'field-letter', fieldColumn);
         const foodLetter = this.getFoodLetter();
 
-        // добавить бэкграунд
-
         food.textContent = foodLetter;
+        food.classList.add(`field-letter-${this.randomNum(foodBgrNum) + 1}`);
+
         food.classList.add(foodLetter);
         gameState.letterOnField.push(food);
 
@@ -116,7 +145,7 @@ class DropGamePage {
         //     if (arrKey === food) return null;
         //     return arrKey;
         //   });
-        //   console.log(44444);
+
         //   food.remove();
         // }, speed + 500);
 
@@ -130,11 +159,39 @@ class DropGamePage {
     const randomLetter = arrRu[randomLetterNum];
     return randomLetter;
   }
+
   randomNum(num: number) {
     const randomNum = Math.floor(Math.random() * num);
     return randomNum;
   }
 
+  static changeScore() {
+    const scorePoints = document.querySelector('.score-points') as HTMLElement;
+    gameState.curScore += 1;
+    scorePoints.textContent = gameState.curScore.toString();
+  }
+
+  static changeAccuracy() {
+    const accuracyPoints = document.querySelector('.accuracy-points') as HTMLElement;
+    const pressKeys = gameState.letterPressed.length;
+    const keys = gameState.letterMatched.length;
+    gameState.curAccuracy = Math.round((keys / pressKeys) * 100);
+    accuracyPoints.textContent = `${gameState.curAccuracy} %`;
+  }
+
+  setTotalScoreAccuracy() {
+    state.totalScore += gameState.curScore;
+    state.averageAccuracy = Math.round((state.averageAccuracy + gameState.curAccuracy) / 2);
+    console.log(state.totalScore, gameState.curAccuracy, state.averageAccuracy);
+  }
+
+  resetState() {
+    gameState.letterOnField = [];
+    gameState.letterPressed = [];
+    gameState.letterMatched = [];
+    gameState.curScore = 0;
+    gameState.curAccuracy = 0;
+  }
   // run(): void {
   //   this.createDropGamePage();
   //   // removeChild(this.container);

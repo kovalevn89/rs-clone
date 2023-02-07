@@ -2,9 +2,9 @@ import { LvlParam, LvlMaxPoints } from '../types';
 
 export const levelValues: LvlParam = {
   1: {
-    speed: 4000,
+    speed: 5500,
     duration: 30000,
-    columns: 6,
+    columns: 5,
   },
   2: {
     speed: 4500,
@@ -68,3 +68,8 @@ export const arrRu: string[] = [
   'Ю',
   'Я',
 ];
+
+// export const foodBgr: string[] = [
+//   'url(assets/img/1.png) no-repeat center center',
+//   'url(assets/img/2.png) no-repeat center center',
+// ];
