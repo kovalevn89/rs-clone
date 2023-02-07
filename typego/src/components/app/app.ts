@@ -14,7 +14,7 @@ class App {
   }
 
   run(): void {
-    this.whac.render();
+    this.whac.run();
   }
 }
 

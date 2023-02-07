@@ -5,7 +5,8 @@ import whackHoleEmptyImg from '../../assets/png/whac_hole_empty.png';
 import moleImg from '../../assets/png/mole.png';
 import hitSound from '../../assets/media/hit.ogg';
 import clickSound from '../../assets/media/click.ogg';
-
+import moleStartBtn from '../../assets/png/mole_start_btn.png';
+// import moleResettBtn from '../../assets/png/mole_restart_btn.png';
 /*
  В зависимости от сложности регулировать
  - Время через которое кроты пропадают.
@@ -97,7 +98,7 @@ class WhacAMole {
     }
   }
 
-  render(): void {
+  renderGame(): void {
     const app: HTMLElement | null = document.querySelector('.app');
 
     if (app !== null) {
@@ -236,9 +237,28 @@ class WhacAMole {
     console.log(this.gameField);
   }
 
+  renderMenu(): void {
+    const app: HTMLElement | null = document.querySelector('.app');
+
+    if (app !== null) {
+      removeChild(app);
+      const whac = createElement('div', 'whac', app);
+      const menu = createElement('div', 'menu', whac);
+      this.setBackground(menu, whackBackground);
+      const caption = createElement('div', 'game_caption', menu);
+      caption.textContent = 'Whac A Mole';
+      const controls = createElement('div', 'game_controls', menu);
+      const startButton = createElement('div', 'controls_start-btn', controls);
+      this.setBackground(startButton, moleStartBtn);
+      startButton.addEventListener('click', () => {
+        this.renderGame();
+      });
+    }
+  }
+
   run(): void {
     this.gameField = [];
-    this.render();
+    this.renderMenu();
   }
 }
 
