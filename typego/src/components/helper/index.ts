@@ -1,9 +1,9 @@
-export function createElement(
+export function createElement<T = HTMLElement>(
   tagName: string,
   classNames?: string,
   parent: HTMLElement | null = null,
   ...dataAttr: string[][]
-): HTMLElement {
+): T {
   const el = document.createElement(tagName);
 
   if (classNames) {
@@ -30,7 +30,7 @@ export function createElement(
     });
   }
 
-  return el;
+  return el as T;
 }
 
 export function removeChild(element: HTMLElement): void {
