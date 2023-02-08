@@ -76,7 +76,7 @@ class DropGamePage {
         this.resetState();
         setTimeout(() => {
           popup.style.display = 'none';
-        }, 3000);
+        }, speed);
       }, 1.1 * speed);
     }, duration);
     const backBtn = document.querySelector('.drop-game-page-btn') as HTMLElement;

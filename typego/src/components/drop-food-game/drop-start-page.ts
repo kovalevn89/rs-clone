@@ -4,6 +4,7 @@ import { levelValues } from './data/data';
 import { state } from './data/state';
 // eslint-disable-next-line import/no-cycle
 import DropGamePage from './drop-game-page';
+import createPopup from './popupSetting';
 
 class DropStartPage {
   container: HTMLElement;
@@ -79,7 +80,32 @@ class DropStartPage {
         </div>
       </div>
     </div>
-  </div>`;
+  </div>
+  <div class="popup popup-setting">
+  <div class="popup-content popup-content-setting">
+    <form class="popup-form">
+      <div class="person-details">
+        <h2>НАСТРОЙКИ</h2>
+        <p class="">Устали играть на заводских настройках?! Теперь вы можете настроить игру с учетом своих пожеланий. Выбирайте продолжительность уровня, скорость и количество еды и вперед!</p>
+        <div class="form-item">
+          <input type="number" placeholder="Продолжительность от 20 до 90 с" name="duration" />
+          <div class="error-message"></div>
+        </div>
+        <div class="form-item">
+          <input type="number" placeholder="Время падения от 2 до 10 с" name="speed" />
+          <div class="error-message"></div>
+        </div>
+        <div class="form-item">
+          <input type="number" placeholder="Количество еды за раз от 4 до 8" name="columns" />
+          <div class="error-message"></div>
+        </div>
+      </div>
+      <button class="btn btn_confirm" type="submit">Старт</button>
+    </form>
+    <div><div class="popup_close"></div></div>
+  </div>
+  <div class="popup_back"></div>
+</div>`;
     const levelBtns = document.querySelectorAll('.level-btn');
     levelBtns.forEach((levelBtn) => {
       levelBtn.addEventListener('click', (e) => {
@@ -130,7 +156,9 @@ class DropStartPage {
     accuracyPoints.textContent = `${state.averageAccuracy} %`;
     scorePoints.textContent = `${state.totalScore}`;
   }
-  openSetting() {}
+  openSetting() {
+    createPopup();
+  }
 
   run(): void {
     this.createDropStartPage();
