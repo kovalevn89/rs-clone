@@ -60,32 +60,32 @@ export const svgKeyboard = `<svg class="default__kb" viewBox="0 0 683.3 254" xml
   <path id="shiftright" class="key" d="M668.8,185.4c0,1.7-1.3,3-3,3h-94.5c-1.6,0-3-1.3-3-3v-35.3c0-1.6,1.4-3,3-3h94.5c1.7,0,3,1.4,3,3V185.4z"></path>
 </g>
 <g id="letters">
-  <text transform="matrix(1 0 0 1 33.4903 33.804)" class="letter" dx="0" dy="0">~</text>
-  <text transform="matrix(1 0 0 1 35.8009 52.6643)" class="letter" dx="0" dy="0">\`</text>
-  <text transform="matrix(1 0 0 1 78.626 50.4071)" class="letter" dx="0" dy="0">1</text>
-  <text transform="matrix(1 0 0 1 123.299 51.1765)" class="letter" dx="0" dy="0">2</text>
-  <text transform="matrix(1 0 0 1 169.6841 51.404)" class="letter" dx="0" dy="0">3</text>
-  <text transform="matrix(1 0 0 1 213.0758 51.404)" class="letter" dx="0" dy="0">4</text>
-  <text transform="matrix(1 0 0 1 258.0724 51.404)" class="letter" dx="0" dy="0">5</text>
-  <text transform="matrix(1 0 0 1 303.2822 51.0891)" class="letter" dx="0" dy="0">6</text>
-  <text transform="matrix(1 0 0 1 349.5064 51.0891)" class="letter" dx="0" dy="0">7</text>
-  <text transform="matrix(1 0 0 1 393.281 51.2157)" class="letter" dx="0" dy="0">8</text>
-  <text transform="matrix(1 0 0 1 438.5742 51.2157)" class="letter" dx="0" dy="0">9</text>
-  <text transform="matrix(1 0 0 1 483.4907 51.2157)" class="letter" dx="0" dy="0">0</text>
-  <text transform="matrix(1 0 0 1 530.4011 50.4071)" class="letter" dx="0" dy="0">-</text>
-  <text transform="matrix(1 0 0 1 573.5195 51.2157)" class="letter" dx="0" dy="0">=</text>
-  <text transform="matrix(1 0 0 1 80.5513 31.7605)" class="letter" dx="0" dy="0">!</text>
-  <text transform="matrix(1 0 0 1 119.8565 30.45)" class="letter" dx="0" dy="0">@</text>
-  <text transform="matrix(1 0 0 1 169.6841 31.76)" class="letter" dx="0" dy="0">#</text>
-  <text transform="matrix(1 0 0 1 213.0758 31.2171)" class="letter" dx="0" dy="0">$</text>
-  <text transform="matrix(1 0 0 1 255.5748 30.8318)" class="letter" dx="0" dy="0">%</text>
-  <text transform="matrix(1 0 0 1 303.9556 32.4427)" class="letter" dx="0" dy="0">^</text>
-  <text transform="matrix(1 0 0 1 348.2554 31.76)" class="letter" dx="0" dy="0">&amp;</text>
-  <text transform="matrix(1 0 0 1 394.5334 32.8236)" class="letter" dx="0" dy="0">*</text>
-  <text transform="matrix(1 0 0 1 440.3076 30.6435)" class="letter" dx="0" dy="0">(</text>
-  <text transform="matrix(1 0 0 1 485.1645 30.6435)" class="letter" dx="0" dy="0">)</text>
-  <text transform="matrix(1 0 0 1 528.7588 25.5423)" class="letter" dx="0" dy="0">_</text>
-  <text transform="matrix(1 0 0 1 573.5195 32.4422)" class="letter" dx="0" dy="0">+</text>
+  <text transform="matrix(1 0 0 1 33.4903 33.804)" class="letter num" dx="0" dy="0">~</text>
+  <text transform="matrix(1 0 0 1 35.8009 52.6643)" class="letter num" dx="0" dy="0">\`</text>
+  <text transform="matrix(1 0 0 1 78.626 50.4071)" class="letter num" dx="0" dy="0">1</text>
+  <text transform="matrix(1 0 0 1 123.299 51.1765)" class="letter num" dx="0" dy="0">2</text>
+  <text transform="matrix(1 0 0 1 169.6841 51.404)" class="letter num" dx="0" dy="0">3</text>
+  <text transform="matrix(1 0 0 1 213.0758 51.404)" class="letter num" dx="0" dy="0">4</text>
+  <text transform="matrix(1 0 0 1 258.0724 51.404)" class="letter num" dx="0" dy="0">5</text>
+  <text transform="matrix(1 0 0 1 303.2822 51.0891)" class="letter num" dx="0" dy="0">6</text>
+  <text transform="matrix(1 0 0 1 349.5064 51.0891)" class="letter num" dx="0" dy="0">7</text>
+  <text transform="matrix(1 0 0 1 393.281 51.2157)" class="letter num" dx="0" dy="0">8</text>
+  <text transform="matrix(1 0 0 1 438.5742 51.2157)" class="letter num" dx="0" dy="0">9</text>
+  <text transform="matrix(1 0 0 1 483.4907 51.2157)" class="letter num" dx="0" dy="0">0</text>
+  <text transform="matrix(1 0 0 1 530.4011 50.4071)" class="letter num" dx="0" dy="0">-</text>
+  <text transform="matrix(1 0 0 1 573.5195 51.2157)" class="letter num" dx="0" dy="0">=</text>
+  <text transform="matrix(1 0 0 1 80.5513 31.7605)" class="letter num" dx="0" dy="0">!</text>
+  <text transform="matrix(1 0 0 1 119.8565 30.45)" class="letter num" dx="0" dy="0">@</text>
+  <text transform="matrix(1 0 0 1 169.6841 31.76)" class="letter num" dx="0" dy="0">#</text>
+  <text transform="matrix(1 0 0 1 213.0758 31.2171)" class="letter num" dx="0" dy="0">$</text>
+  <text transform="matrix(1 0 0 1 255.5748 30.8318)" class="letter num" dx="0" dy="0">%</text>
+  <text transform="matrix(1 0 0 1 303.9556 32.4427)" class="letter num" dx="0" dy="0">^</text>
+  <text transform="matrix(1 0 0 1 348.2554 31.76)" class="letter num" dx="0" dy="0">&amp;</text>
+  <text transform="matrix(1 0 0 1 394.5334 32.8236)" class="letter num" dx="0" dy="0">*</text>
+  <text transform="matrix(1 0 0 1 440.3076 30.6435)" class="letter num" dx="0" dy="0">(</text>
+  <text transform="matrix(1 0 0 1 485.1645 30.6435)" class="letter num" dx="0" dy="0">)</text>
+  <text transform="matrix(1 0 0 1 528.7588 25.5423)" class="letter num" dx="0" dy="0">_</text>
+  <text transform="matrix(1 0 0 1 573.5195 32.4422)" class="letter num" dx="0" dy="0">+</text>
   <text transform="matrix(1 0 0 1 100.9088 93.4743)" class="letter en" dx="-4.953125" dy="-5">Q</text>
   <text transform="matrix(1 0 0 1 145.3644 93.4744)" class="letter en" dx="-5.87109375" dy="-5">W</text>
   <text transform="matrix(1 0 0 1 190.5943 93.4744)" class="letter en" dx="-3.5078125" dy="-5">E</text>
@@ -112,22 +112,22 @@ export const svgKeyboard = `<svg class="default__kb" viewBox="0 0 683.3 254" xml
   <text transform="matrix(1 0 0 1 314.0098 181.7458)" class="letter en" dx="-3.5078125" dy="-5">B</text>
   <text transform="matrix(1 0 0 1 358.4863 181.7458)" class="letter en" dx="-4.226593017578125" dy="-5">N</text>
   <text transform="matrix(1 0 0 1 401.6816 181.7458)" class="letter en" dx="-3.58984375" dy="-5">M</text>
-  <text transform="matrix(1 0 0 1 519.074 136.7127)" class="letter" dx="0" dy="0">;</text>
-  <text transform="matrix(1 0 0 1 519.074 119.3763)" class="letter" dx="0" dy="0">:</text>
-  <text transform="matrix(1 0 0 1 451.3285 180.0409)" class="letter" dx="-1.25390625" dy="0">,</text>
-  <text transform="matrix(1 0 0 1 450.2827 164.3396)" class="letter" dx="0" dy="0">&lt;</text>
-  <text transform="matrix(1 0 0 1 495.9731 181.0409)" class="letter" dx="-1.25390625" dy="0">.</text>
-  <text transform="matrix(1 0 0 1 494.9274 164.3396)" class="letter" dx="0" dy="0">&gt;</text>
-  <text transform="matrix(1 0 0 1 543.4077 181.0408)" class="letter" dx="0" dy="0">/</text>
-  <text transform="matrix(1 0 0 1 541.3276 163.2498)" class="letter" dx="0" dy="0">?</text>
-  <text transform="matrix(1 0 0 1 565.621 138.7127)" class="letter" dx="0" dy="0">'</text>
-  <text transform="matrix(1 0 0 1 565.621 120.3763)" class="letter" dx="0" dy="0">"</text>
-  <text transform="matrix(1 0 0 1 553.3923 94.426)" class="letter" dx="0" dy="0">[</text>
-  <text transform="matrix(1 0 0 1 552.9709 74.8769)" class="letter" dx="0" dy="0">{</text>
-  <text transform="matrix(1 0 0 1 598.7657 94.426)" class="letter" dx="0" dy="0">]</text>
-  <text transform="matrix(1 0 0 1 598.3443 74.7849)" class="letter" dx="0" dy="0">}</text>
-  <text transform="matrix(1 0 0 1 644.3574 96.8807)" class="letter" dx="0" dy="0">\\</text>
-  <text transform="matrix(1 0 0 1 644.4941 74.8769)" class="letter" dx="0" dy="0">|</text>
+  <text transform="matrix(1 0 0 1 519.074 136.7127)" class="letter num" dx="0" dy="0">;</text>
+  <text transform="matrix(1 0 0 1 519.074 119.3763)" class="letter num" dx="0" dy="0">:</text>
+  <text transform="matrix(1 0 0 1 451.3285 180.0409)" class="letter num" dx="-1.25390625" dy="0">,</text>
+  <text transform="matrix(1 0 0 1 450.2827 164.3396)" class="letter num" dx="0" dy="0">&lt;</text>
+  <text transform="matrix(1 0 0 1 495.9731 181.0409)" class="letter num" dx="-1.25390625" dy="0">.</text>
+  <text transform="matrix(1 0 0 1 494.9274 164.3396)" class="letter num" dx="0" dy="0">&gt;</text>
+  <text transform="matrix(1 0 0 1 543.4077 181.0408)" class="letter num" dx="0" dy="0">/</text>
+  <text transform="matrix(1 0 0 1 541.3276 163.2498)" class="letter num" dx="0" dy="0">?</text>
+  <text transform="matrix(1 0 0 1 565.621 138.7127)" class="letter num" dx="0" dy="0">'</text>
+  <text transform="matrix(1 0 0 1 565.621 120.3763)" class="letter num" dx="0" dy="0">"</text>
+  <text transform="matrix(1 0 0 1 553.3923 94.426)" class="letter num" dx="0" dy="0">[</text>
+  <text transform="matrix(1 0 0 1 552.9709 74.8769)" class="letter num" dx="0" dy="0">{</text>
+  <text transform="matrix(1 0 0 1 598.7657 94.426)" class="letter num" dx="0" dy="0">]</text>
+  <text transform="matrix(1 0 0 1 598.3443 74.7849)" class="letter num" dx="0" dy="0">}</text>
+  <text transform="matrix(1 0 0 1 644.3574 96.8807)" class="letter num" dx="0" dy="0">\\</text>
+  <text transform="matrix(1 0 0 1 644.4941 74.8769)" class="letter num" dx="0" dy="0">|</text>
   <text id="text-tab" transform="matrix(1 0 0 1 23.3467 93.2342)" class="letter special">tab</text>
   <text id="text-caps-lock" transform="matrix(1 0 0 1 23.3467 137.7127)" class="letter special">caps lock</text>
   <text id="text-shift-left" transform="matrix(1 0 0 1 23.3467 181.0408)" class="letter special">shift</text>

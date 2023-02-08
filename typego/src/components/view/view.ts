@@ -12,7 +12,7 @@ class View {
   constructor() {
     this.header = new Header();
     this.footer = new Footer();
-    this.training = new Training(DEFAULT_RESPONSE);
+    this.training = new Training(DEFAULT_RESPONSE_RU);
   }
 
   run(): void {

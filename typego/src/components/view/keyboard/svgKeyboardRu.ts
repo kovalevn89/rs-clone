@@ -60,113 +60,67 @@ export const svgKeybordRu = `<svg class="default__kb" viewBox="0 0 683.3 254" xm
 <path id="shiftright" class="key" d="M668.8,185.4c0,1.7-1.3,3-3,3h-94.5c-1.6,0-3-1.3-3-3v-35.3c0-1.6,1.4-3,3-3h94.5c1.7,0,3,1.4,3,3V185.4z"></path>
 </g>
 <g id="letters">
-  <text transform="matrix(1 0 0 1 35.8009 52.6643)" class="letter" dx="-16" dy="-2">ё</text>
-  <text transform="matrix(1 0 0 1 33.4903 33.804)" class="letter" dx="0" dy="0">~</text>
-  <text transform="matrix(1 0 0 1 35.8009 52.6643)" class="letter" dx="0" dy="0">\`</text>
-  <text transform="matrix(1 0 0 1 78.626 50.4071)" class="letter" dx="0" dy="0">1</text>
-  <text transform="matrix(1 0 0 1 123.299 51.1765)" class="letter" dx="0" dy="0">2</text>
-  <text transform="matrix(1 0 0 1 169.6841 51.404)" class="letter" dx="0" dy="0">3</text>
-  <text transform="matrix(1 0 0 1 213.0758 51.404)" class="letter" dx="0" dy="0">4</text>
-  <text transform="matrix(1 0 0 1 258.0724 51.404)" class="letter" dx="0" dy="0">5</text>
-  <text transform="matrix(1 0 0 1 303.2822 51.0891)" class="letter" dx="0" dy="0">6</text>
-  <text transform="matrix(1 0 0 1 349.5064 51.0891)" class="letter" dx="0" dy="0">7</text>
-  <text transform="matrix(1 0 0 1 393.281 51.2157)" class="letter" dx="0" dy="0">8</text>
-  <text transform="matrix(1 0 0 1 438.5742 51.2157)" class="letter" dx="0" dy="0">9</text>
-  <text transform="matrix(1 0 0 1 483.4907 51.2157)" class="letter" dx="0" dy="0">0</text>
-  <text transform="matrix(1 0 0 1 530.4011 50.4071)" class="letter" dx="0" dy="0">-</text>
-  <text transform="matrix(1 0 0 1 573.5195 51.2157)" class="letter" dx="0" dy="0">=</text>
-  <text transform="matrix(1 0 0 1 80.5513 31.7605)" class="letter" dx="0" dy="0">!</text>
-  <text transform="matrix(1 0 0 1 119.8565 30.45)" class="letter" dx="0" dy="0">@</text>
-  <text transform="matrix(1 0 0 1 169.6841 31.76)" class="letter" dx="0" dy="0">#</text>
-  <text transform="matrix(1 0 0 1 213.0758 31.2171)" class="letter" dx="0" dy="0">$</text>
-  <text transform="matrix(1 0 0 1 255.5748 30.8318)" class="letter" dx="0" dy="0">%</text>
-  <text transform="matrix(1 0 0 1 303.9556 32.4427)" class="letter" dx="0" dy="0">^</text>
-  <text transform="matrix(1 0 0 1 348.2554 31.76)" class="letter" dx="0" dy="0">&amp;</text>
-  <text transform="matrix(1 0 0 1 394.5334 32.8236)" class="letter" dx="0" dy="0">*</text>
-  <text transform="matrix(1 0 0 1 440.3076 30.6435)" class="letter" dx="0" dy="0">(</text>
-  <text transform="matrix(1 0 0 1 485.1645 30.6435)" class="letter" dx="0" dy="0">)</text>
-  <text transform="matrix(1 0 0 1 528.7588 25.5423)" class="letter" dx="0" dy="0">_</text>
-  <text transform="matrix(1 0 0 1 573.5195 32.4422)" class="letter" dx="0" dy="0">+</text>
-  <text transform="matrix(1 0 0 1 80.5513 31.7605)" class="letter num" dx="7.089839935302734" dy="12"></text>
-  <text transform="matrix(1 0 0 1 119.8565 30.45)" class="letter num" dx="12.6328125" dy="12"></text>
-  <text transform="matrix(1 0 0 1 169.6841 31.76)" class="letter num" dx="9.18359375" dy="12"></text>
-  <text transform="matrix(1 0 0 1 213.0758 31.2171)" class="letter num" dx="9.18359375" dy="12"></text>
-  <text transform="matrix(1 0 0 1 255.5748 30.8318)" class="letter num" dx="11.6875" dy="12"></text>
-  <text transform="matrix(1 0 0 1 303.9556 32.4427)" class="letter num" dx="8.53125" dy="12"></text>
-  <text transform="matrix(1 0 0 1 348.2554 31.76)" class="letter num" dx="10.015609741210938" dy="12"></text>
-  <text transform="matrix(1 0 0 1 394.5334 32.8236)" class="letter num" dx="7.92578125" dy="10"></text>
-  <text transform="matrix(1 0 0 1 440.3076 30.6435)" class="letter num" dx="7.50390625" dy="12"></text>
-  <text transform="matrix(1 0 0 1 485.1645 30.6435)" class="letter num" dx="7.503875732421875" dy="12"></text>
-  <text transform="matrix(1 0 0 1 528.7588 25.5423)" class="letter num" dx="9.37908935546875" dy="18"></text>
-  <text transform="matrix(1 0 0 1 573.5195 32.4422)" class="letter num" dx="9.390625" dy="12"></text>
-  <text transform="matrix(1 0 0 1 100.9088 75.4743)" class="letter en" dx="0.7109375" dy="16">Q</text>
-  <text transform="matrix(1 0 0 1 100.9088 93.4743)" class="letter" dx="-10.01953125" dy="-22">й</text>
-  <text transform="matrix(1 0 0 1 145.3644 75.4744)" class="letter en" dx="-0.20311737060546875" dy="16">W</text>
-  <text transform="matrix(1 0 0 1 145.3644 93.4744)" class="letter" dx="-8.87890625" dy="-22">ц</text>
-  <text transform="matrix(1 0 0 1 190.5943 75.4744)" class="letter en" dx="1.32421875" dy="16">E</text>
-  <text transform="matrix(1 0 0 1 190.5943 93.4744)" class="letter" dx="-9.578125" dy="-22">у</text>
-  <text transform="matrix(1 0 0 1 236.9933 75.4743)" class="letter en" dx="1.01953125" dy="16">R</text>
-  <text transform="matrix(1 0 0 1 236.9933 93.4743)" class="letter" dx="-10.741455078125" dy="-22">к</text>
-  <text transform="matrix(1 0 0 1 280.6080 75.4744)" class="letter en" dx="1.6328125" dy="16">T</text>
-  <text transform="matrix(1 0 0 1 280.6080 93.4744)" class="letter" dx="-12.09375" dy="-22">е</text>
-  <text transform="matrix(1 0 0 1 326.5138 75.4744)" class="letter en" dx="1.32421875" dy="16">Y</text>
-  <text transform="matrix(1 0 0 1 326.5138 93.4744)" class="letter" dx="-10.390625" dy="-22">н</text>
-  <text transform="matrix(1 0 0 1 371.1386 75.4743)" class="letter en" dx="1.01953125" dy="16">U</text>
-  <text transform="matrix(1 0 0 1 371.1386 93.4743)" class="letter" dx="-8.55859375" dy="-22">г</text>
-  <text transform="matrix(1 0 0 1 418.5557 75.4743)" class="letter en" dx="3.4687652587890625" dy="16">I</text>
-  <text transform="matrix(1 0 0 1 418.5557 93.4743)" class="letter" dx="-14.359375" dy="-22">ш</text>
-  <text transform="matrix(1 0 0 1 459.9639 75.4743)" class="letter en" dx="0.710906982421875" dy="16">O</text>
-  <text transform="matrix(1 0 0 1 459.9639 93.4743)" class="letter" dx="-12.00390625" dy="-22">щ</text>
-  <text transform="matrix(1 0 0 1 506.9335 75.4743)" class="letter en" dx="1.324249267578125" dy="16">P</text>
-  <text transform="matrix(1 0 0 1 506.9335 93.4743)" class="letter" dx="-9.265625" dy="-22">з</text>
-  <text transform="matrix(1 0 0 1 112.1346 120.3303)" class="letter en" dx="1.3070526123046875" dy="16">A</text>
-  <text transform="matrix(1 0 0 1 112.1346 138.3303)" class="letter" dx="-12.003913879394531" dy="-22">ф</text>
-  <text transform="matrix(1 0 0 1 156.0135 120.3303)" class="letter en" dx="1.3242263793945312" dy="16">S</text>
-  <text transform="matrix(1 0 0 1 156.0135 138.3303)" class="letter" dx="-11.644515991210938" dy="-22">ы</text>
-  <text transform="matrix(1 0 0 1 201.5241 120.3303)" class="letter en" dx="1.0195236206054688" dy="16">D</text>
-  <text transform="matrix(1 0 0 1 201.5241 138.3303)" class="letter" dx="-9.812507629394531" dy="-22">в</text>
-  <text transform="matrix(1 0 0 1 247.1121 120.3303)" class="letter en" dx="1.6328277587890625" dy="16">F</text>
-  <text transform="matrix(1 0 0 1 247.1121 138.3303)" class="letter" dx="-11.834381103515625" dy="-22">а</text>
-  <text transform="matrix(1 0 0 1 289.4753 120.3303)" class="letter en" dx="0.7109527587890625" dy="16">G</text>
-  <text transform="matrix(1 0 0 1 289.4753 138.3303)" class="letter" dx="-9.890625" dy="-22">п</text>
-  <text transform="matrix(1 0 0 1 335.5886 120.3303)" class="letter en" dx="1.019561767578125" dy="16">H</text>
-  <text transform="matrix(1 0 0 1 335.5886 138.3303)" class="letter" dx="-10.000015258789062" dy="-22">р</text>
-  <text transform="matrix(1 0 0 1 382.2692 120.3303)" class="letter en" dx="2.24609375" dy="16">J</text>
-  <text transform="matrix(1 0 0 1 382.2692 138.3303)" class="letter" dx="-12.16668701171875" dy="-22">о</text>
-  <text transform="matrix(1 0 0 1 426.0182 120.3303)" class="letter en" dx="1.3242034912109375" dy="16">K</text>
-  <text transform="matrix(1 0 0 1 426.0182 138.3303)" class="letter" dx="-10.625" dy="-22">л</text>
-  <text transform="matrix(1 0 0 1 470.8706 120.3303)" class="letter en" dx="1.9335784912109375" dy="16">L</text>
-  <text transform="matrix(1 0 0 1 470.8706 138.3303)" class="letter" dx="-12.71484375" dy="-22">д</text>
-  <text transform="matrix(1 0 0 1 134.7896 163.7458)" class="letter en" dx="1.6328125" dy="16">Z</text>
-  <text transform="matrix(1 0 0 1 134.7896 181.7458)" class="letter" dx="-10.3125" dy="-22">я</text>
-  <text transform="matrix(1 0 0 1 179.2339 163.7458)" class="letter en" dx="1.3242034912109375" dy="16">X</text>
-  <text transform="matrix(1 0 0 1 179.2339 181.7458)" class="letter" dx="-10.156242370605469" dy="-22">ч</text>
-  <text transform="matrix(1 0 0 1 222.5416 163.7458)" class="letter en" dx="1.01953125" dy="16">C</text>
-  <text transform="matrix(1 0 0 1 222.5416 181.7458)" class="letter" dx="-10" dy="-22">с</text>
-  <text transform="matrix(1 0 0 1 269.3973 163.7458)" class="letter en" dx="1.3242034912109375" dy="16">V</text>
-  <text transform="matrix(1 0 0 1 269.3973 181.7458)" class="letter" dx="-11.410171508789062" dy="-22">м</text>
-  <text transform="matrix(1 0 0 1 314.0098 163.7458)" class="letter en" dx="1.32421875" dy="16">B</text>
-  <text transform="matrix(1 0 0 1 314.0098 181.7458)" class="letter" dx="-10.01953125" dy="-22">и</text>
-  <text transform="matrix(1 0 0 1 358.4863 163.7458)" class="letter en" dx="1.01953125" dy="16">N</text>
-  <text transform="matrix(1 0 0 1 358.4863 181.7458)" class="letter" dx="-9.26171875" dy="-22">т</text>
-  <text transform="matrix(1 0 0 1 401.6816 163.7458)" class="letter en" dx="0.41015625" dy="16">M</text>
-  <text transform="matrix(1 0 0 1 401.6816 181.7458)" class="letter" dx="-7.65234375" dy="-22">ь</text>
-  <text transform="matrix(1 0 0 1 519.074 136.7127)" class="letter" dx="-12.979339599609375" dy="-21">ж</text>
-  <text transform="matrix(1 0 0 1 519.074 119.3763)" class="letter en" dx="3.468780517578125" dy="16">:</text>
-  <text transform="matrix(1 0 0 1 451.3285 180.0409)" class="letter" dx="-12.218734741210938" dy="-19">б</text>
-  <text transform="matrix(1 0 0 1 450.2827 164.3396)" class="letter en" dx="1.78125" dy="16">&lt;</text>
-  <text transform="matrix(1 0 0 1 495.9731 181.0409)" class="letter" dx="-13.550811767578125" dy="-19">ю</text>
-  <text transform="matrix(1 0 0 1 494.9274 164.3396)" class="letter en" dx="1.78125" dy="16">&gt;</text>
-  <text transform="matrix(1 0 0 1 543.4077 181.0408)" class="letter num" dx="-11.25390625" dy="-24">.</text>
-  <text transform="matrix(1 0 0 1 541.3276 163.2498)" class="letter en" dx="1.93359375" dy="16">?</text>
-  <text transform="matrix(1 0 0 1 565.621 138.7127)" class="letter" dx="-12.398406982421875" dy="-23">э</text>
-  <text transform="matrix(1 0 0 1 565.621 120.3763)" class="letter en" dx="3.04296875" dy="16">"</text>
-  <text transform="matrix(1 0 0 1 553.3923 94.426)" class="letter" dx="-11.671844482421875" dy="-23">х</text>
-  <text transform="matrix(1 0 0 1 552.9709 74.8769)" class="letter en" dx="3.15625" dy="16">{</text>
-  <text transform="matrix(1 0 0 1 598.7657 94.426)" class="letter" dx="-12.609375" dy="-23">ъ</text>
-  <text transform="matrix(1 0 0 1 598.3443 74.7849)" class="letter en" dx="3.156219482421875" dy="16">}</text>
-  <text transform="matrix(1 0 0 1 644.3574 96.8807)" class="letter" dx="-10" dy="-22">\\</text>
-  <text transform="matrix(1 0 0 1 644.4941 74.8769)" class="letter en" dx="3.566375732421875" dy="16">|</text>
+  <text transform="matrix(1 0 0 1 33.4903 33.804)" class="letter" dx="0" dy="12">Ё</text>
+  <text transform="matrix(1 0 0 1 78.626 50.4071)" class="letter num" dx="0" dy="0">1</text>
+  <text transform="matrix(1 0 0 1 123.299 51.1765)" class="letter num" dx="0" dy="0">2</text>
+  <text transform="matrix(1 0 0 1 169.6841 51.404)" class="letter num" dx="0" dy="0">3</text>
+  <text transform="matrix(1 0 0 1 213.0758 51.404)" class="letter num" dx="0" dy="0">4</text>
+  <text transform="matrix(1 0 0 1 258.0724 51.404)" class="letter num" dx="0" dy="0">5</text>
+  <text transform="matrix(1 0 0 1 303.2822 51.0891)" class="letter num" dx="0" dy="0">6</text>
+  <text transform="matrix(1 0 0 1 349.5064 51.0891)" class="letter num" dx="0" dy="0">7</text>
+  <text transform="matrix(1 0 0 1 393.281 51.2157)" class="letter num" dx="0" dy="0">8</text>
+  <text transform="matrix(1 0 0 1 438.5742 51.2157)" class="letter num" dx="0" dy="0">9</text>
+  <text transform="matrix(1 0 0 1 483.4907 51.2157)" class="letter num" dx="0" dy="0">0</text>
+  <text transform="matrix(1 0 0 1 530.4011 50.4071)" class="letter num" dx="0" dy="0">-</text>
+  <text transform="matrix(1 0 0 1 573.5195 51.2157)" class="letter num" dx="0" dy="0">=</text>
+  <text transform="matrix(1 0 0 1 80.5513 31.7605)" class="letter num" dx="0" dy="0">!</text>
+  <text transform="matrix(1 0 0 1 119.8565 30.45)" class="letter num" dx="0" dy="0">"</text>
+  <text transform="matrix(1 0 0 1 169.6841 31.76)" class="letter num" dx="0" dy="0">№</text>
+  <text transform="matrix(1 0 0 1 213.0758 31.2171)" class="letter num" dx="0" dy="0">;</text>
+  <text transform="matrix(1 0 0 1 255.5748 30.8318)" class="letter num" dx="0" dy="0">%</text>
+  <text transform="matrix(1 0 0 1 303.9556 32.4427)" class="letter num" dx="0" dy="0">:</text>
+  <text transform="matrix(1 0 0 1 348.2554 31.76)" class="letter num" dx="0" dy="0">?</text>
+  <text transform="matrix(1 0 0 1 394.5334 32.8236)" class="letter num" dx="0" dy="0">*</text>
+  <text transform="matrix(1 0 0 1 440.3076 30.6435)" class="letter num" dx="0" dy="0">(</text>
+  <text transform="matrix(1 0 0 1 485.1645 30.6435)" class="letter num" dx="0" dy="0">)</text>
+  <text transform="matrix(1 0 0 1 528.7588 25.5423)" class="letter num" dx="0" dy="0">_</text>
+  <text transform="matrix(1 0 0 1 573.5195 32.4422)" class="letter num" dx="0" dy="0">+</text>
+  <text transform="matrix(1 0 0 1 100.9088 75.4743)" class="letter ru" dx="0" dy="12">Й</text>
+  <text transform="matrix(1 0 0 1 145.3644 75.4744)" class="letter ru" dx="0" dy="12">Ц</text>
+  <text transform="matrix(1 0 0 1 190.5943 75.4744)" class="letter ru" dx="0" dy="12">У</text>
+  <text transform="matrix(1 0 0 1 236.9933 75.4743)" class="letter ru" dx="-1" dy="12">К</text>
+  <text transform="matrix(1 0 0 1 280.6080 75.4744)" class="letter ru" dx="-1" dy="12">Е</text>
+  <text transform="matrix(1 0 0 1 326.5138 75.4744)" class="letter ru" dx="-1" dy="12">Н</text>
+  <text transform="matrix(1 0 0 1 371.1386 75.4743)" class="letter ru" dx="-1" dy="12">Г</text>
+  <text transform="matrix(1 0 0 1 418.5557 75.4743)" class="letter ru" dx="-5" dy="12">Ш</text>
+  <text transform="matrix(1 0 0 1 459.9639 75.4743)" class="letter ru" dx="-3" dy="12">Щ</text>
+  <text transform="matrix(1 0 0 1 506.9335 75.4743)" class="letter ru" dx="-1" dy="12">З</text>
+  <text transform="matrix(1 0 0 1 112.1346 120.3303)" class="letter ru" dx="-1" dy="12">Ф</text>
+  <text transform="matrix(1 0 0 1 156.0135 120.3303)" class="letter ru" dx="-1" dy="12">Ы</text>
+  <text transform="matrix(1 0 0 1 201.5241 120.3303)" class="letter ru" dx="-1" dy="12">В</text>
+  <text transform="matrix(1 0 0 1 247.1121 120.3303)" class="letter ru" dx="-1" dy="12">А</text>
+  <text transform="matrix(1 0 0 1 289.4753 120.3303)" class="letter ru" dx="0" dy="12">П</text>
+  <text transform="matrix(1 0 0 1 335.5886 120.3303)" class="letter ru" dx="-1" dy="12">Р</text>
+  <text transform="matrix(1 0 0 1 382.2692 120.3303)" class="letter ru" dx="-2" dy="12">О</text>
+  <text transform="matrix(1 0 0 1 426.0182 120.3303)" class="letter ru" dx="-1" dy="12">Л</text>
+  <text transform="matrix(1 0 0 1 470.8706 120.3303)" class="letter ru" dx="0" dy="12">Д</text>
+  <text transform="matrix(1 0 0 1 134.7896 163.7458)" class="letter ru" dx="-1" dy="12">Я</text>
+  <text transform="matrix(1 0 0 1 179.2339 163.7458)" class="letter ru" dx="-1" dy="12">Ч</text>
+  <text transform="matrix(1 0 0 1 222.5416 163.7458)" class="letter ru" dx="-1" dy="12">С</text>
+  <text transform="matrix(1 0 0 1 269.3973 163.7458)" class="letter ru" dx="-1" dy="12">М</text>
+  <text transform="matrix(1 0 0 1 314.0098 163.7458)" class="letter ru" dx="-1" dy="12">И</text>
+  <text transform="matrix(1 0 0 1 358.4863 163.7458)" class="letter ru" dx="-1" dy="12">Т</text>
+  <text transform="matrix(1 0 0 1 401.6816 163.7458)" class="letter ru" dx="0" dy="12">Ь</text>
+  <text transform="matrix(1 0 0 1 519.074 119.3763)" class="letter ru" dx="-5" dy="13">Ж</text>
+  <text transform="matrix(1 0 0 1 450.2827 164.3396)" class="letter ru" dx="-1" dy="12">Б</text>
+  <text transform="matrix(1 0 0 1 494.9274 164.3396)" class="letter ru" dx="-1" dy="12">Ю</text>
+  <text transform="matrix(1 0 0 1 543.4077 181.0408)" class="letter num" dx="-11.25390625" dy="-24">,</text>
+  <text transform="matrix(1 0 0 1 541.3276 163.2498)" class="letter ru" dx="1.93359375" dy="12">.</text>
+  <text transform="matrix(1 0 0 1 565.621 120.3763)" class="letter ru" dx="-3" dy="12">Э</text>
+  <text transform="matrix(1 0 0 1 552.9709 74.8769)" class="letter ru" dx="-3" dy="12">Х</text>
+  <text transform="matrix(1 0 0 1 598.3443 74.7849)" class="letter ru" dx="-3" dy="12">Ъ</text>
+  <text transform="matrix(1 0 0 1 644.3574 96.8807)" class="letter num" dx="0" dy="-22">\\</text>
+  <text transform="matrix(1 0 0 1 644.4941 74.8769)" class="letter num" dx="0" dy="16">/</text>
   <text id="text-tab" transform="matrix(1 0 0 1 23.3467 93.2342)" class="letter special">tab</text>
   <text id="text-caps-lock" transform="matrix(1 0 0 1 23.3467 137.7127)" class="letter special">caps lock</text>
   <text id="text-shift-left" transform="matrix(1 0 0 1 23.3467 181.0408)" class="letter special">shift</text>
