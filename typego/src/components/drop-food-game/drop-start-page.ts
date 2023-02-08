@@ -22,7 +22,7 @@ class DropStartPage {
       <div class="drop-game-startpage-title-container">
         <p class="drop-game-startpage-main-title">Drop Food</p>
       </div>
-      <button class="drop-game-startpage-btn">&#9881</button>
+      <button class="drop-game-startpage-btn setting-btn">&#9881</button>
     </div>
     <div class="drop-game-startpage-box-container">
       <div class="drop-game-startpage-left-container">
@@ -72,7 +72,7 @@ class DropStartPage {
               Вы получите массу удовольствия!
               Нажимайте клавиши на клавиатуре в соответствии с буквами, указанными на падающей еде.
               Соберите всю еду, чтобы заработать максимальные очки! Также будет учитываться статистика неправильных попаданий (ваша точность набора букв).
-              В зависимости от выбранного уровня сложности, будет менятся количество и скорость падения еды, а также продолжительность уровня.
+              В зависимости от выбранного уровня сложности, будет меняться количество и скорость падения еды, а также продолжительность уровня.
 
               </p>
           </div>
@@ -105,6 +105,16 @@ class DropStartPage {
       // this.resetState();
       removeChild(this.container);
     });
+
+    const resetBtn = document.querySelector('.drop-game-startpage-reset-button') as HTMLElement;
+    resetBtn.addEventListener('click', () => {
+      this.resetProgress();
+    });
+
+    const settingBtn = document.querySelector('.setting-btn') as HTMLElement;
+    settingBtn.addEventListener('click', () => {
+      this.openSetting();
+    });
   }
   changeAccuracy() {
     const scorePoints = document.querySelector('.score-points') as HTMLElement;
@@ -112,6 +122,16 @@ class DropStartPage {
     accuracyPoints.textContent = `${state.averageAccuracy} %`;
     scorePoints.textContent = `${state.totalScore}`;
   }
+  resetProgress() {
+    const scorePoints = document.querySelector('.score-points') as HTMLElement;
+    const accuracyPoints = document.querySelector('.accuracy-points') as HTMLElement;
+    state.averageAccuracy = 0;
+    state.totalScore = 0;
+    accuracyPoints.textContent = `${state.averageAccuracy} %`;
+    scorePoints.textContent = `${state.totalScore}`;
+  }
+  openSetting() {}
+
   run(): void {
     this.createDropStartPage();
     this.changeAccuracy();

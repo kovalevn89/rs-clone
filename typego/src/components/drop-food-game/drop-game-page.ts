@@ -78,8 +78,6 @@ class DropGamePage {
           popup.style.display = 'none';
         }, 3000);
       }, 1.1 * speed);
-
-      // добавить модалку
     }, duration);
     const backBtn = document.querySelector('.drop-game-page-btn') as HTMLElement;
 
@@ -181,7 +179,12 @@ class DropGamePage {
 
   setTotalScoreAccuracy() {
     state.totalScore += gameState.curScore;
-    state.averageAccuracy = Math.round((state.averageAccuracy + gameState.curAccuracy) / 2);
+    // eslint-disable-next-line operator-linebreak
+    const tempAccuracy =
+      state.averageAccuracy === 0
+        ? gameState.curAccuracy
+        : Math.round((state.averageAccuracy + gameState.curAccuracy) / 2);
+    state.averageAccuracy = tempAccuracy;
     console.log(state.totalScore, gameState.curAccuracy, state.averageAccuracy);
   }
 

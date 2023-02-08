@@ -209,7 +209,9 @@ button {
   z-index: 10;
   display: none;
 }
-
+.popup-setting{
+  display: block;
+}
 .popup .popup_close {
   position: absolute;
   top: -11px;
@@ -240,21 +242,127 @@ button {
 }
 
 .popup-content {
-  color: #fff;
+  color: rgb(139, 124, 124);
   padding: 1%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  // border: 1px solid #000;
   border-radius: 0.5rem;
   width: 20%;
-  height: 20%;
+  // height: 20%;
+  min-width: 250px;
   background: url(./assets/img/win.png) no-repeat center center ;
   background-size: contain;
   z-index: 99;
   position: fixed;
   // min-height: 100px;
   box-sizing: border-box;
-  font-size: calc(.4rem + 1vw);
+  font-size: calc(.55rem + 0.7vw);
   text-align: center;
+}
+
+.popup-content-setting{
+  border: 1px solid #000;
+  background: none ;
+  background-color: #ffffff;
+  // min-height: 40rem;
+}
+
+.person-details {
+  width: 90%;
+  margin: auto;
+}
+
+.person-details h2 {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 90%;
+}
+
+.form-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.person-details input {
+  background-color: #ffffff;
+  width: 100%;
+  border: 1px solid rgb(139, 124, 124);;
+  // color: orange;
+  border-radius: 0.5rem;
+  padding: 0.4rem;
+  outline: none;
+  font-size: 70%;
+  text-align: center;
+  margin: 0.8rem auto;
+}
+
+.card-details {
+  margin-top: 1%;
+  width: 100%;
+}
+
+.card-details h2 {
+  margin-bottom: 2%;
+}
+
+.popup-content h2 {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 90%;
+}
+.popup-content p {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 90%;
+}
+
+.btn_confirm {
+  width: 40%;
+  padding: 1%;
+  cursor: pointer;
+  display: block;
+  margin: 5% auto;
+  border-radius: 20px;
+  border: 1px solid rgb(139, 124, 124);;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 90%;
+  color: rgb(139, 124, 124);
+
+  &:hover {
+    background-color: #a7b3c7;
+  }
+}
+
+// background-color: #2ea3f8;
+//   background-image: linear-gradient(to bottom,#39b5fa,#2ea3f8);
+//   border: none;
+//   border-top: 1px solid #fff;
+//   box-shadow: #48a8d9 0 1px 2px;
+//   transition: 1s;
+//   &:hover{
+//     border-top: 1px solid #2ea3f8;
+//   }
+
+// .popup {
+//   .btn_confirm{
+//     &:hover {
+//       @include font ($style: normal, $weight: 600, $size: 1.2rem, $height: 2.16rem);
+//       background-color: #eef3fb;
+//     }
+//   }
+// }
+
+.header-container div {
+  display: flex;
+  justify-content: space-evenly;
+}
+.error-message {
+  color: red;
+  display: block;
+  padding: 0 0.5rem;
 }
