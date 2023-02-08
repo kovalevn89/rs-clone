@@ -1,4 +1,5 @@
-import { createElement, removeChild, getLetter } from '../helper/index'; //
+import { createElement, removeChild, getLetter } from '../helper/index';
+import { IMole, ILetter } from '../types/index';
 import whackBackground from '../../assets/png/whac_background.png';
 import whackHoleImg from '../../assets/png/whac_hole.png';
 import whackHoleEmptyImg from '../../assets/png/whac_hole_empty.png';
@@ -12,34 +13,6 @@ import langRu from '../../assets/png/lang_ru.png';
 import langUsa from '../../assets/png/lang_usa.png';
 import soundOff from '../../assets/png/sound_off.png';
 import soundOn from '../../assets/png/sound_on.png';
-/*
- !+ кол-во кротов меняется в зависимости от уровня.
- !+ отключение звука из игры.
- !+ переключение языка в игре.
- ! очистить консоль логи.
- !+ сохранение настроек звука в Local storage.
- ! модалка на маленькое разрешение.
- !+ остановка таймеров и хуков при окончании игры.
- !+ пофиксить множественные нажатия на клавиши.
- !+ показывать кротов в начале игры без задержки.
- !+ скачат размер блока часов.
- !+ выводить статистику при завершении игры.
- !+ почистить CSS
- !+ адаптив
-*/
-
-interface IMole {
-  moleElement: HTMLElement | null;
-  isShowed: boolean;
-  letterElement: HTMLElement | null;
-  curentLetter: string;
-  timer: NodeJS.Timeout | null;
-}
-
-interface ILetter {
-  letter: string;
-  svg: string;
-}
 
 class WhacAMole {
   language: string;
@@ -71,9 +44,7 @@ class WhacAMole {
 
     const whacamoleSound = localStorage.getItem('whacamoleSound');
     if (whacamoleSound !== null) {
-      console.log(`read = ${whacamoleSound}`);
       this.isSound = Boolean(Number(whacamoleSound));
-      console.log(`read = ${this.isSound}`);
     }
     const whacamoleLang = localStorage.getItem('whacamoleLang');
     if (whacamoleLang !== null) {
@@ -135,7 +106,6 @@ class WhacAMole {
 
     do {
       letter = getLetter(this.language);
-      console.log(letter);
     } while (this.checkLetterShowed(letter.letter));
 
     if (currentMole.letterElement !== null) {
@@ -170,7 +140,6 @@ class WhacAMole {
           case 3: randomCount = Math.floor(Math.random() * 3) + 2; break;
           default: randomCount = 1; break;
         }
-        console.log(`Show ${randomCount} moles.`);
 
         this.gameField
           .slice(0)
@@ -236,7 +205,6 @@ class WhacAMole {
 
   private keyHandle(e: Event, scoreValue: HTMLElement, accuracyValue: HTMLElement) {
     const event: KeyboardEvent = e as KeyboardEvent;
-    console.log(event.key);
     if (
       this.gameField
         .filter((value) => value.isShowed === true)
@@ -244,7 +212,7 @@ class WhacAMole {
           if (value.curentLetter === event.key.toLocaleLowerCase()) {
             if (value.letterElement !== null) {
               const svgPath = value.letterElement.querySelector('.letter_img');
-              // console.log(p);
+
               if (svgPath !== null) {
                 svgPath.classList.add('handle');
               }
@@ -268,16 +236,13 @@ class WhacAMole {
           return false;
         })
     ) {
-      console.log('WIN!!!');
       this.playSound('hit');
       this.score += 1;
 
-      // const scoreValue = document.querySelector('.stats_score > value');
       if (scoreValue !== null) {
         scoreValue.textContent = `${this.score}`;
       }
     } else {
-      console.log('LOOSE!!!');
       this.missClickCount += 1;
       this.playSound('click');
     }
@@ -309,7 +274,7 @@ class WhacAMole {
     const modal = createElement('div', 'modal_low-resolution', whac);
     this.setBackground(modal, whackBackground);
     const wrap = createElement('div', 'modal_wrapper', modal);
-    createElement('div', 'message', wrap).textContent = 'Low screen width (<600px)!';
+    createElement('div', 'message', wrap).textContent = 'Low screen width (nedd more then 800px)!';
   }
 
   private renderGame(): void {
@@ -405,8 +370,6 @@ class WhacAMole {
 
         this.gameField.push(currentMole);
       }
-
-      console.log(getLetter(this.language));
     }
   }
 
