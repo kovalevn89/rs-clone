@@ -17,7 +17,7 @@ import soundOn from '../../assets/png/sound_on.png';
  !+ отключение звука из игры.
  !+ переключение языка в игре.
  ! очистить консоль логи.
- ! сохранение настроек звука в Local storage.
+ !+ сохранение настроек звука в Local storage.
  ! модалка на маленькое разрешение.
  !+ остановка таймеров и хуков при окончании игры.
  !+ пофиксить множественные нажатия на клавиши.
@@ -305,6 +305,13 @@ class WhacAMole {
     }
   }
 
+  private renderModal(whac: HTMLElement): void {
+    const modal = createElement('div', 'modal_low-resolution', whac);
+    this.setBackground(modal, whackBackground);
+    const wrap = createElement('div', 'modal_wrapper', modal);
+    createElement('div', 'message', wrap).textContent = 'Low screen width (<600px)!';
+  }
+
   private renderGame(): void {
     this.resetGame();
 
@@ -313,6 +320,7 @@ class WhacAMole {
     if (app !== null) {
       removeChild(app);
       const whac = createElement('div', 'whac', app);
+      this.renderModal(whac);
       const game = createElement('div', 'game', whac);
       this.setBackground(game, whackBackground);
       const statsBlock = createElement('div', 'stats', game);
@@ -408,6 +416,7 @@ class WhacAMole {
     if (app !== null) {
       removeChild(app);
       const whac = createElement('div', 'whac', app);
+      this.renderModal(whac);
       const menu = createElement('div', 'menu', whac);
       this.setBackground(menu, whackBackground);
       const caption = createElement('div', 'game_caption', menu);
@@ -428,6 +437,7 @@ class WhacAMole {
       this.playSound('win');
       removeChild(app);
       const whac = createElement('div', 'whac', app);
+      this.renderModal(whac);
       const menu = createElement('div', 'menu', whac);
       this.setBackground(menu, whackBackground);
       const caption = createElement('div', 'game_caption', menu);
