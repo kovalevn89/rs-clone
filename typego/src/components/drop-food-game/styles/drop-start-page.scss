@@ -43,7 +43,6 @@
   padding-left: 1rem;
   padding-right: 1rem;
   color: #fff;
-  
 }
 
 .drop-game-page-title-container {
@@ -77,7 +76,6 @@ button {
   transition: 1s;
 }
 
-
 .drop-game-page-points-title{
   font-size: 2rem;
   font-family: 'Montserrat Alternates';
@@ -99,12 +97,14 @@ button {
     margin: 0.2rem;
   }
 }
+
 .score, .accuracy {
   font-size: 1.5rem;
   position: relative;
   display: flex;
   gap: 10px;
 }
+
 .score-title, .accuracy-title{
   font-family: 'Barlow';
   font-style: normal;
@@ -146,8 +146,6 @@ button {
   left: 5%;
   width: 90%;
   height: 7rem;
-  // background: url(./assets/img/2.png) no-repeat center center ;
-  // background-size: cover;
   margin: -7rem auto;
   color: white;
   display: flex;
@@ -182,7 +180,6 @@ button {
   background: url(./assets/img/5.png) no-repeat center center ;
   background-size: contain;
 }
-
 
 .field-img-box-right{
   position: absolute;
@@ -259,7 +256,6 @@ button {
   background-size: contain;
   z-index: 99;
   position: fixed;
-  // min-height: 100px;
   box-sizing: border-box;
   font-size: calc(.55rem + 0.7vw);
   text-align: center;
@@ -269,7 +265,6 @@ button {
   border: 1px solid #000;
   background: none ;
   background-color: #ffffff;
-  // min-height: 40rem;
 }
 
 .person-details {
@@ -295,7 +290,6 @@ button {
   background-color: #ffffff;
   width: 100%;
   border: 1px solid rgb(139, 124, 124);;
-  // color: orange;
   border-radius: 0.5rem;
   padding: 0.4rem;
   outline: none;
@@ -342,29 +336,6 @@ button {
   }
 }
 
-// background-color: #2ea3f8;
-//   background-image: linear-gradient(to bottom,#39b5fa,#2ea3f8);
-//   border: none;
-//   border-top: 1px solid #fff;
-//   box-shadow: #48a8d9 0 1px 2px;
-//   transition: 1s;
-//   &:hover{
-//     border-top: 1px solid #2ea3f8;
-//   }
-
-// .popup {
-//   .btn_confirm{
-//     &:hover {
-//       @include font ($style: normal, $weight: 600, $size: 1.2rem, $height: 2.16rem);
-//       background-color: #eef3fb;
-//     }
-//   }
-// }
-
-.header-container div {
-  display: flex;
-  justify-content: space-evenly;
-}
 .error-message {
   color: red;
   display: block;

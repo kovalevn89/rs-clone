@@ -21,7 +21,6 @@ function createPopup() {
   function validateElem(elem: HTMLInputElement) {
     const nextElem = elem.nextElementSibling as Element;
     if (elem.name === 'duration') {
-      console.log(elem.value);
       if (+elem.value >= 90 || (+elem.value < 20 && elem.value !== '')) {
         nextElem.textContent = 'Error';
       } else nextElem.textContent = '';
@@ -64,7 +63,6 @@ function createPopup() {
       const speed = +form.speed.value * 1000;
       const duration = +form.duration.value * 1000;
       const columns = +form.columns.value;
-      console.log(speed, duration, columns);
       gamePage.createDropGamePage('0', speed, duration, columns);
     }
   }

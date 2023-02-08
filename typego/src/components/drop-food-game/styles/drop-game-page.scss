@@ -16,7 +16,6 @@
   margin: 0 auto;
 }
 .drop-game-startpage-header {
-  // min-width: 90vw;
   margin: 20px auto 0;
   padding: 10px 20px;
   display: flex;
@@ -42,7 +41,6 @@
   padding-left: 1rem;
   padding-right: 1rem;
   color: #fff;
-  
 }
 
 .drop-game-startpage-title-container {
@@ -153,7 +151,6 @@ button {
 .level-title {
   font-size: 2rem;
   font-weight: 400;
-
 }
 
 .drop-game-startpage-points-title, .drop-game-startpage-rule-title{
@@ -177,6 +174,7 @@ button {
     margin: 0.2rem;
   }
 }
+
 .score, .accuracy {
   font-size: 1.5rem;
   position: relative;
@@ -189,6 +187,7 @@ button {
   font-style: normal;
   font-weight: 400;
 }
+
 .drop-game-startpage-rule-text{
   font-size: 1.5rem;
   font-weight: 400;

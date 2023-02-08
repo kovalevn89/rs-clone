@@ -8,10 +8,8 @@ import { arrRu } from './data/data';
 
 class DropGamePage {
   container: HTMLElement;
-  // id: string;
 
   constructor() {
-    // this.id = id;
     this.container = document.body;
   }
 
@@ -109,7 +107,6 @@ class DropGamePage {
           gameState.letterMatched.push(curLetter);
           DropGamePage.changeScore();
           gameState.letterOnField.splice(index, 1);
-
           keyCounter += 1;
         }
       }
@@ -138,14 +135,13 @@ class DropGamePage {
 
         food.addEventListener('transitionend', () => food.remove());
 
-        // setTimeout(() => {
-        //   gameState.letterOnField = gameState.letterOnField.map((arrKey) => {
-        //     if (arrKey === food) return null;
-        //     return arrKey;
-        //   });
-
-        //   food.remove();
-        // }, speed + 500);
+        setTimeout(() => {
+          gameState.letterOnField = gameState.letterOnField.map((elem) => {
+            if (elem === food) return null;
+            return elem;
+          });
+          food.remove();
+        }, speed);
 
         col.append(food);
       }, this.randomNum(speed));
@@ -185,7 +181,6 @@ class DropGamePage {
         ? gameState.curAccuracy
         : Math.round((state.averageAccuracy + gameState.curAccuracy) / 2);
     state.averageAccuracy = tempAccuracy;
-    console.log(state.totalScore, gameState.curAccuracy, state.averageAccuracy);
   }
 
   resetState() {
@@ -195,10 +190,6 @@ class DropGamePage {
     gameState.curScore = 0;
     gameState.curAccuracy = 0;
   }
-  // run(): void {
-  //   this.createDropGamePage();
-  //   // removeChild(this.container);
-  // }
 }
 
 export default DropGamePage;

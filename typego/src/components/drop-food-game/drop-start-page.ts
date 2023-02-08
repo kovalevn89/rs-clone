@@ -8,10 +8,8 @@ import createPopup from './popupSetting';
 
 class DropStartPage {
   container: HTMLElement;
-  // id: string;
 
   constructor() {
-    // this.id = id;
     this.container = document.body;
   }
   createDropStartPage() {
@@ -74,7 +72,6 @@ class DropStartPage {
               Нажимайте клавиши на клавиатуре в соответствии с буквами, указанными на падающей еде.
               Соберите всю еду, чтобы заработать максимальные очки! Также будет учитываться статистика неправильных попаданий (ваша точность набора букв).
               В зависимости от выбранного уровня сложности, будет меняться количество и скорость падения еды, а также продолжительность уровня.
-
               </p>
           </div>
         </div>
@@ -112,7 +109,6 @@ class DropStartPage {
         const target = e.currentTarget as HTMLElement;
         const levelTitle = target.querySelector('.level-title') as HTMLElement;
         const currentLvl = levelTitle.textContent?.split(' ').reverse()[0] as string;
-        console.log(currentLvl);
         removeChild(this.container);
         const gamePage = new DropGamePage();
 
