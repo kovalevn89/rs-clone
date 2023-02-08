@@ -4,15 +4,15 @@ import whackBackground from '../../assets/png/whac_background.png';
 import whackHoleImg from '../../assets/png/whac_hole.png';
 import whackHoleEmptyImg from '../../assets/png/whac_hole_empty.png';
 import moleImg from '../../assets/png/mole.png';
-import hitSound from '../../assets/media/hit.mp3';
-import clickSound from '../../assets/media/click.mp3';
-import winSound from '../../assets/media/win.mp3';
 import moleStartBtn from '../../assets/png/mole_start_btn.png';
 import moleResettBtn from '../../assets/png/mole_restart_btn.png';
 import langRu from '../../assets/png/lang_ru.png';
 import langUsa from '../../assets/png/lang_usa.png';
 import soundOff from '../../assets/png/sound_off.png';
 import soundOn from '../../assets/png/sound_on.png';
+import hitSound from '../../assets/media/hit.mp3';
+import clickSound from '../../assets/media/click.mp3';
+import winSound from '../../assets/media/win.mp3';
 
 class WhacAMole {
   language: string;
@@ -161,11 +161,11 @@ class WhacAMole {
   }
 
   private clearTimers(): void {
-    // остановка интервала отображения кротов
+    // stop game mole show interval
     if (this.gameShowMoleId !== null) {
       clearInterval(this.gameShowMoleId);
     }
-    // остановка часов
+    // stop game clock
     if (this.gameClockId !== null) {
       clearInterval(this.gameClockId);
     }
@@ -225,9 +225,7 @@ class WhacAMole {
               value.curentLetter = '';
               value.moleElement.classList.remove('go');
               setTimeout((v: IMole) => {
-                // const tempValue = v;
                 v.isShowed = false;
-                // v.curentLetter = '';
               }, 800, value);
             }
             return true;
