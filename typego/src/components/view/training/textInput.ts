@@ -1,10 +1,11 @@
+import { TrainingStatus } from '../../types';
 import Keyboard from '../keyboard/keyboard';
 import { keyDowmHandler, keyUpHandler } from './keybordHandlers';
 import TextTraining from './textTraining';
 
 class TextInput {
   input;
-  status;
+  private status;
 
   constructor() {
     const input = document.createElement('input');
@@ -25,14 +26,16 @@ class TextInput {
     this.input.addEventListener('keydown', (e) => {
       console.log(e.code);
       if (e.code !== 'Escape' && !this.status) {
-        text.updateStartTime(Date.now());
+        text.setStartTime(Date.now());
         this.status = true;
+        training.updateInstructions(TrainingStatus.pause);
         return;
       }
       if (e.code === 'Escape') {
         text.time = text.currenTime - text.startTime;
         this.status = false;
         keyboard.init();
+        training.updateInstructions(TrainingStatus.continue);
         return;
       }
       keyDowmHandler(e, keyboard, text);
@@ -47,10 +50,6 @@ class TextInput {
     this.input.addEventListener('blur', () => {
       this.input.focus();
     });
-  }
-
-  pause(): void {
-
   }
 }
 

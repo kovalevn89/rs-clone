@@ -1,14 +1,14 @@
 import { createElement } from '../../helper';
-import { TextResponse } from '../../types';
+import { TextResponse, TrainingStatus } from '../../types';
 import Text from './text';
 
 class TextTraining {
   container;
   text;
+  training;
   private progress;
   private speed;
   private accurancy;
-  private training;
   private separator;
 
   constructor(response: TextResponse) {
@@ -18,9 +18,10 @@ class TextTraining {
 
     this.separator = createElement('div', 'separator', this.container);
     this.progress = createElement('div', 'text__progress', this.container);
-    this.training = createElement('div', 'precess__container', this.container);
     this.speed = createElement('div', 'speed__container', this.progress);
     this.accurancy = createElement('div', 'accurancy__container', this.progress);
+
+    this.training = createElement('div', 'text__instructions', this.container);
   }
 
   updateProgress(): void {
@@ -28,7 +29,15 @@ class TextTraining {
     const accurancy = index >= 3 ? Math.floor((1 - mistakes / index) * 100) : '';
     this.speed.textContent = `Speed: ${speed} letters per minute`;
     this.accurancy.textContent = `Accurancy: ${accurancy}%`;
-    // this.training.textContent =
+  }
+
+  updateInstructions(status: TrainingStatus) {
+    this.training.textContent = `Press ${status === TrainingStatus.pause ? 'Esc' : 'any key'} to ${status}`;
+    if (status !== TrainingStatus.pause) {
+      this.training.classList.add('pause');
+    } else {
+      this.training.classList.remove('pause');
+    }
   }
 }
 

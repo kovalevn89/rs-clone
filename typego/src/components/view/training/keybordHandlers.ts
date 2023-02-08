@@ -13,7 +13,7 @@ export const keyDowmHandler = (e: KeyboardEvent, keyboard: Keyboard, text: Text)
   const { words } = text;
 
   if (isSpecial(e.code)) {
-    text.updateIndex(index);
+    text.setIndex(index);
   } else if (e.code === 'Backspace') {
     text.updateLetterStatus(index, Status.reset);
     if (index > 0) {
@@ -44,15 +44,15 @@ export const keyDowmHandler = (e: KeyboardEvent, keyboard: Keyboard, text: Text)
     mistakes += 1;
   }
 
-  text.updateIndex(index);
-  text.updateMistakes(mistakes);
+  text.setIndex(index);
+  text.setMistakes(mistakes);
   text.updateActive();
 };
 
 export const keyUpHandler = (keyboard: Keyboard, training: TextTraining): void => {
   keyboard.init();
   const { text } = training;
-  text.updateCurrentTime(Date.now());
+  text.setCurrentTime(Date.now());
   text.updateSpeed();
   console.log(text.currenTime, text.speed);
 

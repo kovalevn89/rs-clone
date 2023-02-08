@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { createElement } from '../../helper';
 import { Lang, Status } from '../../types';
 import { svgKeyboard } from './svgKeyboard';
@@ -31,11 +30,6 @@ class Keyboard {
         key.classList.add(status);
       }
     });
-  }
-
-  render(): void {
-    // console.log(this.keys);
-    // this.keys.forEach((key) => console.log(key.id));
   }
 }
 

@@ -11,6 +11,12 @@ export enum Status {
   reset = 'reset',
 }
 
+export enum TrainingStatus {
+  start = 'start',
+  pause = 'pause',
+  continue = 'continue',
+}
+
 export interface Progress {
   speed: number;
   accurancy: number;

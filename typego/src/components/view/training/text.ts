@@ -49,25 +49,24 @@ export default class Text {
     this.words[this.index].classList.add(Status.active);
   }
 
-  updateIndex(i: number): void {
+  setIndex(i: number): void {
     this.index = i;
   }
 
-  updateMistakes(m: number): void {
+  setMistakes(m: number): void {
     this.mistakes = m;
   }
 
-  updateCurrentTime(t: number): void {
+  setCurrentTime(t: number): void {
     this.currenTime = t;
   }
 
-  updateStartTime(t: number): void {
+  setStartTime(t: number): void {
     this.startTime = t;
   }
 
   updateSpeed(): void {
     const t = (this.time + this.currenTime - this.startTime) / 1000 / 60;
-    console.log(t);
     this.speed = t > 0 ? Math.ceil(this.index / t) : 0;
   }
 
