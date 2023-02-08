@@ -1,4 +1,5 @@
 import { createElement, removeChild } from '../helper';
+import image1 from '../../assets/png/image1.png';
 
 class Main {
   // constructor() {
@@ -11,7 +12,21 @@ class Main {
     if (app !== null) {
       removeChild(app);
       const main = createElement('main', 'main', app);
-      console.log(main);
+      const wrapper = createElement('div', 'main_wrapper', main);
+      const fasterBlock = createElement('div', 'block_typig-faster', wrapper);
+      const leftCol = createElement('div', 'typig-faster__left-col', fasterBlock);
+      const leftColCaption = createElement('div', 'left-col__caption', leftCol);
+      createElement('span', 'text', leftColCaption).textContent = 'печатай быстрее';
+      const leftColText = createElement('div', 'left-col__text', leftCol);
+      createElement('span', 'text', leftColText).textContent = 'Научись быстро печатать с клавиатурным тренажером TypeGo. Уроки слепой печати помогут тебе использовать все 10 пальцев.';
+      const leftColButton = createElement('div', 'left-col__button', leftCol);
+      createElement('div', 'button', leftColButton).textContent = 'Начать печатать';
+      const rightCol = createElement('div', 'typig-faster__right-col', fasterBlock);
+
+      // const rightColImage = createElement('div', 'right-col__image', rightCol);
+      const image = createElement('div', 'image', rightCol);
+      createElement('div', 'eclipse', image);
+      image.style.background = `url(${image1}) `;
     }
   }
 
