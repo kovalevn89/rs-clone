@@ -32,7 +32,7 @@ class TextTraining {
   }
 
   updateInstructions(status: TrainingStatus) {
-    this.training.textContent = `Press ${status === TrainingStatus.pause ? 'Esc' : 'any key'} to ${status}`;
+    this.training.textContent = `Press ${status === TrainingStatus.pause ? 'Esc' : 'any key'} to ${status.toUpperCase()}`;
     if (status !== TrainingStatus.pause) {
       this.training.classList.add('pause');
     } else {

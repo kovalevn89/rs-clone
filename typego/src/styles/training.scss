@@ -30,9 +30,15 @@
   width: 95%;
   gap: 1px;
 }
+.word {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1px;
+}
 
 .word__letter {
   min-width: 15px;
+  min-height: 38px;
   text-align: center;
   border-radius: 3px;
   margin-bottom: 5px;
@@ -45,13 +51,16 @@
     border-radius: 1px;
   }
   &.correct {
-    background-color: rgba(103, 197, 103, 0.3);
+    background-color: #e7fbd3;
+    color: #0e630e;
   }
   &.incorrect {
-    background-color: rgba(197, 117, 103, 0.3);
+    background-color: #ffc0cb;
+    color: #8b0000;
   }
   &.fixed {
-    background-color: rgba(197, 200, 3, 0.3);
+    background-color: #ffe9b2;
+    color: #0e630e;
   }
 }
 
@@ -67,4 +76,11 @@
   display: flex;
   width: 80%;
   justify-content: space-between;
+}
+.text__instructions {
+  color: rgba(95, 158, 160, 0.3);
+
+  &.pause {
+    color: rgba(95, 158, 160, 0.8);
+  }
 }

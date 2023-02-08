@@ -10,7 +10,7 @@ export const keyDowmHandler = (e: KeyboardEvent, keyboard: Keyboard, text: Text)
 
   keyboard.activate(id, Status.active);
   let { index, mistakes } = text;
-  const { words } = text;
+  const { letters } = text;
 
   if (isSpecial(e.code)) {
     text.setIndex(index);
@@ -19,26 +19,26 @@ export const keyDowmHandler = (e: KeyboardEvent, keyboard: Keyboard, text: Text)
     if (index > 0) {
       index -= 1;
       mistakes = mistakes > 0 ? mistakes - 1 : 0;
-      words[index].dataset.fix = 'true';
+      letters[index].dataset.fix = 'true';
     }
     text.updateLetterStatus(index, Status.reset);
-  } else if (words[index].textContent === e.key) {
-    if (words[index].dataset.fix && !words[index].dataset.correct) {
+  } else if (letters[index].textContent === e.key) {
+    if (letters[index].dataset.fix && !letters[index].dataset.correct) {
       text.updateLetterStatus(index, Status.fixed);
       keyboard.activate(id, Status.correct);
     } else {
       text.updateLetterStatus(index, Status.correct);
-      words[index].dataset.correct = 'true';
+      letters[index].dataset.correct = 'true';
       keyboard.activate(id, Status.correct);
     }
-    if (index < words.length - 1) {
+    if (index < letters.length - 1) {
       index += 1;
     }
   } else {
     text.updateLetterStatus(index, Status.incorrect);
     keyboard.activate(id, Status.incorrect);
-    words[index].dataset.correct = '';
-    if (index < words.length - 1) {
+    letters[index].dataset.correct = '';
+    if (index < letters.length - 1) {
       index += 1;
     }
     mistakes += 1;
@@ -58,7 +58,7 @@ export const keyUpHandler = (keyboard: Keyboard, training: TextTraining): void =
 
   text.keyboardHint(keyboard);
   training.updateProgress();
-  if (text.index === text.words.length - 1) {
+  if (text.index === text.letters.length - 1) {
     // temporary solution
 
     // eslint-disable-next-line no-alert

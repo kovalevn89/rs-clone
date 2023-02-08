@@ -1,4 +1,5 @@
 import { createElement } from '../../helper';
+import stringSplitter from '../../helper/stringSplitter';
 import { Lang, Status, TextResponse } from '../../types';
 import {
   KEYS_EN, KEYS_EN_SHIFT, KEYS_RU, KEYS_RU_SHIFT,
@@ -7,7 +8,7 @@ import Keyboard from '../keyboard/keyboard';
 
 export default class Text {
   container;
-  words: HTMLElement[];
+  letters: HTMLElement[];
   index: number;
   mistakes: number;
   accurancy: number;
@@ -16,23 +17,29 @@ export default class Text {
   time: number;
   speed: number;
 
-  // todo add words
-
   constructor(response: TextResponse) {
     const content = response.text;
     const { lang } = response;
     this.container = createElement('div', 'text__container');
+    this.letters = [];
     this.container.innerHTML = '';
-    this.words = content.split('').map((letter, index) => {
-      const id = lang === Lang.en ? KEYS_EN[letter] : KEYS_RU[letter];
-      const ID = lang === Lang.en ? KEYS_EN_SHIFT[letter] : KEYS_RU_SHIFT[letter];
 
-      const element = createElement('div', 'word__letter', this.container, ['id', id || ID], ['caps', ID ? 'true' : ''], ['index', `i_${index}`]);
-      element.textContent = letter;
+    const splitedContent = stringSplitter(content);
+    console.log(splitedContent);
+    splitedContent.map((word) => {
+      const elem = createElement('div', 'word', this.container);
+      word.map((letter) => {
+        const id = lang === Lang.en ? KEYS_EN[letter] : KEYS_RU[letter];
+        const ID = lang === Lang.en ? KEYS_EN_SHIFT[letter] : KEYS_RU_SHIFT[letter];
 
-      this.container.append(element);
-      return element;
+        const element = createElement('div', 'word__letter', elem, ['id', id || ID], ['caps', ID ? 'true' : '']);
+        element.textContent = letter;
+        this.letters.push(element);
+        return element;
+      });
+      return elem;
     });
+
     this.index = 0;
     this.mistakes = 0;
     this.startTime = 0;
@@ -43,10 +50,10 @@ export default class Text {
   }
 
   updateActive() {
-    this.words.forEach((el: HTMLElement) => {
+    this.letters.forEach((el: HTMLElement) => {
       el.classList.remove(Status.active);
     });
-    this.words[this.index].classList.add(Status.active);
+    this.letters[this.index].classList.add(Status.active);
   }
 
   setIndex(i: number): void {
@@ -71,7 +78,7 @@ export default class Text {
   }
 
   reset(): void {
-    this.words.forEach((el) => {
+    this.letters.forEach((el) => {
       el.classList.remove(Status.active);
       el.classList.remove(Status.fixed);
       el.classList.remove(Status.correct);
@@ -81,20 +88,20 @@ export default class Text {
   }
 
   updateLetterStatus(i: number, status: Status): void {
-    if (i >= this.words.length) {
+    if (i >= this.letters.length) {
       return;
     }
     if (status === Status.reset) {
-      this.words[i].classList
+      this.letters[i].classList
         .remove(Status.active, Status.fixed, Status.correct, Status.incorrect);
     } else {
-      this.words[i].classList.add(status);
+      this.letters[i].classList.add(status);
     }
   }
 
   keyboardHint(keyboard: Keyboard): void {
-    const { id } = this.words[this.index];
-    const ID = this.words[this.index].dataset.caps;
+    const { id } = this.letters[this.index];
+    const ID = this.letters[this.index].dataset.caps;
     if (id) {
       keyboard.activate(id.toLowerCase(), Status.active);
     }

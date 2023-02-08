@@ -32,7 +32,7 @@ class TextInput {
         return;
       }
       if (e.code === 'Escape') {
-        text.time = text.currenTime - text.startTime;
+        text.time += text.currenTime - text.startTime;
         this.status = false;
         keyboard.init();
         training.updateInstructions(TrainingStatus.continue);
