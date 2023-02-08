@@ -5,8 +5,13 @@ import whackHoleEmptyImg from '../../assets/png/whac_hole_empty.png';
 import moleImg from '../../assets/png/mole.png';
 import hitSound from '../../assets/media/hit.mp3';
 import clickSound from '../../assets/media/click.mp3';
+import winSound from '../../assets/media/win.mp3';
 import moleStartBtn from '../../assets/png/mole_start_btn.png';
 import moleResettBtn from '../../assets/png/mole_restart_btn.png';
+import langRu from '../../assets/png/lang_ru.png';
+import langUsa from '../../assets/png/lang_usa.png';
+import soundOff from '../../assets/png/sound_off.png';
+import soundOn from '../../assets/png/sound_on.png';
 /*
  !+ кол-во кротов меняется в зависимости от уровня.
  ! отключение звука из игры.
@@ -104,6 +109,7 @@ class WhacAMole {
       switch (type) {
         case 'hit': (new Audio(hitSound)).play(); break;
         case 'click': (new Audio(clickSound)).play(); break;
+        case 'win': (new Audio(winSound)).play(); break;
         default: {
           // console.log();
         }
@@ -271,6 +277,22 @@ class WhacAMole {
     }
   }
 
+  private changeSoundLogo(element: HTMLElement): void {
+    if (this.isSound === true) {
+      this.setBackground(element, soundOn);
+    } else {
+      this.setBackground(element, soundOff);
+    }
+  }
+
+  private changeLangLogo(element: HTMLElement): void {
+    if (this.language === 'ru') {
+      this.setBackground(element, langRu);
+    } else {
+      this.setBackground(element, langUsa);
+    }
+  }
+
   private renderGame(): void {
     this.resetGame();
 
@@ -305,12 +327,16 @@ class WhacAMole {
 
       const controls = createElement('div', 'controls', statsBlock);
       const soundButton = createElement('div', 'control_sound', controls);
+      this.changeSoundLogo(soundButton);
       soundButton.addEventListener('click', () => {
         this.isSound = !this.isSound;
+        this.changeSoundLogo(soundButton);
       });
       const langButton = createElement('div', 'control_lang', controls);
+      this.changeLangLogo(langButton);
       langButton.addEventListener('click', () => {
         this.language = this.language === 'ru' ? 'en' : 'ru';
+        this.changeLangLogo(langButton);
       });
 
       const gameAgea = createElement('div', 'game-area', game);
@@ -385,6 +411,7 @@ class WhacAMole {
     const app: HTMLElement | null = document.querySelector('.app');
 
     if (app !== null) {
+      clickSound('win');
       removeChild(app);
       const whac = createElement('div', 'whac', app);
       const menu = createElement('div', 'menu', whac);
