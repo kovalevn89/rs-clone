@@ -135,6 +135,9 @@ button {
   width: 10vw;
   font-weight: 700;
   font-size: 2rem;
+  @media (max-width: 767px) {
+    width: 15vw;
+  }
 }
 
 .field-letter {
@@ -153,6 +156,10 @@ button {
   border-radius: 50%;
   &.right {
     color: #d9ff02;
+  }
+  @media (max-width: 767px) {
+    left: 1%;
+    width: 98%;
   }
 }
 .field-letter-1 {

@@ -51,6 +51,9 @@
   font-weight: 700;
   text-align: center;
   gap: 1rem;
+  @media (max-width: 480px) {
+    font-size: 2rem;
+  }
 }
 
 .drop-game-startpage-main-title {
@@ -65,6 +68,9 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 }
 
 .drop-game-startpage-left-container{
@@ -94,6 +100,10 @@
   transition: 1s;
   &:hover{
     border-top: 1px solid #2ea3f8;
+  }
+  @media (max-width: 480px) {
+    font-size: 2rem;
+    width: 15rem;
   }
 }
 

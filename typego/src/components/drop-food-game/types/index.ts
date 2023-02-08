@@ -9,10 +9,6 @@ export interface LvlParam {
   [i: string]: Record<string, number>;
 }
 
-export interface LvlMaxPoints {
-  [i: string]: number;
-}
-
 export interface GameState {
   letterOnField: (HTMLElement | null)[];
   letterPressed: string[];
