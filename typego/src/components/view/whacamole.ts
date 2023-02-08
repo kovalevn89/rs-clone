@@ -14,10 +14,11 @@ import soundOff from '../../assets/png/sound_off.png';
 import soundOn from '../../assets/png/sound_on.png';
 /*
  !+ кол-во кротов меняется в зависимости от уровня.
- ! отключение звука из игры.
- ! переключение языка в игре.
+ !+ отключение звука из игры.
+ !+ переключение языка в игре.
  ! очистить консоль логи.
  ! сохранение настроек звука в Local storage.
+ ! модалка на маленькое разрешение.
  !+ остановка таймеров и хуков при окончании игры.
  !+ пофиксить множественные нажатия на клавиши.
  !+ показывать кротов в начале игры без задержки.
@@ -67,6 +68,17 @@ class WhacAMole {
     this.gameClockId = null;
     this.gameShowMoleId = null;
     this.keyHandler = () => {};
+
+    const whacamoleSound = localStorage.getItem('whacamoleSound');
+    if (whacamoleSound !== null) {
+      console.log(`read = ${whacamoleSound}`);
+      this.isSound = Boolean(Number(whacamoleSound));
+      console.log(`read = ${this.isSound}`);
+    }
+    const whacamoleLang = localStorage.getItem('whacamoleLang');
+    if (whacamoleLang !== null) {
+      this.language = whacamoleLang;
+    }
   }
 
   private resetGame(): void {
@@ -104,7 +116,7 @@ class WhacAMole {
     return this.gameField.some((value) => value.curentLetter === letter);
   }
 
-  private clickSound(type: string): void {
+  private playSound(type: string): void {
     if (this.isSound === true) {
       switch (type) {
         case 'hit': (new Audio(hitSound)).play(); break;
@@ -210,7 +222,7 @@ class WhacAMole {
         Level.textContent = `${this.level}`;
       }
 
-      if (this.gameClock === 180) { // 180
+      if (this.gameClock >= 180) { // 180
         // stop game
         this.renderEndGame();
         this.clearTimers();
@@ -257,7 +269,7 @@ class WhacAMole {
         })
     ) {
       console.log('WIN!!!');
-      this.clickSound('hit');
+      this.playSound('hit');
       this.score += 1;
 
       // const scoreValue = document.querySelector('.stats_score > value');
@@ -267,7 +279,7 @@ class WhacAMole {
     } else {
       console.log('LOOSE!!!');
       this.missClickCount += 1;
-      this.clickSound('click');
+      this.playSound('click');
     }
 
     this.clickCount += 1;
@@ -331,12 +343,14 @@ class WhacAMole {
       soundButton.addEventListener('click', () => {
         this.isSound = !this.isSound;
         this.changeSoundLogo(soundButton);
+        localStorage.setItem('whacamoleSound', `${Number(this.isSound)}`);
       });
       const langButton = createElement('div', 'control_lang', controls);
       this.changeLangLogo(langButton);
       langButton.addEventListener('click', () => {
         this.language = this.language === 'ru' ? 'en' : 'ru';
         this.changeLangLogo(langButton);
+        localStorage.setItem('whacamoleLang', this.language);
       });
 
       const gameAgea = createElement('div', 'game-area', game);
@@ -411,7 +425,7 @@ class WhacAMole {
     const app: HTMLElement | null = document.querySelector('.app');
 
     if (app !== null) {
-      clickSound('win');
+      this.playSound('win');
       removeChild(app);
       const whac = createElement('div', 'whac', app);
       const menu = createElement('div', 'menu', whac);
