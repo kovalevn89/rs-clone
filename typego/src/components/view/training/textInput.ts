@@ -1,10 +1,10 @@
 import Keyboard from '../keyboard/keyboard';
-import { keyDowmHandler } from './keybordHandlers';
-import Text from './text';
+import { keyDowmHandler, keyUpHandler } from './keybordHandlers';
+import TextTraining from './textTraining';
 
 class TextInput {
   input;
-  keys: Record<string, string>;
+  status;
 
   constructor() {
     const input = document.createElement('input');
@@ -15,31 +15,42 @@ class TextInput {
     input.autocapitalize = 'off';
     input.ariaHidden = 'true';
 
-    this.keys = {};
     this.input = input;
+    this.status = false;
   }
 
-  listen(keyboard: Keyboard, text: Text): void {
-    const press = new Audio();
-    // press.src = keyPressSound;
-    text.keyboardHint(keyboard);
+  listen(keyboard: Keyboard, training: TextTraining): void {
+    const { text } = training;
+
     this.input.addEventListener('keydown', (e) => {
+      console.log(e.code);
+      if (e.code !== 'Escape' && !this.status) {
+        text.updateStartTime(Date.now());
+        this.status = true;
+        return;
+      }
+      if (e.code === 'Escape') {
+        text.time = text.currenTime - text.startTime;
+        this.status = false;
+        keyboard.init();
+        return;
+      }
       keyDowmHandler(e, keyboard, text);
-      press.play();
-      // this.keys[`${e.key}`] = e.code;
-      // console.log(this.keys);
     });
 
     this.input.addEventListener('keyup', () => {
-      keyboard.init();
-      console.log(text.index);
-
-      text.keyboardHint(keyboard);
+      if (this.status) {
+        keyUpHandler(keyboard, training);
+      }
     });
 
     this.input.addEventListener('blur', () => {
       this.input.focus();
     });
+  }
+
+  pause(): void {
+
   }
 }
 

@@ -1,7 +1,7 @@
 import { TextResponse } from '.';
 
 export const DEFAULT_RESPONSE_RU: TextResponse = {
-  text: 'Крупнейшими из всех животных, живущих сейчас на нашей планете, являются киты. Длина рекордсмена - синего или голубого кита - составляет 25 м, а масса - до 150 т. Как и все млекопитающие, киты дышат воздухом с помощью легких, кормят детенышей молоком и даже имеют немного шерсти. Детенышей синих китов можно считать быстрорастущими детьми. Ежедневно длина их тела увеличивается на 4,5 см, а масса - на 80-100 кг.',
+  text: 'Крупнейшими из всех животных, живущих сейчас на нашей планете, являются киты. Длина рекордсмена - синего или голубого кита - составляет 25 м, а масса - до 150 т.',
   lang: 'ru',
 };
 
@@ -9,8 +9,6 @@ export const DEFAULT_RESPONSE: TextResponse = {
   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam efficitur rutrum efficitur. Phasellus sit amet mauris pellentesque, viverra felis vitae.',
   lang: 'en',
 };
-
-// export const SPECIAL_KEYS = ['Tab', 'Shi']
 
 export const KEYS_EN: Record<string, string> = {
   0: 'Digit0',
@@ -26,8 +24,6 @@ export const KEYS_EN: Record<string, string> = {
   '§': 'Backquote',
   '-': 'Minus',
   '=': 'Equal',
-  // Backspace: 'Backspace',
-  // '/n': 'Enter',
   ']': 'BracketRight',
   '[': 'BracketLeft',
   p: 'KeyP',
@@ -40,7 +36,6 @@ export const KEYS_EN: Record<string, string> = {
   e: 'KeyE',
   w: 'KeyW',
   q: 'KeyQ',
-  // Tab: 'Tab',
   a: 'KeyA',
   s: 'KeyS',
   d: 'KeyD',
@@ -53,7 +48,6 @@ export const KEYS_EN: Record<string, string> = {
   ';': 'Semicolon',
   "'": 'Quote',
   '\\': 'Backslash',
-  // Shift: 'ShiftLeft',
   '/': 'Slash',
   '.': 'Period',
   ',': 'Comma',
@@ -65,11 +59,7 @@ export const KEYS_EN: Record<string, string> = {
   x: 'KeyX',
   z: 'KeyZ',
   '`': 'IntlBackslash',
-  // Control: 'ControlLeft',
-  // Alt: 'AltRight',
-  // Meta: 'MetaRight',
   ' ': 'Space',
-  // CapsLock: 'CapsLock',
 };
 
 export const KEYS_EN_SHIFT: Record<string, string> = {
@@ -86,8 +76,6 @@ export const KEYS_EN_SHIFT: Record<string, string> = {
   ')': 'Digit0',
   _: 'Minus',
   '+': 'Equal',
-  // Backspace: 'Backspace',
-  // Enter: 'Enter',
   '}': 'BracketRight',
   '{': 'BracketLeft',
   P: 'KeyP',
@@ -153,8 +141,6 @@ export const KEYS_RU: Record<string, string> = {
   у: 'KeyE',
   ц: 'KeyW',
   й: 'KeyQ',
-  // Tab: 'Tab',
-  // CapsLock: 'CapsLock',
   ф: 'KeyA',
   ы: 'KeyS',
   в: 'KeyD',
@@ -167,7 +153,6 @@ export const KEYS_RU: Record<string, string> = {
   ж: 'Semicolon',
   э: 'Quote',
   '\\': 'Backslash',
-  // Shift: 'ShiftLeft',
   '.': 'Slash',
   ю: 'Period',
   б: 'Comma',

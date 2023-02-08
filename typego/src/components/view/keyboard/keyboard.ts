@@ -8,7 +8,7 @@ class Keyboard {
   keyboard;
   keys;
 
-  constructor(lang = Lang.en) {
+  constructor(lang: 'en' | 'ru') {
     this.keyboard = createElement('div', 'keyboard');
     this.keyboard.innerHTML = lang === Lang.en ? svgKeyboard : svgKeybordRu;
 
@@ -22,9 +22,12 @@ class Keyboard {
   }
 
   activate(id: string, status: Status): void {
+    if (status === Status.reset) {
+      this.init();
+      return;
+    }
     this.keys.forEach((key) => {
       if (key.id.toLowerCase() === id) {
-        // if (status !== Status.reset)
         key.classList.add(status);
       }
     });

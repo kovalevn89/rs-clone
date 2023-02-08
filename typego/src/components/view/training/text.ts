@@ -1,6 +1,8 @@
 import { createElement } from '../../helper';
-import { Status } from '../../types';
-import { KEYS_EN, KEYS_EN_SHIFT } from '../../types/constants';
+import { Lang, Status, TextResponse } from '../../types';
+import {
+  KEYS_EN, KEYS_EN_SHIFT, KEYS_RU, KEYS_RU_SHIFT,
+} from '../../types/constants';
 import Keyboard from '../keyboard/keyboard';
 
 export default class Text {
@@ -8,15 +10,23 @@ export default class Text {
   words: HTMLElement[];
   index: number;
   mistakes: number;
+  accurancy: number;
+  startTime: number;
+  currenTime: number;
+  time: number;
+  speed: number;
 
   // todo add words
 
-  constructor(content: string) {
+  constructor(response: TextResponse) {
+    const content = response.text;
+    const { lang } = response;
     this.container = createElement('div', 'text__container');
     this.container.innerHTML = '';
     this.words = content.split('').map((letter, index) => {
-      const id = KEYS_EN[letter];
-      const ID = KEYS_EN_SHIFT[letter];
+      const id = lang === Lang.en ? KEYS_EN[letter] : KEYS_RU[letter];
+      const ID = lang === Lang.en ? KEYS_EN_SHIFT[letter] : KEYS_RU_SHIFT[letter];
+
       const element = createElement('div', 'word__letter', this.container, ['id', id || ID], ['caps', ID ? 'true' : ''], ['index', `i_${index}`]);
       element.textContent = letter;
 
@@ -25,6 +35,11 @@ export default class Text {
     });
     this.index = 0;
     this.mistakes = 0;
+    this.startTime = 0;
+    this.currenTime = 0;
+    this.time = 0;
+    this.speed = 0;
+    this.accurancy = 0;
   }
 
   updateActive() {
@@ -40,6 +55,20 @@ export default class Text {
 
   updateMistakes(m: number): void {
     this.mistakes = m;
+  }
+
+  updateCurrentTime(t: number): void {
+    this.currenTime = t;
+  }
+
+  updateStartTime(t: number): void {
+    this.startTime = t;
+  }
+
+  updateSpeed(): void {
+    const t = (this.time + this.currenTime - this.startTime) / 1000 / 60;
+    console.log(t);
+    this.speed = t > 0 ? Math.ceil(this.index / t) : 0;
   }
 
   reset(): void {
@@ -67,10 +96,7 @@ export default class Text {
   keyboardHint(keyboard: Keyboard): void {
     const { id } = this.words[this.index];
     const ID = this.words[this.index].dataset.caps;
-    console.log(this.words);
-    console.log(ID, id);
     if (id) {
-      keyboard.activate('shiftleft', Status.reset);
       keyboard.activate(id.toLowerCase(), Status.active);
     }
     if (ID) {
