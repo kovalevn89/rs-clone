@@ -1,4 +1,4 @@
-import { Status } from '../../types';
+import { Status } from '../../types/enums';
 import { isSpecial } from '../../types/isSpecial';
 import Keyboard from '../keyboard/keyboard';
 import Text from './text';

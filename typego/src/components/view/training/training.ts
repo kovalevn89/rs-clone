@@ -2,14 +2,14 @@ import { createElement } from '../../helper';
 import Keyboard from '../keyboard/keyboard';
 import TextTraining from './textTraining';
 import TextInput from './textInput';
-import { TextResponse, TrainingStatus } from '../../types';
+import { TrainingStatus } from '../../types/enums';
+import { TextResponse } from '../../types';
 
 class Training {
   container;
   input;
   textTraining;
   keyboard;
-  // instructions;
   timeCounter;
 
   constructor(response: TextResponse) {

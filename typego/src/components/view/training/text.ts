@@ -3,7 +3,8 @@ import {
   KEYS_EN, KEYS_RU, KEYS_EN_SHIFT, KEYS_RU_SHIFT,
 } from '../../helper/constants';
 import stringSplitter from '../../helper/stringSplitter';
-import { Lang, Status, TextResponse } from '../../types';
+import { TextResponse } from '../../types';
+import { Lang, Status } from '../../types/enums';
 import Keyboard from '../keyboard/keyboard';
 
 export default class Text {

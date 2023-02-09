@@ -1,5 +1,5 @@
 import { createElement } from '../../helper';
-import { Lang, Status } from '../../types';
+import { Lang, Status } from '../../types/enums';
 import { svgKeyboard } from './svgKeyboard';
 import { svgKeybordRu } from './svgKeyboardRu';
 

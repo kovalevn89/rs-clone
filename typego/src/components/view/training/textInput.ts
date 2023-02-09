@@ -1,4 +1,4 @@
-import { TrainingStatus } from '../../types';
+import { TrainingStatus } from '../../types/enums';
 import Keyboard from '../keyboard/keyboard';
 import { keyDowmHandler, keyUpHandler } from './keybordHandlers';
 import TextTraining from './textTraining';
