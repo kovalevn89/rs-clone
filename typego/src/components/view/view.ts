@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { DEFAULT_RESPONSE, DEFAULT_RESPONSE_RU } from '../types/constants';
+import { DEFAULT_RESPONSE } from '../helper/constants';
 import Footer from './footer';
 import Header from './header';
 import Training from './training/training';
