@@ -6,7 +6,6 @@ export const isSpecial = (code: string): boolean => code === 'ShiftRight'
   || code === 'AltRight'
   || code === 'AltLeft'
   || code === 'Escape'
-  || code === 'Option'
-  || code === 'Meta';
-
+  || code === 'MetaLeft'
+  || code === 'MetaRight';
 export default isSpecial;

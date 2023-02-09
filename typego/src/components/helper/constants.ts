@@ -287,4 +287,16 @@ export const KEYS_RU_SHIFT: Record<string, string> = {
   '[': 'IntlBackslash',
 };
 
-export default { };
+export default {
+  KEYS_EN,
+  KEYS_EN_SHIFT,
+  KEYS_RU,
+  KEYS_RU_SHIFT,
+  DEFAULT_RESPONSE,
+  DEFAULT_RESPONSE_RU,
+  CHAR_COLOR,
+  LETTER_EN,
+  LETTER_EN_SVG,
+  LETTER_RU,
+  LETTER_RU_SVG,
+};

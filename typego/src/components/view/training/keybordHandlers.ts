@@ -1,5 +1,5 @@
 import { Status } from '../../types';
-import { isSpecial } from '../../types/isSpecial';
+import { isSpecial } from '../../helper/isSpecial';
 import Keyboard from '../keyboard/keyboard';
 import Text from './text';
 import TextTraining from './textTraining';
