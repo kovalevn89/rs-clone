@@ -24,7 +24,6 @@ class TextInput {
     const { text } = training;
 
     this.input.addEventListener('keydown', (e) => {
-      console.log(e.code);
       if (e.code !== 'Escape' && !this.status) {
         text.setStartTime(Date.now());
         this.status = true;

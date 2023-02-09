@@ -26,7 +26,6 @@ export default class Text {
     this.container.innerHTML = '';
 
     const splitedContent = stringSplitter(content);
-    console.log(splitedContent);
     splitedContent.map((word) => {
       const elem = createElement('div', 'word', this.container);
       word.map((letter) => {

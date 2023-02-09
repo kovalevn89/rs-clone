@@ -3,6 +3,9 @@ import { isSpecial } from '../../helper/isSpecial';
 import Keyboard from '../keyboard/keyboard';
 import Text from './text';
 import TextTraining from './textTraining';
+import correctKey from '../../../assets/media/correctKey.mp3';
+import incorrectKey from '../../../assets/media/incorrectKey.mp3';
+import bacspaseKey from '../../../assets/media/backspaseKey.mp3';
 
 export const keyDowmHandler = (e: KeyboardEvent, keyboard: Keyboard, text: Text): void => {
   e.preventDefault();
@@ -11,15 +14,23 @@ export const keyDowmHandler = (e: KeyboardEvent, keyboard: Keyboard, text: Text)
   keyboard.activate(id, Status.active);
   let { index, mistakes } = text;
   const { letters } = text;
+  const sound = new Audio(correctKey);
+  sound.pause();
+  sound.volume = 0.3;
 
   if (isSpecial(e.code)) {
     text.setIndex(index);
+    sound.pause();
+    sound.play();
   } else if (e.code === 'Backspace') {
     text.updateLetterStatus(index, Status.reset);
     if (index > 0) {
       index -= 1;
       mistakes = mistakes > 0 ? mistakes - 1 : 0;
       letters[index].dataset.fix = 'true';
+      sound.pause();
+      sound.src = bacspaseKey;
+      sound.play();
     }
     text.updateLetterStatus(index, Status.reset);
   } else if (letters[index].textContent === e.key) {
@@ -34,6 +45,8 @@ export const keyDowmHandler = (e: KeyboardEvent, keyboard: Keyboard, text: Text)
     if (index < letters.length - 1) {
       index += 1;
     }
+    sound.pause();
+    sound.play();
   } else {
     text.updateLetterStatus(index, Status.incorrect);
     keyboard.activate(id, Status.incorrect);
@@ -42,6 +55,9 @@ export const keyDowmHandler = (e: KeyboardEvent, keyboard: Keyboard, text: Text)
       index += 1;
     }
     mistakes += 1;
+    sound.pause();
+    sound.src = incorrectKey;
+    sound.play();
   }
 
   text.setIndex(index);
@@ -54,7 +70,6 @@ export const keyUpHandler = (keyboard: Keyboard, training: TextTraining): void =
   const { text } = training;
   text.setCurrentTime(Date.now());
   text.updateSpeed();
-  console.log(text.currenTime, text.speed);
 
   text.keyboardHint(keyboard);
   training.updateProgress();
