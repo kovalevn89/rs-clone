@@ -1,5 +1,6 @@
 import { createElement } from '../../helper';
-import { TextResponse, TrainingStatus } from '../../types';
+import { TextResponse } from '../../types';
+import { TrainingStatus } from '../../types/enums';
 import Text from './text';
 
 class TextTraining {
