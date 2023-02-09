@@ -25,8 +25,7 @@ class Main {
 
       // const rightColImage = createElement('div', 'right-col__image', rightCol);
       const image = createElement('div', 'image', rightCol);
-      createElement('div', 'eclipse', image);
-      image.style.background = `url(${image1}) `;
+      image.style.background = `url(${image1}) center no-repeat, radial-gradient(rgba(255, 239, 182, 0.6) 30%, rgb(41, 129, 254) 70%) right 5% top 5%`;
     }
   }
 
