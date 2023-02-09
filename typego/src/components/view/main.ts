@@ -13,19 +13,26 @@ class Main {
       removeChild(app);
       const main = createElement('main', 'main', app);
       const wrapper = createElement('div', 'main_wrapper', main);
-      const fasterBlock = createElement('div', 'block_typig-faster', wrapper);
+
+      // block1
+      const wrapper1 = createElement('div', 'block_wrapper', wrapper);
+      const fasterBlock = createElement('div', 'block_typig-faster', wrapper1);
       const leftCol = createElement('div', 'typig-faster__left-col', fasterBlock);
-      const leftColCaption = createElement('div', 'left-col__caption', leftCol);
+      const leftColCaption = createElement('h1', 'left-col__caption', leftCol);
       createElement('span', 'text', leftColCaption).textContent = 'печатай быстрее';
       const leftColText = createElement('div', 'left-col__text', leftCol);
       createElement('span', 'text', leftColText).textContent = 'Научись быстро печатать с клавиатурным тренажером TypeGo. Уроки слепой печати помогут тебе использовать все 10 пальцев.';
       const leftColButton = createElement('div', 'left-col__button', leftCol);
       createElement('div', 'button', leftColButton).textContent = 'Начать печатать';
       const rightCol = createElement('div', 'typig-faster__right-col', fasterBlock);
-
-      // const rightColImage = createElement('div', 'right-col__image', rightCol);
       const image = createElement('div', 'image', rightCol);
-      image.style.background = `url(${image1}) center no-repeat, radial-gradient(rgba(255, 239, 182, 0.6) 30%, rgb(41, 129, 254) 70%) right 5% top 5%`;
+      image.style.background = `url(${image1}) center no-repeat, radial-gradient(circle, rgba(255, 239, 182, 0.3) 40%, rgba(41, 129, 254, 0.5) 60%) right 5% top 5%`;
+
+      // block2
+      const proposalesBlock = createElement('div', 'block_proposales', wrapper);
+      createElement('div', 'proposales__card', proposalesBlock);
+      createElement('div', 'proposales__card', proposalesBlock);
+      createElement('div', 'proposales__card', proposalesBlock);
     }
   }
 

@@ -6,114 +6,114 @@
 
     width: 1440px;
     margin: 0 auto;
-    padding: 0 160px;
-    background-color: #2981FE;
 
-    .block_typig-faster {
+    background-color: #FFFFFF;
+
+    .block_wrapper {
       width: 100%;
       min-height: 500px;
 
-      display: flex;
-      align-items: stretch;
-      
-      .typig-faster__left-col {
-        width: 60%;
-        //height: 100%;
+      background-color: #2981FE;
+      .block_typig-faster {
+        width: 100%;
+        height: 100%;
+        padding: 0 160px;
 
-        .left-col__caption {
-          padding-top: 10vh;
-          .text {
-            font-family: 'Montserrat Alternates';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 40px;
-            line-height: 49px;
-            
-            text-transform: uppercase;
-            
-            color: #FFFFFF;
+        display: flex;
+        align-items: stretch;
+        
+        .typig-faster__left-col {
+          width: 60%;
+          //height: 100%;
+  
+          .left-col__caption {
+            padding-top: 8vh;
+            .text {
+              font-family: 'Montserrat Alternates';
+              font-style: normal;
+              font-weight: 700;
+              font-size: 40px;
+              line-height: 49px;
+              
+              text-transform: uppercase;
+              
+              color: #FFFFFF;
+            }
+          }
+  
+          .left-col__text {
+            padding-top: 3.5vh;
+            width: 90%;
+  
+            .text {
+              font-family: 'Barlow';
+              //font-style: normal;
+              //font-style: italic;
+              font-weight: 400;
+              font-size: 18px;
+              line-height: 28px;
+              color: #FFFFFF;
+            }
+          }
+  
+          .left-col__button{
+            padding-top: 6vh;
+  
+            .button {
+              width: 202px;
+              height: 50px;
+              
+              background: #FFF72C;
+              border-radius: 10px;
+  
+              font-family: 'Barlow';
+              //font-style: normal;
+              font-weight: 700;
+              font-size: 18px;
+              line-height: 22px;
+  
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
           }
         }
-
-        .left-col__text {
-          padding-top: 5vh;
-          .text {
-            font-family: 'Barlow';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 28px;
-            color: #FFFFFF;
-          }
-        }
-
-        .left-col__button{
-          padding-top: 2vh;
-          .button {
-            width: 202px;
-            height: 50px;
-            
-            background: #FFF72C;
-            border-radius: 10px;
-
-            font-family: 'Barlow';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 18px;
-            line-height: 22px;
-
+  
+        .typig-faster__right-col {
+          width: 40%;
+  
+          .image {
+            width: 100%;
+            height: 90%;
+  
+            margin-top: -22%;
+  
+            position: relative;
+            z-index: 2;
+  
             display: flex;
-            justify-content: center;
-            align-items: center;
-          }
-        }
-      }
-
-      .typig-faster__right-col {
-        width: 40%;
-
-        .image {
-          width: 100%;
-          height: 90%;
-          // background-repeat: no-repeat;
-          // background-position: center;
-          // background-size: contain;
-
-          margin-top: -22%;
-
-          position: relative;
-          z-index: 2;
-
-          display: flex;
-          justify-content: flex-end;
-
-          .eclipse {
-            position: absolute;
-            width: 80%;
-            height: 80%;
-            background: rgba($color: #FFEFB6, $alpha: 0.2);
-            border-radius: 100%;
-            //filter: blur(125px);
-            z-index: 1;
+            justify-content: flex-end;
+  
+            .eclipse {
+              position: absolute;
+              width: 80%;
+              height: 80%;
+              background: rgba($color: #FFEFB6, $alpha: 0.2);
+              border-radius: 100%;
+              z-index: 1;
+            }
           }
         }
       }
     }
-  }
-}
 
-.body {
-  width: 100%;
-  height: 100%;
-  //background-color: orange;
 
-  .app {
-    width: 100%;
-    max-width: 1440px;
-    min-height: calc(100vh - 300px);
-    background-color: green;
-    margin: 0 auto;
+    .block_proposales {
+      width: 100%;
+      min-height: 1614px;
 
-    display: flex;
+      //background: #F5F5F5;
+
+    }
   }
 }
