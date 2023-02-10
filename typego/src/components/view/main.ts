@@ -58,7 +58,6 @@ class Main {
       card2.style.marginTop = '47px';
       card2.style.marginLeft = '37px';
       const cardLeft2 = createElement('div', 'card__left', card2);
-      // cardLeft2.style.width = '25%';
       const cardImage2 = createElement('div', 'card__image', cardLeft2);
       this.setBackground(cardImage2, proposale2);
       const cardRight2 = createElement('div', 'card__right', card2);
