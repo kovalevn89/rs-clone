@@ -1,3 +1,5 @@
+@import './mixin.scss';
+
 .main {
   width: 100%;
   height: 200vh;
@@ -25,14 +27,9 @@
   
           .left-col__caption {
             padding-top: 8vh;
+
             .text {
-              font-family: 'Montserrat Alternates';
-              font-style: normal;
-              font-weight: 700;
-              font-size: 40px;
-              line-height: 49px;
-              
-              text-transform: uppercase;
+              @include caption-text;
               
               color: #FFFFFF;
             }
@@ -43,10 +40,7 @@
             width: 90%;
   
             .text {
-              font-family: 'Inter';
-              font-weight: 400;
-              font-size: 18px;
-              line-height: 28px;
+              @include normal-text;
               color: #FFFFFF;
 
               span {
@@ -63,24 +57,7 @@
               width: 202px;
               height: 50px;
               
-              background: #FFF72C;
-              border-radius: 10px;
-  
-              font-family: 'Inter';
-              font-weight: 700;
-              font-size: 18px;
-              line-height: 22px;
-  
-              display: flex;
-              justify-content: center;
-              align-items: center;
-
-              user-select: none;
-              cursor: pointer;
-
-              &:hover {
-                background: #ebe30d;
-              }
+              @include yellow-utton;
             }
           }
         }
@@ -157,44 +134,37 @@
 
             .card__context {
               .card__context-caption {
-                font-family: 'Montserrat Alternates';
-                font-style: normal;
-                font-weight: 700;
+                @include caption-text;
+
+                margin-top: 3.8vw;
                 font-size: 33px;
                 line-height: 40px;
-                text-transform: uppercase;
-
                 color: #474747;
               }
 
               .card__context-text {
-                font-family: 'Inter';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 18px;
-                line-height: 28px;
+                width: 90%;
+
+                @include normal-text;
                 
                 color: #474747;
               }
 
               .card__context-link {
+                margin-top: 1.5vw;
+
                 .context-link__button {
-                  font-family: 'Inter';
-                  font-style: normal;
-                  font-weight: 400;
-                  font-size: 18px;
-                  line-height: 28px;
+                  @include normal-text;
                   
                   color: #2981FE;
-
                   display: flex;
-
                   user-select: none;
                   cursor: pointer;
 
                   &::after {
                     content: '->';
 
+                    box-sizing:border-box;
                     display: flex;
                     align-items: center;
                     justify-content: flex-end;
@@ -202,25 +172,72 @@
                     width: 54px;
                     height: 25px;
 
-                    margin: 0 5px;
-                    padding-right: 3px;
+                    margin: 0 16px;
+                    padding-right: 8px;
 
                     border: 1.5px solid #2981FE;
                     border-radius: 40px;
 
-
+                    @keyframes go-left-right {
+                      from { padding-right: 8px; }
+                      to { padding-right: 25px; } 
+                    }
                   }
+
                   &:hover {
-                    color:red;
-                    animation: 3s linear 1s infinite alternate slidein;
+                    &::after {
+                      animation: go-left-right 1s infinite alternate;
+                    }
                   }
-
 
                 }
               }
             }
           }
         }
+      }
+    }
+
+    .registration{
+      width: 84%;
+      min-height: 278px;
+      margin: 0 auto;
+      margin-top: 7vw;
+      left: 253px;
+      top: 1860px;
+
+      background: #2981FE;
+      border-radius: 100px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .registration-caption {
+        margin-top: 3vw;
+        font-family: 'Montserrat Alternates';
+        font-weight: 700;
+        font-size: 33px;
+        line-height: 40px;
+        text-transform: uppercase;
+
+        color: #FFFFFF;
+      }
+
+      .registration-text{
+        @include normal-text;
+
+        text-align: center;
+        color: #FFFFFF;
+      }
+
+      .registration-button{
+        width: 202px;
+        height: 50px;
+
+        margin-top: 1.5vw;
+
+        @include yellow-utton;
       }
     }
   }
