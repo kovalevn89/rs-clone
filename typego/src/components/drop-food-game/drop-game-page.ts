@@ -4,7 +4,7 @@ import { createElement, removeChild } from '../helper/index';
 import { gameState, state } from './data/state';
 import GameData from './types/enum';
 
-import { arrRu } from './data/data';
+import { dataLang } from './data/data';
 
 class DropGamePage {
   container: HTMLElement;
@@ -42,7 +42,7 @@ class DropGamePage {
         <div class="field-img-box-left"></div>
         <div class="popup">
         <div class="popup-content">
-          НЯЬ-НЯМ. Спасибо за еду!
+          НЯM-НЯМ. Спасибо за еду!
         </div>
         <div class="popup_back"></div>
       </div>
@@ -75,7 +75,7 @@ class DropGamePage {
         setTimeout(() => {
           popup.style.display = 'none';
         }, speed);
-      }, 1.1 * speed);
+      }, speed + 1500);
     }, duration);
     const backBtn = document.querySelector('.drop-game-page-btn') as HTMLElement;
 
@@ -149,8 +149,8 @@ class DropGamePage {
   }
 
   getFoodLetter() {
-    const randomLetterNum = this.randomNum(arrRu.length);
-    const randomLetter = arrRu[randomLetterNum];
+    const randomLetterNum = this.randomNum(dataLang.letters.ru.length);
+    const randomLetter = dataLang.letters.ru[randomLetterNum];
     return randomLetter;
   }
 

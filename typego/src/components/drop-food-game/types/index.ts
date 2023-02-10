@@ -16,3 +16,12 @@ export interface GameState {
   curScore: number;
   curAccuracy: number;
 }
+
+export interface Lang {
+  en: string;
+  ru: string;
+}
+
+export interface DataLang {
+  [tag: string]: Lang;
+}
