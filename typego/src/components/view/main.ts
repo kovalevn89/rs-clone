@@ -25,7 +25,12 @@ class Main {
       createElement('div', 'button', leftColButton).textContent = 'Начать печатать';
       const rightCol = createElement('div', 'typig-faster__right-col', wrapper1);
       const image = createElement('div', 'image', rightCol);
-      image.style.background = `url(${image1}) center no-repeat`;
+
+      image.style.background = `url(${image1})`;
+      image.style.backgroundRepeat = 'no-repeat';
+      image.style.backgroundPosition = 'center';
+      image.style.backgroundSize = 'contain';
+
       createElement('div', 'ellipse', rightCol);
 
       // block2
@@ -38,7 +43,10 @@ class Main {
       const card1 = createElement('div', 'proposales__card', wrapper2);
       const cardLeft1 = createElement('div', 'card__left', card1);
       const cardImage1 = createElement('div', 'card__image', cardLeft1);
-      cardImage1.style.background = `url(${proposale1}) center no-repeat`;
+      cardImage1.style.background = `url(${proposale1})`;
+      cardImage1.style.backgroundRepeat = 'no-repeat';
+      cardImage1.style.backgroundPosition = 'center';
+      cardImage1.style.backgroundSize = 'contain';
       const cardRight1 = createElement('div', 'card__right', card1);
       const cardContext1 = createElement('div', 'card__context', cardRight1);
       createElement('h2', 'card__context-caption', cardContext1).textContent = 'Научись печатать вслепую';
@@ -48,12 +56,15 @@ class Main {
 
       // propo2
       const card2 = createElement('div', 'proposales__card', wrapper2);
-      card2.style.marginTop = '2.5vw';
-      card2.style.marginLeft = '2.7vw';
+      card2.style.marginTop = '47px';
+      card2.style.marginLeft = '37px';
       const cardLeft2 = createElement('div', 'card__left', card2);
       cardLeft2.style.width = '25%';
       const cardImage2 = createElement('div', 'card__image', cardLeft2);
-      cardImage2.style.background = `url(${proposale2}) center no-repeat`;
+      cardImage2.style.background = `url(${proposale2})`;
+      cardImage2.style.backgroundRepeat = 'no-repeat';
+      cardImage2.style.backgroundPosition = 'center';
+      cardImage2.style.backgroundSize = 'contain';
       const cardRight2 = createElement('div', 'card__right', card2);
       cardRight2.style.order = '-1';
       const cardContext2 = createElement('div', 'card__context', cardRight2);
@@ -64,10 +75,13 @@ class Main {
 
       // propo3
       const card3 = createElement('div', 'proposales__card', wrapper2);
-      card3.style.marginTop = '2.5vw';
+      card3.style.marginTop = '40px';
       const cardLeft3 = createElement('div', 'card__left', card3);
       const cardImage3 = createElement('div', 'card__image', cardLeft3);
-      cardImage3.style.background = `url(${proposale3}) center no-repeat`;
+      cardImage3.style.background = `url(${proposale3})`;
+      cardImage3.style.backgroundRepeat = 'no-repeat';
+      cardImage3.style.backgroundPosition = 'center';
+      cardImage3.style.backgroundSize = 'contain';
       const cardRight3 = createElement('div', 'card__right', card3);
       const cardContext3 = createElement('div', 'card__context', cardRight3);
       createElement('h2', 'card__context-caption', cardContext3).textContent = 'Учись играя';
