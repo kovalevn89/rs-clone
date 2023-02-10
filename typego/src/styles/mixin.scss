@@ -1,5 +1,4 @@
-@mixin yellow-utton {
-  background: #FFF72C;
+@mixin main-page-button {
   border-radius: 10px;
 
   font-family: 'Inter';
@@ -16,10 +15,6 @@
 
   user-select: none;
   cursor: pointer;
-
-  &:hover {
-    background: #ebe30d;
-  }
 }
 
 @mixin normal-text {

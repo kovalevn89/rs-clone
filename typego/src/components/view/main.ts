@@ -5,10 +5,6 @@ import proposale2 from '../../assets/png/propo2.png';
 import proposale3 from '../../assets/png/propo3.png';
 
 class Main {
-  // constructor() {
-  //   // console.log('tratata');
-  // }
-
   private render() {
     const app: HTMLElement | null = document.querySelector('.app');
 
@@ -29,7 +25,8 @@ class Main {
       createElement('div', 'button', leftColButton).textContent = 'Начать печатать';
       const rightCol = createElement('div', 'typig-faster__right-col', wrapper1);
       const image = createElement('div', 'image', rightCol);
-      image.style.background = `url(${image1}) center no-repeat, radial-gradient(circle, rgba(255, 239, 182, 0.3) 40%, rgba(41, 129, 254, 0.5) 60%) right 5% top 5%`;
+      image.style.background = `url(${image1}) center no-repeat`;
+      createElement('div', 'ellipse', rightCol);
 
       // block2
       const proposalesBlock = createElement('div', 'block_proposales', wrapper);

@@ -1,4 +1,5 @@
 @import './mixin.scss';
+@import './constants.scss';
 
 .main {
   width: 100%;
@@ -7,11 +8,11 @@
   .main_wrapper {
     width: 1440px;
     margin: 0 auto;
-    background-color: #FFFFFF;
+    background-color: $base-color-addition-light;
 
     .block_typig-faster {
       width: 100%;
-      background-color: #2981FE;
+      background-color: $base-color-light;
 
       .block_wrapper {
         box-sizing: border-box;
@@ -30,8 +31,7 @@
 
             .text {
               @include caption-text;
-              
-              color: #FFFFFF;
+              color: $font-color-text1-light;
             }
           }
   
@@ -41,7 +41,7 @@
   
             .text {
               @include normal-text;
-              color: #FFFFFF;
+              color: $font-color-text1-light;
 
               span {
                 font-weight: 700;
@@ -56,20 +56,41 @@
             .button {
               width: 202px;
               height: 50px;
-              
-              @include yellow-utton;
+              @include main-page-button;
+
+              background: $button-color-light;
+              &:hover {
+                background: $button-hover-color-light;
+              }
             }
           }
         }
   
         .typig-faster__right-col {
           width: 40%;
+          position: relative;
   
           .image {
+            position: relative;
             width: 100%;
             height: 100%;
   
             margin-top: -28%;
+            z-index: 2;
+          }
+
+          .ellipse {
+            width: 60%;
+            aspect-ratio: 1 / 1;
+            background: rgba(255, 239, 182, 0.8);
+            filter: blur(125px);
+            //background-color: red;
+            position: absolute;
+            left: 25%;
+            top: 0;
+            z-index: 1;
+            // left: -2%;
+            // top: -5%;
           }
         }
       }
@@ -108,7 +129,7 @@
         height: 100%;
         padding: 0 160px;
 
-        min-height: 1614px; //test
+        //min-height: 1614px; //test
 
         padding-top: 7.8%;
         position: relative;
@@ -139,7 +160,7 @@
                 margin-top: 3.8vw;
                 font-size: 33px;
                 line-height: 40px;
-                color: #474747;
+                color: $font-color-text2-light;
               }
 
               .card__context-text {
@@ -147,7 +168,7 @@
 
                 @include normal-text;
                 
-                color: #474747;
+                color: $font-color-text2-light;
               }
 
               .card__context-link {
@@ -156,7 +177,7 @@
                 .context-link__button {
                   @include normal-text;
                   
-                  color: #2981FE;
+                  color: $base-color-light;
                   display: flex;
                   user-select: none;
                   cursor: pointer;
@@ -175,7 +196,7 @@
                     margin: 0 16px;
                     padding-right: 8px;
 
-                    border: 1.5px solid #2981FE;
+                    border: 1.5px solid $base-color-light;
                     border-radius: 40px;
 
                     @keyframes go-left-right {
@@ -199,14 +220,14 @@
     }
 
     .registration{
+      position: relative;
+      z-index: 5;
       width: 84%;
       min-height: 278px;
       margin: 0 auto;
       margin-top: 7vw;
-      left: 253px;
-      top: 1860px;
 
-      background: #2981FE;
+      background: $base-color-light;
       border-radius: 100px;
 
       display: flex;
@@ -221,14 +242,14 @@
         line-height: 40px;
         text-transform: uppercase;
 
-        color: #FFFFFF;
+        color: $font-color-text1-light;
       }
 
       .registration-text{
         @include normal-text;
 
         text-align: center;
-        color: #FFFFFF;
+        color: $font-color-text1-light;
       }
 
       .registration-button{
@@ -237,7 +258,108 @@
 
         margin-top: 1.5vw;
 
-        @include yellow-utton;
+        @include main-page-button;
+
+        background: $button-color-light;
+        &:hover {
+          background: $button-hover-color-light;
+        }
+      }
+    }
+  }
+
+  // DARK THEME STYLE
+  &.dark {
+    .main_wrapper {
+      background-color: $base-color-addition-dark;
+
+      .block_typig-faster {
+        background-color: $base-color-dark;
+
+        .block_wrapper {
+          .typig-faster__left-col {
+            .left-col__caption {
+              .text {
+                @include caption-text;
+                color: $font-color-text1-dark;
+              }
+            }
+    
+            .left-col__text {
+              .text {
+                @include normal-text;
+                color: $font-color-text1-dark;
+              }
+            }
+    
+            .left-col__button{
+              .button {
+
+                background: $button-color-dark;
+                color: $font-color-text1-dark;
+                &:hover {
+                  background: $button-hover-color-dark;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .block_proposales {
+        .ellipse1 {
+          background: rgba(133, 167, 255, 0.8);
+        }
+
+        .ellipse2 {
+          background: rgba(133, 167, 255, 0.9);
+        }
+
+        .block_wrapper {
+          .proposales__card {
+            .card__right {
+              .card__context {
+                .card__context-caption {
+                  color: $font-color-text2-dark;
+                }
+
+                .card__context-text {
+                  color: $font-color-text1-dark;
+                }
+
+                .card__context-link {
+                  .context-link__button {
+                    color: $base-color-dark;
+
+                    &::after {
+                      border: 1.5px solid $base-color-dark;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .registration{
+        background: $base-color-dark;
+        
+        .registration-caption {
+          color: $font-color-text1-dark;
+        }
+
+        .registration-text{
+          color: $font-color-text1-dark;
+        }
+
+        .registration-button{
+          background: $button-color-dark;
+          color: $font-color-text1-dark;
+          &:hover {
+            background: $button-hover-color-dark;
+          }
+        }
       }
     }
   }
