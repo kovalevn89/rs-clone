@@ -17,7 +17,7 @@ class App {
   }
 
   run(): void {
-    this.whac.run();
+    // this.whac.run();
     this.view.run();
   }
 }

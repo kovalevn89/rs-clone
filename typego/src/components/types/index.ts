@@ -32,7 +32,7 @@ export interface Lesson {
   index: number;
   name: string,
   lang: 'en' | 'ru';
-  levels: Levels;
+  levels?: Levels;
 }
 
 export type Lessons = Lesson[];

@@ -1,16 +1,16 @@
 /* eslint-disable max-len */
-import { Lessons } from '../components/types';
+import { Lesson, Lessons } from '../components/types';
 import { Lang } from '../components/types/enums';
 import { Method, User } from './constants';
 
 const HOST = 'https://typego.onrender.com/api/';
-const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTZhMjBiMTUyNDMyMDUyNDhlMjgxYyIsIm5hbWUiOiJzdXBlcmFkbWluIiwiaWF0IjoxNjc2MDU5MTYyLCJleHAiOjE2NzYzMTgzNjJ9.mcUbGTGj8YYhdwIonVYmGOfseuz12MCGJI57y-90Ss0';
-
+// const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTZhMjBiMTUyNDMyMDUyNDhlMjgxYyIsIm5hbWUiOiJzdXBlcmFkbWluIiwiaWF0IjoxNjc2MDU5MTYyLCJleHAiOjE2NzYzMTgzNjJ9.mcUbGTGj8YYhdwIonVYmGOfseuz12MCGJI57y-90Ss0';
+// const newke = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTZhMjBiMTUyNDMyMDUyNDhlMjgxYyIsIm5hbWUiOiJzdXBlcmFkbWluIiwiaWF0IjoxNjc2MTE5OTQzLCJleHAiOjE2NzYzNzkxNDN9.ln-4lrrXRNTAQDTmvunCeqbxpnHunq2Fy3X0lD9GpTo';
 const ENDPOINT = {
   register: 'register',
   auth: 'auth',
   user: 'user',
-  lessons: 'lessons?lang=',
+  lessons: 'lessons',
 };
 
 export default class Api {
@@ -32,12 +32,22 @@ export default class Api {
     return response.json() as Promise<T>;
   }
 
-  async getLessons(lang = Lang.en): Promise<Lessons> {
+  async getLessons(token: string, lang = Lang.en): Promise<Lessons> {
     const { lessons } = ENDPOINT;
-    const url = lessons + lang;
+    const url = `${lessons}?lang=${lang}`;
     return this.makeFetch<Lessons>(url, Method.GET, {
       headers: {
-        Authorization: TOKEN,
+        Authorization: token,
+      },
+    });
+  }
+
+  async getLesson(token: string, index: number, lang = Lang.en): Promise<Lesson> {
+    const { lessons } = ENDPOINT;
+    const url = `${lessons}?lang=${lang}&id=${index}`;
+    return this.makeFetch<Lesson>(url, Method.GET, {
+      headers: {
+        Authorization: token,
       },
     });
   }
@@ -46,6 +56,7 @@ export default class Api {
   async register({ username, password }: User): Promise<User> {
     const { user } = ENDPOINT;
     const body = { username, password };
+
     return this.makeFetch<User>(user, Method.POST, {
       body,
       headers: {

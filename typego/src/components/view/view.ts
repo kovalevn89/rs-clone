@@ -2,7 +2,7 @@
 import { DEFAULT_RESPONSE } from '../helper/constants';
 import Footer from './footer';
 import Header from './header';
-import Training from './training/training';
+import TrainingView from './training/lessons';
 
 class View {
   header;
@@ -12,7 +12,7 @@ class View {
   constructor() {
     this.header = new Header();
     this.footer = new Footer();
-    this.training = new Training(DEFAULT_RESPONSE);
+    this.training = new TrainingView();
   }
 
   run(): void {

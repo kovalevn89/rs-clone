@@ -1,4 +1,4 @@
-import { TextResponse } from '../types';
+import { Lessons, TextResponse } from '../types';
 
 export const CHAR_COLOR = '#9966ff';
 
@@ -286,6 +286,39 @@ export const KEYS_RU_SHIFT: Record<string, string> = {
   Я: 'KeyZ',
   '[': 'IntlBackslash',
 };
+
+export const LESSONS: Lessons = [
+  {
+    index: 1,
+    name: 'Home Row Position',
+    lang: 'en',
+  },
+  {
+    index: 2,
+    name: 'Index Fingers',
+    lang: 'en',
+  },
+  {
+    index: 3,
+    name: 'Middle and Ring Fingers',
+    lang: 'en',
+  },
+  {
+    index: 4,
+    name: 'Pinkies',
+    lang: 'en',
+  },
+  {
+    index: 5,
+    name: 'Repetition 1',
+    lang: 'en',
+  },
+  {
+    index: 6,
+    name: 'Repetition 2',
+    lang: 'en',
+  },
+];
 
 export default {
   KEYS_EN,

@@ -2,9 +2,9 @@ import { createElement } from '../../helper';
 import Keyboard from '../keyboard/keyboard';
 import TextTraining from './textTraining';
 import TextInput from './textInput';
-import { Lang, TrainingStatus } from '../../types/enums';
+import { Tag, TrainingStatus } from '../../types/enums';
 import { TextResponse } from '../../types';
-import Api from '../../../api/api';
+// import Api from '../../../api/api';
 
 class Training {
   container;
@@ -13,8 +13,8 @@ class Training {
   keyboard;
   settings;
 
-  constructor(response: TextResponse) {
-    this.container = createElement('div', 'level__container', document.body);
+  constructor(response: TextResponse, parent: HTMLElement) {
+    this.container = createElement(Tag.div, 'level__container', parent);
     this.container.innerHTML = '';
 
     this.input = new TextInput();
@@ -23,7 +23,7 @@ class Training {
     this.settings = {};
   }
 
-  async render(): Promise<void> {
+  render(): void {
     this.container.append(this.input.input);
     this.container.append(this.textTraining.container);
     this.container.append(this.keyboard.keyboard);
@@ -31,9 +31,10 @@ class Training {
     this.input.listen(this.keyboard, this.textTraining);
     this.textTraining.updateProgress();
     this.textTraining.updateInstructions(TrainingStatus.start);
-    const api = new Api();
-    const lessons = await api.getLessons(Lang.en);
-    console.log(lessons);
+  }
+
+  renderStartTraining(): void {
+    this.container.innerHTML = '';
   }
 }
 
