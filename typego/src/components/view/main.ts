@@ -17,7 +17,7 @@ class Main {
 
     if (app !== null) {
       removeChild(app);
-      const main = createElement('main', 'main', app);
+      const main = createElement('div', 'main', app);
       const wrapper = createElement('div', 'main_wrapper', main);
 
       // block1
