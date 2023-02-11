@@ -124,7 +124,6 @@ class DropStartPage {
     const backBtn = document.querySelector('.drop-game-startpage-btn') as HTMLElement;
 
     backBtn.addEventListener('click', () => {
-      // this.resetState();
       removeChild(this.container);
     });
 

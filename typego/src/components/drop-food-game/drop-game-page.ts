@@ -175,11 +175,12 @@ class DropGamePage {
 
   setTotalScoreAccuracy() {
     state.totalScore += gameState.curScore;
-    // eslint-disable-next-line operator-linebreak
-    const tempAccuracy =
-      state.averageAccuracy === 0
-        ? gameState.curAccuracy
-        : Math.round((state.averageAccuracy + gameState.curAccuracy) / 2);
+    let tempAccuracy;
+    if (state.averageAccuracy === 0) {
+      tempAccuracy = gameState.curAccuracy;
+    } else {
+      tempAccuracy = Math.round((state.averageAccuracy + gameState.curAccuracy) / 2);
+    }
     state.averageAccuracy = tempAccuracy;
   }
 

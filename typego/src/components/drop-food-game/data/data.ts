@@ -61,16 +61,6 @@ export const arrRu: string[] = [
   'Я',
 ];
 
-// const textRu = {
-//   score: 'Очки:',
-//   accuracy: 'Tочность:',
-// };
-
-// const textEn = {
-//   score: 'Score:',
-//   accuracy: 'Accuracy:',
-// };
-
 export const dataLang: DataLang = {
   letters: {
     en: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -150,7 +140,7 @@ Tired of playing on factory settings?! Now you can customize the game according 
     ru: 'Старт',
   },
   popupContent: {
-    en: 'Start',
+    en: 'OM-NOM-NOM. Thanks for the food!',
     ru: 'НЯM-НЯМ. Спасибо за еду!',
   },
 };
