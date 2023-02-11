@@ -20,9 +20,9 @@ class App {
   }
 
   run(): void {
-    // this.main.run();
+    this.main.run();
     // this.whac.run();
-    this.view.run();
+    // this.view.run();
   }
 }
 

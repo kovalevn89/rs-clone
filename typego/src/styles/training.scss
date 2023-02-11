@@ -1,3 +1,15 @@
+@import './mixin.scss';
+@import './constants.scss';
+
+h2 {
+  @include caption-text;
+}
+
+h3 {
+  @include normal-text;
+  color: $font-color-text2-light;
+}
+
 .level__container {
   display: flex;
   width: 90%;
@@ -82,5 +94,145 @@
 
   &.pause {
     color: rgba(95, 158, 160, 0.8);
+  }
+}
+
+.training {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  // align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+
+  // font-family: ;
+
+  & h2 {
+    text-align: left;
+    @include caption-text;
+    font-size: 24px;
+    color: $font-color-text2-light;
+  }
+}
+
+.select {
+  display: flex;
+  // width: 90%;
+  gap: 20px;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.training__select {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  height: 45%;
+  max-width: 500px;
+
+  border: $base-color-light 2px solid;
+  border-radius: 15px;
+
+  &:hover {
+    cursor: pointer;
+    color: $base-color-light;
+  }
+
+  & img {
+    display: flex;
+    width: 90%;
+    height: 90%;
+    padding: 10px;
+  }
+
+  & h3 {
+    @include normal-text;
+    font-size: 18px;
+  }
+}
+
+.training__levels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.training__level {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // width: 30%;
+  min-width: 200px;
+  // height: 30%;
+  color: $font-color-text2-light;
+  padding: 10px;
+
+
+  border: $font-color-text2-light solid 1px;
+  border-radius: 12px;
+
+  & h3 {
+    @include normal-text;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  & img {
+    filter: grayscale(1);
+    width: 120px;
+    height: 120px;
+    padding: 20px;
+  }
+
+  &.done {
+    & img {
+      filter: none;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: $base-color-light;
+    transform: scale(1.1);
+    transition: all ease 0.5s;
+
+    & img {
+      filter: grayscale(0.5);
+    }
+  }
+}
+
+.levels__navigation{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+
+  & .level_ {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 0;
+    color: #aaa;
+    border: solid 1px #ccc;
+    border-radius: 18px;
+    padding: 10px;
+
+    &.active {
+    color: $base-color-light;
+    border-color: $base-color-light;
+    }
+
+    &.done {
+      color: $button-color-light;
+      border-color: $button-color-light;
+    }
   }
 }

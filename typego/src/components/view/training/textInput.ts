@@ -1,4 +1,5 @@
-import { TrainingStatus } from '../../types/enums';
+import { createElement } from '../../helper';
+import { Tag, TrainingStatus } from '../../types/enums';
 import Keyboard from '../keyboard/keyboard';
 import { keyDowmHandler, keyUpHandler } from './keybordHandlers';
 import TextTraining from './textTraining';
@@ -8,8 +9,8 @@ class TextInput {
   private status;
 
   constructor() {
-    const input = document.createElement('input');
-    input.className = 'level__input';
+    const input = createElement<HTMLInputElement>(Tag.input, 'level__input');
+    input.id = 'main_input';
     input.type = 'text';
     input.autofocus = true;
     input.autocomplete = 'off';

@@ -3,6 +3,7 @@ import image1 from '../../assets/png/image1.png';
 import proposale1 from '../../assets/png/propo1.png';
 import proposale2 from '../../assets/png/propo2.png';
 import proposale3 from '../../assets/png/propo3.png';
+import TrainingView from './training/lessons';
 
 class Main {
   private setBackground(element: HTMLElement, image: string): void {
@@ -29,6 +30,11 @@ class Main {
       const leftColText = createElement('div', 'left-col__text', leftCol);
       createElement('span', 'text', leftColText).innerHTML = 'Научись быстро печатать с клавиатурным тренажером <span>TypeGo</span>. Уроки слепой печати помогут тебе использовать все 10 пальцев.';
       const leftColButton = createElement('div', 'left-col__button', leftCol);
+      leftColButton.addEventListener('click', (e) => {
+        console.log(e.target);
+        const training = new TrainingView();
+        training.render(main);
+      });
       createElement('div', 'button', leftColButton).textContent = 'Начать печатать';
       const rightCol = createElement('div', 'typig-faster__right-col', wrapper1);
       const image = createElement('div', 'image', rightCol);

@@ -74,7 +74,9 @@ export const keyUpHandler = (keyboard: Keyboard, training: TextTraining): void =
   text.keyboardHint(keyboard);
   training.updateProgress();
   if (text.index === text.letters.length - 1) {
-    // temporary solution
+    const input = document.querySelector('#main_input');
+    console.log(input);
+    input?.remove();
 
     // eslint-disable-next-line no-alert
     alert('Level done!');

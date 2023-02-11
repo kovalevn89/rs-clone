@@ -4,7 +4,6 @@ import TextTraining from './textTraining';
 import TextInput from './textInput';
 import { Tag, TrainingStatus } from '../../types/enums';
 import { TextResponse } from '../../types';
-// import Api from '../../../api/api';
 
 class Training {
   container;
@@ -14,8 +13,8 @@ class Training {
   settings;
 
   constructor(response: TextResponse, parent: HTMLElement) {
+    parent.innerHTML = '';
     this.container = createElement(Tag.div, 'level__container', parent);
-    this.container.innerHTML = '';
 
     this.input = new TextInput();
     this.textTraining = new TextTraining(response);
@@ -33,8 +32,10 @@ class Training {
     this.textTraining.updateInstructions(TrainingStatus.start);
   }
 
-  renderStartTraining(): void {
-    this.container.innerHTML = '';
+  trainingRemove(): void {
+    this.input.input.remove();
+    this.textTraining.container.remove();
+    this.keyboard.keyboard.remove();
   }
 }
 

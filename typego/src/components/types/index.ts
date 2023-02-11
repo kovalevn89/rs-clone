@@ -16,8 +16,7 @@ export interface Progress {
   accurancy: number;
 }
 
-export interface TextResponse {
-  text: string;
+export interface TextResponse extends Level {
   lang: 'en' | 'ru';
 }
 

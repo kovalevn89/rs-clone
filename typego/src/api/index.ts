@@ -4,8 +4,6 @@ import { Lang } from '../components/types/enums';
 import { Method, User } from './constants';
 
 const HOST = 'https://typego.onrender.com/api/';
-// const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTZhMjBiMTUyNDMyMDUyNDhlMjgxYyIsIm5hbWUiOiJzdXBlcmFkbWluIiwiaWF0IjoxNjc2MDU5MTYyLCJleHAiOjE2NzYzMTgzNjJ9.mcUbGTGj8YYhdwIonVYmGOfseuz12MCGJI57y-90Ss0';
-// const newke = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTZhMjBiMTUyNDMyMDUyNDhlMjgxYyIsIm5hbWUiOiJzdXBlcmFkbWluIiwiaWF0IjoxNjc2MTE5OTQzLCJleHAiOjE2NzYzNzkxNDN9.ln-4lrrXRNTAQDTmvunCeqbxpnHunq2Fy3X0lD9GpTo';
 const ENDPOINT = {
   register: 'register',
   auth: 'auth',
@@ -14,6 +12,12 @@ const ENDPOINT = {
 };
 
 export default class Api {
+  token: string;
+
+  constructor() {
+    this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTZhMjBiMTUyNDMyMDUyNDhlMjgxYyIsIm5hbWUiOiJzdXBlcmFkbWluIiwiaWF0IjoxNjc2MDU5MTYyLCJleHAiOjE2NzYzMTgzNjJ9.mcUbGTGj8YYhdwIonVYmGOfseuz12MCGJI57y-90Ss0';
+  }
+
   private async makeFetch<T>(url: string, method = Method.GET, request?: any): Promise<T> {
     const response = await fetch(`${HOST}${url}`, {
       method,
@@ -32,12 +36,12 @@ export default class Api {
     return response.json() as Promise<T>;
   }
 
-  async getLessons(token: string, lang = Lang.en): Promise<Lessons> {
+  async getLessons(lang = Lang.en): Promise<Lessons> {
     const { lessons } = ENDPOINT;
     const url = `${lessons}?lang=${lang}`;
     return this.makeFetch<Lessons>(url, Method.GET, {
       headers: {
-        Authorization: token,
+        Authorization: this.token,
       },
     });
   }
@@ -62,6 +66,7 @@ export default class Api {
       headers: {
         'Content-Type': 'application/json',
       },
+      token: this.token,
     });
   }
 }
