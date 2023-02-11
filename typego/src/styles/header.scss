@@ -124,4 +124,79 @@
       }
     }
   }
+
+  &.dark {
+    background: #12315D;
+  
+    .header__wrapper {
+      .header__logo {
+        .logo__caption {
+          color: $font-color-text1-dark;
+        }
+      }
+  
+      .header__menu {
+        .nav {
+          .menu__list {
+            .menu__item {
+              color: $font-color-text1-dark;
+              &:hover {
+                color: $font-color-text1-dark;
+                background-color: $button-hover-color-dark;
+                border: 1px solid $font-color-text1-dark;
+              }
+            }
+          }
+        }
+      }
+  
+      .header__controls {
+        .theme__btn {
+          background-image: url( "data:image/svg+xml, <svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1.375 13.781C1.37297 16.905 2.42758 19.9378 4.36739 22.3865C6.30721 24.8352 9.0182 26.5558 12.0597 27.2687C15.1012 27.9816 18.2944 27.6448 21.1203 26.3132C23.9462 24.9815 26.2386 22.7332 27.625 19.9338C15.219 19.9338 9.06625 13.7796 9.06625 1.375C6.75601 2.52135 4.81187 4.29018 3.45295 6.48213C2.09403 8.67409 1.37434 11.202 1.375 13.781Z\" stroke='lightgray' stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>");
+        }
+  
+        .lang__btn,
+        .sign__btn {
+          color: $font-color-text1-dark;
+          border: 1px solid $font-color-text1-dark;
+          
+          &:hover {
+            color: $font-color-text1-dark;
+            background-color: $button-hover-color-dark;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media (min-width: 320px) and (max-width: 1440px) { 
+  .header {
+    width: auto; // !
+    max-width: 1440px; //!
+
+    .header__wrapper {
+      padding: 0 11vw; //!
+  
+      .header__logo {
+        margin-left: 0px; // !
+      }
+
+      .header__menu {
+        margin-left: 0px;
+
+        .nav {
+
+          .menu__list{
+            padding-left: 10px;
+            padding-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 1100px) { 
 }
