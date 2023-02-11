@@ -17,5 +17,6 @@ module.exports = {
     "no-console": "off",
     "class-methods-use-this": "off",
     "@typescript-eslint/lines-between-class-members": "off",
+    "no-param-reassign": "off",
   },
 };

@@ -61,6 +61,20 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
         type: 'asset/resource',
       },
+      {
+        test: /\.(woff(2)?|ttf|otf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]',
+        },
+      },
+      {
+        test: /\.(mp3|wav|ogg)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'media/[name][ext]',
+        },
+      },
     ],
   },
   resolve: {
