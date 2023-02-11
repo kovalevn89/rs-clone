@@ -1,8 +1,6 @@
 export interface State {
   totalScore: number;
   averageAccuracy: number;
-  lib: Record<string, string>;
-  keys: string[];
 }
 
 export interface LvlParam {
