@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-cycle
 import DropStartPage from './drop-start-page';
 import { createElement, removeChild } from '../helper/index';
-import { gameState, state } from './data/state';
-import GameData from './types/enum';
+import { gameState, state } from '../helper/state';
+import { GameData } from '../types/enums';
 
-import { dataLang } from './data/data';
+import { dataLang } from '../helper/data';
 
 class DropGamePage {
   container: HTMLElement;

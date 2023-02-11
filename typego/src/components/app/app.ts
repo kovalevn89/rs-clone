@@ -1,7 +1,7 @@
 import Model from '../model/model';
 import Controller from '../controller/controler';
-import DropStartPage from '../drop-food-game/drop-start-page';
-import DropGamePage from '../drop-food-game/drop-game-page';
+import DropStartPage from '../view/drop-start-page';
+import DropGamePage from '../view/drop-game-page';
 import Main from '../view/main';
 import WhacAMole from '../view/whacamole';
 

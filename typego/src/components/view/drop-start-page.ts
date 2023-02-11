@@ -1,7 +1,7 @@
 import { createElement, removeChild } from '../helper/index';
 
-import { levelValues } from './data/data';
-import { state } from './data/state';
+import { levelValues } from '../helper/data';
+import { state } from '../helper/state';
 
 // eslint-disable-next-line import/no-cycle
 import DropGamePage from './drop-game-page';

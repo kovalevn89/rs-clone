@@ -22,4 +22,9 @@ export enum Tag {
   audio = 'audio',
 }
 
+export enum GameData {
+  margin = 70,
+  foodTime = 200,
+}
+
 export default Tag;
