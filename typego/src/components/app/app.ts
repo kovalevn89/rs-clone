@@ -4,6 +4,7 @@ import DropStartPage from '../view/drop-start-page';
 import DropGamePage from '../view/drop-game-page';
 import Main from '../view/main';
 import WhacAMole from '../view/whacamole';
+import AboutPage from '../view/about';
 
 class App {
   model;
@@ -12,6 +13,7 @@ class App {
   dropGamePage;
   main;
   whac;
+  aboutPage;
 
   constructor() {
     this.model = new Model();
@@ -20,12 +22,14 @@ class App {
     this.main = new Main();
     this.dropStartPage = new DropStartPage();
     this.dropGamePage = new DropGamePage();
+    this.aboutPage = new AboutPage();
   }
 
   run(): void {
-    this.dropStartPage.run();
+    // this.dropStartPage.run();
     // this.main.run();
     // this.whac.run();
+    this.aboutPage.run();
   }
 }
 

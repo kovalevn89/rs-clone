@@ -34,3 +34,8 @@
   
   text-transform: uppercase;
 }
+
+@mixin link {
+  text-decoration: none;
+  color: $base-color-light;
+}
