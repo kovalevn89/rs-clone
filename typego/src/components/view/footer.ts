@@ -12,7 +12,8 @@ class Footer {
         if (footer !== null) {
           const footerWrapper = createElement('div', 'footer__wrapper', footer);
           const footerTop = createElement('div', 'footer__top', footerWrapper);
-          createElement('div', 'footer__caption', footerTop).textContent = 'TypeGo';
+          const logoBtn = createElement('div', 'footer__caption', footerTop);
+          logoBtn.textContent = 'TypeGo';
           createElement('div', 'footer__about', footerTop).textContent = 'О нас';
 
           const footerBottom = createElement('div', 'footer__bottom', footerWrapper);

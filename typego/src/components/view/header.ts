@@ -36,7 +36,11 @@ class Header {
           createElement('div', 'burger__line', burger);
           createElement('div', 'burger__line', burger);
           createElement('div', 'burger__line', burger);
-          createElement('div', 'logo__caption', logo).textContent = 'TypeGo';
+          const logoBtn = createElement('div', 'logo__caption', logo);
+          logoBtn.textContent = 'TypeGo';
+          logoBtn.addEventListener('click', () => {
+            window.location.hash = '#/main';
+          });
 
           burger.addEventListener('click', () => {
             const nav = document.querySelector('.nav');
