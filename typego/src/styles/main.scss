@@ -6,7 +6,6 @@
 
   .main_wrapper {
     width: 100%;
-    margin: 0 auto;
     background-color:  $base-color-addition-light;
     padding-bottom: 20px;
 
@@ -388,7 +387,7 @@
           max-width: 1440px; 
           .block_wrapper {
             padding: 0 11vw; 
-            }
+          }
         }
       }
   
@@ -403,6 +402,7 @@
           .registration{
             min-height: 250px;
             border-radius: 7vw; 
+            padding-bottom: 10px;
       
             .registration-caption {
               margin-top: 3.5vw; 
@@ -537,7 +537,7 @@
       .registration{
         width: 100%;
         padding: 5px;
-        padding-bottom: 10px;
+        //padding-bottom: 10px;
         //margin-bottom: 5vw;
       }
     }
