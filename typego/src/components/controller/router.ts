@@ -1,22 +1,25 @@
 import { IPage, IParametr } from '../types/index';
 import Main from '../view/main';
 import WhacAMole from '../view/whacamole';
+import Error from '../view/error';
 
 class Router {
   private validPage: Array<IPage>;
   private main;
   private whac;
+  private error;
 
   constructor() {
     this.validPage = new Array<IPage>();
     this.validPage.push({ page: 'main', params: [] });
-    this.validPage.push({ page: 'test', params: [] });
-    this.validPage.push({ page: 'lern', params: [] });
-    this.validPage.push({ page: 'lesson', params: [] });
+    // this.validPage.push({ page: 'test', params: [] });
+    // this.validPage.push({ page: 'lern', params: [] });
+    // this.validPage.push({ page: 'lesson', params: [] });
     this.validPage.push({ page: 'games', params: ['name'] });
 
     this.main = new Main();
     this.whac = new WhacAMole();
+    this.error = new Error();
   }
 
   private isPageValid(page: string): boolean {
@@ -78,7 +81,8 @@ class Router {
                 case 'food': console.log('render food game'); break; // PLACE THIS RENDER FOOD GAME
                 case 'shoter': console.log('render shooter game'); break; // PLACE THIS RENDER SHOOTER GAME
                 default: {
-                  console.log('RENDER 404'); // PLACE THIS RENDER ERROR PAGE
+                  this.error.run('GAME NOT FOUND (404)');
+                  // console.log('RENDER 404');
                 }
               }
             }
@@ -90,7 +94,8 @@ class Router {
       }
     } else {
       // render 404
-      console.log('RENDER 404');
+      this.error.run('PAGE NOT FOUND (404)');
+      // console.log('RENDER 404');
       // this.error.render();
     }
   }

@@ -71,12 +71,16 @@ class Header {
           const list = createElement('ul', 'menu__list', nav);
           const item1 = createElement('li', 'menu__item', list);
           item1.textContent = 'Тестирование';
+          item1.addEventListener('click', () => { window.location.hash = '#/test'; });
           const item2 = createElement('li', 'menu__item', list);
           item2.textContent = 'Обучение';
+          item2.addEventListener('click', () => { window.location.hash = '#/lern'; });
           const item3 = createElement('li', 'menu__item', list);
           item3.textContent = 'Тренажер';
+          item3.addEventListener('click', () => { window.location.hash = '#/lesson'; });
           const item4 = createElement('li', 'menu__item', list);
           item4.textContent = 'Игры';
+          item3.addEventListener('click', () => { window.location.hash = '#/games'; });
           const item5 = createElement('li', 'menu__item', list);
           item5.textContent = 'Войти';
           const item6 = createElement('li', 'menu__item', list);
