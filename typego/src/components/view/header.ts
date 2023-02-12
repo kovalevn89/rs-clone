@@ -1,9 +1,10 @@
-import { createElement } from '../helper'; // createElement, removeChild
+import { createElement } from '../helper';
 
 class Header {
   private changeTheme(): void {
     const header: HTMLElement | null = document.querySelector('.header');
     const main: HTMLElement | null = document.querySelector('.main');
+    const footer: HTMLElement | null = document.querySelector('.footer');
 
     if (header !== null) {
       header.classList.toggle('dark');
@@ -11,6 +12,10 @@ class Header {
 
     if (main !== null) {
       main.classList.toggle('dark');
+    }
+
+    if (footer !== null) {
+      footer.classList.toggle('dark');
     }
   }
 

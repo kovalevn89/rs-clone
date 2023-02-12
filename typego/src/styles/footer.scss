@@ -1,4 +1,59 @@
+@import './mixin.scss';
+@import './constants.scss';
+
 .footer {
-  height: 150px;
-  background-color: orange;
+  width: 100%;
+  margin: 0 auto;
+  background-color: $footer-background-light;
+
+  .footer__wrapper {
+    box-sizing: border-box;
+    width: 1440px;
+    margin: 0 auto;
+    min-height: 150px;
+    padding: 0 160px;
+    display: flex;
+    flex-direction: column;
+
+    .footer__top {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 22px;
+
+      .footer__caption {
+        font-family: 'Inter';
+        font-style: italic;
+        font-weight: 700;
+        font-size: 45px;
+        line-height: 70px;
+        color: $base-color-light;
+      }
+
+      .footer__about {
+        padding-top: 25px;
+        @include normal-text;
+        color: $base-color-light;
+        user-select: none;
+        cursor: pointer;
+      }
+    }
+
+    .footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 5px;
+
+      .footer__credits {
+        @include normal-text;
+        color: $base-color-light;
+      }
+
+      .footer__controls-discription {
+        @include normal-text;
+        color: $base-color-light;
+        text-align: right;
+      }
+    }
+  }
 }
+
