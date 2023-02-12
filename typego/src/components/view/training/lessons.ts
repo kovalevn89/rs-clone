@@ -51,6 +51,8 @@ export default class TrainingView {
         console.log(e);
       }
 
+      console.log('En training');
+
       this.container.innerHTML = '';
       this.lesson = new TrainingLessons(LESSONS);
       this.lesson.render(this.container);
@@ -60,6 +62,8 @@ export default class TrainingView {
       this.container.innerHTML = '';
       this.lesson = new TrainingLessons(LESSONS_RU);
       this.lesson.render(this.container);
+
+      console.log('Ru training');
     });
   }
 }

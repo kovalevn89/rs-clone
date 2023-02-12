@@ -1,12 +1,17 @@
 import { createElement } from '../../helper';
 import { Tag, TrainingStatus } from '../../types/enums';
-import Keyboard from '../keyboard/keyboard';
+// eslint-disable-next-line import/no-cycle
 import { keyDowmHandler, keyUpHandler } from './keybordHandlers';
-import TextTraining from './textTraining';
+import Training from './training';
 
 class TextInput {
   input;
   private status;
+  private isComplete;
+
+  private addFocus = () => {
+    this.input.focus();
+  };
 
   constructor() {
     const input = createElement<HTMLInputElement>(Tag.input, 'level__input');
@@ -19,37 +24,51 @@ class TextInput {
 
     this.input = input;
     this.status = false;
+    this.isComplete = false;
   }
 
-  listen(keyboard: Keyboard, training: TextTraining): void {
-    const { text } = training;
+  listen(training: Training): void {
+    const { textTraining, keyboard } = training;
+    const { text } = textTraining;
 
     this.input.addEventListener('keydown', (e) => {
+      if (this.isComplete) return;
       if (e.code !== 'Escape' && !this.status) {
         text.setStartTime(Date.now());
         this.status = true;
-        training.updateInstructions(TrainingStatus.pause);
+        textTraining.updateInstructions(TrainingStatus.pause);
         return;
       }
       if (e.code === 'Escape') {
         text.time += text.currenTime - text.startTime;
         this.status = false;
         keyboard.init();
-        training.updateInstructions(TrainingStatus.continue);
+        textTraining.updateInstructions(TrainingStatus.continue);
         return;
       }
-      keyDowmHandler(e, keyboard, text);
+      keyDowmHandler(e, training);
     });
 
     this.input.addEventListener('keyup', () => {
       if (this.status) {
-        keyUpHandler(keyboard, training);
+        keyUpHandler(training);
       }
     });
 
     this.input.addEventListener('blur', () => {
-      this.input.focus();
+      if (!this.isComplete) {
+        this.input.focus();
+      }
     });
+  }
+
+  stopListen(): void {
+    this.isComplete = true;
+    this.status = false;
+  }
+
+  startListen(): void {
+    this.isComplete = false;
   }
 }
 

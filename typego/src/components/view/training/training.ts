@@ -1,6 +1,7 @@
 import { createElement } from '../../helper';
 import Keyboard from '../keyboard/keyboard';
 import TextTraining from './textTraining';
+// eslint-disable-next-line import/no-cycle
 import TextInput from './textInput';
 import { Tag, TrainingStatus } from '../../types/enums';
 import { TextResponse } from '../../types';
@@ -27,12 +28,12 @@ class Training {
     this.container.append(this.textTraining.container);
     this.container.append(this.keyboard.keyboard);
 
-    this.input.listen(this.keyboard, this.textTraining);
+    this.input.listen(this);
     this.textTraining.updateProgress();
     this.textTraining.updateInstructions(TrainingStatus.start);
   }
 
-  trainingRemove(): void {
+  remove(): void {
     this.input.input.remove();
     this.textTraining.container.remove();
     this.keyboard.keyboard.remove();

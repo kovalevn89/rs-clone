@@ -1,17 +1,20 @@
 import { Status } from '../../types/enums';
 import { isSpecial } from '../../helper/isSpecial';
-import Keyboard from '../keyboard/keyboard';
-import Text from './text';
-import TextTraining from './textTraining';
 import correctKey from '../../../assets/media/correctKey.mp3';
 import incorrectKey from '../../../assets/media/incorrectKey.mp3';
 import bacspaseKey from '../../../assets/media/backspaseKey.mp3';
+// eslint-disable-next-line import/no-cycle
+import Training from './training';
+import FinishLevel from './finish';
 
-export const keyDowmHandler = (e: KeyboardEvent, keyboard: Keyboard, text: Text): void => {
+export const keyDowmHandler = (e: KeyboardEvent, { keyboard, textTraining }: Training): void => {
   e.preventDefault();
   const id = e.code.toLowerCase();
 
+  console.log(id);
+
   keyboard.activate(id, Status.active);
+  const { text } = textTraining;
   let { index, mistakes } = text;
   const { letters } = text;
   const sound = new Audio(correctKey);
@@ -65,18 +68,24 @@ export const keyDowmHandler = (e: KeyboardEvent, keyboard: Keyboard, text: Text)
   text.updateActive();
 };
 
-export const keyUpHandler = (keyboard: Keyboard, training: TextTraining): void => {
+export const keyUpHandler = (training: Training): void => {
+  const { keyboard, textTraining } = training;
+  const { text } = textTraining;
+
   keyboard.init();
-  const { text } = training;
+
   text.setCurrentTime(Date.now());
   text.updateSpeed();
 
   text.keyboardHint(keyboard);
-  training.updateProgress();
+  textTraining.updateProgress();
   if (text.index === text.letters.length - 1) {
     const input = document.querySelector('#main_input');
     console.log(input);
     input?.remove();
+
+    const finish = new FinishLevel();
+    finish.render(training, document.body);
 
     // eslint-disable-next-line no-alert
     alert('Level done!');

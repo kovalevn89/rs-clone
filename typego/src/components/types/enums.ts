@@ -39,6 +39,7 @@ export enum TrainingStatus {
   start = 'start',
   pause = 'pause',
   continue = 'continue',
+  stop = 'stop',
 }
 
 export default {

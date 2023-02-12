@@ -15,6 +15,7 @@ export default class TrainingLessons {
   private container;
   lessons;
   private progress;
+  // navigation;
 
   constructor(l = LESSONS) {
     const cover = [cover1, cover2, cover3, cover4, cover5, cover6];
@@ -50,38 +51,41 @@ export default class TrainingLessons {
     const { index, lang, levels } = lesson;
     if (!levels) return;
     parent.innerHTML = '';
-    const navigation = createElement(Tag.div, 'levels__navigation', parent);
-    const trainingContainer = createElement(Tag.div, 'training__container', parent);
-    levels.map((level, i) => {
+    const navigationContainer = createElement(Tag.div, 'levels__navigation', parent);
+    levels.map((level) => {
       const response = {
         ...level,
         lang,
       };
-      const element = createElement(Tag.div, `level_ _${index}`, navigation);
-      element.textContent = `${response.index} ${response.name}`;
-      if (i < this.progress) {
-        element.classList.add('done');
-      }
-      if (i === this.progress) {
-        element.classList.add('active');
-        this.renderTraining(response, trainingContainer);
-      }
+      const element = createElement(Tag.div, `level_ _${index}`, navigationContainer);
+      element.textContent = `${response.index} ${response.name.toUpperCase()}`;
+
       return element;
     });
   }
 
-  renderTraining(response: TextResponse, parent: HTMLElement): void {
+  renderTraining(response: TextResponse, lesson: Lesson, parent: HTMLElement): void {
     const { name, index } = response;
 
     parent.innerHTML = '';
 
     createElement(Tag.h3, 'training__title', parent).textContent = `${index}: ${name}`;
-    const training = new Training(response, parent);
+    const trainingContainer = createElement(Tag.div, 'training__container', parent);
+
+    const training = new Training(response, trainingContainer);
     training.render();
   }
 
-  finishTraining(): void {
-    // const finish = createElement(Tag.div, 'modal', document.body);
-    // const message = cre
+  nextLevel(): void {
+
+  }
+
+  updateNavigation(): void {
+    // if (i < this.progress) {
+    //   element.classList.add('done');
+    // }
+    // if (i === this.progress) {
+    //   element.classList.add('active');
+    // }
   }
 }
