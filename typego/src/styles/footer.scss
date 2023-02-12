@@ -55,5 +55,31 @@
       }
     }
   }
+
+  &.dark {
+    background-color: $footer-background-dark;
+  
+    .footer__wrapper {
+      .footer__top {
+        .footer__caption {
+          color: $font-color-text1-dark;
+        }
+  
+        .footer__about {
+          color: $font-color-text1-dark;
+        }
+      }
+  
+      .footer__bottom {
+        .footer__credits {
+          color: $font-color-text1-dark;
+        }
+  
+        .footer__controls-discription {
+          color: $font-color-text1-dark;
+        }
+      }
+    }
+  }
 }
 
