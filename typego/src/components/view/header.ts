@@ -1,8 +1,18 @@
 import { createElement } from '../helper'; // createElement, removeChild
 
 class Header {
-  // constructor() {
-  // }
+  private changeTheme(): void {
+    const header: HTMLElement | null = document.querySelector('.header');
+    const main: HTMLElement | null = document.querySelector('.main');
+
+    if (header !== null) {
+      header.classList.toggle('dark');
+    }
+
+    if (main !== null) {
+      main.classList.toggle('dark');
+    }
+  }
 
   private render(): void {
     const body: HTMLElement | null = document.querySelector('.body');
@@ -62,13 +72,14 @@ class Header {
           item5.textContent = 'Войти';
           const item6 = createElement('li', 'menu__item', list);
           item6.textContent = '';
-          createElement('div', 'theme__btn', item6);
+          const themeBtn2 = createElement('div', 'theme__btn', item6);
+          themeBtn2.addEventListener('click', this.changeTheme);
           createElement('div', 'lang__btn', item6).textContent = 'RU';
 
           // controls
           const controls = createElement('div', 'header__controls', wrapper);
-          const themeBtn = createElement('div', 'theme__btn', controls);
-          themeBtn.textContent = '';
+          const themeBtn1 = createElement('div', 'theme__btn', controls);
+          themeBtn1.addEventListener('click', this.changeTheme);
           const langBtn = createElement('div', 'lang__btn', controls);
           langBtn.textContent = 'RU';
           const signBtn = createElement('div', 'sign__btn', controls);

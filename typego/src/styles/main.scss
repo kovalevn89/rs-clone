@@ -5,97 +5,105 @@
   width: 100%;
 
   .main_wrapper {
-    width: 1440px;
+    width: 100%;
     margin: 0 auto;
-    background-color: $base-color-addition-light;
+    background-color:  $base-color-addition-light;
 
-    .block_typig-faster {
+    .block_typig-faster__wrapper {
       width: 100%;
       background-color: $base-color-light;
 
-      .block_wrapper {
-        box-sizing: border-box;
-        width: 100%;
-        min-height: 500px;
-        padding: 0 160px;
-
-        display: flex;
-        align-items: stretch;
-        
-        .typig-faster__left-col {
-          width: 60%;
+      .block_typig-faster {
+        width: 1440px;
+        margin: 0 auto;
   
-          .left-col__caption {
-            padding-top: 80px;
-
-            .text {
-              @include caption-text;
-              color: $font-color-text1-light;
-            }
-          }
+        .block_wrapper {
+          box-sizing: border-box;
+          width: 100%;
+          min-height: 500px;
+          padding: 0 160px;
   
-          .left-col__text {
-            padding-top: 24px;
-            width: 90%;
-  
-            .text {
-              @include normal-text;
-              color: $font-color-text1-light;
-
-              span {
-                font-weight: 700;
-                font-style: italic;
-              }
-            }
-          }
-  
-          .left-col__button{
-            padding-top: 49px;
-  
-            .button {
-              width: 202px;
-              height: 50px;
-              @include main-page-button;
-
-              background: $button-color-light;
-              &:hover {
-                background: $button-hover-color-light;
-              }
-            }
-          }
-        }
-  
-        .typig-faster__right-col {
-          width: 40%;
-          position: relative;
-  
-          .image {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            margin-top: -28%;
-            z-index: 2;
-          }
-
-          .ellipse {
+          display: flex;
+          align-items: stretch;
+          
+          .typig-faster__left-col {
             width: 60%;
-            aspect-ratio: 1 / 1;
-            background: rgba(255, 239, 182, 1);
-            filter: blur(125px);
-            position: absolute;
-            left: 25%;
-            top: 0;
-            z-index: 1;
+    
+            .left-col__caption {
+              padding-top: 80px;
+  
+              .text {
+                @include caption-text;
+                color: $font-color-text1-light;
+              }
+            }
+    
+            .left-col__text {
+              padding-top: 24px;
+              width: 90%;
+    
+              .text {
+                @include normal-text;
+                color: $font-color-text1-light;
+  
+                span {
+                  font-weight: 700;
+                  font-style: italic;
+                }
+              }
+            }
+    
+            .left-col__button{
+              padding-top: 49px;
+    
+              .button {
+                width: 202px;
+                height: 50px;
+                @include main-page-button;
+  
+                background: $button-color-light;
+                &:hover {
+                  background: $button-hover-color-light;
+                }
+              }
+            }
+          }
+    
+          .typig-faster__right-col {
+            width: 40%;
+            position: relative;
+    
+            .image {
+              position: relative;
+              width: 100%;
+              height: 100%;
+              margin-top: -28%;
+              z-index: 2;
+            }
+  
+            .ellipse {
+              width: 60%;
+              aspect-ratio: 1 / 1;
+              background: rgba(255, 239, 182, 1);
+              filter: blur(125px);
+              position: absolute;
+              left: 25%;
+              top: 0;
+              z-index: 1;
+            }
           }
         }
       }
     }
 
+
     .block_proposales {
-      width: 100%;
+      width: 1440px;
+      margin: 0 auto;
       min-height: 1614px;
-      overflow: hidden;
       position: relative;
+
+      background-color: $base-color-addition-light;
 
       .ellipse1 {
         width: 40%;
@@ -103,7 +111,7 @@
         background: rgba(133, 167, 255, 0.8);
         filter: blur(250px);
         position: absolute;
-        left: -2%;
+        left: 0;
         top: -5%;
       }
 
@@ -113,7 +121,7 @@
         background: rgba(133, 167, 255, 0.9);
         filter: blur(250px);
         position: absolute;
-        right: -5%;
+        right: 0;
         bottom: 8%;
         z-index: 5;
       }
@@ -262,33 +270,35 @@
   &.dark {
     .main_wrapper {
       background-color: $base-color-addition-dark;
-
-      .block_typig-faster {
+      .block_typig-faster__wrapper {
         background-color: $base-color-dark;
+        .block_typig-faster {
+          background-color: $base-color-dark;
 
-        .block_wrapper {
-          .typig-faster__left-col {
-            .left-col__caption {
-              .text {
-                @include caption-text;
-                color: $font-color-text1-dark;
+          .block_wrapper {
+            .typig-faster__left-col {
+              .left-col__caption {
+                .text {
+                  @include caption-text;
+                  color: $font-color-text1-dark;
+                }
               }
-            }
-    
-            .left-col__text {
-              .text {
-                @include normal-text;
-                color: $font-color-text1-dark;
+      
+              .left-col__text {
+                .text {
+                  @include normal-text;
+                  color: $font-color-text1-dark;
+                }
               }
-            }
-    
-            .left-col__button{
-              .button {
+      
+              .left-col__button{
+                .button {
 
-                background: $button-color-dark;
-                color: $font-color-text1-dark;
-                &:hover {
-                  background: $button-hover-color-dark;
+                  background: $button-color-dark;
+                  color: $font-color-text1-dark;
+                  &:hover {
+                    background: $button-hover-color-dark;
+                  }
                 }
               }
             }
@@ -297,6 +307,7 @@
       }
 
       .block_proposales {
+        background-color: $base-color-addition-dark;
         .ellipse1 {
           background: rgba(133, 167, 255, 0.8);
         }
@@ -370,16 +381,20 @@
 @media (min-width: 320px) and (max-width: 1440px) { 
   .main {
     .main_wrapper {
-      width: auto; 
-      max-width: 1440px; 
-  
-      .block_typig-faster {
-        .block_wrapper {
-          padding: 0 11vw; 
-          }
+      .block_typig-faster__wrapper {
+        .block_typig-faster {
+          width: auto; 
+          max-width: 1440px; 
+          .block_wrapper {
+            padding: 0 11vw; 
+            }
+        }
       }
   
       .block_proposales {
+        width: auto; 
+        max-width: 1440px; 
+
         .block_wrapper {
           padding: 0 11vw; 
           padding-top: 7.8%;
@@ -407,42 +422,44 @@
 @media (min-width: 320px) and (max-width: 699px) { 
   .main {
     .main_wrapper {
-      .block_typig-faster {
-        padding-top: 6vw;
-  
-        .block_wrapper {
-          display: flex;
-          flex-direction: column;
-          
-          .typig-faster__left-col {
-            width: 100%;
-            margin-top: -15vw;
+      .block_typig-faster__wrapper {
+        .block_typig-faster {
+          padding-top: 6vw;
     
-            .left-col__caption {
-              padding-top: 6vw;
-              text-align: center;
-            }
-    
-            .left-col__text {
-              padding-top: 6vw;
+          .block_wrapper {
+            display: flex;
+            flex-direction: column;
+            
+            .typig-faster__left-col {
               width: 100%;
-              text-align: center;
-            }
-    
-            .left-col__button{
-              padding-top: 6vw;
-              padding-bottom: 6vw;
-    
-              .button {
-                margin: 0 auto;
+              margin-top: -15vw;
+      
+              .left-col__caption {
+                padding-top: 6vw;
+                text-align: center;
+              }
+      
+              .left-col__text {
+                padding-top: 6vw;
+                width: 100%;
+                text-align: center;
+              }
+      
+              .left-col__button{
+                padding-top: 6vw;
+                padding-bottom: 6vw;
+      
+                .button {
+                  margin: 0 auto;
+                }
               }
             }
-          }
-    
-          .typig-faster__right-col {
-            order: -1;
-            width: 100%;
-            aspect-ratio: 1/1;
+      
+            .typig-faster__right-col {
+              order: -1;
+              width: 100%;
+              aspect-ratio: 1/1;
+            }
           }
         }
       }

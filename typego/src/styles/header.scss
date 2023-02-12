@@ -2,16 +2,16 @@
 @import './constants.scss';
 
 .header {
-  width: 1440px;
+  width: 100%;
   margin: 0 auto;
   background: linear-gradient(180deg, $base-footer-gradient-color1-light 40%, $base-footer-gradient-color2-light 80%);
 
   .header__wrapper {
     box-sizing: border-box;
-    width: 100%;
+    width: 1440px;
+    margin: 0 auto;
     min-height: 150px;
     padding: 0 160px;
-
     display: flex;
     justify-content: space-between;
 
@@ -254,10 +254,9 @@
 
 @media (min-width: 320px) and (max-width: 1440px) { 
   .header {
-    width: auto;
-    max-width: 1440px;
-
     .header__wrapper {
+      width: auto;
+      max-width: 1440px;
       min-height: 10vw;
       padding: 0 11vw;
   

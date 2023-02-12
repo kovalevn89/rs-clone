@@ -21,7 +21,8 @@ class Main {
       const wrapper = createElement('div', 'main_wrapper', main);
 
       // block1
-      const fasterBlock = createElement('div', 'block_typig-faster', wrapper);
+      const fasterWrap = createElement('div', 'block_typig-faster__wrapper', wrapper);
+      const fasterBlock = createElement('div', 'block_typig-faster', fasterWrap);
       const wrapper1 = createElement('div', 'block_wrapper', fasterBlock);
       const leftCol = createElement('div', 'typig-faster__left-col', wrapper1);
       const leftColCaption = createElement('h1', 'left-col__caption', leftCol);
