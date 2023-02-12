@@ -15,10 +15,6 @@ class Header {
         if (header !== null) {
           const wrapper = createElement('div', 'header__wrapper', header);
 
-          // const burger =
-          // createElement('div', 'header__burger', wrapper);
-          // console.log(burger);
-          // createElement('div', 'logo__caption', logo).textContent = 'TypeGo';
           // logo
           const logo = createElement('div', 'header__logo', wrapper);
           const burger = createElement('div', 'header__burger', logo);
@@ -62,6 +58,12 @@ class Header {
           item3.textContent = 'Тренажер';
           const item4 = createElement('li', 'menu__item', list);
           item4.textContent = 'Игры';
+          const item5 = createElement('li', 'menu__item', list);
+          item5.textContent = 'Войти';
+          const item6 = createElement('li', 'menu__item', list);
+          item6.textContent = '';
+          createElement('div', 'theme__btn', item6);
+          createElement('div', 'lang__btn', item6).textContent = 'RU';
 
           // controls
           const controls = createElement('div', 'header__controls', wrapper);
