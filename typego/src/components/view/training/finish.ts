@@ -23,5 +23,21 @@ export default class FinishLevel {
     } = training.textTraining.text;
     console.log(speed, accurancy, time, mistakes);
     console.log(training.input);
+
+    parent.append(this.container);
+
+    this.message.textContent = `Congrats! You have finished this level in ${time}s & ${mistakes} mistakes`;
+    const backBtn = createElement<HTMLButtonElement>(Tag.btn, 'back__btn', this.container);
+    const nextBtn = createElement<HTMLButtonElement>(Tag.btn, 'next-level__btn', this.container);
+    backBtn.textContent = 'Back';
+    nextBtn.textContent = 'Start next level';
+
+    backBtn.addEventListener('click', () => {
+      parent.innerHTML = '';
+    });
+
+    nextBtn.addEventListener('click', () => {
+
+    });
   }
 }

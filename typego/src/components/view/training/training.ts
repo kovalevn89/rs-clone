@@ -19,14 +19,14 @@ class Training {
 
     this.input = new TextInput();
     this.textTraining = new TextTraining(response);
-    this.keyboard = new Keyboard(response.lang);
+    this.keyboard = new Keyboard();
     this.settings = {};
   }
 
   render(): void {
     this.container.append(this.input.input);
     this.container.append(this.textTraining.container);
-    this.container.append(this.keyboard.keyboard);
+    this.keyboard.render(this.container);
 
     this.input.listen(this);
     this.textTraining.updateProgress();
@@ -36,7 +36,7 @@ class Training {
   remove(): void {
     this.input.input.remove();
     this.textTraining.container.remove();
-    this.keyboard.keyboard.remove();
+    this.keyboard.remove();
   }
 }
 

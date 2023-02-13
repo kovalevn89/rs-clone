@@ -1,15 +1,14 @@
 import { createElement } from '../../helper';
-import { Lang, Status } from '../../types/enums';
+import { Lang, Status, Tag } from '../../types/enums';
 import { svgKeyboard } from './svgKeyboard';
 import { svgKeybordRu } from './svgKeyboardRu';
 
 class Keyboard {
-  keyboard;
-  keys;
+  private keyboard;
+  private keys;
 
-  constructor(lang: 'en' | 'ru') {
-    this.keyboard = createElement('div', 'keyboard');
-    this.keyboard.innerHTML = lang === Lang.en ? svgKeyboard : svgKeybordRu;
+  constructor() {
+    this.keyboard = createElement(Tag.div, 'keyboard');
 
     this.keys = this.keyboard.querySelectorAll('.key');
   }
@@ -30,6 +29,15 @@ class Keyboard {
         key.classList.add(status);
       }
     });
+  }
+
+  render(parent: HTMLElement, lang: 'en' | 'ru' = Lang.en): void {
+    parent.append(this.keyboard);
+    this.keyboard.innerHTML = lang === Lang.en ? svgKeyboard : svgKeybordRu;
+  }
+
+  remove(): void {
+    this.keyboard.remove();
   }
 }
 
