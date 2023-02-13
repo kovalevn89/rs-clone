@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: 'AmaticSC Bold';
   src: url('../src/assets/fonts/AmaticSC-Bold.ttf'); 
@@ -6,4 +7,29 @@
 @font-face {
   font-family: 'AmaticSC Regular';
   src: url('../src/assets/fonts/AmaticSC-Regular.ttf'); 
+}
+
+@font-face {
+  font-family: 'Montserrat Alternates';
+  src: url('../src/assets/fonts/MontserratAlternates-Bold.ttf');
+  font-weight: 700; 
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../src/assets/fonts/Inter-Regular.ttf');
+  font-weight: 400; 
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../src/assets/fonts/Inter-BoldItalic.otf');
+  font-weight: 700; 
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../src/assets/fonts/Inter-Bold.ttf');
+  font-weight: 700; 
 }

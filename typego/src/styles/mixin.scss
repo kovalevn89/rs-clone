@@ -1,3 +1,41 @@
-.mix {
+@mixin main-page-button {
+  border-radius: 10px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+
+  color: #474747;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  user-select: none;
+  cursor: pointer;
+}
+
+@mixin normal-text {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+@mixin caption-text {
+  font-family: 'Montserrat Alternates';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 49px;
   
+  text-transform: uppercase;
+}
+
+@mixin link {
+  text-decoration: none;
+  color: $base-color-light;
 }

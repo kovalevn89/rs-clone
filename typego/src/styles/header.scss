@@ -1,4 +1,423 @@
+@import './mixin.scss';
+@import './constants.scss';
+
 .header {
-  height: 150px;
-  background-color: orange;
+  width: 100%;
+  margin: 0 auto;
+  background: linear-gradient(180deg, $base-footer-gradient-color1-light 40%, $base-footer-gradient-color2-light 80%);
+
+  .header__wrapper {
+    box-sizing: border-box;
+    width: 1440px;
+    margin: 0 auto;
+    min-height: 150px;
+    padding: 0 160px;
+    display: flex;
+    justify-content: space-between;
+
+    position: relative;
+    z-index: 5;
+
+    .header__logo {
+      margin-top: 12px;
+      margin-left: -4px;
+
+      .header__burger {
+        width: 36px;
+        height: 29px;
+        margin-top: 17px;
+        display: none;
+
+        cursor: pointer;
+
+        .burger__line {
+          width: 100%;
+          height: 16%;
+          border-radius: 14px;
+
+          background-color: $base-color-addition-light;
+        }
+      }
+
+      .logo__caption {
+        font-family: 'Inter';
+        font-style: italic;
+        font-weight: 700;
+        font-size: 45px;
+        line-height: 60px;
+
+        color: $font-color-text1-light;
+
+        user-select: none;
+      }
+    }
+
+    .header__menu {
+      margin-top: 9px;
+      margin-left: 75px;
+
+      .nav {
+        .menu__list {
+          display: flex;
+          gap: 15px;
+          list-style: none;
+          .menu__item {
+            @include normal-text;
+            font-size: 16px;
+            line-height: 19px;
+            text-transform: uppercase;
+
+            border: 1px solid rgba($color: #000000, $alpha: 0);
+            border-radius: 40px;
+
+            padding: 10px;
+
+            color: $font-color-text1-light;
+
+            user-select: none;
+            cursor: pointer;
+
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        
+            &:hover {
+              color: $font-color-text2-light;
+              background-color: $button-hover-color-light;
+              border: 1px solid $font-color-text1-light;
+            }
+
+            &:nth-child(5) {
+              display: none;
+            }
+            &:nth-child(6) {
+              display: flex;
+              justify-content: space-between;
+
+              border: none;
+
+              &:hover {
+                color: $font-color-text1-light;
+                background-color: $base-color-light;
+                border: none;
+              }
+
+              display: none;
+            }
+
+            .theme__btn {
+              margin: 1.5px;
+              width: 35px;
+              height: 35px;
+              background-image: url( "data:image/svg+xml, <svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M32.0833 17.5H33.5417M17.5 2.91668V1.45834M17.5 33.5417V32.0833M29.1667 29.1667L27.7083 27.7083M29.1667 5.83334L27.7083 7.29168M5.83333 29.1667L7.29166 27.7083M5.83333 5.83334L7.29166 7.29168M1.45833 17.5H2.91666M17.5 26.25C19.8206 26.25 22.0462 25.3281 23.6872 23.6872C25.3281 22.0463 26.25 19.8207 26.25 17.5C26.25 15.1794 25.3281 12.9538 23.6872 11.3128C22.0462 9.67188 19.8206 8.75001 17.5 8.75001C15.1793 8.75001 12.9538 9.67188 11.3128 11.3128C9.67187 12.9538 8.74999 15.1794 8.74999 17.5C8.74999 19.8207 9.67187 22.0463 11.3128 23.6872C12.9538 25.3281 15.1793 26.25 17.5 26.25Z\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>");
+              cursor: pointer;
+      
+              transition: transform 1s ease-in-out;
+              
+              &:hover {
+                transform: rotate(360deg);
+              }
+            }
+
+            .lang__btn {
+              @include normal-text;
+              font-size: 16px;
+              line-height: 19px;
+              text-transform: uppercase;
+      
+              color: $font-color-text1-light;
+      
+              width: 55px;
+              height: 36px;
+      
+              border: 1px solid $font-color-text1-light;
+              border-radius: 14px;
+      
+              display: flex;
+              justify-content: center;
+              align-items: center;
+      
+              user-select: none;
+              cursor: pointer;
+      
+              transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+              
+              &:hover {
+                color: $font-color-text2-light;
+                background-color: $button-hover-color-light;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .header__controls {
+      margin-top: 26px;
+      display: flex;
+      gap: 10px;
+      
+      .theme__btn {
+        margin: 1.5px;
+        width: 35px;
+        height: 35px;
+        background-image: url( "data:image/svg+xml, <svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M32.0833 17.5H33.5417M17.5 2.91668V1.45834M17.5 33.5417V32.0833M29.1667 29.1667L27.7083 27.7083M29.1667 5.83334L27.7083 7.29168M5.83333 29.1667L7.29166 27.7083M5.83333 5.83334L7.29166 7.29168M1.45833 17.5H2.91666M17.5 26.25C19.8206 26.25 22.0462 25.3281 23.6872 23.6872C25.3281 22.0463 26.25 19.8207 26.25 17.5C26.25 15.1794 25.3281 12.9538 23.6872 11.3128C22.0462 9.67188 19.8206 8.75001 17.5 8.75001C15.1793 8.75001 12.9538 9.67188 11.3128 11.3128C9.67187 12.9538 8.74999 15.1794 8.74999 17.5C8.74999 19.8207 9.67187 22.0463 11.3128 23.6872C12.9538 25.3281 15.1793 26.25 17.5 26.25Z\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>");
+        cursor: pointer;
+
+        transition: transform 1s ease-in-out;
+        
+        &:hover {
+          transform: rotate(360deg);
+        }
+      }
+
+      .lang__btn,
+      .sign__btn {
+        @include normal-text;
+        font-size: 16px;
+        line-height: 19px;
+        text-transform: uppercase;
+
+        color: $font-color-text1-light;
+
+        width: 55px;
+        height: 36px;
+
+        border: 1px solid $font-color-text1-light;
+        border-radius: 40px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        user-select: none;
+        cursor: pointer;
+
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        
+        &:hover {
+          color: $font-color-text2-light;
+          background-color: $button-hover-color-light;
+        }
+      }
+
+      .sign__btn {
+        width: 98px;
+        height: 36px;
+      }
+    }
+  }
+
+  &.dark {
+    background: #12315D;
+  
+    .header__wrapper {
+      .header__logo {
+        .logo__caption {
+          color: $font-color-text1-dark;
+        }
+      }
+  
+      .header__menu {
+        .nav {
+          .menu__list {
+            .menu__item {
+              color: $font-color-text1-dark;
+              &:hover {
+                color: $font-color-text1-dark;
+                background-color: $button-hover-color-dark;
+                border: 1px solid $font-color-text1-dark;
+              }
+            }
+          }
+        }
+      }
+  
+      .header__controls {
+        .theme__btn {
+          background-image: url( "data:image/svg+xml, <svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1.375 13.781C1.37297 16.905 2.42758 19.9378 4.36739 22.3865C6.30721 24.8352 9.0182 26.5558 12.0597 27.2687C15.1012 27.9816 18.2944 27.6448 21.1203 26.3132C23.9462 24.9815 26.2386 22.7332 27.625 19.9338C15.219 19.9338 9.06625 13.7796 9.06625 1.375C6.75601 2.52135 4.81187 4.29018 3.45295 6.48213C2.09403 8.67409 1.37434 11.202 1.375 13.781Z\" stroke='lightgray' stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>");
+        }
+  
+        .lang__btn,
+        .sign__btn {
+          color: $font-color-text1-dark;
+          border: 1px solid $font-color-text1-dark;
+          
+          &:hover {
+            color: $font-color-text1-dark;
+            background-color: $button-hover-color-dark;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media (min-width: 320px) and (max-width: 1440px) { 
+  .header {
+    .header__wrapper {
+      width: auto;
+      max-width: 1440px;
+      //min-height: 10vw;
+      padding: 0 11vw;
+  
+      .header__logo {
+        margin-left: 0px;
+      }
+
+      .header__menu {
+        margin-left: 0px;
+
+        .nav {
+          .menu__list{
+            padding-left: 10px;
+            padding-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 1150px) { 
+  .header {
+    .header__wrapper {
+      .header__logo {
+        display: flex;
+        gap: 10px;
+
+        .header__burger {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+      }
+
+      .header__menu {
+        .nav {
+          position: absolute;
+          top: 70px;
+          left: 11vw;
+          width: fit-content;
+          border-radius: 20px;
+          background-color: $base-color-light;
+          box-shadow: 0px 0px 20px $base-color-addition-light;
+
+          transition: left 0.5s linear;
+          &.hidden {
+            left: -300px;
+          }
+          
+          .menu__list {
+            flex-direction: column;
+            gap: 10px;
+
+            .menu__item {
+              border-radius: 10px;
+            }
+          }
+        }
+      }
+    }
+
+    &.dark {
+      background: #12315D;
+    
+      .header__wrapper {
+        .header__logo {
+          .logo__caption {
+            color: $font-color-text1-dark;
+          }
+
+          .header__burger {
+            .burger__line {
+              background-color: $font-color-text1-dark;
+            }
+          }
+        }
+    
+        .header__menu {
+          .nav {
+            background-color: $base-color-dark; 
+            box-shadow: 0px 0px 20px $font-color-text1-dark; 
+            .menu__list {
+              .menu__item {
+                .theme__btn {
+                  background-image: url( "data:image/svg+xml, <svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1.375 13.781C1.37297 16.905 2.42758 19.9378 4.36739 22.3865C6.30721 24.8352 9.0182 26.5558 12.0597 27.2687C15.1012 27.9816 18.2944 27.6448 21.1203 26.3132C23.9462 24.9815 26.2386 22.7332 27.625 19.9338C15.219 19.9338 9.06625 13.7796 9.06625 1.375C6.75601 2.52135 4.81187 4.29018 3.45295 6.48213C2.09403 8.67409 1.37434 11.202 1.375 13.781Z\" stroke='lightgray' stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>");
+                }
+          
+                .lang__btn,
+                .sign__btn {
+                  color: $font-color-text1-dark;
+                  border: 1px solid $font-color-text1-dark;
+                  
+                  &:hover {
+                    color: $font-color-text1-dark;
+                    background-color: $button-hover-color-dark;
+                  }
+                }
+
+                &:nth-child(6) {
+                  border: none;
+    
+                  &:hover {
+                    color: $font-color-text1-dark;
+                    background-color: $base-color-dark;
+                    border: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+    
+        .header__controls {
+          .theme__btn {
+            background-image: url( "data:image/svg+xml, <svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1.375 13.781C1.37297 16.905 2.42758 19.9378 4.36739 22.3865C6.30721 24.8352 9.0182 26.5558 12.0597 27.2687C15.1012 27.9816 18.2944 27.6448 21.1203 26.3132C23.9462 24.9815 26.2386 22.7332 27.625 19.9338C15.219 19.9338 9.06625 13.7796 9.06625 1.375C6.75601 2.52135 4.81187 4.29018 3.45295 6.48213C2.09403 8.67409 1.37434 11.202 1.375 13.781Z\" stroke='lightgray' stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>");
+          }
+    
+          .lang__btn,
+          .sign__btn {
+            color: $font-color-text1-dark;
+            border: 1px solid $font-color-text1-dark;
+            
+            &:hover {
+              color: $font-color-text1-dark;
+              background-color: $button-hover-color-dark;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media (min-width: 320px) and (max-width: 650px) { 
+  .header {
+    .header__wrapper {
+      .header__menu {
+        .nav {
+          .menu__list {
+            .menu__item {
+              &:nth-child(5) {
+                display: block; 
+              }
+              &:nth-child(6) {
+                display: flex; 
+              }
+            }
+          }
+        }
+      }
+  
+      .header__controls {
+        .theme__btn,
+        .lang__btn,
+        .sign__btn,
+        .sign__btn {
+          display: none;
+        }
+      }
+    }
+  }
 }
