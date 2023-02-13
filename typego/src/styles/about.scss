@@ -1,7 +1,7 @@
 @import './mixin.scss';
 @import './constants.scss';
 
-.about {
+.main {
   width: 100%;
   background-color: $base-color-addition-light;
   .about_wrapper {
@@ -325,7 +325,7 @@
 }
 
 @media (min-width: 320px) and (max-width: 1440px) { 
-  .about {
+  .main {
     .about_wrapper {
       width: auto; 
       max-width: 1440px; 
@@ -341,9 +341,8 @@
 }
 
 @media (min-width: 320px) and (max-width: 699px) { 
-  .about {
+  .main {
     .about_wrapper {
-
       .block_proposales {
         .block_wrapper, .block_wrapper-developers {
           .proposales__card {
