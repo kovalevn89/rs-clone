@@ -1,0 +1,42 @@
+@import './mixin.scss';
+@import './constants.scss';
+
+.main {
+  width: 100%;
+
+  .games-wrapper {
+    width: 100%;
+    height: calc(100vh - 300px);
+    background-color: $base-color-addition-light;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .games-block {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+
+      .game1,
+      .game2,
+      .game3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 200px;
+        height: 200px;
+        background-color: goldenrod;
+
+        user-select: none;
+      }
+    }
+  }
+
+  &.dark {
+    .games-wrapper {
+      background-color: $base-color-addition-dark;
+    }
+  }
+}
