@@ -94,7 +94,7 @@ class Header extends PageView {
           item2.addEventListener('click', () => { window.location.hash = '#/lern'; });
           const item3 = createElement('li', 'menu__item', list);
           item3.textContent = 'Тренажер';
-          item3.addEventListener('click', () => { window.location.hash = '#/lesson'; });
+          item3.addEventListener('click', () => { window.location.hash = '#/training'; });
           const item4 = createElement('li', 'menu__item', list);
           item4.textContent = 'Игры';
           item4.addEventListener('click', () => { window.location.hash = '#/games'; });

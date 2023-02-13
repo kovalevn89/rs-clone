@@ -2,10 +2,13 @@ import { IPage, IParametr } from '../types/index';
 import Main from '../view/main';
 import WhacAMole from '../view/whacamole';
 import Error from '../view/error';
+import { Training } from '../view/training';
+import TrainingLessons from '../view/training/lessons';
 
 class Router {
   private validPage: Array<IPage>;
   private main;
+  private training;
   private whac;
   private error;
 
@@ -13,11 +16,13 @@ class Router {
     this.validPage = new Array<IPage>();
     this.validPage.push({ page: 'main', params: [] });
     // this.validPage.push({ page: 'test', params: [] });
-    // this.validPage.push({ page: 'lern', params: [] });
-    // this.validPage.push({ page: 'lesson', params: [] });
+    // this.validPage.push({ page: 'learn', params: [] });
+    this.validPage.push({ page: 'training', params: [] });
     this.validPage.push({ page: 'games', params: ['name'] });
 
     this.main = new Main();
+    this.training = new Training();
+    this.lessons = new TrainingLessons();
     this.whac = new WhacAMole();
     this.error = new Error();
   }
@@ -67,8 +72,8 @@ class Router {
         // PLACE THIS RENDER LERN PAGE
       }
 
-      if (page === 'lesson') {
-        // PLACE THIS RENDER LESSON
+      if (page === 'training') {
+        this.training.run();
       }
 
       if (page === 'games') {

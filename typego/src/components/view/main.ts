@@ -37,11 +37,11 @@ class Main extends PageView {
       const leftColText = createElement('div', 'left-col__text', leftCol);
       createElement('span', 'text', leftColText).innerHTML = 'Научись быстро печатать с клавиатурным тренажером <span>TypeGo</span>. Уроки слепой печати помогут тебе использовать все 10 пальцев.';
       const leftColButton = createElement('div', 'left-col__button', leftCol);
-      leftColButton.addEventListener('click', (e) => {
-        console.log(e.target);
-        const training = new TrainingView();
-        training.render(main);
-      });
+      // leftColButton.addEventListener('click', (e) => {
+      //   console.log(e.target);
+      //   const training = new TrainingView();
+      //   training.render(main);
+      // });
       createElement('div', 'button', leftColButton).textContent = 'Начать печатать';
       const rightCol = createElement('div', 'typig-faster__right-col', wrapper1);
       const image = createElement('div', 'image', rightCol);

@@ -12,12 +12,6 @@ const ENDPOINT = {
 };
 
 export default class Api {
-  token: string;
-
-  constructor() {
-    this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTZhMjBiMTUyNDMyMDUyNDhlMjgxYyIsIm5hbWUiOiJzdXBlcmFkbWluIiwiaWF0IjoxNjc2MDU5MTYyLCJleHAiOjE2NzYzMTgzNjJ9.mcUbGTGj8YYhdwIonVYmGOfseuz12MCGJI57y-90Ss0';
-  }
-
   private async makeFetch<T>(url: string, method = Method.GET, request?: any): Promise<T> {
     const response = await fetch(`${HOST}${url}`, {
       method,
@@ -27,7 +21,7 @@ export default class Api {
     });
 
     if (!response.ok) {
-      const message = await response.text();
+      const message = await response.json();
       console.log(message);
 
       throw new Error(message);
@@ -36,12 +30,12 @@ export default class Api {
     return response.json() as Promise<T>;
   }
 
-  async getLessons(lang = Lang.en): Promise<Lessons> {
+  async getLessons(token: string, lang = Lang.en): Promise<Lessons> {
     const { lessons } = ENDPOINT;
     const url = `${lessons}?lang=${lang}`;
     return this.makeFetch<Lessons>(url, Method.GET, {
       headers: {
-        Authorization: this.token,
+        Authorization: token,
       },
     });
   }
@@ -66,7 +60,6 @@ export default class Api {
       headers: {
         'Content-Type': 'application/json',
       },
-      token: this.token,
     });
   }
 }
