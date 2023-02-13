@@ -56,3 +56,12 @@ export interface TextResponse {
   text: string;
   lang: 'en' | 'ru';
 }
+
+export interface ITranslationData {
+  en: string;
+  ru: string;
+}
+
+export interface ITranslation {
+  [key: string]: ITranslationData;
+}
