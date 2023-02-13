@@ -1,0 +1,37 @@
+.keyboard {
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+
+  font-family: 'ArialMT', Verdana, Geneva, Tahoma, sans-serif;
+}
+.key {
+  fill: none;
+  fill: rgba(96, 157, 159, 0.1);
+  stroke: #3b6061 ;
+  // opacity: 0.1;
+
+  &.active {
+    fill: cadetblue;
+  }
+
+  &.correct {
+    fill: rgb(110, 160, 95)
+  }
+
+  &.incorrect {
+    fill:rgb(160, 95, 95);
+  }
+}
+
+.letter {
+  font-size: 18px;
+
+  &.num {
+    font-size: 12px;
+  }
+
+  &.special {
+    font-size: 10px;
+  }
+}

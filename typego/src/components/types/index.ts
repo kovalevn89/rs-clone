@@ -46,3 +46,13 @@ export interface IParametr {
   parametr: string;
   value: string;
 }
+
+export interface Progress {
+  speed: number;
+  accurancy: number;
+}
+
+export interface TextResponse {
+  text: string;
+  lang: 'en' | 'ru';
+}

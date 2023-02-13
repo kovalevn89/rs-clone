@@ -27,4 +27,28 @@ export enum GameData {
   foodTime = 200,
 }
 
-export default Tag;
+export enum Lang {
+  ru = 'ru',
+  en = 'en',
+}
+
+export enum Status {
+  active = 'active',
+  correct = 'correct',
+  incorrect = 'incorrect',
+  fixed = 'fixed',
+  reset = 'reset',
+}
+
+export enum TrainingStatus {
+  start = 'start',
+  pause = 'pause',
+  continue = 'continue',
+}
+
+export default {
+  Tag,
+  Lang,
+  Status,
+  TrainingStatus,
+};
