@@ -1,11 +1,12 @@
+import PageView from './baseViewClass';
 import { createElement, removeChild } from '../helper';
 import image1 from '../../assets/png/image1.png';
 import proposale1 from '../../assets/png/propo1.png';
 import proposale2 from '../../assets/png/propo2.png';
 import proposale3 from '../../assets/png/propo3.png';
-import TrainingView from './training/lessons';
+import { Themes } from '../types/enums';
 
-class Main {
+class Main extends PageView {
   private setBackground(element: HTMLElement, image: string): void {
     element.style.background = `url(${image})`;
     element.style.backgroundRepeat = 'no-repeat';
@@ -18,11 +19,17 @@ class Main {
 
     if (app !== null) {
       removeChild(app);
-      const main = createElement('main', 'main', app);
+      const main = createElement('div', 'main', app);
+      if (this.config.getTheme() === Themes.Dark) {
+        main.classList.add('dark');
+      } else {
+        main.classList.remove('dark');
+      }
       const wrapper = createElement('div', 'main_wrapper', main);
 
       // block1
-      const fasterBlock = createElement('div', 'block_typig-faster', wrapper);
+      const fasterWrap = createElement('div', 'block_typig-faster__wrapper', wrapper);
+      const fasterBlock = createElement('div', 'block_typig-faster', fasterWrap);
       const wrapper1 = createElement('div', 'block_wrapper', fasterBlock);
       const leftCol = createElement('div', 'typig-faster__left-col', wrapper1);
       const leftColCaption = createElement('h1', 'left-col__caption', leftCol);

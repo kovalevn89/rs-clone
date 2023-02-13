@@ -1,28 +1,35 @@
 import Model from '../model/model';
 import Controller from '../controller/controler';
-import Main from '../view/main';
-import WhacAMole from '../view/whacamole';
+import Router from '../controller/router';
+import Header from '../view/header';
+import Footer from '../view/footer';
+import AppConfig from '../model/appconfig';
 import View from '../view/view';
 
 class App {
   model;
   controller;
-  main;
-  whac;
+  header;
+  footer;
+  router;
+  config;
   view;
 
   constructor() {
+    this.config = new AppConfig();
     this.model = new Model();
     this.controller = new Controller();
-    this.whac = new WhacAMole();
+    this.header = new Header();
+    this.footer = new Footer();
+    this.router = new Router();
     this.view = new View();
-    this.main = new Main();
   }
 
   run(): void {
-    this.main.run();
-    // this.whac.run();
-    // this.view.run();
+    this.config.run();
+    this.header.run();
+    this.footer.run();
+    this.router.run();
   }
 }
 

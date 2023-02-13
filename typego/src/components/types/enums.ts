@@ -22,6 +22,21 @@ export enum Tag {
   audio = 'audio',
 }
 
+export enum Themes {
+  Light = 1,
+  Dark = 2,
+}
+
+export enum Language {
+  RU = 1,
+  EN = 2,
+}
+
+export enum GameData {
+  margin = 70,
+  foodTime = 200,
+}
+
 export enum Lang {
   ru = 'ru',
   en = 'en',
