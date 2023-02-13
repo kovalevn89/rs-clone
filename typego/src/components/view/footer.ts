@@ -19,7 +19,12 @@ class Footer extends PageView {
           const footerTop = createElement('div', 'footer__top', footerWrapper);
           const logoBtn = createElement('div', 'footer__caption', footerTop);
           logoBtn.textContent = 'TypeGo';
-          createElement('div', 'footer__about', footerTop).textContent = 'О нас';
+          const aboutBtn = createElement('div', 'footer__about', footerTop);
+          aboutBtn.textContent = 'О нас';
+
+          aboutBtn.addEventListener('click', () => {
+            window.location.hash = '#/about';
+          });
 
           const footerBottom = createElement('div', 'footer__bottom', footerWrapper);
           createElement('div', 'footer__credits', footerBottom).textContent = '© 2023 TypeGo - Удобный и простой клавиатурный тренажер';

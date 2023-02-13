@@ -2,12 +2,18 @@ import { IPage, IParametr } from '../types/index';
 import Main from '../view/main';
 import WhacAMole from '../view/whacamole';
 import Error from '../view/error';
+import AboutPage from '../view/about';
+import DropStartPage from '../view/drop-start-page';
+import Games from '../view/games';
 
 class Router {
   private validPage: Array<IPage>;
   private main;
   private whac;
   private error;
+  private about;
+  private dropGame;
+  private games;
 
   constructor() {
     this.validPage = new Array<IPage>();
@@ -15,11 +21,15 @@ class Router {
     // this.validPage.push({ page: 'test', params: [] });
     // this.validPage.push({ page: 'lern', params: [] });
     // this.validPage.push({ page: 'lesson', params: [] });
+    this.validPage.push({ page: 'about', params: [] });
     this.validPage.push({ page: 'games', params: ['name'] });
 
     this.main = new Main();
     this.whac = new WhacAMole();
     this.error = new Error();
+    this.about = new AboutPage();
+    this.dropGame = new DropStartPage();
+    this.games = new Games();
   }
 
   private isPageValid(page: string): boolean {
@@ -71,6 +81,10 @@ class Router {
         // PLACE THIS RENDER LESSON
       }
 
+      if (page === 'about') {
+        this.about.run();
+      }
+
       if (page === 'games') {
         if (validParams.length > 0) {
           // render current game
@@ -78,7 +92,7 @@ class Router {
             if (item.parametr === 'name') {
               switch (item.value) {
                 case 'whac': this.whac.run(); break;
-                case 'food': console.log('render food game'); break; // PLACE THIS RENDER FOOD GAME
+                case 'drop': this.dropGame.run(); break;
                 case 'shoter': console.log('render shooter game'); break; // PLACE THIS RENDER SHOOTER GAME
                 default: {
                   this.error.run('GAME NOT FOUND (404)');
@@ -89,7 +103,7 @@ class Router {
           });
         } else {
           // render game list
-          console.log('render game list'); // PLACE THIS RENDER ERROR PAGE
+          this.games.run();
         }
       }
     } else {
