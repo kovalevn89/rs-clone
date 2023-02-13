@@ -1,13 +1,20 @@
+import PageView from './baseViewClass';
 import { createElement, removeChild } from '../helper';
 import errorImage from '../../assets/png/404.png';
+import { Themes } from '../types/enums';
 
-class Error {
+class Error extends PageView {
   private render(messsageText: string): void {
     const app: HTMLElement | null = document.querySelector('.app');
 
     if (app !== null) {
       removeChild(app);
       const main = createElement('div', 'main', app);
+      if (this.config.getTheme() === Themes.Dark) {
+        main.classList.add('dark');
+      } else {
+        main.classList.remove('dark');
+      }
       const wrapper = createElement('div', 'error-wrapper', main);
       const errorBlock = createElement('div', 'error-block', wrapper);
       const image = createElement('div', 'error-image', errorBlock);

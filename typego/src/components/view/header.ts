@@ -1,21 +1,33 @@
+import PageView from './baseViewClass';
 import { createElement } from '../helper';
+import { Themes, Language } from '../types/enums';
 
-class Header {
+class Header extends PageView {
   private changeTheme(): void {
     const header: HTMLElement | null = document.querySelector('.header');
     const main: HTMLElement | null = document.querySelector('.main');
     const footer: HTMLElement | null = document.querySelector('.footer');
 
-    if (header !== null) {
-      header.classList.toggle('dark');
-    }
+    if (this.currentTheme === Themes.Light) {
+      this.currentTheme = Themes.Dark;
 
-    if (main !== null) {
-      main.classList.toggle('dark');
-    }
+      if (header !== null) header.classList.add('dark');
+      if (main !== null) main.classList.add('dark');
+      if (footer !== null) footer.classList.add('dark');
+    } else {
+      this.currentTheme = Themes.Light;
 
-    if (footer !== null) {
-      footer.classList.toggle('dark');
+      if (header !== null) header.classList.remove('dark');
+      if (main !== null) main.classList.remove('dark');
+      if (footer !== null) footer.classList.remove('dark');
+    }
+  }
+
+  private changeLang(): void {
+    if (this.currentLang === Language.RU) {
+      this.currentLang = Language.EN;
+    } else {
+      this.currentLang = Language.RU;
     }
   }
 
@@ -27,7 +39,12 @@ class Header {
 
       if (header === null) {
         header = createElement('header', 'header');
+
         if (header !== null) {
+          if (this.config.getTheme() === Themes.Dark) {
+            header.classList.add('dark');
+          }
+
           const wrapper = createElement('div', 'header__wrapper', header);
 
           // logo
@@ -80,21 +97,39 @@ class Header {
           item3.addEventListener('click', () => { window.location.hash = '#/lesson'; });
           const item4 = createElement('li', 'menu__item', list);
           item4.textContent = 'Игры';
-          item3.addEventListener('click', () => { window.location.hash = '#/games'; });
+          item4.addEventListener('click', () => { window.location.hash = '#/games'; });
           const item5 = createElement('li', 'menu__item', list);
           item5.textContent = 'Войти';
           const item6 = createElement('li', 'menu__item', list);
           item6.textContent = '';
           const themeBtn2 = createElement('div', 'theme__btn', item6);
-          themeBtn2.addEventListener('click', this.changeTheme);
-          createElement('div', 'lang__btn', item6).textContent = 'RU';
+          themeBtn2.addEventListener('click', () => {
+            this.changeTheme();
+            this.config.setTheme(this.currentTheme);
+          });
+          const langBtn1 = createElement('div', 'lang__btn', item6);
+          langBtn1.textContent = `${Language[this.config.getLang()]}`;
+          langBtn1.addEventListener('click', () => {
+            this.changeLang();
+            this.config.setLang(this.currentLang);
+            langBtn1.textContent = `${Language[this.config.getLang()]}`;
+          });
 
           // controls
           const controls = createElement('div', 'header__controls', wrapper);
           const themeBtn1 = createElement('div', 'theme__btn', controls);
-          themeBtn1.addEventListener('click', this.changeTheme);
+          themeBtn1.addEventListener('click', () => {
+            this.changeTheme();
+            this.config.setTheme(this.currentTheme);
+          });
           const langBtn = createElement('div', 'lang__btn', controls);
-          langBtn.textContent = 'RU';
+          langBtn.textContent = `${Language[this.config.getLang()]}`;
+          langBtn.addEventListener('click', () => {
+            this.changeLang();
+            this.config.setLang(this.currentLang);
+            langBtn.textContent = `${Language[this.config.getLang()]}`;
+          });
+
           const signBtn = createElement('div', 'sign__btn', controls);
           signBtn.textContent = 'войти';
 

@@ -1,10 +1,12 @@
+import PageView from './baseViewClass';
 import { createElement, removeChild } from '../helper';
 import image1 from '../../assets/png/image1.png';
 import proposale1 from '../../assets/png/propo1.png';
 import proposale2 from '../../assets/png/propo2.png';
 import proposale3 from '../../assets/png/propo3.png';
+import { Themes } from '../types/enums';
 
-class Main {
+class Main extends PageView {
   private setBackground(element: HTMLElement, image: string): void {
     element.style.background = `url(${image})`;
     element.style.backgroundRepeat = 'no-repeat';
@@ -18,6 +20,11 @@ class Main {
     if (app !== null) {
       removeChild(app);
       const main = createElement('div', 'main', app);
+      if (this.config.getTheme() === Themes.Dark) {
+        main.classList.add('dark');
+      } else {
+        main.classList.remove('dark');
+      }
       const wrapper = createElement('div', 'main_wrapper', main);
 
       // block1

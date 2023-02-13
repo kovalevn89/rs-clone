@@ -14,9 +14,10 @@ module.exports = {
   },
   plugins: ["@typescript-eslint"],
   rules: {
-    "no-console": "off",
-    "class-methods-use-this": "off",
-    "@typescript-eslint/lines-between-class-members": "off",
-    "no-param-reassign": "off",
+    'no-console': 'off',
+    'class-methods-use-this': 'off',
+    '@typescript-eslint/lines-between-class-members': 'off',
+    'no-param-reassign': 'off',
+    'no-constructor-return': 'off',
   },
 };

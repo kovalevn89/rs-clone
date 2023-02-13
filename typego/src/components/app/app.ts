@@ -3,6 +3,7 @@ import Controller from '../controller/controler';
 import Router from '../controller/router';
 import Header from '../view/header';
 import Footer from '../view/footer';
+import AppConfig from '../model/appconfig';
 import View from '../view/view';
 
 class App {
@@ -11,9 +12,11 @@ class App {
   header;
   footer;
   router;
+  config;
   view;
 
   constructor() {
+    this.config = new AppConfig();
     this.model = new Model();
     this.controller = new Controller();
     this.header = new Header();
@@ -23,6 +26,7 @@ class App {
   }
 
   run(): void {
+    this.config.run();
     this.header.run();
     this.footer.run();
     this.router.run();
