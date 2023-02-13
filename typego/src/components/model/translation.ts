@@ -2,14 +2,31 @@ import { Language } from '../types/enums';
 import { ITranslation } from '../types';
 
 const data: ITranslation = {
-  homeLink: {
-    en: 'Home',
-    ru: 'Главная',
+  // HEADER
+  headerManu1: {
+    en: 'testing',
+    ru: 'тестирование',
   },
-  lessonsLink: {
-    en: 'Lessons',
-    ru: 'Уроки',
+  headerManu2: {
+    en: 'education',
+    ru: 'обучение',
   },
+  headerManu3: {
+    en: 'training',
+    ru: 'тренажер',
+  },
+  headerManu4: {
+    en: 'games',
+    ru: 'игры',
+  },
+  loginButton: {
+    en: 'login',
+    ru: 'войти',
+  },
+
+  // MAIN PAGE
+
+  // FOOTER
 };
 
 class Translation {
@@ -17,11 +34,12 @@ class Translation {
   private currentLang;
   private data: ITranslation;
   private observer: Array<() => void>;
+  private observerPermanent: Array<() => void>;
 
-  constructor(lang: Language) {
-    this.currentLang = lang;
+  constructor() {
     this.data = data;
     this.observer = [];
+    this.observerPermanent = [];
 
     // Singleton
     if (Translation.instance) {
@@ -29,6 +47,8 @@ class Translation {
     }
 
     Translation.instance = this;
+
+    this.currentLang = Language.RU;
   }
 
   setLang(lang: Language): void {
@@ -37,11 +57,15 @@ class Translation {
     this.observer.forEach((callback: () => void) => {
       callback();
     });
+
+    this.observerPermanent.forEach((callback: () => void) => {
+      callback();
+    });
   }
 
-  getLang(): Language {
-    return this.currentLang;
-  }
+  // getLang(): Language {
+  //   return this.currentLang;
+  // }
 
   getString(tag: string) {
     return this.currentLang === Language.RU ? this.data[tag].ru : this.data[tag].en;
@@ -49,6 +73,11 @@ class Translation {
 
   regObserver(callback: () => void) {
     this.observer.push(callback);
+  }
+
+  // для страниц которые на протяжении всех жизни приложения не будут перерисовываться
+  regObserverPermanent(callback: () => void) {
+    this.observerPermanent.push(callback);
   }
 }
 
