@@ -1,35 +1,28 @@
 import Model from '../model/model';
 import Controller from '../controller/controler';
-import DropStartPage from '../view/drop-start-page';
-import DropGamePage from '../view/drop-game-page';
-import Main from '../view/main';
-import WhacAMole from '../view/whacamole';
-import AboutPage from '../view/about';
+import Router from '../controller/router';
+import Header from '../view/header';
+import Footer from '../view/footer';
 
 class App {
   model;
   controller;
-  dropStartPage;
-  dropGamePage;
-  main;
-  whac;
-  aboutPage;
+  header;
+  footer;
+  router;
 
   constructor() {
     this.model = new Model();
     this.controller = new Controller();
-    this.whac = new WhacAMole();
-    this.main = new Main();
-    this.dropStartPage = new DropStartPage();
-    this.dropGamePage = new DropGamePage();
-    this.aboutPage = new AboutPage();
+    this.header = new Header();
+    this.footer = new Footer();
+    this.router = new Router();
   }
 
   run(): void {
-    // this.dropStartPage.run();
-    // this.main.run();
-    // this.whac.run();
-    this.aboutPage.run();
+    this.header.run();
+    this.footer.run();
+    this.router.run();
   }
 }
 

@@ -36,3 +36,13 @@ export interface Lang {
 export interface DataLang {
   [tag: string]: Lang;
 }
+
+export interface IPage {
+  page: string;
+  params: Array<string>;
+}
+
+export interface IParametr {
+  parametr: string;
+  value: string;
+}
