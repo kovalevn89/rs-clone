@@ -1,6 +1,6 @@
 import PageView from './baseViewClass';
 import { createElement } from '../helper';
-import { Themes } from '../types/enums';
+import { Themes, Language } from '../types/enums';
 
 class Header extends PageView {
   private changeTheme(): void {
@@ -20,6 +20,14 @@ class Header extends PageView {
       if (header !== null) header.classList.remove('dark');
       if (main !== null) main.classList.remove('dark');
       if (footer !== null) footer.classList.remove('dark');
+    }
+  }
+
+  private changeLang(): void {
+    if (this.currentLang === Language.RU) {
+      this.currentLang = Language.EN;
+    } else {
+      this.currentLang = Language.RU;
     }
   }
 
@@ -99,7 +107,13 @@ class Header extends PageView {
             this.changeTheme();
             this.config.setTheme(this.currentTheme);
           });
-          createElement('div', 'lang__btn', item6).textContent = 'RU';
+          const langBtn1 = createElement('div', 'lang__btn', item6);
+          langBtn1.textContent = `${Language[this.config.getLang()]}`;
+          langBtn1.addEventListener('click', () => {
+            this.changeLang();
+            this.config.setLang(this.currentLang);
+            langBtn1.textContent = `${Language[this.config.getLang()]}`;
+          });
 
           // controls
           const controls = createElement('div', 'header__controls', wrapper);
@@ -109,7 +123,13 @@ class Header extends PageView {
             this.config.setTheme(this.currentTheme);
           });
           const langBtn = createElement('div', 'lang__btn', controls);
-          langBtn.textContent = 'RU';
+          langBtn.textContent = `${Language[this.config.getLang()]}`;
+          langBtn.addEventListener('click', () => {
+            this.changeLang();
+            this.config.setLang(this.currentLang);
+            langBtn.textContent = `${Language[this.config.getLang()]}`;
+          });
+
           const signBtn = createElement('div', 'sign__btn', controls);
           signBtn.textContent = 'войти';
 
