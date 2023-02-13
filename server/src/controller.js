@@ -326,8 +326,8 @@ class Controller {
           return res.status(400).json('bad request');
         }
 
-        return res.json({'index:': find.index, 'name': find.name, 'lang': find.lang, 'levels': find.levels.map(
-            value => ({'index:': value.index, 'name': value.name, 'text': value.text})
+        return res.json({'index': find.index, 'name': find.name, 'lang': find.lang, 'levels': find.levels.map(
+            value => ({'index': value.index, 'name': value.name, 'text': value.text})
           )});
       }
 
@@ -341,7 +341,7 @@ class Controller {
           return res.status(400).json('bad request');
         }
 
-        return res.json(find.map(value => ({'index:': value.index, 'name': value.name, 'lang': value.lang})));
+        return res.json(find.map(value => ({'index': value.index, 'name': value.name, 'lang': value.lang})));
       }
 
       return res.status(400).json({message: 'lessons error'});
