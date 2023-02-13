@@ -20,8 +20,10 @@ class Main extends PageView {
     if (app !== null) {
       removeChild(app);
       const main = createElement('div', 'main', app);
-      if (this.currentTheme === Themes.Dark) {
+      if (this.config.getTheme() === Themes.Dark) {
         main.classList.add('dark');
+      } else {
+        main.classList.remove('dark');
       }
       const wrapper = createElement('div', 'main_wrapper', main);
 

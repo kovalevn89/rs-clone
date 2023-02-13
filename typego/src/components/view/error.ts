@@ -10,8 +10,10 @@ class Error extends PageView {
     if (app !== null) {
       removeChild(app);
       const main = createElement('div', 'main', app);
-      if (this.currentTheme === Themes.Dark) {
+      if (this.config.getTheme() === Themes.Dark) {
         main.classList.add('dark');
+      } else {
+        main.classList.remove('dark');
       }
       const wrapper = createElement('div', 'error-wrapper', main);
       const errorBlock = createElement('div', 'error-block', wrapper);

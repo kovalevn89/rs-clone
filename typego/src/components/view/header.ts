@@ -33,7 +33,7 @@ class Header extends PageView {
         header = createElement('header', 'header');
 
         if (header !== null) {
-          if (this.currentTheme === Themes.Dark) {
+          if (this.config.getTheme() === Themes.Dark) {
             header.classList.add('dark');
           }
 
@@ -89,7 +89,7 @@ class Header extends PageView {
           item3.addEventListener('click', () => { window.location.hash = '#/lesson'; });
           const item4 = createElement('li', 'menu__item', list);
           item4.textContent = 'Игры';
-          item3.addEventListener('click', () => { window.location.hash = '#/games'; });
+          item4.addEventListener('click', () => { window.location.hash = '#/games'; });
           const item5 = createElement('li', 'menu__item', list);
           item5.textContent = 'Войти';
           const item6 = createElement('li', 'menu__item', list);
