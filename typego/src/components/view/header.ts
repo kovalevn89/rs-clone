@@ -1,21 +1,25 @@
+import PageView from './baseViewClass';
 import { createElement } from '../helper';
+import { Themes } from '../types/enums';
 
-class Header {
+class Header extends PageView {
   private changeTheme(): void {
     const header: HTMLElement | null = document.querySelector('.header');
     const main: HTMLElement | null = document.querySelector('.main');
     const footer: HTMLElement | null = document.querySelector('.footer');
 
-    if (header !== null) {
-      header.classList.toggle('dark');
-    }
+    if (this.currentTheme === Themes.Light) {
+      this.currentTheme = Themes.Dark;
 
-    if (main !== null) {
-      main.classList.toggle('dark');
-    }
+      if (header !== null) header.classList.add('dark');
+      if (main !== null) main.classList.add('dark');
+      if (footer !== null) footer.classList.add('dark');
+    } else {
+      this.currentTheme = Themes.Light;
 
-    if (footer !== null) {
-      footer.classList.toggle('dark');
+      if (header !== null) header.classList.remove('dark');
+      if (main !== null) main.classList.remove('dark');
+      if (footer !== null) footer.classList.remove('dark');
     }
   }
 
@@ -27,7 +31,12 @@ class Header {
 
       if (header === null) {
         header = createElement('header', 'header');
+
         if (header !== null) {
+          if (this.currentTheme === Themes.Dark) {
+            header.classList.add('dark');
+          }
+
           const wrapper = createElement('div', 'header__wrapper', header);
 
           // logo
@@ -86,13 +95,19 @@ class Header {
           const item6 = createElement('li', 'menu__item', list);
           item6.textContent = '';
           const themeBtn2 = createElement('div', 'theme__btn', item6);
-          themeBtn2.addEventListener('click', this.changeTheme);
+          themeBtn2.addEventListener('click', () => {
+            this.changeTheme();
+            this.config.setTheme(this.currentTheme);
+          });
           createElement('div', 'lang__btn', item6).textContent = 'RU';
 
           // controls
           const controls = createElement('div', 'header__controls', wrapper);
           const themeBtn1 = createElement('div', 'theme__btn', controls);
-          themeBtn1.addEventListener('click', this.changeTheme);
+          themeBtn1.addEventListener('click', () => {
+            this.changeTheme();
+            this.config.setTheme(this.currentTheme);
+          });
           const langBtn = createElement('div', 'lang__btn', controls);
           langBtn.textContent = 'RU';
           const signBtn = createElement('div', 'sign__btn', controls);

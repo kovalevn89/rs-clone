@@ -22,4 +22,14 @@ export enum Tag {
   audio = 'audio',
 }
 
-export default Tag;
+export enum Themes {
+  Light = 1,
+  Dark = 2,
+}
+
+export enum Language {
+  RU = 1,
+  EN = 2,
+}
+
+// export default Tag;

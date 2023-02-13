@@ -1,6 +1,8 @@
+import PageView from './baseViewClass';
 import { createElement } from '../helper';
+import { Themes } from '../types/enums';
 
-class Footer {
+class Footer extends PageView {
   private render(): void {
     const body: HTMLElement | null = document.querySelector('.body');
 
@@ -10,6 +12,9 @@ class Footer {
       if (footer === null) {
         footer = createElement('footer', 'footer');
         if (footer !== null) {
+          if (this.currentTheme === Themes.Dark) {
+            footer.classList.add('dark');
+          }
           const footerWrapper = createElement('div', 'footer__wrapper', footer);
           const footerTop = createElement('div', 'footer__top', footerWrapper);
           const logoBtn = createElement('div', 'footer__caption', footerTop);
