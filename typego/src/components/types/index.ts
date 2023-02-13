@@ -11,6 +11,32 @@ export interface ILetter {
   svg: string;
 }
 
+export interface State {
+  totalScore: number;
+  averageAccuracy: number;
+}
+
+export interface LvlParam {
+  [i: string]: Record<string, number>;
+}
+
+export interface GameState {
+  letterOnField: (HTMLElement | null)[];
+  letterPressed: string[];
+  letterMatched: string[];
+  curScore: number;
+  curAccuracy: number;
+}
+
+export interface Lang {
+  en: string;
+  ru: string;
+}
+
+export interface DataLang {
+  [tag: string]: Lang;
+}
+
 export interface IPage {
   page: string;
   params: Array<string>;
@@ -19,4 +45,14 @@ export interface IPage {
 export interface IParametr {
   parametr: string;
   value: string;
+}
+
+export interface Progress {
+  speed: number;
+  accurancy: number;
+}
+
+export interface TextResponse {
+  text: string;
+  lang: 'en' | 'ru';
 }

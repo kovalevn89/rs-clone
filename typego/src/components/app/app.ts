@@ -4,6 +4,7 @@ import Router from '../controller/router';
 import Header from '../view/header';
 import Footer from '../view/footer';
 import AppConfig from '../model/appconfig';
+import View from '../view/view';
 
 class App {
   model;
@@ -12,6 +13,7 @@ class App {
   footer;
   router;
   config;
+  view;
 
   constructor() {
     this.config = new AppConfig();
@@ -20,6 +22,7 @@ class App {
     this.header = new Header();
     this.footer = new Footer();
     this.router = new Router();
+    this.view = new View();
   }
 
   run(): void {

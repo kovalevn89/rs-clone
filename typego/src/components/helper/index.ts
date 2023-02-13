@@ -79,3 +79,10 @@ export function getLetter(language: string) {
     };
   }
 }
+
+export function playSound(src: string, isSound = true): void {
+  const sound = new Audio(src);
+  if (isSound) {
+    sound.play();
+  }
+}

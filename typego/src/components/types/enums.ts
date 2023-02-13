@@ -32,4 +32,33 @@ export enum Language {
   EN = 2,
 }
 
-// export default Tag;
+export enum GameData {
+  margin = 70,
+  foodTime = 200,
+}
+
+export enum Lang {
+  ru = 'ru',
+  en = 'en',
+}
+
+export enum Status {
+  active = 'active',
+  correct = 'correct',
+  incorrect = 'incorrect',
+  fixed = 'fixed',
+  reset = 'reset',
+}
+
+export enum TrainingStatus {
+  start = 'start',
+  pause = 'pause',
+  continue = 'continue',
+}
+
+export default {
+  Tag,
+  Lang,
+  Status,
+  TrainingStatus,
+};
