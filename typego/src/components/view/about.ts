@@ -35,7 +35,9 @@ class AboutPage extends PageView {
       const wrapper3 = createElement('div', 'block_wrapper-developers', proposalesBlock);
 
       // about project
-      createElement('h2', 'card__context-caption', wrapper2).textContent = 'О проекте';
+      const aboutCaption = createElement('h2', 'card__context-caption', wrapper2);
+      aboutCaption.textContent = this.translation.getString('aboutCaption');
+      this.translation.regObserver(() => { aboutCaption.textContent = this.translation.getString('aboutCaption'); });
       const card0 = createElement('div', 'proposales__card', wrapper2);
       card0.style.marginTop = '47px';
       card0.style.marginLeft = '37px';
@@ -45,29 +47,38 @@ class AboutPage extends PageView {
       const cardRight0 = createElement('div', 'card__right', card0);
       cardRight0.style.order = '-1';
       const cardContext0 = createElement('div', 'card__context', cardRight0);
-      createElement('div', 'card__context-text', cardContext0).textContent = `Проект разработан в рамках финального командного задания 
-      RS Clone курса Frontend-разработки в Rolling Scopes School 2022Q3.`;
-      createElement('div', 'card__context-text', cardContext0).innerHTML = `В рамках этого задания необходимо было собрать команду из 3-х человек и разработать клон популярного приложения или игры. 
-      К выбору проекта команда подошла комплексно: в итоге получился тренажер слепой печати, схожий с такими приложениями как <a href="https://www.ratatype.ua/ru/" target="_blank">
-      ratatype</a>, <a href="https://www.typingclub.com/" target="_blank">
-      typingclub</a>, но с собственным дизайном, дополнительным функционалом и встроенными мини-играми.`;
+      const aboutDescription1 = createElement('div', 'card__context-text', cardContext0);
+      aboutDescription1.textContent = this.translation.getString('aboutDescription1');
+      this.translation.regObserver(() => { aboutDescription1.textContent = this.translation.getString('aboutDescription1'); });
+      const aboutDescription2 = createElement('div', 'card__context-text', cardContext0);
+      aboutDescription2.innerHTML = this.translation.getString('aboutDescription2');
+      this.translation.regObserver(() => { aboutDescription2.innerHTML = this.translation.getString('aboutDescription2'); });
       const contextLink0 = createElement('div', 'card__context-link', cardContext0);
-      createElement('div', 'context-link__button', contextLink0).innerHTML = `<a href="https://github.com/kovalevn89/rs-clone/tree/main" target="_blank">
-      Подробности о проекте</a>`;
+      const contextLinkButton = createElement('div', 'context-link__button', contextLink0);
+      const contextLinkButton1 = createElement('a', '', contextLinkButton, ['href', 'https://github.com/kovalevn89/rs-clone/tree/main'], ['target', '_blank']);
+      contextLinkButton1.textContent = this.translation.getString('aboutButton');
+      this.translation.regObserver(() => { contextLinkButton1.textContent = this.translation.getString('aboutButton'); });
 
       // about dev1
-      createElement('h2', 'proposales__title', wrapper3).textContent = 'Наша команда';
+      const aboutTeamCaption = createElement('h2', 'proposales__title', wrapper3);
+      aboutTeamCaption.textContent = this.translation.getString('aboutTeamCaption');
+      this.translation.regObserver(() => { aboutTeamCaption.textContent = this.translation.getString('aboutTeamCaption'); });
       const card1 = createElement('div', 'proposales__card', wrapper3);
       const cardLeft1 = createElement('div', 'card__left', card1);
       const cardImage1 = createElement('div', 'card__image', cardLeft1);
       this.setBackground(cardImage1, devImg1);
       const cardRight1 = createElement('div', 'card__right', card1);
       const cardContext1 = createElement('div', 'card__context', cardRight1);
-      createElement('h2', 'card__context-caption', cardContext1).innerHTML = `<a href="https://github.com/kovalevn89" target="_blank">
-      Николай Ковалев</a>`;
-      createElement('h3', 'card__context-subtitle', cardContext1).textContent = 'Руководитель команды, fullstack-разработчик';
-      createElement('p', 'card__context-text', cardContext1).textContent = `Координация команды, разработка и поддержка архитектуры приложения, back-end, 
-      верстка главной страницы, игра "Whacamole" `;
+      const cardContextCaption1 = createElement('h2', 'card__context-caption', cardContext1);
+      const cardContextCaptionLink1 = createElement('a', '', cardContextCaption1, ['href', 'https://github.com/kovalevn89'], ['target', '_blank']);
+      cardContextCaptionLink1.textContent = this.translation.getString('aboutDeveloperName1');
+      this.translation.regObserver(() => { cardContextCaptionLink1.textContent = this.translation.getString('aboutDeveloperName1'); });
+      const aboutDeveloperPosition1 = createElement('h3', 'card__context-subtitle', cardContext1);
+      aboutDeveloperPosition1.textContent = this.translation.getString('aboutDeveloperPosition1');
+      this.translation.regObserver(() => { aboutDeveloperPosition1.textContent = this.translation.getString('aboutDeveloperPosition1'); });
+      const aboutDeveloperDiscription1 = createElement('p', 'card__context-text', cardContext1);
+      aboutDeveloperDiscription1.textContent = this.translation.getString('aboutDeveloperDiscription1');
+      this.translation.regObserver(() => { aboutDeveloperDiscription1.textContent = this.translation.getString('aboutDeveloperDiscription1'); });
 
       // about dev2
       const card2 = createElement('div', 'proposales__card', wrapper3);
@@ -76,11 +87,16 @@ class AboutPage extends PageView {
       this.setBackground(cardImage2, devImg2);
       const cardRight2 = createElement('div', 'card__right', card2);
       const cardContext2 = createElement('div', 'card__context', cardRight2);
-      createElement('h2', 'card__context-caption', cardContext2).innerHTML = `<a href="https://github.com/annafeona" target="_blank">
-      Анна Главатских</a>`;
-      createElement('h3', 'card__context-subtitle', cardContext2).textContent = 'Frontend-разработчик';
-      createElement('p', 'card__context-text', cardContext2).textContent = `Реализация виртуальной 
-      клавиатуры и уроков, дизайн`;
+      const cardContextCaption2 = createElement('h2', 'card__context-caption', cardContext2);
+      const aboutDeveloperName2 = createElement('a', '', cardContextCaption2, ['href', 'https://github.com/annafeona'], ['target', '_blank']);
+      aboutDeveloperName2.textContent = this.translation.getString('aboutDeveloperName2');
+      this.translation.regObserver(() => { aboutDeveloperName2.textContent = this.translation.getString('aboutDeveloperName2'); });
+      const aboutDeveloperPosition2 = createElement('h3', 'card__context-subtitle', cardContext2);
+      aboutDeveloperPosition2.textContent = this.translation.getString('aboutDeveloperPosition2');
+      this.translation.regObserver(() => { aboutDeveloperPosition2.textContent = this.translation.getString('aboutDeveloperPosition2'); });
+      const aboutDeveloperDiscription2 = createElement('p', 'card__context-text', cardContext2);
+      aboutDeveloperDiscription2.textContent = this.translation.getString('aboutDeveloperDiscription2');
+      this.translation.regObserver(() => { aboutDeveloperDiscription2.textContent = this.translation.getString('aboutDeveloperDiscription2'); });
 
       // about dev3
       const card3 = createElement('div', 'proposales__card', wrapper3);
@@ -89,11 +105,16 @@ class AboutPage extends PageView {
       this.setBackground(cardImage3, devImg3);
       const cardRight3 = createElement('div', 'card__right', card3);
       const cardContext3 = createElement('div', 'card__context', cardRight3);
-      createElement('h3', 'card__context-caption', cardContext3).innerHTML = `<a href="https://github.com/dikhorsun" target="_blank">
-      Дмитрий Хорсун</a>`;
-      createElement('h3', 'card__context-subtitle', cardContext3).textContent = 'Frontend-разработчик';
-      createElement('p', 'card__context-text', cardContext3).textContent = `Разработка игры "Drop Food", 
-      верстка страницы "О нас"`;
+      const cardContextCaption3 = createElement('h3', 'card__context-caption', cardContext3);
+      const aboutDeveloperName3 = createElement('a', '', cardContextCaption3, ['href', 'https://github.com/dikhorsun'], ['target', '_blank']);
+      aboutDeveloperName3.textContent = this.translation.getString('aboutDeveloperName3');
+      this.translation.regObserver(() => { aboutDeveloperName3.textContent = this.translation.getString('aboutDeveloperName3'); });
+      const aboutDeveloperPosition3 = createElement('h3', 'card__context-subtitle', cardContext3);
+      aboutDeveloperPosition3.textContent = this.translation.getString('aboutDeveloperPosition3');
+      this.translation.regObserver(() => { aboutDeveloperPosition3.textContent = this.translation.getString('aboutDeveloperPosition3'); });
+      const aboutDeveloperDiscription3 = createElement('p', 'card__context-text', cardContext3);
+      aboutDeveloperDiscription3.textContent = this.translation.getString('aboutDeveloperDiscription3');
+      this.translation.regObserver(() => { aboutDeveloperDiscription3.textContent = this.translation.getString('aboutDeveloperDiscription3'); });
     }
   }
 

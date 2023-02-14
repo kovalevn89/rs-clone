@@ -99,6 +99,64 @@ const data: ITranslation = {
     en: 'Developed as part of the RSClone challenge for RSSchool',
     ru: 'Разработано в рамках задания RSClone для RSSchool',
   },
+
+  // about
+  aboutCaption: {
+    en: 'About project',
+    ru: 'О проекте',
+  },
+  aboutDescription1: {
+    en: 'The project was developed as part of the RS Clone final team assignment of the Frontend development course at Rolling Scopes School 2022Q3.',
+    ru: 'Проект разработан в рамках финального командного задания RS Clone курса Frontend-разработки в Rolling Scopes School 2022Q3.',
+  },
+  aboutDescription2: {
+    en: 'As part of this task, it was necessary to assemble a team of 3 people and develop a clone of a popular application or game. The team approached the choice of the project comprehensively: as a result, a touch typing simulator was obtained, similar to such applications as <a href="https://www.ratatype.ua/ru/" target="_blank">ratatype</a>, <a href="https://www.typingclub.com/" target="_blank"> typingclub</a> but with its own design, additional functionality and built-in mini-games.',
+    ru: 'В рамках этого задания необходимо было собрать команду из 3-х человек и разработать клон популярного приложения или игры. К выбору проекта команда подошла комплексно: в итоге получился тренажер слепой печати, схожий с такими приложениями как <a href="https://www.ratatype.ua/ru/" target="_blank">ratatype</a>, <a href="https://www.typingclub.com/" target="_blank"> typingclub</a>, но с собственным дизайном, дополнительным функционалом и встроенными мини-играми.',
+  },
+  aboutButton: {
+    en: 'Project Details',
+    ru: 'Подробности о проекте',
+  },
+  aboutTeamCaption: {
+    en: 'Our team',
+    ru: 'Наша команда',
+  },
+  aboutDeveloperName1: {
+    en: 'Nikolai Kovalev',
+    ru: 'Николай Ковалев',
+  },
+  aboutDeveloperPosition1: {
+    en: 'Team leader, full stack developer',
+    ru: 'Руководитель команды, fullstack-разработчик',
+  },
+  aboutDeveloperDiscription1: {
+    en: 'Team coordination, application architecture development and support, back-end, main page layout, "Whacamole" game',
+    ru: 'Координация команды, разработка и поддержка архитектуры приложения, back-end, верстка главной страницы, игра "Whacamole"',
+  },
+  aboutDeveloperName2: {
+    en: 'Anna Glavatskih',
+    ru: 'Анна Главатских',
+  },
+  aboutDeveloperPosition2: {
+    en: 'Frontend-developer',
+    ru: 'Frontend-разработчик',
+  },
+  aboutDeveloperDiscription2: {
+    en: 'Implementation of the virtual keyboard and lessons, design',
+    ru: 'Реализация виртуальной клавиатуры и уроков, дизайн',
+  },
+  aboutDeveloperName3: {
+    en: 'Dmitry Khorsun',
+    ru: 'Дмитрий Хорсун',
+  },
+  aboutDeveloperPosition3: {
+    en: 'Frontend-developer',
+    ru: 'Frontend-разработчик',
+  },
+  aboutDeveloperDiscription3: {
+    en: 'Development of the game "Drop Food", page layout "About us"',
+    ru: 'Разработка игры "Drop Food", верстка страницы "О нас"',
+  },
 };
 
 class Translation {
