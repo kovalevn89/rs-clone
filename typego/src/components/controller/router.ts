@@ -95,7 +95,7 @@ class Router {
                 case 'drop': this.dropGame.run(); break;
                 case 'shoter': console.log('render shooter game'); break; // PLACE THIS RENDER SHOOTER GAME
                 default: {
-                  this.error.run('GAME NOT FOUND (404)');
+                  this.error.run('pageNotFound');
                   // console.log('RENDER 404');
                 }
               }
@@ -108,7 +108,7 @@ class Router {
       }
     } else {
       // render 404
-      this.error.run('PAGE NOT FOUND (404)');
+      this.error.run('pageNotFound');
       // console.log('RENDER 404');
       // this.error.render();
     }
