@@ -117,7 +117,9 @@ class Header extends PageView {
           langBtn1.addEventListener('click', () => {
             this.changeLang();
             this.config.setLang(this.currentLang);
-            langBtn1.textContent = `${Language[this.config.getLang()]}`;
+            document.querySelectorAll('.lang__btn').forEach((value) => {
+              value.textContent = `${Language[this.config.getLang()]}`;
+            });
             this.translation.setLang(this.currentLang);
           });
 
@@ -133,7 +135,9 @@ class Header extends PageView {
           langBtn.addEventListener('click', () => {
             this.changeLang();
             this.config.setLang(this.currentLang);
-            langBtn.textContent = `${Language[this.config.getLang()]}`;
+            document.querySelectorAll('.lang__btn').forEach((value) => {
+              value.textContent = `${Language[this.config.getLang()]}`;
+            });
             this.translation.setLang(this.currentLang);
           });
 
