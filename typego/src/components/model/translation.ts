@@ -157,6 +157,12 @@ const data: ITranslation = {
     en: 'Development of the game "Drop Food", page layout "About us"',
     ru: 'Разработка игры "Drop Food", верстка страницы "О нас"',
   },
+
+  // error
+  pageNotFound: {
+    en: 'GAME NOT FOUND (404)',
+    ru: 'Страница не найдена (404)',
+  },
 };
 
 class Translation {
