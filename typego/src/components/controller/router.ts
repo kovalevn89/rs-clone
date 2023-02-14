@@ -5,6 +5,7 @@ import Error from '../view/error';
 import AboutPage from '../view/about';
 import DropStartPage from '../view/drop-start-page';
 import Games from '../view/games';
+import GunGame from '../view/gun';
 
 class Router {
   private validPage: Array<IPage>;
@@ -14,6 +15,7 @@ class Router {
   private about;
   private dropGame;
   private games;
+  private gunGame;
 
   constructor() {
     this.validPage = new Array<IPage>();
@@ -30,6 +32,7 @@ class Router {
     this.about = new AboutPage();
     this.dropGame = new DropStartPage();
     this.games = new Games();
+    this.gunGame = new GunGame();
   }
 
   private isPageValid(page: string): boolean {
@@ -91,9 +94,15 @@ class Router {
           validParams.forEach((item) => {
             if (item.parametr === 'name') {
               switch (item.value) {
-                case 'whac': this.whac.run(); break;
-                case 'drop': this.dropGame.run(); break;
-                case 'shoter': console.log('render shooter game'); break; // PLACE THIS RENDER SHOOTER GAME
+                case 'whac':
+                  this.whac.run();
+                  break;
+                case 'drop':
+                  this.dropGame.run();
+                  break;
+                case 'shooter':
+                  this.gunGame.run();
+                  break;
                 default: {
                   this.error.run('GAME NOT FOUND (404)');
                   // console.log('RENDER 404');

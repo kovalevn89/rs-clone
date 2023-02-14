@@ -23,7 +23,7 @@
     background-color: #000;
     position: absolute;
     z-index: 10;
-    display: none;
+    // display: none;
 
 
     .game_caption{
@@ -100,6 +100,37 @@
     }
   }
 
+  .control_lang,
+  .control_sound{
+    position: absolute;
+    z-index: 9;
+    width: 4%;
+    height: 6.5%;
+    border-radius: 5px;
+    font-family: 'AmaticSC Bold';
+    font-size: 1.5vw;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s all;
+      &:hover{
+        width: 4.5%;
+        height: 7%;
+      }
+  }
+  .control_lang{
+    background: #000;
+    background-size: cover;
+    bottom: 4%;
+    left: 12%;
+  }
+  .control_sound{
+    background: #000;
+    bottom: 4%;
+    right: 12%;
+  }
+
   .shooter1-wrap, .shooter2-wrap, .shooter3-wrap, .shooter4-wrap{
     position: absolute;
     width: 15%;
@@ -157,7 +188,7 @@
   }
 
   .shooter3-wrap {
-    bottom: 33%;
+    bottom: 33.5%;
     left: 25%;
     .shooter3-bgr {
       background: url("./assets/img/gun3.png") center bottom no-repeat;
@@ -166,7 +197,7 @@
   }
 
   .shooter4-wrap {
-    bottom: 33%;
+    bottom: 33.5%;
     left: 60%;
     .shooter4-bgr {
       background: url("./assets/img/gun1.png") center bottom no-repeat;
