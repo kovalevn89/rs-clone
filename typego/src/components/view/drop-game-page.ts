@@ -1,20 +1,27 @@
-// eslint-disable-next-line import/no-cycle
-import DropStartPage from './drop-start-page';
 import { createElement, removeChild } from '../helper/index';
 import { gameState, state } from '../helper/state';
-import { GameData } from '../types/enums';
-
+import { GameData, Themes } from '../types/enums';
 import { dataLang } from '../helper/data';
+import PageView from './baseViewClass';
 
-class DropGamePage {
+class DropGamePage extends PageView {
   container: HTMLElement;
 
   constructor() {
+    super();
     this.container = document.body;
   }
 
   createDropGamePage(lvl: string, speed: number, duration: number, columnsNum: number) {
-    const wrapper = createElement('div', 'drop-game-wrapper', this.container);
+    const app = document.querySelector('.app') as HTMLElement;
+    removeChild(app);
+    const main = createElement('div', 'main', app);
+    if (this.config.getTheme() === Themes.Dark) {
+      main.classList.add('dark');
+    } else {
+      main.classList.remove('dark');
+    }
+    const wrapper = createElement('div', 'drop-game-wrapper', main);
     wrapper.innerHTML = `
     <div class="drop-game-page-container">
     <div class="drop-game-page-header">
@@ -84,9 +91,9 @@ class DropGamePage {
       clearTimeout(animEnd);
       window.removeEventListener('keypress', this.checkLetter);
       this.resetState();
-      removeChild(this.container);
-      const startPage = new DropStartPage();
-      startPage.run();
+      removeChild(app);
+      window.location.hash = '';
+      window.location.hash = '#/games?name=drop';
     });
     fieldContainer.append(...сolumnsArr);
   }

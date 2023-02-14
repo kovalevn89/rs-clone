@@ -1,19 +1,27 @@
 import { createElement, removeChild } from '../helper/index';
-
 import { levelValues } from '../helper/data';
 import { state } from '../helper/state';
-
-// eslint-disable-next-line import/no-cycle
 import DropGamePage from './drop-game-page';
+import { Themes } from '../types/enums';
+import PageView from './baseViewClass';
 
-class DropStartPage {
+class DropStartPage extends PageView {
   container: HTMLElement;
 
   constructor() {
+    super();
     this.container = document.body;
   }
   createDropStartPage() {
-    const wrapper = createElement('div', 'drop-game-wrapper', this.container);
+    const app = document.querySelector('.app') as HTMLElement;
+    removeChild(app);
+    const main = createElement('div', 'main', app);
+    if (this.config.getTheme() === Themes.Dark) {
+      main.classList.add('dark');
+    } else {
+      main.classList.remove('dark');
+    }
+    const wrapper = createElement('div', 'drop-game-wrapper', main);
     wrapper.innerHTML = `
     <div class="drop-game-startpage-container">
     <div class="drop-game-startpage-header">
@@ -109,7 +117,7 @@ class DropStartPage {
         const target = e.currentTarget as HTMLElement;
         const levelTitle = target.querySelector('.level-title') as HTMLElement;
         const currentLvl = levelTitle.textContent?.split(' ').reverse()[0] as string;
-        removeChild(this.container);
+        removeChild(app);
         const gamePage = new DropGamePage();
 
         gamePage.createDropGamePage(
@@ -124,7 +132,8 @@ class DropStartPage {
     const backBtn = document.querySelector('.drop-game-startpage-btn') as HTMLElement;
 
     backBtn.addEventListener('click', () => {
-      removeChild(this.container);
+      removeChild(app);
+      window.location.hash = '#/games';
     });
 
     const resetBtn = document.querySelector('.drop-game-startpage-reset-button') as HTMLElement;
@@ -209,7 +218,8 @@ class DropStartPage {
           (elem: HTMLInputElement) => elem.value !== '' && (elem.nextElementSibling as Element).textContent === '',
         )
       ) {
-        removeChild(body);
+        const app = document.querySelector('.app') as HTMLElement;
+        removeChild(app);
 
         const gamePage = new DropGamePage();
         const speed = +form.speed.value * 1000;
