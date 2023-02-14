@@ -12,10 +12,10 @@
     height: calc($gun-wrap-width/1.428);
     position: relative;
     margin: auto auto 0;
-      // @include media-desktop {
-      //   width: $gun-wrap-width-1199;
-      //   height: calc($gun-wrap-width-1199/1.428);
-      // }
+      @include media-desktop {
+        width: $gun-wrap-width-1199;
+        height: calc($gun-wrap-width-1199/1.428);
+      }
   }
   
   .shooter1-wrap, .shooter2-wrap, .shooter3-wrap, .shooter4-wrap{
