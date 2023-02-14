@@ -26,7 +26,7 @@ class App {
     this.config.run();
     this.header.run();
     this.footer.run();
-    this.router.run();
+    // this.router.run();
   }
 }
 
