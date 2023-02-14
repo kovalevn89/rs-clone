@@ -1,14 +1,14 @@
 import PageView from './baseViewClass';
 import { createElement } from '../helper';
 import { Themes, Language } from '../types/enums';
-import Signup from './signup';
+import Signin from './signin';
 
 class Header extends PageView {
-  private signup: Signup;
+  private signin: Signin;
   constructor() {
     super();
 
-    this.signup = new Signup();
+    this.signin = new Signin();
   }
 
   private changeTheme(): void {
@@ -155,7 +155,7 @@ class Header extends PageView {
 
           // login
           signBtn.addEventListener('click', () => {
-            this.signup.show();
+            this.signin.show();
           });
           // modal wrapper
           createElement('div', 'header__modal', wrapper);
