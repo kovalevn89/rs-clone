@@ -31,7 +31,7 @@ class Keyboard {
     });
   }
 
-  render(parent: HTMLElement, lang: 'en' | 'ru' = Lang.en): void {
+  render(parent: HTMLElement, lang: 'en' | 'ru'): void {
     parent.append(this.keyboard);
     this.keyboard.innerHTML = lang === Lang.en ? svgKeyboard : svgKeybordRu;
   }

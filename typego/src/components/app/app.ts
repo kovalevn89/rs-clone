@@ -1,9 +1,9 @@
 import Model from '../model/model';
 import Controller from '../controller/controler';
-import Router from '../controller/router';
 import Header from '../view/header';
 import Footer from '../view/footer';
 import AppConfig from '../model/appconfig';
+import Router from '../controller/router';
 
 class App {
   model;

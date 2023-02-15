@@ -28,4 +28,10 @@ $footer-background-dark: #1c5576;
 // end main page
 
 $min-main-height: calc(100vh - 300px);
-$min-main-height-adaptive: calc(100vh - 200px);
+
+@media (max-width: 1310px) {
+  $min-main-height: calc(100vh - 400px);
+}
+@media (max-width: 900px) {
+  $min-main-height: calc(100vh - 500px);
+}

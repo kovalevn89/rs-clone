@@ -57,6 +57,14 @@ export enum TrainingStatus {
   stop = 'stop',
 }
 
+export enum Method {
+  GET = 'GET',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+  POST = 'POST',
+  PATCH = 'PATCH',
+}
+
 export default {
   Tag,
   Lang,

@@ -7,12 +7,15 @@ import TrainingLessons from '../view/training/lessons';
 import AboutPage from '../view/about';
 import DropStartPage from '../view/drop-start-page';
 import Games from '../view/games';
+import { Lang } from '../types/enums';
+import TrainingLevels from '../view/training/levels';
 
 class Router {
   private validPage: Array<IPage>;
   private main;
   private training;
   private lessons;
+  private levels;
   private whac;
   private error;
   private about;
@@ -24,7 +27,8 @@ class Router {
     this.validPage.push({ page: 'main', params: [] });
     // this.validPage.push({ page: 'test', params: [] });
     // this.validPage.push({ page: 'learn', params: [] });
-    this.validPage.push({ page: 'training', params: [] });
+    this.validPage.push({ page: 'training', params: ['lang'] });
+    this.validPage.push({ page: 'lesson', params: ['lang', 'index', 'id'] });
     // this.validPage.push({ page: 'lern', params: [] });
     // this.validPage.push({ page: 'lesson', params: [] });
     this.validPage.push({ page: 'about', params: [] });
@@ -33,6 +37,7 @@ class Router {
     this.main = new Main();
     this.training = new Training();
     this.lessons = new TrainingLessons();
+    this.levels = new TrainingLevels();
     this.whac = new WhacAMole();
     this.error = new Error();
     this.about = new AboutPage();
@@ -52,6 +57,7 @@ class Router {
 
     if (currentPage.length === 1 && currentPage[0].params.length > 0) {
       if (params.length > 0) {
+        console.log(params);
         params.forEach((param) => {
           const parametr = param.split('=')[0];
           let value = param.split('=')[1];
@@ -66,6 +72,7 @@ class Router {
         });
       }
     }
+    console.log(validParams);
     return validParams;
   }
 
@@ -86,7 +93,39 @@ class Router {
       }
 
       if (page === 'training') {
-        this.training.run();
+        console.log(validParams);
+        if (validParams.length > 0) {
+          validParams.forEach((item) => {
+            if (item.parametr === 'lang') {
+              console.log(item);
+              if (item.value !== Lang.en && item.value !== Lang.ru) {
+                this.error.run('PAGE NOT FOUND (404)');
+              } else {
+                this.lessons.run(item.value);
+              }
+            }
+          });
+        } else {
+          this.training.run();
+        }
+      }
+
+      if (page === 'lesson') {
+        console.log(validParams);
+        if (validParams.length === 2) {
+          validParams.forEach((item) => {
+            if (item.parametr === 'lang') {
+              console.log(item);
+              if (item.value !== Lang.en && item.value !== Lang.ru) {
+                this.error.run('PAGE NOT FOUND (404)');
+              } else {
+                this.levels.run(Lang.en, 1);
+              }
+            }
+          });
+        } else {
+          this.error.run('not found');
+        }
       }
 
       if (page === 'about') {

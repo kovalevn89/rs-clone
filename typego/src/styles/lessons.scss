@@ -1,112 +1,75 @@
 @import './mixin.scss';
 @import './constants.scss';
 
-h2 {
-  @include caption-text;
-}
-
-h3 {
-  @include normal-text;
-  color: $font-color-text2-light;
-}
-
-.wrapper {
-  display: flex;
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  flex-direction: column;
-  // padding: 0 11vw;
-}
-
 .main {
-  width: 100%;
-  min-height: $min-main-height;
-  justify-content: space-between;
-  flex-direction: column;
-  margin: 0 auto;
-  & h2 {
-    text-align: left;
-    @include caption-text;
-    font-size: 24px;
-    color: $font-color-text2-light;
-    padding: 0 11vw;
+  .lessons__wrapper {
+    @include flex-center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5vw;
+  }
+  .training__levels {
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: 30px;
   }
 
-  background: linear-gradient($base-color-light, 5%, $base-color-addition-light);
-
-  .select {
-    display: flex;
-
-    gap: 20px;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0 auto;
-  }
-
-  .training__select {
-    display: flex;
+  .training__level {
+    @include flex-center;
     flex-direction: column;
-    align-items: center;
-    width: 45%;
-    height: 45%;
-    max-width: 500px;
+    min-width: 200px;
+    color: $font-color-text2-light;
+    padding: 10px;
 
-    border: $base-color-light 2px solid;
-    border-radius: 15px;
+    border: $font-color-text2-light solid 1px;
+    border-radius: 12px;
 
-    background-color: $base-color-addition-light;
+    & .training__img {
+      filter: grayscale(1);
+      width: 120px;
+      height: 120px;
+      padding: 20px;
+    }
+
+    &.done {
+      & .training__img {
+        filter: none;
+      }
+    }
 
     &:hover {
       cursor: pointer;
       color: $base-color-light;
-    }
+      border-color: $base-color-light;
+      // transform: scale(1.1);
+      // transition: all ease 0.5s;
 
-    & img {
-      display: flex;
-      width: 90%;
-      height: 90%;
-      padding: 10px;
-    }
+      & .training__level__title {
+        color: $base-color-light;
+      }
 
-    & h3 {
-      @include normal-text;
-      font-size: 18px;
+      & img {
+        filter: grayscale(0.3);
+      }
     }
-  }
-
-  .training__levels {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    align-items: center;
-    justify-content: center;
   }
 
   &.dark {
-    background: linear-gradient($base-color-dark, $footer-background-dark);
 
-    & h2 {
-      text-align: left;
-      @include caption-text;
-      font-size: 24px;
-      color: $font-color-text1-dark;
-    }
-    & .training__select {
-      background-color: $base-color-addition-dark;
-    }
-    & h3{
-      color: $font-color-text1-dark;
-    }
-    & .training__select:hover {
-      color: $button-color-dark;
+    .training__level {
+      & .training__level__title {
+        color: $font-color-text1-dark;
+      }
+
+      &:hover {
+        & .training__level__title {
+          color: $button-color-dark;
+        }
+      }
+
     }
   }
-
 }
-
-
-
 
 .level__container {
   display: flex;
@@ -192,54 +155,6 @@ h3 {
 
   &.pause {
     color: rgba(95, 158, 160, 0.8);
-  }
-}
-
-
-
-.training__level {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  // width: 30%;
-  min-width: 200px;
-  // height: 30%;
-  color: $font-color-text2-light;
-  padding: 10px;
-
-
-  border: $font-color-text2-light solid 1px;
-  border-radius: 12px;
-
-  & h3 {
-    @include normal-text;
-    font-size: 18px;
-    text-align: center;
-  }
-
-  & img {
-    filter: grayscale(1);
-    width: 120px;
-    height: 120px;
-    padding: 20px;
-  }
-
-  &.done {
-    & img {
-      filter: none;
-    }
-  }
-
-  &:hover {
-    cursor: pointer;
-    color: $base-color-light;
-    transform: scale(1.1);
-    transition: all ease 0.5s;
-
-    & img {
-      filter: grayscale(0.5);
-    }
   }
 }
 

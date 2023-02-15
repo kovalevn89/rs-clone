@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
-import { Lesson, Lessons } from '../components/types';
-import { Lang } from '../components/types/enums';
-import { Method, User } from './constants';
+import { Lesson, Lessons, User } from '../types';
+import { Lang, Method } from '../types/enums';
 
 const HOST = 'https://typego.onrender.com/api/';
 const ENDPOINT = {
@@ -30,7 +29,7 @@ export default class Api {
     return response.json() as Promise<T>;
   }
 
-  async getLessons(token: string, lang = Lang.en): Promise<Lessons> {
+  async getLessons(token: string, lang: 'en' | 'ru'): Promise<Lessons> {
     const { lessons } = ENDPOINT;
     const url = `${lessons}?lang=${lang}`;
     return this.makeFetch<Lessons>(url, Method.GET, {

@@ -84,3 +84,9 @@ export interface Test {
   text: string;
   lang: 'en' | 'ru';
 }
+
+export interface User {
+  username: string;
+  password: string;
+  token?: string;
+}

@@ -11,55 +11,62 @@ h3 {
 }
 
 .main {
-  // width: 100%;
-  // justify-content: space-between;
-  // flex-direction: column;
-  // margin: 0 auto;
-  .wrapper__training {
+  @include main-height;
+
+  .wrapper {
+
+    & * {
+      box-sizing: border-box;
+    }
+
     display: flex;
     width: 100%;
-    min-height: $min-main-height;
+    justify-content: center;
+    align-items: center;
 
-    max-width: 1440px;
-    margin: 0 auto;
+    padding: 20px 11vw;
+    margin: 0;
     flex-direction: column;
+    box-sizing: border-box;
   }
 
-  & h2 {
+  & .training__title {
     text-align: left;
     @include caption-text;
     font-size: 24px;
     color: $font-color-text2-light;
-    padding: 0 11vw;
+    // padding: 0 11vw;
   }
 
-  background: linear-gradient($base-color-light, 5%, $base-color-addition-light);
+  // background: linear-gradient($base-color-light, 5%, $base-color-addition-light);
 
   .select {
     display: flex;
+    flex-wrap: wrap;
 
     gap: 20px;
     justify-content: space-around;
     align-items: center;
-    margin: 0 auto;
   }
 
   .training__select {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 45%;
-    height: 45%;
+    width: 40%;
+    height: 40%;
     max-width: 500px;
+    min-width: 200px;
 
-    border: $base-color-light 2px solid;
-    border-radius: 15px;
+    border: $font-color-text2-light 2px solid;
+    border-radius: 25px;
 
-    background-color: $base-color-addition-light;
+    // background-color: $base-color-addition-light;
 
     &:hover {
       cursor: pointer;
       color: $base-color-light;
+      border: $base-color-light 2px solid;
     }
 
     & img {
@@ -67,12 +74,13 @@ h3 {
       width: 90%;
       height: 90%;
       padding: 10px;
+    // max-height: 30vh;
     }
 
-    & h3 {
-      @include normal-text;
-      font-size: 18px;
-    }
+    // & h3 {
+    //   @include normal-text;
+    //   font-size: 18px;
+    // }
   }
 
   .training__levels {
@@ -84,9 +92,10 @@ h3 {
   }
 
   &.dark {
-    background: linear-gradient($base-color-dark, $footer-background-dark);
+    // background: linear-gradient($base-color-dark, $footer-background-dark);
+    background-color: $base-color-addition-dark;
 
-    & h2 {
+    & .training__title {
       text-align: left;
       @include caption-text;
       font-size: 24px;
@@ -95,7 +104,7 @@ h3 {
     & .training__select {
       background-color: $base-color-addition-dark;
     }
-    & h3{
+    & .select__title{
       color: $font-color-text1-dark;
     }
     & .training__select:hover {
