@@ -122,9 +122,43 @@ class GunGame {
 
     if (app !== null) {
       removeChild(app);
+      const gunWrapper = createElement('div', 'gun-wrapper', app);
+      const bgrWrapper = createElement('div', 'bgr-wrapper', gunWrapper);
+      // control_lang_sound
+      createElement('div', 'control_lang', bgrWrapper).textContent = 'RU';
+      createElement('div', 'control_sound', bgrWrapper).textContent = `${String.fromCodePoint(0x1d160)}`;
+      // level
+      const statsLevel = createElement('div', 'stats_level', bgrWrapper);
+      createElement('div', 'label', statsLevel).textContent = 'R=';
+      const levelValue = createElement('div', 'value', statsLevel);
+      levelValue.textContent = '1';
+      // score
+      const statsScore = createElement('div', 'stats_score', bgrWrapper);
+      createElement('div', 'label', statsScore).textContent = 'Score:';
+      const scoreValue = createElement('div', 'value', statsScore);
+      scoreValue.textContent = '0';
+      // accuracy
+      const statsAccuracy = createElement('div', 'stats_accuracy', bgrWrapper);
+      createElement('div', 'label', statsAccuracy).textContent = 'Accuracy:';
+      const accuracyValue = createElement('div', 'value', statsAccuracy);
+      accuracyValue.textContent = '100%';
+      // time
+      const statsTime = createElement('div', 'stats_time', bgrWrapper);
+      createElement('div', 'label', statsTime).textContent = 'Time:';
+      const timerValue = createElement('div', 'value', statsTime);
+      timerValue.textContent = '00s';
+      // shooters
+      for (let i = 1; i <= 4; i += 1) {
+        this.createShooterWrap(bgrWrapper, i);
+      }
     }
   }
 
+  private createShooterWrap(parent: HTMLElement, index: number) {
+    const shooterWrap = createElement('div', `shooter${index}-wrap`, parent);
+    createElement('div', 'word', shooterWrap);
+    createElement('div', `shooter${index}-bgr`, shooterWrap);
+  }
   run(): void {
     this.renderStartPage();
   }
