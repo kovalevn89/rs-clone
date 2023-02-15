@@ -25,6 +25,8 @@ export class Training extends PageView {
     const selectContainer = createElement(Tag.div, 'select', wrapper);
 
     // todo this scope can be refactor
+    // todo add state language
+    // todo navigation function
     const selectEn = createElement(Tag.div, 'training__select', selectContainer, ['lang', 'en']);
     selectEn.addEventListener('click', () => {
       window.location.hash = '#/training?lang=en';

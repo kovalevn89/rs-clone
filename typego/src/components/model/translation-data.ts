@@ -159,9 +159,11 @@ const data: ITranslation = {
 
   // error
   pageNotFound: {
-    en: 'GAME NOT FOUND (404)',
+    en: 'PAGE NOT FOUND (404)',
     ru: 'Страница не найдена (404)',
   },
+  // todo training
+
 };
 
 export default data;

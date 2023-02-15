@@ -5,6 +5,7 @@ import Footer from '../view/footer';
 import AppConfig from '../model/appconfig';
 import Router from '../controller/router';
 import Translation from '../model/translation';
+import State from '../model/state';
 
 class App {
   model;
@@ -14,6 +15,7 @@ class App {
   router;
   config;
   translate;
+  state;
 
   constructor() {
     this.config = new AppConfig();
@@ -23,6 +25,7 @@ class App {
     this.footer = new Footer();
     this.router = new Router();
     this.translate = new Translation();
+    this.state = new State();
   }
 
   run(): void {

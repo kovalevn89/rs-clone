@@ -1,6 +1,6 @@
 import { createElement } from '../../helper';
 import { TextResponse } from '../../types';
-import { TrainingStatus } from '../../types/enums';
+import { Tag, TrainingStatus } from '../../types/enums';
 import Text from './text';
 
 class TextTraining {
@@ -12,17 +12,20 @@ class TextTraining {
   private accurancy;
   private separator;
 
-  constructor(response: TextResponse) {
-    this.container = createElement('div', 'level__text__container');
-    this.text = new Text(response);
-    this.container.append(this.text.container);
+  constructor() {
+    this.container = createElement(Tag.div, 'level__text__container');
+    this.text = new Text();
 
-    this.separator = createElement('div', 'separator', this.container);
-    this.progress = createElement('div', 'text__progress', this.container);
-    this.speed = createElement('div', 'speed__container', this.progress);
-    this.accurancy = createElement('div', 'accurancy__container', this.progress);
+    this.separator = createElement(Tag.div, 'separator', this.container);
+    this.progress = createElement(Tag.div, 'text__progress', this.container);
+    this.speed = createElement(Tag.div, 'speed__container', this.progress);
+    this.accurancy = createElement(Tag.div, 'accurancy__container', this.progress);
 
-    this.training = createElement('div', 'text__instructions', this.container);
+    this.training = createElement(Tag.div, 'text__instructions', this.container);
+  }
+
+  render(response: TextResponse): void {
+    this.container.append(this.text.init(response));
   }
 
   updateProgress(): void {

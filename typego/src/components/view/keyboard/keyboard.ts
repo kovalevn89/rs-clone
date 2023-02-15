@@ -34,6 +34,7 @@ class Keyboard {
   render(parent: HTMLElement, lang: 'en' | 'ru'): void {
     parent.append(this.keyboard);
     this.keyboard.innerHTML = lang === Lang.en ? svgKeyboard : svgKeybordRu;
+    this.keys = this.keyboard.querySelectorAll('.key');
   }
 
   remove(): void {

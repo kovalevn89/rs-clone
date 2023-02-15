@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable max-len */
 import PageView from '../baseViewClass';
 
 import { createElement, removeChild } from '../../helper';
@@ -14,10 +12,19 @@ import cover6 from '../../../assets/png/cover6.png';
 import Api from '../../controller/api';
 import { Lessons } from '../../types';
 import { LESSONS, LESSONS_RU } from '../../helper/constants';
+import State from '../../model/state';
 
 export default class TrainingLessons extends PageView {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  private async render(lang: 'en' | 'ru'): Promise<void> {
+  private state: State;
+
+  constructor() {
+    super();
+
+    this.state = new State();
+    console.log(this.state);
+  }
+
+  private async render(): Promise<void> {
     const main = document.querySelector<HTMLElement>('.app');
 
     if (!main) return;
@@ -37,7 +44,7 @@ export default class TrainingLessons extends PageView {
 
     const cover = [cover1, cover2, cover3, cover4, cover5, cover6];
 
-    const lessons = await this.getLessons(lang);
+    const lessons = await this.getLessons(this.state.lang);
 
     lessons.map((lesson, i) => {
       const lev = createElement<HTMLDivElement>(Tag.div, 'training__level', lessonsWrapper, ['id', `level_${lesson.index}`]);
@@ -45,7 +52,9 @@ export default class TrainingLessons extends PageView {
       createElement<HTMLImageElement>(Tag.img, 'training__img', lev, ['alt', `Lesson ${lesson.index} cover`]).src = cover[i];
 
       lev.addEventListener('click', () => {
-        window.location.hash = `#/lesson?lang=${lang}&index=${lesson.index}`;
+        this.state.lesson = lesson.index;
+        console.log(this.state);
+        window.location.hash = `#/lesson?lang=${this.state.lang}&index=${this.state.lesson}&id=${this.state.level}`;
       });
 
       return lev;
@@ -64,6 +73,7 @@ export default class TrainingLessons extends PageView {
   }
 
   run(lang: 'en' | 'ru'): void {
-    this.render(lang);
+    this.state.lang = lang;
+    this.render();
   }
 }

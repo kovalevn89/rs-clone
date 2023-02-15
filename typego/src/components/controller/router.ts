@@ -1,5 +1,4 @@
 import { IPage, IParametr } from '../types/index';
-import Main from '../view/main';
 import WhacAMole from '../view/whacamole';
 import Error from '../view/error';
 import { Training } from '../view/training';
@@ -9,6 +8,8 @@ import DropStartPage from '../view/drop-start-page';
 import Games from '../view/games';
 import { Lang } from '../types/enums';
 import TrainingLevels from '../view/training/levels';
+import Main from '../view/main';
+// import State from '../model/state';
 
 class Router {
   private validPage: Array<IPage>;
@@ -57,7 +58,7 @@ class Router {
 
     if (currentPage.length === 1 && currentPage[0].params.length > 0) {
       if (params.length > 0) {
-        console.log(params);
+        // console.log(params);
         params.forEach((param) => {
           const parametr = param.split('=')[0];
           let value = param.split('=')[1];
@@ -72,7 +73,7 @@ class Router {
         });
       }
     }
-    console.log(validParams);
+    // console.log(validParams);
     return validParams;
   }
 
@@ -93,13 +94,11 @@ class Router {
       }
 
       if (page === 'training') {
-        console.log(validParams);
         if (validParams.length > 0) {
           validParams.forEach((item) => {
             if (item.parametr === 'lang') {
-              console.log(item);
               if (item.value !== Lang.en && item.value !== Lang.ru) {
-                this.error.run('PAGE NOT FOUND (404)');
+                this.error.run('pageNotFound');
               } else {
                 this.lessons.run(item.value);
               }
@@ -111,20 +110,39 @@ class Router {
       }
 
       if (page === 'lesson') {
-        console.log(validParams);
-        if (validParams.length === 2) {
+        const path = {
+          lang: '',
+          lesson: 0,
+          id: 0,
+        };
+        if (validParams.length === 3) {
           validParams.forEach((item) => {
-            if (item.parametr === 'lang') {
-              console.log(item);
-              if (item.value !== Lang.en && item.value !== Lang.ru) {
-                this.error.run('PAGE NOT FOUND (404)');
-              } else {
-                this.levels.run(Lang.en, 1);
+            switch (item.parametr) {
+              case 'lang': {
+                path.lang = item.value;
+                break;
+              }
+              case 'index': {
+                path.lesson = Number(item.value);
+                break;
+              }
+              case 'id': {
+                path.id = Number(item.value);
+                break;
+              }
+              default: {
+                this.error.run('pageNotFound');
+                break;
               }
             }
           });
+          if (path.lang !== Lang.en && path.lang !== Lang.ru) {
+            this.error.run('pageNotFound');
+          } else {
+            this.levels.run(path.lang, path.lesson, path.id);
+          }
         } else {
-          this.error.run('not found');
+          this.error.run('pageNotFound');
         }
       }
 

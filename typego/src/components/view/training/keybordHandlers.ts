@@ -1,11 +1,11 @@
-/* eslint-disable import/no-cycle */
 import { Status } from '../../types/enums';
 import { isSpecial } from '../../helper/isSpecial';
 import correctKey from '../../../assets/media/correctKey.mp3';
 import incorrectKey from '../../../assets/media/incorrectKey.mp3';
 import bacspaseKey from '../../../assets/media/backspaseKey.mp3';
-// import FinishLevel from './finish';
+// eslint-disable-next-line import/no-cycle
 import TrainingTask from './trainingTask';
+import FinishLevel from './finish';
 
 export const keyDowmHandler = (
   e: KeyboardEvent,
@@ -22,7 +22,7 @@ export const keyDowmHandler = (
   const { letters } = text;
   const sound = new Audio(correctKey);
   sound.pause();
-  sound.volume = 0.3;
+  sound.volume = 0.5;
 
   if (isSpecial(e.code)) {
     text.setIndex(index);
@@ -62,6 +62,7 @@ export const keyDowmHandler = (
     }
     mistakes += 1;
     sound.pause();
+    sound.volume = 0.3;
     sound.src = incorrectKey;
     sound.play();
   }
@@ -72,7 +73,7 @@ export const keyDowmHandler = (
 };
 
 export const keyUpHandler = (training: TrainingTask): void => {
-  const { keyboard, textTraining } = training;
+  const { keyboard, textTraining, input } = training;
   const { text } = textTraining;
 
   keyboard.init();
@@ -83,16 +84,14 @@ export const keyUpHandler = (training: TrainingTask): void => {
   text.keyboardHint(keyboard);
   textTraining.updateProgress();
   if (text.index === text.letters.length - 1) {
-    const input = document.querySelector('#main_input');
-    console.log(input);
-    input?.remove();
+    // const input = document.querySelector('#main_input');
+    // if (!input) return;
+
+    input.stopListen();
+    // input?.remove();
 
     const finish = new FinishLevel();
-    finish.render(training);
-
-    // eslint-disable-next-line no-alert
-    alert('Level done!');
-    // todo finish level function
+    finish.renderComplete();
   }
 };
 
