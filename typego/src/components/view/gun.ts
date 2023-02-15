@@ -12,7 +12,7 @@ class GunGame {
   level: number;
 
   constructor() {
-    this.language = 'ru';
+    this.language = 'RU';
     this.isSound = true;
     this.score = 0;
     this.accuracy = 0;
@@ -65,6 +65,26 @@ class GunGame {
         }
       }
     }
+  }
+
+  private changeSoundBtnInner(): string {
+    let soundLogo;
+    if (this.isSound === true) {
+      soundLogo = `${String.fromCodePoint(0x1d160)}`;
+    } else {
+      soundLogo = `${String.fromCodePoint(0x1d194)}`;
+    }
+    return soundLogo;
+  }
+
+  private changeLangBtnInner(): string {
+    let lengText;
+    if (this.language === 'RU') {
+      lengText = 'RU';
+    } else {
+      lengText = 'EN';
+    }
+    return lengText;
   }
 
   private renderStartPage(): void {
@@ -124,9 +144,22 @@ class GunGame {
       removeChild(app);
       const gunWrapper = createElement('div', 'gun-wrapper', app);
       const bgrWrapper = createElement('div', 'bgr-wrapper', gunWrapper);
-      // control_lang_sound
-      createElement('div', 'control_lang', bgrWrapper).textContent = 'RU';
-      createElement('div', 'control_sound', bgrWrapper).textContent = `${String.fromCodePoint(0x1d160)}`;
+      // control_lang
+      const langButton = createElement('div', 'control_lang', bgrWrapper);
+      langButton.textContent = this.changeLangBtnInner();
+      langButton.addEventListener('click', () => {
+        this.language = this.language === 'RU' ? 'EN' : 'RU';
+        langButton.textContent = this.changeLangBtnInner();
+        localStorage.setItem('gunLang', `${Number(this.language)}`);
+      });
+      // control_sound
+      const soundButton = createElement('div', 'control_sound', bgrWrapper);
+      soundButton.textContent = this.changeSoundBtnInner();
+      soundButton.addEventListener('click', () => {
+        this.isSound = !this.isSound;
+        soundButton.textContent = this.changeSoundBtnInner();
+        localStorage.setItem('gunSound', `${Number(this.isSound)}`);
+      });
       // level
       const statsLevel = createElement('div', 'stats_level', bgrWrapper);
       createElement('div', 'label', statsLevel).textContent = 'R=';
