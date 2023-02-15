@@ -87,19 +87,24 @@ class Header extends PageView {
           const nav = createElement('nav', 'nav hidden', menu);
           const list = createElement('ul', 'menu__list', nav);
           const item1 = createElement('li', 'menu__item', list);
-          item1.textContent = 'Тестирование';
+          item1.textContent = this.translation.getString('headerManu1');
+          this.translation.regObserverPermanent(() => { item1.textContent = this.translation.getString('headerManu1'); });
           item1.addEventListener('click', () => { window.location.hash = '#/test'; });
           const item2 = createElement('li', 'menu__item', list);
-          item2.textContent = 'Обучение';
+          item2.textContent = this.translation.getString('headerManu2');
+          this.translation.regObserverPermanent(() => { item2.textContent = this.translation.getString('headerManu2'); });
           item2.addEventListener('click', () => { window.location.hash = '#/lern'; });
           const item3 = createElement('li', 'menu__item', list);
-          item3.textContent = 'Тренажер';
+          item3.textContent = this.translation.getString('headerManu3');
+          this.translation.regObserverPermanent(() => { item3.textContent = this.translation.getString('headerManu3'); });
           item3.addEventListener('click', () => { window.location.hash = '#/training'; });
           const item4 = createElement('li', 'menu__item', list);
-          item4.textContent = 'Игры';
+          item4.textContent = this.translation.getString('headerManu4');
+          this.translation.regObserverPermanent(() => { item4.textContent = this.translation.getString('headerManu4'); });
           item4.addEventListener('click', () => { window.location.hash = '#/games'; });
           const item5 = createElement('li', 'menu__item', list);
-          item5.textContent = 'Войти';
+          item5.textContent = this.translation.getString('loginButton');
+          this.translation.regObserverPermanent(() => { item5.textContent = this.translation.getString('loginButton'); });
           const item6 = createElement('li', 'menu__item', list);
           item6.textContent = '';
           const themeBtn2 = createElement('div', 'theme__btn', item6);
@@ -112,7 +117,10 @@ class Header extends PageView {
           langBtn1.addEventListener('click', () => {
             this.changeLang();
             this.config.setLang(this.currentLang);
-            langBtn1.textContent = `${Language[this.config.getLang()]}`;
+            document.querySelectorAll('.lang__btn').forEach((value) => {
+              value.textContent = `${Language[this.config.getLang()]}`;
+            });
+            this.translation.setLang(this.currentLang);
           });
 
           // controls
@@ -127,11 +135,15 @@ class Header extends PageView {
           langBtn.addEventListener('click', () => {
             this.changeLang();
             this.config.setLang(this.currentLang);
-            langBtn.textContent = `${Language[this.config.getLang()]}`;
+            document.querySelectorAll('.lang__btn').forEach((value) => {
+              value.textContent = `${Language[this.config.getLang()]}`;
+            });
+            this.translation.setLang(this.currentLang);
           });
 
           const signBtn = createElement('div', 'sign__btn', controls);
-          signBtn.textContent = 'войти';
+          signBtn.textContent = this.translation.getString('loginButton');
+          this.translation.regObserverPermanent(() => { signBtn.textContent = this.translation.getString('loginButton'); });
 
           body.prepend(header);
         }

@@ -20,16 +20,21 @@ class Footer extends PageView {
           const logoBtn = createElement('div', 'footer__caption', footerTop);
           logoBtn.textContent = 'TypeGo';
           const aboutBtn = createElement('div', 'footer__about', footerTop);
-          aboutBtn.textContent = 'О нас';
+          aboutBtn.textContent = this.translation.getString('footerAboutButton');
+          this.translation.regObserverPermanent(() => { aboutBtn.textContent = this.translation.getString('footerAboutButton'); });
 
           aboutBtn.addEventListener('click', () => {
             window.location.hash = '#/about';
           });
 
           const footerBottom = createElement('div', 'footer__bottom', footerWrapper);
-          createElement('div', 'footer__credits', footerBottom).textContent = '© 2023 TypeGo - Удобный и простой клавиатурный тренажер';
-          createElement('div', 'footer__controls-discription', footerBottom).textContent = 'Разработано в рамках задания RSClone для RSSchool';
+          const footerCredits = createElement('div', 'footer__credits', footerBottom);
+          footerCredits.textContent = this.translation.getString('footerCredits');
+          this.translation.regObserverPermanent(() => { footerCredits.textContent = this.translation.getString('footerCredits'); });
 
+          const footerDescription = createElement('div', 'footer__controls-discription', footerBottom);
+          footerDescription.textContent = this.translation.getString('footerDescription');
+          this.translation.regObserverPermanent(() => { footerDescription.textContent = this.translation.getString('footerDescription'); });
           body.append(footer);
         }
       }

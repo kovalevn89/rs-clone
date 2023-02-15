@@ -4,6 +4,7 @@ import Header from '../view/header';
 import Footer from '../view/footer';
 import AppConfig from '../model/appconfig';
 import Router from '../controller/router';
+import Translation from '../model/translation';
 
 class App {
   model;
@@ -12,6 +13,7 @@ class App {
   footer;
   router;
   config;
+  translate;
 
   constructor() {
     this.config = new AppConfig();
@@ -20,10 +22,12 @@ class App {
     this.header = new Header();
     this.footer = new Footer();
     this.router = new Router();
+    this.translate = new Translation();
   }
 
   run(): void {
     this.config.run();
+    this.translate.setLang(this.config.getLang());
     this.header.run();
     this.footer.run();
     this.router.run();

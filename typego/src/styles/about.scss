@@ -12,13 +12,14 @@
       position: relative;
 
       .ellipse1 {
-        width: 40%;
+        width: 25%;
         aspect-ratio: 1 / 1;
-        background: rgba(133, 167, 255, 0.8);
+        background: rgba(133, 167, 255, 0.6);
         filter: blur(250px);
         position: absolute;
         left: -2%;
         top: -5%;
+        z-index: 1;
       }
 
       .ellipse2 {
@@ -29,7 +30,7 @@
         position: absolute;
         right: -5%;
         bottom: 8%;
-        z-index: 5;
+        z-index: 1;
       }
 
       .block_wrapper {
@@ -55,7 +56,6 @@
         }
         .proposales__card {
           width: 100%;
-          // min-height: 300px;
           padding: 10px;
           display: flex;
           align-items: stretch;
@@ -160,8 +160,12 @@
           display: flex;
           align-items: center;
           border-radius: 40px;
-          box-shadow: 0px 8px 25px 0px rgb(0 0 0 / 75%);
+          box-shadow: 2px 2px 16px 3px rgb(0 0 0 / 75%);
           margin-bottom: 55px;
+
+          position: relative; //!
+          background-color: rgba($base-color-addition-light, 0.8); //!
+          z-index: 5; //!
 
           .card__left {
             width: 280px;
@@ -169,7 +173,7 @@
             .card__image {
               background-color: #fddac5;
               border-radius: 50%;
-              box-shadow: 0px 8px 25px 0px rgb(0 0 0 / 75%);
+              box-shadow: 2px 2px 7px 2px rgb(0 0 0 / 75%);
               height: 200px;
               width: 200px;
               margin-left: 20px;
@@ -191,7 +195,7 @@
                   text-decoration: none;
                   color: $base-color-light;
                   &:hover{
-                    color: $button-color-light;
+                    color: $base-footer-gradient-color1-light; //!
                     }
                 }
               }
@@ -238,6 +242,7 @@
             color: $font-color-text2-dark;
           }
           .proposales__card {
+            background-color: rgba($base-color-addition-dark, 0.8); 
             .card__right {
               .card__context {
                 .card__context-caption {
@@ -245,7 +250,7 @@
                   a{
                     color: $base-color-dark;
                     &:hover{
-                      color: $button-color-light;
+                      color: $button-hover-color-dark;
                       }
                   }
                 }

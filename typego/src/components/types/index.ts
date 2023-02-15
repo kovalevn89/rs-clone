@@ -90,3 +90,12 @@ export interface User {
   password: string;
   token?: string;
 }
+
+export interface ITranslationData {
+  en: string;
+  ru: string;
+}
+
+export interface ITranslation {
+  [key: string]: ITranslationData;
+}

@@ -25,7 +25,7 @@ export function createElement<T = HTMLElement>(
         return;
       }
       if (
-        attrName.match(/value|id|href|src|alt|type|name|placeholder|tabindex|min|max|for|step|width|height|selected|spellcheck/i) !== null
+        attrName.match(/value|id|href|target|src|alt|type|name|placeholder|tabindex|min|max|for|step|width|height|selected|spellcheck/i) !== null
       ) {
         el.setAttribute(attrName, attrValue);
       } else {

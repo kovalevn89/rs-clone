@@ -21,7 +21,10 @@ class Error extends PageView {
       image.style.background = `url(${errorImage}) center no-repeat`;
       image.style.backgroundSize = 'contain';
       const message = createElement('div', 'error-message', errorBlock);
-      message.textContent = messsageText;
+      message.textContent = this.translation.getString(messsageText);
+      this.translation.regObserver(() => {
+        message.textContent = this.translation.getString(messsageText);
+      });
     }
   }
 

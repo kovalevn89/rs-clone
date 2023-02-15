@@ -18,6 +18,8 @@ class Main extends PageView {
     const app: HTMLElement | null = document.querySelector('.app');
 
     if (app !== null) {
+      this.translation.cleanObserver(); // clear translate obserber hook
+
       removeChild(app);
       const main = createElement('div', 'main', app);
       if (this.config.getTheme() === Themes.Dark) {
@@ -33,16 +35,20 @@ class Main extends PageView {
       const wrapper1 = createElement('div', 'block_wrapper', fasterBlock);
       const leftCol = createElement('div', 'typig-faster__left-col', wrapper1);
       const leftColCaption = createElement('h1', 'left-col__caption', leftCol);
-      createElement('span', 'text', leftColCaption).textContent = 'печатай быстрее';
+      const leftColCaptionText = createElement('span', 'text', leftColCaption);
+      // leftColCaptionText.textContent = 'печатай быстрее';
+      leftColCaptionText.textContent = this.translation.getString('typigFasterCaption');
+      this.translation.regObserver(() => { leftColCaptionText.textContent = this.translation.getString('typigFasterCaption'); });
       const leftColText = createElement('div', 'left-col__text', leftCol);
-      createElement('span', 'text', leftColText).innerHTML = 'Научись быстро печатать с клавиатурным тренажером <span>TypeGo</span>. Уроки слепой печати помогут тебе использовать все 10 пальцев.';
+      const typingFasterDescription = createElement('span', 'text', leftColText);
+      typingFasterDescription.innerHTML = this.translation.getString('typigFasterDescription');
+      this.translation.regObserver(() => { typingFasterDescription.innerHTML = this.translation.getString('typigFasterDescription'); });
+
       const leftColButton = createElement('div', 'left-col__button', leftCol);
-      // leftColButton.addEventListener('click', (e) => {
-      //   console.log(e.target);
-      //   const training = new TrainingView();
-      //   training.render(main);
-      // });
-      createElement('div', 'button', leftColButton).textContent = 'Начать печатать';
+
+      const typingFasterBtn = createElement('div', 'button', leftColButton);
+      typingFasterBtn.textContent = this.translation.getString('typigFasterButton');
+      this.translation.regObserver(() => { typingFasterBtn.textContent = this.translation.getString('typigFasterButton'); });
       const rightCol = createElement('div', 'typig-faster__right-col', wrapper1);
       const image = createElement('div', 'image', rightCol);
       this.setBackground(image, image1);
@@ -61,10 +67,16 @@ class Main extends PageView {
       this.setBackground(cardImage1, proposale1);
       const cardRight1 = createElement('div', 'card__right', card1);
       const cardContext1 = createElement('div', 'card__context', cardRight1);
-      createElement('h2', 'card__context-caption', cardContext1).textContent = 'Научись печатать вслепую';
-      createElement('div', 'card__context-text', cardContext1).textContent = 'Ускорь прогресс обучения слепой печати и развивай ценные навыки набора текста.';
+      const proposaleCaption1 = createElement('h2', 'card__context-caption', cardContext1);
+      proposaleCaption1.textContent = this.translation.getString('proposaleCaption1');
+      this.translation.regObserver(() => { proposaleCaption1.textContent = this.translation.getString('proposaleCaption1'); });
+      const proposaleText1 = createElement('div', 'card__context-text', cardContext1);
+      proposaleText1.textContent = this.translation.getString('proposaleText1');
+      this.translation.regObserver(() => { proposaleText1.textContent = this.translation.getString('proposaleText1'); });
       const contextLink1 = createElement('div', 'card__context-link', cardContext1);
-      createElement('div', 'context-link__button', contextLink1).textContent = 'Перейти к обучению';
+      const proposaleButton1 = createElement('div', 'context-link__button', contextLink1);
+      proposaleButton1.textContent = this.translation.getString('proposaleButton1');
+      this.translation.regObserver(() => { proposaleButton1.textContent = this.translation.getString('proposaleButton1'); });
 
       // propo2
       const card2 = createElement('div', 'proposales__card', wrapper2);
@@ -76,10 +88,16 @@ class Main extends PageView {
       const cardRight2 = createElement('div', 'card__right', card2);
       cardRight2.style.order = '-1';
       const cardContext2 = createElement('div', 'card__context', cardRight2);
-      createElement('h2', 'card__context-caption', cardContext2).textContent = 'Пройди тест скорости печати';
-      createElement('div', 'card__context-text', cardContext2).textContent = 'Узнай свою скорость печати и удиви приятелей или руководство полученным сертификатом.';
+      const proposaleCaption2 = createElement('h2', 'card__context-caption', cardContext2);
+      proposaleCaption2.textContent = this.translation.getString('proposaleCaption2');
+      this.translation.regObserver(() => { proposaleCaption2.textContent = this.translation.getString('proposaleCaption2'); });
+      const proposaleText2 = createElement('div', 'card__context-text', cardContext2);
+      proposaleText2.textContent = this.translation.getString('proposaleText2');
+      this.translation.regObserver(() => { proposaleText2.textContent = this.translation.getString('proposaleText2'); });
       const contextLink2 = createElement('div', 'card__context-link', cardContext2);
-      createElement('div', 'context-link__button', contextLink2).textContent = 'Перейти к тесту скоростной печати';
+      const proposaleButton2 = createElement('div', 'context-link__button', contextLink2);
+      proposaleButton2.textContent = this.translation.getString('proposaleButton2');
+      this.translation.regObserver(() => { proposaleButton2.textContent = this.translation.getString('proposaleButton2'); });
 
       // propo3
       const card3 = createElement('div', 'proposales__card', wrapper2);
@@ -89,19 +107,28 @@ class Main extends PageView {
       this.setBackground(cardImage3, proposale3);
       const cardRight3 = createElement('div', 'card__right', card3);
       const cardContext3 = createElement('div', 'card__context', cardRight3);
-      createElement('h2', 'card__context-caption', cardContext3).textContent = 'Учись играя';
-      createElement('div', 'card__context-text', cardContext3).textContent = 'Каждая игра направлена на развитие техники вашей печати. Играйте, следите за прогрессом, становитесь ближе к своей цели!';
+      const proposaleCaption3 = createElement('h2', 'card__context-caption', cardContext3);
+      proposaleCaption3.textContent = this.translation.getString('proposaleCaption3');
+      this.translation.regObserver(() => { proposaleCaption3.textContent = this.translation.getString('proposaleCaption3'); });
+      const proposaleText3 = createElement('div', 'card__context-text', cardContext3);
+      proposaleText3.textContent = this.translation.getString('proposaleText3');
+      this.translation.regObserver(() => { proposaleText3.textContent = this.translation.getString('proposaleText3'); });
       const contextLink3 = createElement('div', 'card__context-link', cardContext3);
-      createElement('div', 'context-link__button', contextLink3).textContent = 'Перейти к играм';
+      const proposaleButton3 = createElement('div', 'context-link__button', contextLink3);
+      proposaleButton3.textContent = this.translation.getString('proposaleButton3');
+      this.translation.regObserver(() => { proposaleButton3.textContent = this.translation.getString('proposaleButton3'); });
 
       // registration
       const registration = createElement('div', 'registration', wrapper2);
       const registrationCaption = createElement('h2', 'registration-caption', registration);
-      registrationCaption.textContent = 'Печатать вслепую - легко';
+      registrationCaption.textContent = this.translation.getString('registrationCaption');
+      this.translation.regObserver(() => { registrationCaption.textContent = this.translation.getString('registrationCaption'); });
       const registrationText = createElement('div', 'registration-text', registration);
-      registrationText.textContent = 'Регистрируйся прямо сейчас, проходи обучение и следи за своим прогрессом';
+      registrationText.textContent = this.translation.getString('registrationText');
+      this.translation.regObserver(() => { registrationText.textContent = this.translation.getString('registrationText'); });
       const registrationButton = createElement('div', 'registration-button', registration);
-      registrationButton.textContent = 'Создать аккаунт';
+      registrationButton.textContent = this.translation.getString('registrationButton');
+      this.translation.regObserver(() => { registrationButton.textContent = this.translation.getString('registrationButton'); });
     }
   }
 
