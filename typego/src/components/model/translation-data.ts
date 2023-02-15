@@ -162,6 +162,28 @@ const data: ITranslation = {
     en: 'GAME NOT FOUND (404)',
     ru: 'Страница не найдена (404)',
   },
+
+  // auth modal
+  authCaption: {
+    en: 'Authorization',
+    ru: 'Авторизация',
+  },
+  authLogin: {
+    en: 'Login:',
+    ru: 'Логин:',
+  },
+  authPassword: {
+    en: 'Password:',
+    ru: 'Пароль:',
+  },
+  authRegNow: {
+    en: 'Register account now!',
+    ru: 'Зарегистрировать аккаунт сейчас!',
+  },
+  authButton: {
+    en: 'Submit',
+    ru: 'Войти',
+  },
 };
 
 export default data;
