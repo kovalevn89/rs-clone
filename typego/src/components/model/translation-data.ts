@@ -184,6 +184,14 @@ const data: ITranslation = {
     en: 'Submit',
     ru: 'Войти',
   },
+  authLoginError: {
+    en: 'Error! The login can contain "A-Za-z0-9_" and be at 6 characters long!',
+    ru: 'Ошибка! Логин может содержать "A-Za-z0-9_" и быть не меньше 6 символов!',
+  },
+  authPasswordError: {
+    en: 'Error! The password can contain "A-Za-z0-9_" and be at 6 characters long!',
+    ru: 'Ошибка! Пароль может содержать "A-Za-z0-9_" и быть не меньше 6 символов!',
+  },
 };
 
 export default data;
