@@ -10,14 +10,20 @@ class GunGame {
   accuracy: number;
   gameClock: number;
   level: number;
+  gameClockId: NodeJS.Timeout | null;
+  gameShowGunId: NodeJS.Timeout | null;
+  levelChangeId: NodeJS.Timeout | null;
 
   constructor() {
     this.language = 'RU';
     this.isSound = true;
     this.score = 0;
     this.accuracy = 0;
-    this.gameClock = 0;
+    this.gameClock = 99;
     this.level = 1;
+    this.gameClockId = null;
+    this.gameShowGunId = null;
+    this.levelChangeId = null;
 
     const gunSound = localStorage.getItem('gunSound');
     if (gunSound !== null) {
@@ -43,7 +49,7 @@ class GunGame {
   private resetGame(): void {
     this.score = 0;
     this.accuracy = 0;
-    this.gameClock = 0;
+    this.gameClock = 99;
     this.level = 1;
   }
 
@@ -85,6 +91,50 @@ class GunGame {
       lengText = 'EN';
     }
     return lengText;
+  }
+
+  private startGameClock(Clock: HTMLElement, Level: HTMLElement) {
+    // задать ID
+    this.levelChangeId = setInterval(() => {
+      // next level
+      this.level += 1;
+      Level.textContent = `${this.level}`;
+    }, 20000);
+
+    this.gameClockId = setInterval(() => {
+      const tempCLock = Clock;
+      this.gameClock -= 1;
+
+      tempCLock.textContent = `${this.gameClock} s`;
+
+      if (this.gameClock === 0) {
+        // 0
+        // stop game
+        this.renderEndGame();
+        this.clearTimers();
+      }
+
+      if (!document.querySelector('.gun-wrapper')) {
+        this.clearTimers();
+      }
+    }, 1000);
+  }
+
+  private clearTimers(): void {
+    // stop game gun show interval
+    if (this.gameShowGunId !== null) {
+      clearInterval(this.gameShowGunId);
+    }
+    // stop game clock
+    if (this.gameClockId !== null) {
+      clearInterval(this.gameClockId);
+    }
+
+    if (this.levelChangeId !== null) {
+      clearInterval(this.levelChangeId);
+    }
+
+    // document.removeEventListener('keypress', function);
   }
 
   private renderStartPage(): void {
@@ -179,17 +229,20 @@ class GunGame {
       const statsTime = createElement('div', 'stats_time', bgrWrapper);
       createElement('div', 'label', statsTime).textContent = 'Time:';
       const timerValue = createElement('div', 'value', statsTime);
-      timerValue.textContent = '00s';
+      timerValue.textContent = `${this.gameClock} s`;
       // shooters
       for (let i = 1; i <= 4; i += 1) {
         this.createShooterWrap(bgrWrapper, i);
       }
+
+      // SET GAME TIMER
+      this.startGameClock(timerValue, levelValue);
     }
   }
 
   private createShooterWrap(parent: HTMLElement, index: number) {
     const shooterWrap = createElement('div', `shooter${index}-wrap`, parent);
-    createElement('div', 'word', shooterWrap);
+    createElement('div', 'word', shooterWrap).textContent = 'стрелок';
     createElement('div', `shooter${index}-bgr`, shooterWrap);
   }
   run(): void {

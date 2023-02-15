@@ -142,6 +142,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+   
 
     .word {
       width: 100%;
@@ -154,6 +155,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      transition: all 0.4s;
+      // &:hover{
+      //   color: red;
+      //   color: #000;
+      // }
     }
   
     .shooter1-bgr, .shooter2-bgr, .shooter3-bgr, .shooter4-bgr {
@@ -162,8 +168,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-    //   transform: rotateX(0deg);
-    // transition: all 0.4s;
+      transform: rotateX(0deg);
+      transition: all 0.4s;
     //   &:hover{
     //     transform: rotateX(90deg);
     //   }
@@ -177,7 +183,11 @@
       background: url("./assets/img/gun1.png") center bottom no-repeat;
       background-size: contain;
     }
+    // &:hover ~ .shooter1-bgr{
+    //   transform: rotateX(90deg);
+    //   }
   }
+
 
   .shooter2-wrap {
     bottom: 66.5%;
@@ -269,3 +279,9 @@
 
 }
   
+
+
+// .word:hover + .shooter1-bgr{
+//   transform: rotateX(90deg);
+//     }
+
