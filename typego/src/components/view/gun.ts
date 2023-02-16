@@ -139,18 +139,21 @@ class GunGame {
 
   private renderStartPage(): void {
     const app: HTMLElement | null = document.querySelector('.app');
-    // const header: HTMLElement | null = document.querySelector('.header');
-    // const footer: HTMLElement | null = document.querySelector('.footer');
-    // if (header) {
-    //   header.style.display = 'none';
-    // }
-    // if (footer) {
-    //   footer.style.display = 'none';
-    // }
+    const header: HTMLElement | null = document.querySelector('.header');
+    const footer: HTMLElement | null = document.querySelector('.footer');
+    if (header) {
+      header.style.display = 'none';
+    }
+    if (footer) {
+      footer.style.display = 'none';
+    }
 
     if (app !== null) {
       removeChild(app);
       const gunWrapper = createElement('div', 'gun-wrapper', app);
+      const backButton = createElement('div', 'back-btn', gunWrapper);
+      const goHomeListener = this.backButtonListener;
+      backButton.addEventListener('click', goHomeListener);
       const bgrWrapper = createElement('div', 'bgr-wrapper', gunWrapper);
       const menu = createElement('div', 'menu', bgrWrapper);
       const caption = createElement('div', 'game_caption', menu);
@@ -172,6 +175,9 @@ class GunGame {
       this.playSound('winGun');
       removeChild(app);
       const gunWrapper = createElement('div', 'gun-wrapper', app);
+      const backButton = createElement('div', 'back-btn', gunWrapper);
+      const goHomeListener = this.backButtonListener;
+      backButton.addEventListener('click', goHomeListener);
       const bgrWrapper = createElement('div', 'bgr-wrapper', gunWrapper);
       const menu = createElement('div', 'menu', bgrWrapper);
       const caption = createElement('div', 'game_caption', menu);
@@ -203,6 +209,9 @@ class GunGame {
     if (app !== null) {
       removeChild(app);
       const gunWrapper = createElement('div', 'gun-wrapper', app);
+      const backButton = createElement('div', 'back-btn', gunWrapper);
+      const goHomeListener = this.backButtonListener;
+      backButton.addEventListener('click', goHomeListener);
       const bgrWrapper = createElement('div', 'bgr-wrapper', gunWrapper);
 
       const langButton = createElement('div', 'control_lang', bgrWrapper);
@@ -266,6 +275,22 @@ class GunGame {
       };
 
       document.addEventListener('keypress', this.keyListener);
+    }
+  }
+  private backButtonListener() {
+    const app: HTMLElement | null = document.querySelector('.app');
+    const header: HTMLElement | null = document.querySelector('.header');
+    const footer: HTMLElement | null = document.querySelector('.footer');
+    console.log(123);
+    if (app) {
+      removeChild(app);
+      if (header) {
+        header.style.display = 'block';
+      }
+      if (footer) {
+        footer.style.display = 'block';
+      }
+      window.location.hash = '#/games';
     }
   }
 

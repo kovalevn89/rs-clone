@@ -362,11 +362,14 @@ export const WORD_RU = [
   'нарушение',
   'ограбление',
   'клевета',
-  'ссылка',
-  'штраф',
+  'взлом',
+  'убийство',
   'приговор',
   'арест',
-  'суд',
+  'пистолет',
+  'автомат',
+  'пушка',
+  'геноцид',
 ];
 
 export const WORD_EN = [
@@ -375,7 +378,6 @@ export const WORD_EN = [
   'arson',
   'theft',
   'vandalism',
-  'crime',
   'fire',
   'attack',
   'hijacking',
@@ -385,11 +387,13 @@ export const WORD_EN = [
   'violation',
   'robbery',
   'slander',
-  'link',
-  'fine',
+  'breaking into',
+  'murder',
   'sentence',
   'arrest',
-  'court',
+  'gun',
+  'machine',
+  'genocide',
 ];
 
 export default {

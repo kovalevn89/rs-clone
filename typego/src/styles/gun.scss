@@ -4,11 +4,28 @@
 
 .gun-wrapper{
   background-color: #000;
-  // position: relative;
-  // height: 100vh;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .back-btn {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    background: url("./assets/img/backBtn.png") center center no-repeat;
+    background-size: cover;
+    box-shadow: 0px 0px 20px #ffffff;
+    border-radius: 50%;
+    width: 5vw;
+    height: 5vw;
+    transition: transform 0.1s linear;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 
   .bgr-wrapper {
     background: url("./assets/img/bgr-dark.png") center bottom no-repeat;
@@ -16,7 +33,7 @@
     width: $gun-wrap-width;
     height: calc($gun-wrap-width/1.428);
     position: relative;
-    margin: auto auto 0;
+    // margin: auto auto 0;
       @include media-desktop {
         width: $gun-wrap-width-1199;
         height: calc($gun-wrap-width-1199/1.428);
@@ -152,21 +169,6 @@
       &.go {
         transform: rotateX(0deg);
       }
-      &.red {
-        // transform: rotateX(0deg);
-        background-color: red;
-      }
-    // transform: rotateX(60deg);
-    // transition: all 0.4s;
-    //   &.go {
-    //     transform: rotateX(0deg);
-    //   }
-  //   transform: rotateX(0deg);
-  //   transition: all 0.4s;
-  // //   &:hover{
-  // //     transform: rotateX(90deg);
-  // //   }
-   
 
     .word {
       width: 100%;
@@ -180,10 +182,6 @@
       justify-content: center;
       align-items: center;
       transition: all 0.4s;
-      // &:hover{
-      //   color: red;
-      //   color: #000;
-      // }
     }
   
     .shooter1-bgr, .shooter2-bgr, .shooter3-bgr, .shooter4-bgr {
@@ -194,28 +192,18 @@
       align-items: center;
       transform: rotateX(0deg);
       transition: all 0.4s;
-    //   &:hover{
-    //     transform: rotateX(90deg);
-    //   }
     }
   }
 
   .shooter1-wrap {
     bottom: 66.5%;
     left: 25%;
-    // transition: bottom 0.4s linear;
-    //   &.go {
-    //     bottom: 40%;
-    //   }
+
     .shooter1-bgr {
       background: url("./assets/img/gun1.png") center bottom no-repeat;
       background-size: contain;
     }
-    // &:hover ~ .shooter1-bgr{
-    //   transform: rotateX(90deg);
-    //   }
   }
-
 
   .shooter2-wrap {
     bottom: 66.5%;
@@ -306,9 +294,4 @@
 
 }
   
-
-
-// .word:hover + .shooter1-bgr{
-//   transform: rotateX(90deg);
-//     }
 
