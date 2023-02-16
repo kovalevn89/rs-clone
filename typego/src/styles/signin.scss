@@ -219,3 +219,18 @@
     }
   }
 }
+
+@media (min-width: 320px) and (max-width: 500px) { 
+  .header__modal {
+    .signin_modal__wrapper{
+      .signin__window {
+        .input__form {
+          .input__name,
+          .input__password {
+            width: 80%; 
+          }
+        }
+      }
+    }
+  }
+}
