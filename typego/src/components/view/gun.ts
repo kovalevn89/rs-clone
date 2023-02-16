@@ -1,7 +1,8 @@
-import { createElement, removeChild } from '../helper/index';
+import { createElement, removeChild, getWord } from '../helper/index';
 import hitSound from '../../assets/media/hit.mp3';
 import clickSound from '../../assets/media/click.mp3';
 import winSound from '../../assets/media/win.mp3';
+import { IShooter } from '../types/index';
 
 class GunGame {
   language: string;
@@ -13,9 +14,10 @@ class GunGame {
   gameClockId: NodeJS.Timeout | null;
   gameShowGunId: NodeJS.Timeout | null;
   levelChangeId: NodeJS.Timeout | null;
+  gameField: Array<IShooter>;
 
   constructor() {
-    this.language = 'RU';
+    this.language = 'ru';
     this.isSound = true;
     this.score = 0;
     this.accuracy = 0;
@@ -24,6 +26,7 @@ class GunGame {
     this.gameClockId = null;
     this.gameShowGunId = null;
     this.levelChangeId = null;
+    this.gameField = [];
 
     const gunSound = localStorage.getItem('gunSound');
     if (gunSound !== null) {
@@ -36,17 +39,8 @@ class GunGame {
     }
   }
 
-  // private setBackground(element: HTMLElement, backgroundImage: string): HTMLElement {
-  //   const el = element;
-  //   el.style.backgroundImage = `url(${backgroundImage})`;
-  //   el.style.backgroundPosition = 'center';
-  //   el.style.backgroundRepeat = 'no-repeat';
-  //   el.style.backgroundSize = 'cover';
-
-  //   return el;
-  // }
-
   private resetGame(): void {
+    this.gameField = [];
     this.score = 0;
     this.accuracy = 0;
     this.gameClock = 99;
@@ -85,21 +79,19 @@ class GunGame {
 
   private changeLangBtnInner(): string {
     let lengText;
-    if (this.language === 'RU') {
-      lengText = 'RU';
+    if (this.language === 'ru') {
+      lengText = 'ru';
     } else {
-      lengText = 'EN';
+      lengText = 'en';
     }
     return lengText;
   }
 
   private startGameClock(Clock: HTMLElement, Level: HTMLElement) {
-    // задать ID
     this.levelChangeId = setInterval(() => {
-      // next level
       this.level += 1;
       Level.textContent = `${this.level}`;
-    }, 20000);
+    }, 30000);
 
     this.gameClockId = setInterval(() => {
       const tempCLock = Clock;
@@ -108,8 +100,6 @@ class GunGame {
       tempCLock.textContent = `${this.gameClock} s`;
 
       if (this.gameClock === 0) {
-        // 0
-        // stop game
         this.renderEndGame();
         this.clearTimers();
       }
@@ -121,11 +111,10 @@ class GunGame {
   }
 
   private clearTimers(): void {
-    // stop game gun show interval
     if (this.gameShowGunId !== null) {
       clearInterval(this.gameShowGunId);
     }
-    // stop game clock
+
     if (this.gameClockId !== null) {
       clearInterval(this.gameClockId);
     }
@@ -194,15 +183,15 @@ class GunGame {
       removeChild(app);
       const gunWrapper = createElement('div', 'gun-wrapper', app);
       const bgrWrapper = createElement('div', 'bgr-wrapper', gunWrapper);
-      // control_lang
+
       const langButton = createElement('div', 'control_lang', bgrWrapper);
       langButton.textContent = this.changeLangBtnInner();
       langButton.addEventListener('click', () => {
-        this.language = this.language === 'RU' ? 'EN' : 'RU';
+        this.language = this.language === 'ru' ? 'en' : 'ru';
         langButton.textContent = this.changeLangBtnInner();
-        localStorage.setItem('gunLang', `${Number(this.language)}`);
+        localStorage.setItem('gunLang', this.language);
       });
-      // control_sound
+
       const soundButton = createElement('div', 'control_sound', bgrWrapper);
       soundButton.textContent = this.changeSoundBtnInner();
       soundButton.addEventListener('click', () => {
@@ -210,41 +199,121 @@ class GunGame {
         soundButton.textContent = this.changeSoundBtnInner();
         localStorage.setItem('gunSound', `${Number(this.isSound)}`);
       });
-      // level
+
       const statsLevel = createElement('div', 'stats_level', bgrWrapper);
       createElement('div', 'label', statsLevel).textContent = 'R=';
       const levelValue = createElement('div', 'value', statsLevel);
       levelValue.textContent = '1';
-      // score
+
       const statsScore = createElement('div', 'stats_score', bgrWrapper);
       createElement('div', 'label', statsScore).textContent = 'Score:';
       const scoreValue = createElement('div', 'value', statsScore);
       scoreValue.textContent = '0';
-      // accuracy
+
       const statsAccuracy = createElement('div', 'stats_accuracy', bgrWrapper);
       createElement('div', 'label', statsAccuracy).textContent = 'Accuracy:';
       const accuracyValue = createElement('div', 'value', statsAccuracy);
       accuracyValue.textContent = '100%';
-      // time
+
       const statsTime = createElement('div', 'stats_time', bgrWrapper);
       createElement('div', 'label', statsTime).textContent = 'Time:';
       const timerValue = createElement('div', 'value', statsTime);
       timerValue.textContent = `${this.gameClock} s`;
-      // shooters
+
       for (let i = 1; i <= 4; i += 1) {
-        this.createShooterWrap(bgrWrapper, i);
+        const currentShooter: IShooter = {
+          shooterElement: null,
+          isShowed: false,
+          letterElement: null,
+          curentLetter: '',
+          timer: null,
+        };
+        const shooterWrap = createElement('div', `shooter${i}-wrap`, bgrWrapper);
+        const word = createElement('div', 'word', shooterWrap);
+        createElement('div', `shooter${i}-bgr`, shooterWrap);
+
+        currentShooter.shooterElement = shooterWrap;
+        currentShooter.letterElement = word;
+        this.gameField.push(currentShooter);
       }
 
-      // SET GAME TIMER
       this.startGameClock(timerValue, levelValue);
+
+      this.showShooterTimer();
     }
   }
 
-  private createShooterWrap(parent: HTMLElement, index: number) {
-    const shooterWrap = createElement('div', `shooter${index}-wrap`, parent);
-    createElement('div', 'word', shooterWrap).textContent = 'стрелок';
-    createElement('div', `shooter${index}-bgr`, shooterWrap);
+  private showShooterTimer(): void {
+    const showFun = () => {
+      if (this.gameField.length > 0) {
+        let randomCount = 1;
+        switch (this.level) {
+          case 1:
+            randomCount = Math.floor(Math.random() * 2) + 1;
+            break;
+          case 2:
+            randomCount = Math.floor(Math.random() * 2) + 1;
+            break;
+          case 3:
+            randomCount = Math.floor(Math.random() * 2) + 2;
+            break;
+          default:
+            randomCount = Math.floor(Math.random() * 3) + 2;
+            break;
+        }
+
+        this.gameField
+          .slice(0)
+          .filter((value) => value.isShowed === false)
+          .sort(() => Math.random() - 0.5)
+          .forEach((value) => {
+            if (randomCount) {
+              randomCount -= 1;
+              this.showShooter(value);
+            }
+          });
+      }
+    };
+
+    setTimeout(showFun, 500);
+
+    this.gameShowGunId = setInterval(showFun, 6000);
   }
+
+  private showShooter(shooter: IShooter): void {
+    const currentShooter: IShooter = shooter;
+    let letter: string | null = null;
+
+    do {
+      letter = getWord(this.language);
+    } while (this.checkLetterShowed(letter));
+
+    if (currentShooter.letterElement !== null) {
+      currentShooter.letterElement.textContent = letter;
+    }
+
+    currentShooter.curentLetter = letter;
+    currentShooter.isShowed = true;
+
+    if (currentShooter.shooterElement !== null) {
+      currentShooter.shooterElement.classList.add('go');
+
+      currentShooter.timer = setTimeout(() => {
+        if (currentShooter.shooterElement !== null) {
+          currentShooter.shooterElement.classList.remove('go');
+          currentShooter.timer = setTimeout(() => {
+            currentShooter.isShowed = false;
+            currentShooter.curentLetter = '';
+          }, 900);
+        }
+      }, 5000);
+    }
+  }
+
+  private checkLetterShowed(letter: string): boolean {
+    return this.gameField.some((value) => value.curentLetter === letter);
+  }
+
   run(): void {
     this.renderStartPage();
   }

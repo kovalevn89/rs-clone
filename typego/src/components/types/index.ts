@@ -56,3 +56,11 @@ export interface TextResponse {
   text: string;
   lang: 'en' | 'ru';
 }
+
+export interface IShooter {
+  shooterElement: HTMLElement | null;
+  isShowed: boolean;
+  letterElement: HTMLElement | null;
+  curentLetter: string;
+  timer: NodeJS.Timeout | null;
+}
