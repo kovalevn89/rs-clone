@@ -60,7 +60,7 @@ export interface TextResponse {
 export interface IShooter {
   shooterElement: HTMLElement | null;
   isShowed: boolean;
-  letterElement: HTMLElement | null;
-  curentLetter: string;
+  wordElement: HTMLElement | null;
+  curentword: string;
   timer: NodeJS.Timeout | null;
 }

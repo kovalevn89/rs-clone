@@ -4,6 +4,11 @@
 
 .gun-wrapper{
   background-color: #000;
+  // position: relative;
+  // height: 100vh;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
 
   .bgr-wrapper {
     background: url("./assets/img/bgr-dark.png") center bottom no-repeat;
@@ -143,9 +148,13 @@
     justify-content: center;
     align-items: center;
     transform: rotateX(90deg);
-    transition: transform 0.4s;
+    transition: transform 0.8s;
       &.go {
         transform: rotateX(0deg);
+      }
+      &.red {
+        // transform: rotateX(0deg);
+        background-color: red;
       }
     // transform: rotateX(60deg);
     // transition: all 0.4s;
@@ -247,12 +256,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: #fff;
 
     .label {
       height: 100%;
       font-family: 'AmaticSC Bold';
       font-size: 1.5vw;
-      color: #fff;
       user-select: none;
       display: flex;
       justify-content: center;
@@ -263,7 +272,6 @@
       height: 100%;
       font-family: 'AmaticSC Bold';
       font-size: 1.5vw;
-      color: #fff;
       user-select: none;
     }
   }

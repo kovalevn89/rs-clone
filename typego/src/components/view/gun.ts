@@ -1,7 +1,8 @@
 import { createElement, removeChild, getWord } from '../helper/index';
-import hitSound from '../../assets/media/hit.mp3';
+import shotSound from '../../assets/media/shot.mp3';
 import clickSound from '../../assets/media/click.mp3';
-import winSound from '../../assets/media/win.mp3';
+import pressSound from '../../assets/media/press.mp3';
+import winGunSound from '../../assets/media/winGun.mp3';
 import { IShooter } from '../types/index';
 
 class GunGame {
@@ -11,10 +12,13 @@ class GunGame {
   accuracy: number;
   gameClock: number;
   level: number;
+  keyListener: (event: Event) => void;
   gameClockId: NodeJS.Timeout | null;
   gameShowGunId: NodeJS.Timeout | null;
   levelChangeId: NodeJS.Timeout | null;
   gameField: Array<IShooter>;
+  totalWord: number;
+  inputStr: string;
 
   constructor() {
     this.language = 'ru';
@@ -23,10 +27,13 @@ class GunGame {
     this.accuracy = 0;
     this.gameClock = 99;
     this.level = 1;
+    this.keyListener = () => {};
     this.gameClockId = null;
     this.gameShowGunId = null;
     this.levelChangeId = null;
     this.gameField = [];
+    this.totalWord = 0;
+    this.inputStr = '';
 
     const gunSound = localStorage.getItem('gunSound');
     if (gunSound !== null) {
@@ -45,23 +52,27 @@ class GunGame {
     this.accuracy = 0;
     this.gameClock = 99;
     this.level = 1;
+    this.inputStr = '';
+    this.totalWord = 0;
   }
 
   private playSound(type: string): void {
     if (this.isSound === true) {
       switch (type) {
-        case 'hit':
-          new Audio(hitSound).play();
+        case 'shot':
+          new Audio(shotSound).play();
           break;
         case 'click':
           new Audio(clickSound).play();
           break;
-        case 'win':
-          new Audio(winSound).play();
+        case 'press':
+          new Audio(pressSound).play();
+          break;
+        case 'winGun':
+          new Audio(winGunSound).play();
           break;
         default: {
-          new Audio(hitSound).play();
-          // поменять
+          new Audio(clickSound).play();
         }
       }
     }
@@ -99,7 +110,7 @@ class GunGame {
 
       tempCLock.textContent = `${this.gameClock} s`;
 
-      if (this.gameClock === 0) {
+      if (this.gameClock <= 0) {
         this.renderEndGame();
         this.clearTimers();
       }
@@ -123,11 +134,19 @@ class GunGame {
       clearInterval(this.levelChangeId);
     }
 
-    // document.removeEventListener('keypress', function);
+    document.removeEventListener('keypress', this.keyListener);
   }
 
   private renderStartPage(): void {
     const app: HTMLElement | null = document.querySelector('.app');
+    // const header: HTMLElement | null = document.querySelector('.header');
+    // const footer: HTMLElement | null = document.querySelector('.footer');
+    // if (header) {
+    //   header.style.display = 'none';
+    // }
+    // if (footer) {
+    //   footer.style.display = 'none';
+    // }
 
     if (app !== null) {
       removeChild(app);
@@ -141,6 +160,7 @@ class GunGame {
       const startButton = createElement('div', 'controls_start-btn', controls);
       startButton.addEventListener('click', () => {
         this.renderGame();
+        this.playSound('click');
       });
     }
   }
@@ -149,7 +169,7 @@ class GunGame {
     const app: HTMLElement | null = document.querySelector('.app');
 
     if (app !== null) {
-      this.playSound('win');
+      this.playSound('winGun');
       removeChild(app);
       const gunWrapper = createElement('div', 'gun-wrapper', app);
       const bgrWrapper = createElement('div', 'bgr-wrapper', gunWrapper);
@@ -165,12 +185,13 @@ class GunGame {
       createElement('div', 'caption', line2).textContent = 'Score:';
       createElement('div', 'value', line2).textContent = `${this.score}`;
       const line3 = createElement('div', 'result_line', result);
-      createElement('div', 'caption', line3).textContent = 'Accuracy:';
+      createElement('div', 'caption', line3).textContent = 'Gun accuracy:';
       createElement('div', 'value', line3).textContent = `${this.accuracy}%`;
       const controls = createElement('div', 'game_controls', menu);
       const startButton = createElement('div', 'controls_restart-btn', controls);
       startButton.addEventListener('click', () => {
         this.renderGame();
+        this.playSound('click');
       });
     }
   }
@@ -211,9 +232,9 @@ class GunGame {
       scoreValue.textContent = '0';
 
       const statsAccuracy = createElement('div', 'stats_accuracy', bgrWrapper);
-      createElement('div', 'label', statsAccuracy).textContent = 'Accuracy:';
+      createElement('div', 'label', statsAccuracy).textContent = 'Gun accuracy:';
       const accuracyValue = createElement('div', 'value', statsAccuracy);
-      accuracyValue.textContent = '100%';
+      accuracyValue.textContent = `${this.accuracy}%`;
 
       const statsTime = createElement('div', 'stats_time', bgrWrapper);
       createElement('div', 'label', statsTime).textContent = 'Time:';
@@ -224,8 +245,8 @@ class GunGame {
         const currentShooter: IShooter = {
           shooterElement: null,
           isShowed: false,
-          letterElement: null,
-          curentLetter: '',
+          wordElement: null,
+          curentword: '',
           timer: null,
         };
         const shooterWrap = createElement('div', `shooter${i}-wrap`, bgrWrapper);
@@ -233,12 +254,83 @@ class GunGame {
         createElement('div', `shooter${i}-bgr`, shooterWrap);
 
         currentShooter.shooterElement = shooterWrap;
-        currentShooter.letterElement = word;
+        currentShooter.wordElement = word;
         this.gameField.push(currentShooter);
       }
       this.startGameClock(timerValue, levelValue);
 
       this.showShooterTimer();
+
+      this.keyListener = (e: Event) => {
+        this.wordHandle(e, scoreValue, accuracyValue);
+      };
+
+      document.addEventListener('keypress', this.keyListener);
+    }
+  }
+
+  private wordHandle(e: Event, scoreValue: HTMLElement, accuracyValue: HTMLElement) {
+    const event: KeyboardEvent = e as KeyboardEvent;
+    const statsTime = document.querySelector<HTMLElement>('.stats_time');
+    this.inputStr += event.key;
+    if (
+      this.gameField
+        .filter((value) => value.isShowed === true)
+        .some((value) => {
+          if (
+            this.inputStr.toLocaleLowerCase().includes(value.curentword.toLocaleLowerCase())
+            && this.inputStr.length > 1
+          ) {
+            if (value.wordElement !== null) {
+              value.wordElement.style.color = 'green';
+            }
+            if (statsTime !== null) {
+              statsTime.style.color = 'green';
+            }
+            this.gameClock += 2;
+            this.totalWord += 1;
+
+            if (value.shooterElement !== null) {
+              if (value.timer) {
+                clearInterval(value.timer);
+              }
+              value.curentword = '';
+              this.inputStr = '';
+
+              value.shooterElement.classList.remove('go');
+              setTimeout(
+                () => {
+                  value.isShowed = false;
+                  if (value.wordElement) {
+                    value.wordElement.style.color = 'white';
+                  }
+                  if (statsTime !== null) {
+                    statsTime.style.color = 'white';
+                  }
+                },
+                900,
+                value,
+              );
+            }
+            return true;
+          }
+
+          return false;
+        })
+    ) {
+      this.playSound('shot');
+      this.score += 1;
+
+      if (scoreValue !== null) {
+        scoreValue.textContent = `${this.score}`;
+      }
+    } else {
+      this.playSound('press');
+    }
+
+    this.accuracy = Number(Number((this.score / this.totalWord) * 100).toFixed(1));
+    if (accuracyValue !== null) {
+      accuracyValue.textContent = `${this.accuracy}%`;
     }
   }
 
@@ -256,8 +348,11 @@ class GunGame {
           case 3:
             randomCount = Math.floor(Math.random() * 2) + 2;
             break;
-          default:
+          case 4:
             randomCount = Math.floor(Math.random() * 3) + 2;
+            break;
+          default:
+            randomCount = Math.floor(Math.random() * 2) + 3;
             break;
         }
 
@@ -276,22 +371,24 @@ class GunGame {
 
     setTimeout(showFun, 500);
 
-    this.gameShowGunId = setInterval(showFun, 6000);
+    this.gameShowGunId = setInterval(showFun, 7000);
   }
 
   private showShooter(shooter: IShooter): void {
     const currentShooter: IShooter = shooter;
-    let letter: string | null = null;
+    let word: string | null = null;
+    const statsTime = document.querySelector<HTMLElement>('.stats_time');
+    const statsAccuracy = document.querySelector<HTMLElement>('.stats_accuracy .value');
 
     do {
-      letter = getWord(this.language);
-    } while (this.checkLetterShowed(letter));
+      word = getWord(this.language);
+    } while (this.checkwordShowed(word));
 
-    if (currentShooter.letterElement !== null) {
-      currentShooter.letterElement.textContent = letter;
+    if (currentShooter.wordElement !== null) {
+      currentShooter.wordElement.textContent = word;
     }
 
-    currentShooter.curentLetter = letter;
+    currentShooter.curentword = word;
     currentShooter.isShowed = true;
 
     if (currentShooter.shooterElement !== null) {
@@ -300,17 +397,39 @@ class GunGame {
       currentShooter.timer = setTimeout(() => {
         if (currentShooter.shooterElement !== null) {
           currentShooter.shooterElement.classList.remove('go');
+
+          if (currentShooter.wordElement !== null) {
+            currentShooter.wordElement.style.color = 'red';
+          }
+
+          if (statsTime !== null) {
+            statsTime.style.color = 'red';
+          }
+
+          this.gameClock -= 2;
+          this.totalWord += 1;
+          this.accuracy = Number(Number((this.score / this.totalWord) * 100).toFixed(1));
+          if (statsAccuracy !== null) {
+            statsAccuracy.textContent = `${this.accuracy}%`;
+          }
+
           currentShooter.timer = setTimeout(() => {
             currentShooter.isShowed = false;
-            currentShooter.curentLetter = '';
+            currentShooter.curentword = '';
+            if (currentShooter.wordElement !== null) {
+              currentShooter.wordElement.style.color = 'white';
+            }
+            if (statsTime !== null) {
+              statsTime.style.color = 'white';
+            }
           }, 900);
         }
-      }, 5000);
+      }, 6000);
     }
   }
 
-  private checkLetterShowed(letter: string): boolean {
-    return this.gameField.some((value) => value.curentLetter === letter);
+  private checkwordShowed(word: string): boolean {
+    return this.gameField.some((value) => value.curentword === word);
   }
 
   run(): void {
