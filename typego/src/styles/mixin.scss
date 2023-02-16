@@ -31,11 +31,29 @@
   font-weight: 700;
   font-size: 40px;
   line-height: 49px;
-  
+
   text-transform: uppercase;
 }
 
 @mixin link {
   text-decoration: none;
   color: $base-color-light;
+}
+
+@mixin main-height {
+  min-height: calc(100vh - 300px);
+
+  @media (max-width: 800px) {
+    min-height: calc(100vh - 360px);
+  }
+
+  @media (max-width: 600px) {
+    min-height: calc(100vh - 400px);
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -78,7 +78,7 @@
             cursor: pointer;
 
             transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-        
+
             &:hover {
               color: $font-color-text2-light;
               background-color: $button-hover-color-light;
@@ -109,9 +109,9 @@
               height: 35px;
               background-image: url( "data:image/svg+xml, <svg fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M32.0833 17.5H33.5417M17.5 2.91668V1.45834M17.5 33.5417V32.0833M29.1667 29.1667L27.7083 27.7083M29.1667 5.83334L27.7083 7.29168M5.83333 29.1667L7.29166 27.7083M5.83333 5.83334L7.29166 7.29168M1.45833 17.5H2.91666M17.5 26.25C19.8206 26.25 22.0462 25.3281 23.6872 23.6872C25.3281 22.0463 26.25 19.8207 26.25 17.5C26.25 15.1794 25.3281 12.9538 23.6872 11.3128C22.0462 9.67188 19.8206 8.75001 17.5 8.75001C15.1793 8.75001 12.9538 9.67188 11.3128 11.3128C9.67187 12.9538 8.74999 15.1794 8.74999 17.5C8.74999 19.8207 9.67187 22.0463 11.3128 23.6872C12.9538 25.3281 15.1793 26.25 17.5 26.25Z\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>");
               cursor: pointer;
-      
+
               transition: transform 1s ease-in-out;
-              
+
               &:hover {
                 transform: rotate(360deg);
               }
@@ -122,26 +122,26 @@
               font-size: 16px;
               line-height: 19px;
               text-transform: uppercase;
-      
+
               color: $font-color-text1-light;
-      
+
               width: 55px;
               height: 36px;
 
               margin-left: 10px;
-      
+
               border: 1px solid $font-color-text1-light;
               border-radius: 14px;
-      
+
               display: flex;
               justify-content: center;
               align-items: center;
-      
+
               user-select: none;
               cursor: pointer;
-      
+
               transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-              
+
               &:hover {
                 color: $font-color-text2-light;
                 background-color: $button-hover-color-light;
@@ -194,7 +194,7 @@
         cursor: pointer;
 
         transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-        
+
         &:hover {
           color: $font-color-text2-light;
           background-color: $button-hover-color-light;

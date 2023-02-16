@@ -1,31 +1,35 @@
+@import './mixin.scss';
+@import './constants.scss';
+
 .keyboard {
   display: flex;
   width: 95%;
   margin: 0 auto;
 
   font-family: 'ArialMT', Verdana, Geneva, Tahoma, sans-serif;
+  color: $font-color-text2-light;
 }
 .key {
-  fill: none;
   fill: rgba(96, 157, 159, 0.1);
-  stroke: #3b6061 ;
-  // opacity: 0.1;
+  stroke: $font-color-text2-light ;
 
   &.active {
-    fill: cadetblue;
+    fill: $base-color-light;
   }
 
   &.correct {
-    fill: rgb(110, 160, 95)
+    fill: #e7fbd3
   }
 
   &.incorrect {
-    fill:rgb(160, 95, 95);
+    fill:#ffc0cb;
   }
 }
 
 .letter {
   font-size: 18px;
+  color: $font-color-text2-light;
+
 
   &.num {
     font-size: 12px;
@@ -33,5 +37,38 @@
 
   &.special {
     font-size: 10px;
+  }
+}
+
+.main.dark {
+  .key {
+    fill: $footer-background-dark;
+    stroke: $base-color-dark;
+
+    &.active {
+      fill: $button-hover-color-dark;
+    }
+
+    &.correct {
+      fill: #e7fbd3
+    }
+
+    &.incorrect {
+      fill:#ffc0cb;
+    }
+  }
+
+  .letter {
+    font-size: 18px;
+    color: $font-color-text2-light;
+
+
+    &.num {
+      font-size: 12px;
+    }
+
+    &.special {
+      font-size: 10px;
+    }
   }
 }

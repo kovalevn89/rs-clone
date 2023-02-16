@@ -1,4 +1,4 @@
-import { TextResponse } from '../types';
+import { Lesson, Lessons, TextResponse } from '../types';
 
 export const CHAR_COLOR = '#9966ff';
 
@@ -71,11 +71,15 @@ export const LETTER_EN_SVG = [
 ];
 
 export const DEFAULT_RESPONSE_RU: TextResponse = {
+  index: 0,
+  name: 'Тест',
   text: 'Крупнейшими из всех животных, живущих сейчас на нашей планете, являются киты. Длина рекордсмена - синего или голубого кита - составляет 25 м, а масса - до 150 т.',
   lang: 'ru',
 };
 
 export const DEFAULT_RESPONSE: TextResponse = {
+  index: 0,
+  name: 'Test',
   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam efficitur rutrum efficitur. Phasellus sit amet mauris pellentesque, viverra felis vitae.',
   lang: 'en',
 };
@@ -285,6 +289,140 @@ export const KEYS_RU_SHIFT: Record<string, string> = {
   Ч: 'KeyX',
   Я: 'KeyZ',
   '[': 'IntlBackslash',
+};
+
+export const LESSONS: Lessons = [
+  {
+    index: 1,
+    name: 'Home Row Position',
+    lang: 'en',
+  },
+  {
+    index: 2,
+    name: 'Index Fingers',
+    lang: 'en',
+  },
+  {
+    index: 3,
+    name: 'Middle and Ring Fingers',
+    lang: 'en',
+  },
+  {
+    index: 4,
+    name: 'Pinkies',
+    lang: 'en',
+  },
+  {
+    index: 5,
+    name: 'Repetition 1',
+    lang: 'en',
+  },
+  {
+    index: 6,
+    name: 'Repetition 2',
+    lang: 'en',
+  },
+];
+
+export const LESSONS_RU: Lessons = [
+  {
+    index: 1,
+    name: 'Home Row Position',
+    lang: 'ru',
+  },
+  {
+    index: 2,
+    name: 'Index Fingers',
+    lang: 'ru',
+  },
+  {
+    index: 3,
+    name: 'Middle and Ring Fingers',
+    lang: 'ru',
+  },
+  {
+    index: 4,
+    name: 'Pinkies',
+    lang: 'ru',
+  },
+  {
+    index: 5,
+    name: 'Repetition 1',
+    lang: 'ru',
+  },
+  {
+    index: 6,
+    name: 'Repetition 2',
+    lang: 'ru',
+  },
+];
+
+export const LESSON: Lesson = {
+  index: 3,
+  name: 'Middle and Ring Fingers',
+  lang: 'ru',
+  levels: [
+    {
+      index: 1,
+      name: 'шщщшщ',
+      text: 'Щщщшщ щшщщш шщшшщ щщшщш шшщшщ шщшщщ щшщшш',
+    },
+    {
+      index: 2,
+      name: 'щит',
+      text: 'Щит Шарж вещь шапка шпага мешок кашне шофер лощина прищепка',
+    },
+    {
+      index: 3,
+      name: 'цууцу',
+      text: 'Цууцу уцууц цуццу ууцуц ццуцу цуцуу уцуцц цуцуц ууцуц ццуцу',
+    },
+    {
+      index: 4,
+      name: 'луг',
+      text: 'луг цирк фунт кущи штука грунт фартук прицеп циркуль журавль',
+    },
+    {
+      index: 5,
+      name: 'бююбю',
+      text: 'бююбю юбююб бюббю ююбюб ббюбю бюбюю юбюбб бюбюб',
+    },
+    {
+      index: 6,
+      name: 'тюк',
+      text: 'тюк бал плюш трюк клюв буран буфет флюгер барометр бушевать',
+    },
+    {
+      index: 7,
+      name: 'чссчс',
+      text: 'чссчс счссч чсччс ссчсч ччсчс чсчсс счсчч чсчсч ссчсч ччсчс',
+    },
+    {
+      index: 8,
+      name: 'чан',
+      text: 'чан час нос чиж часы ключ туча дочь бусы борец плечо кусты',
+    },
+    {
+      index: 9,
+      name: 'чибис',
+      text: 'чибис чабан бочка мачта шоссе смотр смерч жесть баскетбол',
+    },
+    {
+      index: 10,
+      name: 'чащоба',
+      text: 'чащоба циркач встать судьба фосфор цитрус сапфир печать',
+    },
+    {
+      index: 11,
+      name: 'тюрбан',
+      text: 'тюрбан галстук счастье ложечка чеканка колючка офицер фасад',
+    },
+    {
+      index: 12,
+      name: 'фиксатор',
+      text: 'фиксатор косточка высотник бастурма сетчатка частокол честь',
+    },
+  ],
 };
 
 export default {

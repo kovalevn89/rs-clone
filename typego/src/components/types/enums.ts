@@ -54,6 +54,15 @@ export enum TrainingStatus {
   start = 'start',
   pause = 'pause',
   continue = 'continue',
+  stop = 'stop',
+}
+
+export enum Method {
+  GET = 'GET',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+  POST = 'POST',
+  PATCH = 'PATCH',
 }
 
 export default {

@@ -3,12 +3,13 @@ import {
   KEYS_EN, KEYS_RU, KEYS_EN_SHIFT, KEYS_RU_SHIFT,
 } from '../../helper/constants';
 import stringSplitter from '../../helper/stringSplitter';
+import TrainingState from '../../model/trainingState';
 import { TextResponse } from '../../types';
-import { Lang, Status } from '../../types/enums';
+import { Lang, Status, Tag } from '../../types/enums';
 import Keyboard from '../keyboard/keyboard';
 
 export default class Text {
-  container;
+  private container;
   letters: HTMLElement[];
   index: number;
   mistakes: number;
@@ -17,28 +18,12 @@ export default class Text {
   currenTime: number;
   time: number;
   speed: number;
+  private state: TrainingState;
 
-  constructor(response: TextResponse) {
-    const content = response.text;
-    const { lang } = response;
-    this.container = createElement('div', 'text__container');
+  constructor() {
+    this.container = createElement(Tag.div, 'text__container');
     this.letters = [];
     this.container.innerHTML = '';
-
-    const splitedContent = stringSplitter(content);
-    splitedContent.map((word) => {
-      const elem = createElement('div', 'word', this.container);
-      word.map((letter) => {
-        const id = lang === Lang.en ? KEYS_EN[letter] : KEYS_RU[letter];
-        const ID = lang === Lang.en ? KEYS_EN_SHIFT[letter] : KEYS_RU_SHIFT[letter];
-
-        const element = createElement('div', 'word__letter', elem, ['id', id || ID], ['caps', ID ? 'true' : '']);
-        element.textContent = letter;
-        this.letters.push(element);
-        return element;
-      });
-      return elem;
-    });
 
     this.index = 0;
     this.mistakes = 0;
@@ -47,6 +32,31 @@ export default class Text {
     this.time = 0;
     this.speed = 0;
     this.accurancy = 0;
+    this.state = new TrainingState();
+  }
+
+  init(response: TextResponse): HTMLElement {
+    const content = response.text;
+    const { lang } = response;
+
+    const container = createElement(Tag.div, 'text__container');
+
+    const splitedContent = stringSplitter(content);
+    splitedContent.map((word) => {
+      const elem = createElement(Tag.div, 'word', container);
+      word.map((letter) => {
+        const id = lang === Lang.en ? KEYS_EN[letter] : KEYS_RU[letter];
+        const ID = lang === Lang.en ? KEYS_EN_SHIFT[letter] : KEYS_RU_SHIFT[letter];
+
+        const element = createElement(Tag.div, 'word__letter', elem, ['id', id || ID], ['caps', ID ? 'true' : '']);
+        element.textContent = letter;
+        this.letters.push(element);
+        return element;
+      });
+      return elem;
+    });
+
+    return container;
   }
 
   updateActive() {
@@ -62,6 +72,7 @@ export default class Text {
 
   setMistakes(m: number): void {
     this.mistakes = m;
+    this.state.mistakes = this.mistakes;
   }
 
   setCurrentTime(t: number): void {
@@ -75,6 +86,8 @@ export default class Text {
   updateSpeed(): void {
     const t = (this.time + this.currenTime - this.startTime) / 1000 / 60;
     this.speed = t > 0 ? Math.ceil(this.index / t) : 0;
+    this.state.speed = this.speed;
+    this.state.time = Math.round(t * 60);
   }
 
   reset(): void {

@@ -53,6 +53,7 @@ class Main extends PageView {
       this.translation.regObserver(() => { typingFasterDescription.innerHTML = this.translation.getString('typigFasterDescription'); });
 
       const leftColButton = createElement('div', 'left-col__button', leftCol);
+
       const typingFasterBtn = createElement('div', 'button', leftColButton);
       typingFasterBtn.textContent = this.translation.getString('typigFasterButton');
       this.translation.regObserver(() => { typingFasterBtn.textContent = this.translation.getString('typigFasterButton'); });

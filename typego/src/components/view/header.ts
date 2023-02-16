@@ -105,7 +105,7 @@ class Header extends PageView {
           const item3 = createElement('li', 'menu__item', list);
           item3.textContent = this.translation.getString('headerManu3');
           this.translation.regObserverPermanent(() => { item3.textContent = this.translation.getString('headerManu3'); });
-          item3.addEventListener('click', () => { window.location.hash = '#/lesson'; });
+          item3.addEventListener('click', () => { window.location.hash = '#/training'; });
           const item4 = createElement('li', 'menu__item', list);
           item4.textContent = this.translation.getString('headerManu4');
           this.translation.regObserverPermanent(() => { item4.textContent = this.translation.getString('headerManu4'); });
