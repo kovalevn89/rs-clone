@@ -42,18 +42,9 @@
 }
 
 .main.dark {
-  // .keyboard {
-  //   display: flex;
-  //   width: 95%;
-  //   margin: 0 auto;
-
-//   font-family: 'ArialMT', Verdana, Geneva, Tahoma, sans-serif;
-  //   color: $font-color-text2-light;
-  // }
   .key {
     fill: $footer-background-dark;
     stroke: $base-color-dark;
-    // opacity: 0.1;
 
     &.active {
       fill: $button-hover-color-dark;

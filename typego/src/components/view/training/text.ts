@@ -113,7 +113,6 @@ export default class Text {
 
   keyboardHint(keyboard: Keyboard): void {
     const { id } = this.letters[this.index];
-    console.log('id', id);
     const ID = this.letters[this.index].dataset.caps;
     if (id) {
       keyboard.activate(id.toLowerCase(), Status.active);

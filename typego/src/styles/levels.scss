@@ -80,6 +80,7 @@
     width: 80%;
     justify-content: space-between;
     margin-bottom: 10px;
+    color: $font-color-text2-light;
   }
   .text__instructions {
     color: rgba(95, 158, 160, 0.3);
@@ -121,6 +122,65 @@
     }
   }
 
+  & .finish__container {
+    @include flex-center;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
+
+    .btns__container {
+      @include flex-center;
+      gap: 20px;
+
+    }
+    .finish__message {
+      @include flex-center;
+      @include normal-text;
+      color: $font-color-text2-light;
+    }
+
+    .back__btn,
+    .next-lvl__btn {
+      @include flex-center;
+      @include normal-text;
+      font-size: 16px;
+      line-height: 19px;
+      text-transform: uppercase;
+
+      min-width: 160px;
+
+      color: $base-color-light;
+      background: none;
+
+      padding: 15px;
+
+      border: 1px solid $base-color-light;
+      border-radius: 24px;
+
+      user-select: none;
+      cursor: pointer;
+
+      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+      &:disabled {
+        color: $font-color-text1-dark;
+        border-color: $font-color-text1-dark;
+        background: none;
+      }
+
+      &:hover {
+        color: $font-color-text2-light;
+        background-color: $button-hover-color-light;
+
+        &:disabled {
+            color: $font-color-text1-dark;
+            background: none;
+            transition: none;
+        }
+      }
+    }
+  }
 
   &.dark {
     .wrapper {
@@ -152,6 +212,10 @@
       border-color: $font-color-text2-dark;
     }
 
+    .text__progress {
+      color: $font-color-text2-dark;
+    }
+
     .text__instructions {
       color: rgba(95, 158, 160, 0.3);
       padding: 15px;
@@ -180,7 +244,35 @@
         }
       }
     }
+
+    & .finish__container {
+      .finish__message {
+        color: $font-color-text1-dark;
+      }
+      .back__btn,
+      .next-lvl__btn {
+        color: $button-color-dark;
+        border: 1px solid $button-color-dark;
+        background-color: none;
+
+        &:disabled {
+          color: $font-color-text2-dark;
+          border-color: $font-color-text2-dark;
+          background: none;
+        }
+
+        &:hover {
+          color: $base-color-dark;
+          border: 1px solid $base-color-dark;
+          background-color: $button-hover-color-dark;
+
+          &:disabled {
+            color: $font-color-text2-dark;
+            border-color: $font-color-text2-dark;
+            background: none;
+          }
+        }
+      }
+    }
   }
 }
-
-

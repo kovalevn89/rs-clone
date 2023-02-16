@@ -28,7 +28,6 @@
       filter: grayscale(1);
       width: 120px;
       height: 120px;
-      padding: 20px;
     }
 
     &.done {
@@ -41,8 +40,7 @@
       cursor: pointer;
       color: $base-color-light;
       border-color: $base-color-light;
-      // transform: scale(1.1);
-      // transition: all ease 0.5s;
+      transition: all ease 0.5s;
 
       & .training__level__title {
         color: $base-color-light;
@@ -70,119 +68,119 @@
   }
 }
 
-.level__container {
-  display: flex;
-  width: 90%;
-  margin: 0 auto;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-.level__text__container {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+// .level__container {
+//   display: flex;
+//   width: 90%;
+//   margin: 0 auto;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   align-items: center;
+// }
+// .level__text__container {
+//   display: flex;
+//   width: 100%;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+// }
 
-.level__input {
-  position: fixed;
-  top: -100%;
-  left: -100%;
-  outline: none;
-  color: white;
-  border: none;
-  font-size: 1px;
-}
+// .level__input {
+//   position: fixed;
+//   top: -100%;
+//   left: -100%;
+//   outline: none;
+//   color: white;
+//   border: none;
+//   font-size: 1px;
+// }
 
-.text__container {
-  display: flex;
-  flex-wrap: wrap;
-  width: 95%;
-  gap: 1px;
-}
-.word {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 1px;
-}
+// .text__container {
+//   display: flex;
+//   flex-wrap: wrap;
+//   width: 95%;
+//   gap: 1px;
+// }
+// .word {
+//   display: flex;
+//   flex-wrap: nowrap;
+//   gap: 1px;
+// }
 
-.word__letter {
-  min-width: 15px;
-  min-height: 38px;
-  text-align: center;
-  border-radius: 3px;
-  margin-bottom: 5px;
-  font-family: 'Roboto', sans-serif, monospace;
-  font-size: 32px;
-  font-weight: 300;
+// .word__letter {
+//   min-width: 15px;
+//   min-height: 38px;
+//   text-align: center;
+//   border-radius: 3px;
+//   margin-bottom: 5px;
+//   font-family: 'Roboto', sans-serif, monospace;
+//   font-size: 32px;
+//   font-weight: 300;
 
-  &.active {
-    border-bottom: 2px cadetblue solid;
-    border-radius: 1px;
-  }
-  &.correct {
-    background-color: #e7fbd3;
-    color: #0e630e;
-  }
-  &.incorrect {
-    background-color: #ffc0cb;
-    color: #8b0000;
-  }
-  &.fixed {
-    background-color: #ffe9b2;
-    color: #0e630e;
-  }
-}
+//   &.active {
+//     border-bottom: 2px cadetblue solid;
+//     border-radius: 1px;
+//   }
+//   &.correct {
+//     background-color: #e7fbd3;
+//     color: #0e630e;
+//   }
+//   &.incorrect {
+//     background-color: #ffc0cb;
+//     color: #8b0000;
+//   }
+//   &.fixed {
+//     background-color: #ffe9b2;
+//     color: #0e630e;
+//   }
+// }
 
-.separator {
-  display: flex;
-  width: 100%;
-  // height: 1px;
-  border: 1px solid #888999;
-  border-radius: 1px;
-  margin: 10px;
-}
-.text__progress {
-  display: flex;
-  width: 80%;
-  justify-content: space-between;
-}
-.text__instructions {
-  color: rgba(95, 158, 160, 0.3);
+// .separator {
+//   display: flex;
+//   width: 100%;
+//   // height: 1px;
+//   border: 1px solid #888999;
+//   border-radius: 1px;
+//   margin: 10px;
+// }
+// .text__progress {
+//   display: flex;
+//   width: 80%;
+//   justify-content: space-between;
+// }
+// .text__instructions {
+//   color: rgba(95, 158, 160, 0.3);
 
-  &.pause {
-    color: rgba(95, 158, 160, 0.8);
-  }
-}
+//   &.pause {
+//     color: rgba(95, 158, 160, 0.8);
+//   }
+// }
 
-.levels__navigation{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
+// .levels__navigation{
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 10px;
+//   justify-content: center;
+//   align-items: center;
 
-  & .level_ {
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 0;
-    color: #aaa;
-    border: solid 1px #ccc;
-    border-radius: 18px;
-    padding: 10px;
+//   & .level_ {
+//     font-family: "Inter";
+//     font-style: normal;
+//     font-weight: 400;
+//     font-size: 14px;
+//     line-height: 0;
+//     color: #aaa;
+//     border: solid 1px #ccc;
+//     border-radius: 18px;
+//     padding: 10px;
 
-    &.active {
-    color: $base-color-light;
-    border-color: $base-color-light;
-    }
+//     &.active {
+//     color: $base-color-light;
+//     border-color: $base-color-light;
+//     }
 
-    &.done {
-      color: $button-color-light;
-      border-color: $button-color-light;
-    }
-  }
-}
+//     &.done {
+//       color: $button-color-light;
+//       border-color: $button-color-light;
+//     }
+//   }
+// }

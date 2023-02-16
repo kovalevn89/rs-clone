@@ -4,18 +4,22 @@ import { Tag } from '../../types/enums';
 
 export default class FinishLevel {
   private state: State;
+  private nextBtn;
+  private backBtn;
+  private message;
   constructor() {
     this.state = new State();
+    this.backBtn = createElement<HTMLButtonElement>(Tag.btn, 'back__btn');
+    this.nextBtn = createElement<HTMLButtonElement>(Tag.btn, 'next-lvl__btn');
+    this.message = createElement(Tag.div, 'finish__message');
   }
 
   renderComplete(): void {
-    console.log(this.state);
     const parent = document.querySelector('.training__container');
     if (!parent) return;
 
     parent.innerHTML = '';
     const container = createElement(Tag.div, 'finish__container');
-    const message = createElement(Tag.div, 'finish__messqge', container);
 
     const {
       speed,
@@ -31,24 +35,22 @@ export default class FinishLevel {
     console.log(speed, accurancy, time, mistakes);
 
     parent.append(container);
+    container.append(this.message);
+    const btnsContainer = createElement(Tag.div, 'btns__container', container);
+    btnsContainer.append(this.backBtn, this.nextBtn);
 
-    const isFinished = true;
+    this.updateMessage();
 
-    message.textContent = isFinished
-      ? `Congrats! You have finished this level in ${time}s & ${mistakes} mistakes`
-      : `Too many mistakes ${mistakes}, try again`;
-
-    const backBtn = createElement<HTMLButtonElement>(Tag.btn, 'back__btn', container);
-    const nextBtn = createElement<HTMLButtonElement>(Tag.btn, 'next-level__btn', container);
-    backBtn.textContent = 'Back';
-    nextBtn.textContent = isFinished ? 'Start next level' : 'Try again';
-
-    backBtn.addEventListener('click', () => {
-      console.log('menu');
-      window.location.hash = `#/training?lang=${lang}`;
+    this.backBtn.addEventListener('click', () => {
+      if (accurancy < 80) {
+        // window.location.hash = `#/lesson?lang=${lang}&index=${lesson}&id=${this.state.level}`;
+        window.location.reload();
+      } else {
+        window.location.hash = `#/training?lang=${lang}`;
+      }
     });
 
-    nextBtn.addEventListener('click', () => {
+    this.nextBtn.addEventListener('click', () => {
       console.log('next level', this.state);
 
       if (level < levels - 1) {
@@ -60,5 +62,23 @@ export default class FinishLevel {
         window.location.hash = `#/training?lang=${lang}`;
       }
     });
+  }
+
+  private updateMessage(): void {
+    const {
+      accurancy, mistakes, speed, time,
+    } = this.state;
+
+    this.nextBtn.textContent = 'Next level';
+
+    if (accurancy < 80) {
+      this.message.textContent = `Too many mistakes ${mistakes}, try again`;
+      this.nextBtn.disabled = true;
+      this.backBtn.textContent = 'Try again';
+    } else {
+      this.message.textContent = `You have finished this level in ${time}s & ${mistakes} mistakes, speed: ${speed} letters per minute, accurancy: ${accurancy}`;
+      this.nextBtn.disabled = false;
+      this.backBtn.textContent = 'Back to menu';
+    }
   }
 }

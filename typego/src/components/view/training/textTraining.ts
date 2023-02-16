@@ -1,4 +1,5 @@
 import { createElement } from '../../helper';
+import State from '../../model/state';
 import { TextResponse } from '../../types';
 import { Tag, TrainingStatus } from '../../types/enums';
 import Text from './text';
@@ -11,6 +12,7 @@ class TextTraining {
   private speed;
   private accurancy;
   private separator;
+  private state;
 
   constructor() {
     this.container = createElement(Tag.div, 'level__text__container');
@@ -22,6 +24,8 @@ class TextTraining {
     this.accurancy = createElement(Tag.div, 'accurancy__container', this.progress);
 
     this.training = createElement(Tag.div, 'text__instructions', this.container);
+
+    this.state = new State();
   }
 
   render(response: TextResponse): void {
@@ -33,6 +37,10 @@ class TextTraining {
     const accurancy = index >= 3 ? Math.floor((1 - mistakes / index) * 100) : '';
     this.speed.textContent = `Speed: ${speed} letters per minute`;
     this.accurancy.textContent = `Accurancy: ${accurancy}%`;
+
+    this.state.accurancy = accurancy as number;
+    this.state.speed = speed;
+    this.state.mistakes = mistakes;
   }
 
   updateInstructions(status: TrainingStatus) {

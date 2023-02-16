@@ -9,6 +9,7 @@ import Games from '../view/games';
 import { Lang } from '../types/enums';
 import TrainingLevels from '../view/training/levels';
 import Main from '../view/main';
+import FinishLevel from '../view/training/finish';
 // import State from '../model/state';
 
 class Router {
@@ -22,6 +23,7 @@ class Router {
   private about;
   private dropGame;
   private games;
+  finish;
 
   constructor() {
     this.validPage = new Array<IPage>();
@@ -44,6 +46,7 @@ class Router {
     this.about = new AboutPage();
     this.dropGame = new DropStartPage();
     this.games = new Games();
+    this.finish = new FinishLevel();
   }
 
   private isPageValid(page: string): boolean {
@@ -131,7 +134,9 @@ class Router {
                 break;
               }
               default: {
-                this.error.run('pageNotFound');
+                // this.error.run('pageNotFound');
+                this.finish.renderComplete();
+
                 break;
               }
             }
@@ -142,7 +147,8 @@ class Router {
             this.levels.run(path.lang, path.lesson, path.id);
           }
         } else {
-          this.error.run('pageNotFound');
+          // this.error.run('pageNotFound');
+          this.finish.renderComplete();
         }
       }
 
