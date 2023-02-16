@@ -236,7 +236,6 @@ class GunGame {
         currentShooter.letterElement = word;
         this.gameField.push(currentShooter);
       }
-
       this.startGameClock(timerValue, levelValue);
 
       this.showShooterTimer();
