@@ -1,0 +1,15 @@
+.main {
+  width: 100%;
+  
+  .profile-wrapper {
+    box-sizing: border-box;
+    width: 1440px;
+    margin: 0 auto;
+    padding: 0 160px;
+  }
+
+  &.dark {
+    .profile-wrapper {
+    }
+  }
+}
