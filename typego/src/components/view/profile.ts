@@ -1,8 +1,40 @@
 import PageView from './baseViewClass';
 import { createElement, removeChild } from '../helper';
 import { Themes } from '../types/enums';
+import speedImg from '../../assets/png/speed.png';
+import accuracyImg from '../../assets/png/accuracy.png';
+import progressImg from '../../assets/png/progress.png';
 
-const userData = {
+// ! ГЕНЕРАЦИЯ СЕРТИФИКАТА НА КАНВЕ
+
+interface IGameScore {
+  _id: string,
+  name: string,
+  level: number,
+  score: number,
+  __v: number,
+}
+
+interface IProgress {
+  _id: string,
+  lesson: number,
+  lang: string,
+  level: number,
+  accuracy: number,
+  speed: number,
+  __v: number,
+}
+
+interface IUser {
+  _id: string,
+  username: string,
+  accuracy?: number,
+  speed?: number,
+  gamesScore: Array<IGameScore>,
+  progress: Array<IProgress>,
+}
+
+const userData: IUser = {
   _id: '63dbaf9cdcfe2d760c226ccd',
   username: 'admin',
   accuracy: 99.4,
@@ -76,7 +108,7 @@ class Profile extends PageView {
         main.classList.remove('dark');
       }
       const wrapper = createElement('div', 'profile-wrapper', main);
-      wrapper.innerHTML = `${wrapper}`;
+      wrapper.innerHTML = `${wrapper} ${speedImg} ${accuracyImg}, ${progressImg}`;
     }
   }
 
