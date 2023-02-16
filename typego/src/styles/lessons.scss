@@ -32,7 +32,7 @@
 
     &.done {
       & .training__img {
-        filter: none;
+        filter: grayscale(0);
       }
     }
 

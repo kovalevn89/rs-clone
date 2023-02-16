@@ -3,7 +3,7 @@ import {
   KEYS_EN, KEYS_RU, KEYS_EN_SHIFT, KEYS_RU_SHIFT,
 } from '../../helper/constants';
 import stringSplitter from '../../helper/stringSplitter';
-import State from '../../model/state';
+import TrainingState from '../../model/trainingState';
 import { TextResponse } from '../../types';
 import { Lang, Status, Tag } from '../../types/enums';
 import Keyboard from '../keyboard/keyboard';
@@ -18,7 +18,7 @@ export default class Text {
   currenTime: number;
   time: number;
   speed: number;
-  private state: State;
+  private state: TrainingState;
 
   constructor() {
     this.container = createElement(Tag.div, 'text__container');
@@ -32,7 +32,7 @@ export default class Text {
     this.time = 0;
     this.speed = 0;
     this.accurancy = 0;
-    this.state = new State();
+    this.state = new TrainingState();
   }
 
   init(response: TextResponse): HTMLElement {
@@ -87,6 +87,7 @@ export default class Text {
     const t = (this.time + this.currenTime - this.startTime) / 1000 / 60;
     this.speed = t > 0 ? Math.ceil(this.index / t) : 0;
     this.state.speed = this.speed;
+    this.state.time = Math.round(t * 60);
   }
 
   reset(): void {

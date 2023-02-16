@@ -5,7 +5,7 @@ import Footer from '../view/footer';
 import AppConfig from '../model/appconfig';
 import Router from '../controller/router';
 import Translation from '../model/translation';
-import State from '../model/state';
+import State from '../model/trainingState';
 
 class App {
   model;

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { createElement } from '../../helper';
-import State from '../../model/state';
+import TrainingState from '../../model/trainingState';
 import { Tag, TrainingStatus } from '../../types/enums';
 import { keyDowmHandler, keyUpHandler } from './keybordHandlers';
 import TrainingTask from './trainingTask';
@@ -23,7 +23,7 @@ export default class TextInput {
     this.input = input;
     this.status = false;
     this.isComplete = false;
-    this.state = new State();
+    this.state = new TrainingState();
   }
 
   listen(training: TrainingTask): void {

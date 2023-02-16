@@ -1,14 +1,14 @@
 import { createElement } from '../../helper';
-import State from '../../model/state';
+import TrainingState from '../../model/trainingState';
 import { Tag } from '../../types/enums';
 
 export default class FinishLevel {
-  private state: State;
+  private state: TrainingState;
   private nextBtn;
   private backBtn;
   private message;
   constructor() {
-    this.state = new State();
+    this.state = new TrainingState();
     this.backBtn = createElement<HTMLButtonElement>(Tag.btn, 'back__btn');
     this.nextBtn = createElement<HTMLButtonElement>(Tag.btn, 'next-lvl__btn');
     this.message = createElement(Tag.div, 'finish__message');
@@ -55,10 +55,11 @@ export default class FinishLevel {
 
       if (level < levels - 1) {
         this.state.level += 1;
+        this.state.saveToStorage();
         window.location.hash = `#/lesson?lang=${lang}&index=${lesson}&id=${this.state.level}`;
       } else {
         this.state.level = 0;
-        this.state.progress.push(this.state.lesson);
+        this.state.complitedLessons.push(this.state.lesson);
         window.location.hash = `#/training?lang=${lang}`;
       }
     });

@@ -1,5 +1,5 @@
 import { createElement } from '../../helper';
-import State from '../../model/state';
+import TrainingState from '../../model/trainingState';
 import { TextResponse } from '../../types';
 import { Tag, TrainingStatus } from '../../types/enums';
 import Text from './text';
@@ -25,7 +25,7 @@ class TextTraining {
 
     this.training = createElement(Tag.div, 'text__instructions', this.container);
 
-    this.state = new State();
+    this.state = new TrainingState();
   }
 
   render(response: TextResponse): void {

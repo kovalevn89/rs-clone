@@ -4,7 +4,7 @@ import PageView from '../baseViewClass';
 import Api from '../../controller/api';
 import { LESSON } from '../../helper/constants';
 import TrainingTask from './trainingTask';
-import State from '../../model/state';
+import TrainingState from '../../model/trainingState';
 
 export default class TrainingLevels extends PageView {
   private progress!: number;
@@ -15,7 +15,7 @@ export default class TrainingLevels extends PageView {
     super();
 
     this.lesson = LESSON;
-    this.state = new State();
+    this.state = new TrainingState();
     this.state.levels = this.lesson.levels?.length || 0;
   }
 

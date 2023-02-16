@@ -12,15 +12,15 @@ import cover6 from '../../../assets/png/cover6.png';
 import Api from '../../controller/api';
 import { Lessons } from '../../types';
 import { LESSONS, LESSONS_RU } from '../../helper/constants';
-import State from '../../model/state';
+import TrainingState from '../../model/trainingState';
 
 export default class TrainingLessons extends PageView {
-  private state: State;
+  private state: TrainingState;
 
   constructor() {
     super();
 
-    this.state = new State();
+    this.state = new TrainingState();
   }
 
   private async render(): Promise<void> {
@@ -50,9 +50,21 @@ export default class TrainingLessons extends PageView {
       createElement(Tag.h3, 'training__level__title', lev).textContent = lesson.name;
       createElement<HTMLImageElement>(Tag.img, 'training__img', lev, ['alt', `Lesson ${lesson.index} cover`]).src = cover[i];
 
+      if (this.state.complitedLessons && this.state.complitedLessons.indexOf(lesson.index) !== -1) {
+        lev.classList.add('done');
+      }
+      // lev.classList.add('done');
+      // console.log(this.state.complitedLessons);
+
       lev.addEventListener('click', () => {
-        this.state.lesson = lesson.index;
-        window.location.hash = `#/lesson?lang=${this.state.lang}&index=${this.state.lesson}&id=${this.state.level}`;
+        if (this.state.lesson === lesson.index) {
+          window.location.hash = `#/lesson?lang=${this.state.lang}&index=${this.state.lesson}&id=${this.state.level}`;
+        } else {
+          this.state.progress.push({ lesson: this.state.lesson, level: this.state.level });
+          this.state.lesson = lesson.index;
+          this.state.level = this.state.progress
+            .find((item) => item.lesson === lesson.index)?.level || 0;
+        }
       });
 
       return lev;

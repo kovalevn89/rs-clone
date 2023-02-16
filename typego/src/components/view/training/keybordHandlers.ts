@@ -82,11 +82,7 @@ export const keyUpHandler = (training: TrainingTask): void => {
   text.keyboardHint(keyboard);
   textTraining.updateProgress();
   if (text.index === text.letters.length - 1) {
-    // const input = document.querySelector('#main_input');
-    // if (!input) return;
-
     input.stopListen();
-    // input?.remove();
 
     const finish = new FinishLevel();
     finish.renderComplete();
