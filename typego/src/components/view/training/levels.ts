@@ -32,8 +32,16 @@ export default class TrainingLevels extends PageView {
     }
 
     const wrapper = createElement(Tag.div, 'wrapper', container);
+    const lessonHeader = createElement(Tag.h2, 'training__title', wrapper);
+    const lessonTitle = createElement(Tag.span, 'training__title__span', lessonHeader);
+    const lessoDescription = createElement(Tag.span, 'training__title__span', lessonHeader);
 
-    createElement(Tag.h2, 'training__title', wrapper).textContent = `Lesson ${this.state.lesson}: ${this.lesson.name}`;
+    lessonTitle.textContent = this.translation.getString('level');
+    this.translation.regObserver(() => {
+      lessonTitle.textContent = this.translation.getString('level');
+    });
+    lessoDescription.textContent = ` ${this.state.lesson}: ${this.lesson.name}`;
+
     const levelsWrapper = createElement(Tag.div, 'levels__wrapper', wrapper);
 
     this.getLesson(lang, index);

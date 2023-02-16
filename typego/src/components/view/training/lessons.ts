@@ -37,7 +37,11 @@ export default class TrainingLessons extends PageView {
     }
 
     const wrapper = createElement(Tag.div, 'wrapper', container);
-    createElement(Tag.h2, 'training__title', wrapper).textContent = 'Lessons';
+    const lessonsTitle = createElement(Tag.h2, 'training__title', wrapper);
+    lessonsTitle.textContent = this.translation.getString('lessons');
+    this.translation.regObserver(() => {
+      lessonsTitle.textContent = this.translation.getString('lessons');
+    });
 
     const lessonsWrapper = createElement(Tag.div, 'lessons__wrapper', wrapper);
 

@@ -137,7 +137,13 @@
     .finish__message {
       @include flex-center;
       @include normal-text;
+      flex-direction: column;
       color: $font-color-text2-light;
+      gap: 15px;
+
+      & p{
+        margin: 0;
+      }
     }
 
     .back__btn,

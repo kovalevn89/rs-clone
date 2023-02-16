@@ -162,8 +162,84 @@ const data: ITranslation = {
     en: 'PAGE NOT FOUND (404)',
     ru: 'Страница не найдена (404)',
   },
-  // todo training
+  // training
 
+  training: {
+    en: 'Training',
+    ru: 'Тренажер',
+  },
+  layoutRu: {
+    en: 'Russian Layout',
+    ru: 'Русская клавиатура',
+  },
+  layoutEn: {
+    en: 'English Layout',
+    ru: 'Английская клавиатура',
+  },
+  lessons: {
+    en: 'Lessons',
+    ru: 'Уроки',
+  },
+  level: {
+    en: 'Lesson',
+    ru: 'Урок',
+  },
+  speed: {
+    en: 'Speed',
+    ru: 'Скорость',
+  },
+  WPM: {
+    en: 'letters per minute',
+    ru: 'Знаков в минуту',
+  },
+  accurancy: {
+    en: 'Accurancy',
+    ru: 'Точность',
+  },
+  // pressAnyKey: {
+  //   en: '',
+  //   ru: '',
+  // },
+  start: {
+    en: 'Press any key to Start',
+    ru: 'Нажмите любую клавишу, чтобы НАЧАТЬ',
+  },
+  continue: {
+    en: 'Press any key to CONTINUE',
+    ru: 'Нажмите любую клавишу, чтобы ПРОДОЛЖИТЬ',
+  },
+  pause: {
+    en: 'Press ESC to PAUSE',
+    ru: 'Нажмите ESC, чтобы сделать ПАУЗУ',
+  },
+  nextLvl: {
+    en: 'Next level',
+    ru: 'Следующий урок',
+  },
+  backBtn: {
+    en: 'Back to menu',
+    ru: 'Назад',
+  },
+  tryAgain: {
+    en: 'Try again',
+    ru: 'Попробовать снова',
+  },
+  mistakeMsg: {
+    en: 'Too many mistakes, try again',
+    ru: 'Слишком много ошибок, попробуйте еще раз',
+  },
+  finishMsg: {
+    en: 'You have finished this level: ',
+    ru: 'Вы закончили урок',
+  },
+  time: {
+    en: 'Time',
+    ru: 'Время',
+  },
+  mistakes: {
+    en: 'Mistakes',
+    ru: 'Ошибки',
+  },
 };
 
 export default data;

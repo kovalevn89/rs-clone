@@ -20,13 +20,14 @@ export class Training extends PageView {
 
     const wrapper = createElement(Tag.div, 'wrapper', container);
 
-    createElement(Tag.h2, 'training__title', wrapper).textContent = 'Training';
+    const title = createElement(Tag.h2, 'training__title', wrapper);
+    title.textContent = this.translation.getString('training');
+    this.translation.regObserver(() => {
+      title.textContent = this.translation.getString('training');
+    });
 
     const selectContainer = createElement(Tag.div, 'select', wrapper);
 
-    // todo this scope can be refactor
-    // todo add state language
-    // todo navigation function
     const selectEn = createElement(Tag.div, 'training__select', selectContainer, ['lang', 'en']);
     selectEn.addEventListener('click', () => {
       window.location.hash = '#/training?lang=en';
@@ -36,10 +37,18 @@ export class Training extends PageView {
       window.location.hash = '#/training?lang=ru';
     });
 
-    createElement(Tag.h3, 'select__title', selectEn).textContent = 'English Layout';
+    const selectTitleEn = createElement(Tag.h3, 'select__title', selectEn);
+    selectTitleEn.textContent = this.translation.getString('layoutEn');
+    this.translation.regObserver(() => {
+      selectTitleEn.textContent = this.translation.getString('layoutEn');
+    });
     createElement<HTMLImageElement>(Tag.img, 'select__img', selectEn, ['alt', 'English layout']).src = selectEN;
 
-    createElement(Tag.h3, 'select__title', selectRu).textContent = 'Russian Layout';
+    const selectTitleRu = createElement(Tag.h3, 'select__title', selectRu);
+    selectTitleRu.textContent = this.translation.getString('layoutRu');
+    this.translation.regObserver(() => {
+      selectTitleRu.textContent = this.translation.getString('layoutRu');
+    });
     createElement<HTMLImageElement>(Tag.img, 'select__img', selectRu, ['alt', 'Russian layout']).src = selectRU;
 
     app.append(container);
