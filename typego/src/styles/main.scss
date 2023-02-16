@@ -16,51 +16,51 @@
       .block_typig-faster {
         width: 1440px;
         margin: 0 auto;
-  
+
         .block_wrapper {
           box-sizing: border-box;
           width: 100%;
           min-height: 500px;
           padding: 0 160px;
-  
+
           display: flex;
           align-items: stretch;
 
           .typig-faster__left-col {
             width: 60%;
-    
+
             .left-col__caption {
               padding-top: 80px;
-  
+
               .text {
                 @include caption-text;
                 color: $font-color-text1-light;
               }
             }
-    
+
             .left-col__text {
               padding-top: 24px;
               width: 90%;
-    
+
               .text {
                 @include normal-text;
                 color: $font-color-text1-light;
-  
+
                 span {
                   font-weight: 700;
                   font-style: italic;
                 }
               }
             }
-    
+
             .left-col__button{
               padding-top: 49px;
-    
+
               .button {
                 width: 202px;
                 height: 50px;
                 @include main-page-button;
-  
+
                 background: $button-color-light;
                 &:hover {
                   background: $button-hover-color-light;
@@ -68,11 +68,11 @@
               }
             }
           }
-    
+
           .typig-faster__right-col {
             width: 40%;
             position: relative;
-    
+
             .image {
               position: relative;
               width: 100%;
@@ -80,7 +80,7 @@
               margin-top: -28%;
               z-index: 2;
             }
-  
+
             .ellipse {
               width: 60%;
               aspect-ratio: 1 / 1;
@@ -168,7 +168,7 @@
                 width: 90%;
 
                 @include normal-text;
-                
+
                 color: $font-color-text2-light;
               }
 
@@ -177,7 +177,7 @@
 
                 .context-link__button {
                   @include normal-text;
-                  
+
                   color: $base-color-light;
                   display: flex;
                   user-select: none;
@@ -202,7 +202,7 @@
 
                     @keyframes go-left-right {
                       from { padding-right: 8px; }
-                      to { padding-right: 25px; } 
+                      to { padding-right: 25px; }
                     }
                   }
 
@@ -283,14 +283,14 @@
                   color: $font-color-text1-dark;
                 }
               }
-      
+
               .left-col__text {
                 .text {
                   @include normal-text;
                   color: $font-color-text1-dark;
                 }
               }
-      
+
               .left-col__button{
                 .button {
 
@@ -338,11 +338,11 @@
                   }
                 }
 
-                @media (min-width: 320px) and (max-width: 699px) { 
+                @media (min-width: 320px) and (max-width: 699px) {
                   .card__context-link {
                     .context-link__button {
                       border: 1.5px solid $base-color-dark;
-                
+
                       &::after {
                         border: 0px solid $base-color-dark;
                       }
@@ -357,7 +357,7 @@
 
       .registration{
         background: $base-color-dark;
-        
+
         .registration-caption {
           color: $font-color-text1-dark;
         }
@@ -378,40 +378,40 @@
   }
 }
 
-@media (min-width: 320px) and (max-width: 1440px) { 
+@media (min-width: 320px) and (max-width: 1440px) {
   .main {
     .main_wrapper {
       .block_typig-faster__wrapper {
         .block_typig-faster {
-          width: auto; 
-          max-width: 1440px; 
+          width: auto;
+          max-width: 1440px;
           .block_wrapper {
-            padding: 0 11vw; 
+            padding: 0 11vw;
           }
         }
       }
-  
+
       .block_proposales {
-        width: auto; 
-        max-width: 1440px; 
+        width: auto;
+        max-width: 1440px;
 
         .block_wrapper {
-          padding: 0 11vw; 
+          padding: 0 11vw;
           padding-top: 7.8%;
-  
+
           .registration{
             min-height: 250px;
-            border-radius: 7vw; 
+            border-radius: 7vw;
             padding-bottom: 10px;
-      
+
             .registration-caption {
-              margin-top: 3.5vw; 
-              font-size: 28px; 
-              text-align: center; 
+              margin-top: 3.5vw;
+              font-size: 28px;
+              text-align: center;
             }
-      
+
             .registration-text{
-              padding: 0 5px; 
+              padding: 0 5px;
             }
           }
         }
@@ -420,42 +420,42 @@
   }
 }
 
-@media (min-width: 320px) and (max-width: 699px) { 
+@media (min-width: 320px) and (max-width: 699px) {
   .main {
     .main_wrapper {
       .block_typig-faster__wrapper {
         .block_typig-faster {
           padding-top: 6vw;
-    
+
           .block_wrapper {
             display: flex;
             flex-direction: column;
-            
+
             .typig-faster__left-col {
               width: 100%;
               margin-top: -15vw;
-      
+
               .left-col__caption {
                 padding-top: 6vw;
                 text-align: center;
               }
-      
+
               .left-col__text {
                 padding-top: 6vw;
                 width: 100%;
                 text-align: center;
               }
-      
+
               .left-col__button{
                 padding-top: 6vw;
                 padding-bottom: 6vw;
-      
+
                 .button {
                   margin: 0 auto;
                 }
               }
             }
-      
+
             .typig-faster__right-col {
               order: -1;
               width: 100%;
@@ -464,7 +464,7 @@
           }
         }
       }
-  
+
       .block_proposales {
         .block_wrapper {
           .proposales__card {
@@ -474,11 +474,11 @@
 
             margin-top: 10vw !important;
             margin-left: 0px !important;
-  
+
             .card__left {
               order: 1 !important;
               width: 100%;
-  
+
               .card__image {
                 width: 80%;
                 height: auto;
@@ -486,25 +486,25 @@
                 aspect-ratio: 1 / 1;
               }
             }
-  
+
             .card__right {
               width: 100%;
               order: 2 !important;
-  
+
               .card__context {
                 .card__context-caption {
                   margin-top: 3vw;
                   text-align: center;
                 }
-  
+
                 .card__context-text {
                   width: 100%;
                   text-align: center;
                 }
-  
+
                 .card__context-link {
                   margin-top: 4vw;
-  
+
                   .context-link__button {
                     text-align: center;
                     display: flex;
@@ -520,7 +520,7 @@
                       width: 13vw;
                       margin: 0 5px;
                       border: 0px solid $base-color-light;
-  
+
                       @keyframes go-left-right {
                         from { padding-right: 1px; }
                         to { padding-right: 10px; }
@@ -533,7 +533,7 @@
           }
         }
       }
-  
+
       .registration{
         width: 100%;
         padding: 5px;

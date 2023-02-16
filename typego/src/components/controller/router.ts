@@ -1,7 +1,7 @@
 import { IPage, IParametr } from '../types/index';
 import WhacAMole from '../view/whacamole';
 import Error from '../view/error';
-import { Training } from '../view/training';
+import { Training } from '../view/training/training';
 import TrainingLessons from '../view/training/lessons';
 import AboutPage from '../view/about';
 import DropStartPage from '../view/drop-start-page';
@@ -134,9 +134,7 @@ class Router {
                 break;
               }
               default: {
-                // this.error.run('pageNotFound');
-                this.finish.renderComplete();
-
+                this.error.run('pageNotFound');
                 break;
               }
             }
@@ -147,8 +145,7 @@ class Router {
             this.levels.run(path.lang, path.lesson, path.id);
           }
         } else {
-          // this.error.run('pageNotFound');
-          this.finish.renderComplete();
+          this.error.run('pageNotFound');
         }
       }
 
