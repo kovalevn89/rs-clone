@@ -5,8 +5,16 @@ import proposale1 from '../../assets/png/propo1.png';
 import proposale2 from '../../assets/png/propo2.png';
 import proposale3 from '../../assets/png/propo3.png';
 import { Themes } from '../types/enums';
+import Sign from './sign';
 
 class Main extends PageView {
+  private sign: Sign;
+  constructor() {
+    super();
+
+    this.sign = new Sign();
+  }
+
   private setBackground(element: HTMLElement, image: string): void {
     element.style.background = `url(${image})`;
     element.style.backgroundRepeat = 'no-repeat';
@@ -129,6 +137,9 @@ class Main extends PageView {
       const registrationButton = createElement('div', 'registration-button', registration);
       registrationButton.textContent = this.translation.getString('registrationButton');
       this.translation.regObserver(() => { registrationButton.textContent = this.translation.getString('registrationButton'); });
+      registrationButton.addEventListener('click', () => {
+        this.sign.showUp();
+      });
     }
   }
 

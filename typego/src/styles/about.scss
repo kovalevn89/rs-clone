@@ -163,9 +163,9 @@
           box-shadow: 2px 2px 16px 3px rgb(0 0 0 / 75%);
           margin-bottom: 55px;
 
-          position: relative; //!
-          background-color: rgba($base-color-addition-light, 0.8); //!
-          z-index: 5; //!
+          position: relative; 
+          background-color: rgba($base-color-addition-light, 0.8); 
+          z-index: 4; 
 
           .card__left {
             width: 280px;
@@ -195,7 +195,7 @@
                   text-decoration: none;
                   color: $base-color-light;
                   &:hover{
-                    color: $base-footer-gradient-color1-light; //!
+                    color: $base-footer-gradient-color1-light; 
                     }
                 }
               }

@@ -1,8 +1,16 @@
 import PageView from './baseViewClass';
 import { createElement } from '../helper';
 import { Themes, Language } from '../types/enums';
+import Sign from './sign';
 
 class Header extends PageView {
+  private sign: Sign;
+  constructor() {
+    super();
+
+    this.sign = new Sign();
+  }
+
   private changeTheme(): void {
     const header: HTMLElement | null = document.querySelector('.header');
     const main: HTMLElement | null = document.querySelector('.main');
@@ -104,6 +112,9 @@ class Header extends PageView {
           item4.addEventListener('click', () => { window.location.hash = '#/games'; });
           const item5 = createElement('li', 'menu__item', list);
           item5.textContent = this.translation.getString('loginButton');
+          item5.addEventListener('click', () => {
+            this.sign.showIn();
+          });
           this.translation.regObserverPermanent(() => { item5.textContent = this.translation.getString('loginButton'); });
           const item6 = createElement('li', 'menu__item', list);
           item6.textContent = '';
@@ -145,6 +156,12 @@ class Header extends PageView {
           signBtn.textContent = this.translation.getString('loginButton');
           this.translation.regObserverPermanent(() => { signBtn.textContent = this.translation.getString('loginButton'); });
 
+          // login
+          signBtn.addEventListener('click', () => {
+            this.sign.showIn();
+          });
+          // modal wrapper
+          createElement('div', 'header__modal', wrapper);
           body.prepend(header);
         }
       }

@@ -162,8 +162,73 @@ const data: ITranslation = {
     en: 'PAGE NOT FOUND (404)',
     ru: 'Страница не найдена (404)',
   },
-  // training
 
+  // auth modal
+  authCaption: {
+    en: 'Authorization',
+    ru: 'Авторизация',
+  },
+  authLogin: {
+    en: 'Login:',
+    ru: 'Логин:',
+  },
+  authPassword: {
+    en: 'Password:',
+    ru: 'Пароль:',
+  },
+  authRegNow: {
+    en: 'Register account now!',
+    ru: 'Зарегистрировать аккаунт сейчас!',
+  },
+  authButton: {
+    en: 'Submit',
+    ru: 'Войти',
+  },
+  authLoginError: {
+    en: 'Error! The login can contain "A-Za-z0-9_" and be at 6 characters long!',
+    ru: 'Ошибка! Логин может содержать "A-Za-z0-9_" и быть не меньше 6 символов!',
+  },
+  authPasswordError: {
+    en: 'Error! The password can contain "A-Za-z0-9_" and be at 6 characters long!',
+    ru: 'Ошибка! Пароль может содержать "A-Za-z0-9_" и быть не меньше 6 символов!',
+  },
+  regCaption: {
+    en: 'Registration',
+    ru: 'Регистрация',
+  },
+  regLogin: {
+    en: 'Login:',
+    ru: 'Логин:',
+  },
+  regPassword: {
+    en: 'Password:',
+    ru: 'Пароль:',
+  },
+  regRepeatPassword: {
+    en: 'Repeat password:',
+    ru: 'Повторите пароль:',
+  },
+  regLoginError: {
+    en: 'Error! The login can contain "A-Za-z0-9_" and be at 6 characters long!',
+    ru: 'Ошибка! Логин может содержать "A-Za-z0-9_" и быть не меньше 6 символов!',
+  },
+  regPasswordError: {
+    en: 'Error! The password can contain "A-Za-z0-9_" and be at 6 characters long!',
+    ru: 'Ошибка! Пароль может содержать "A-Za-z0-9_" и быть не меньше 6 символов!',
+  },
+  regPasswordMatchError: {
+    en: 'Passwords don\'t match!',
+    ru: 'Пароли не совпадают!',
+  },
+  regAuthNow: {
+    en: 'Sign in!',
+    ru: 'Войти в аккаунт!',
+  },
+  regButton: {
+    en: 'Registration',
+    ru: 'Зарегистрироваться',
+  },
+  // training
   training: {
     en: 'Training',
     ru: 'Тренажер',
