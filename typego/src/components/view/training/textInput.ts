@@ -29,19 +29,14 @@ export default class TextInput {
   listen(training: TrainingTask): void {
     const { textTraining, keyboard } = training;
     const { text } = textTraining;
-    console.log(this.status, this.isComplete, this.state);
 
     this.input.addEventListener('blur', () => {
-      console.log('blur');
-
       if (!this.isComplete) {
         this.input.focus();
-        console.log('focus');
       }
     });
 
     this.input.addEventListener('keydown', (e) => {
-      console.log(this.isComplete);
       if (!this.isComplete) {
         if (e.code !== 'Escape' && !this.status) {
           text.setStartTime(Date.now());
@@ -61,8 +56,6 @@ export default class TextInput {
     });
 
     this.input.addEventListener('keyup', () => {
-      console.log(this.status);
-
       if (this.status) {
         keyUpHandler(training);
       }

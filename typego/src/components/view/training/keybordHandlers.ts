@@ -14,8 +14,6 @@ export const keyDowmHandler = (
   e.preventDefault();
   const id = e.code.toLowerCase();
 
-  console.log(id);
-
   keyboard.activate(id, Status.active);
   const { text } = textTraining;
   let { index, mistakes } = text;

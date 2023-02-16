@@ -14,17 +14,14 @@ h3 {
   @include main-height;
 
   .wrapper {
-
     & * {
       box-sizing: border-box;
     }
 
-    display: flex;
+    @include flex-center;
     width: 100%;
-    justify-content: center;
-    align-items: center;
 
-    padding: 20px 11vw;
+    padding: 0 11vw 30px;
     margin: 0;
     flex-direction: column;
     box-sizing: border-box;
@@ -35,7 +32,7 @@ h3 {
     @include caption-text;
     font-size: 24px;
     color: $font-color-text2-light;
-    // padding: 0 11vw;
+    margin: 10px auto;
   }
 
   // background: linear-gradient($base-color-light, 5%, $base-color-addition-light);
@@ -74,13 +71,7 @@ h3 {
       width: 90%;
       height: 90%;
       padding: 10px;
-    // max-height: 30vh;
     }
-
-    // & h3 {
-    //   @include normal-text;
-    //   font-size: 18px;
-    // }
   }
 
   .training__levels {

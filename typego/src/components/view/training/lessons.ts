@@ -21,7 +21,6 @@ export default class TrainingLessons extends PageView {
     super();
 
     this.state = new State();
-    console.log(this.state);
   }
 
   private async render(): Promise<void> {
@@ -53,7 +52,6 @@ export default class TrainingLessons extends PageView {
 
       lev.addEventListener('click', () => {
         this.state.lesson = lesson.index;
-        console.log(this.state);
         window.location.hash = `#/lesson?lang=${this.state.lang}&index=${this.state.lesson}&id=${this.state.level}`;
       });
 
