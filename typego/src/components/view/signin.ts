@@ -1,8 +1,17 @@
 import PageView from './baseViewClass';
+import Signup from './signup';
 import { createElement, removeChild } from '../helper';
 import { Themes } from '../types/enums'; // , Language
 
 class Signin extends PageView {
+  private signup: Signup;
+
+  constructor() {
+    super();
+
+    this.signup = new Signup();
+  }
+
   private isValidLogin(login: string) {
     return /^[\w]{6,}$/i.test(login);
   }
