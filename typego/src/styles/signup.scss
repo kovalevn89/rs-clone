@@ -218,3 +218,18 @@
     }
   }
 }
+
+@media (min-width: 320px) and (max-width: 500px) { 
+  .header__modal {
+    .signup_modal__wrapper{
+      .signup__window {
+        .input__form {
+          .input__name,
+          .input__password {
+            width: 80%; 
+          }
+        }
+      }
+    }
+  }
+}
