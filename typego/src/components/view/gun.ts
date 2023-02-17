@@ -391,7 +391,6 @@ class GunGame {
     };
 
     setTimeout(showFun, 500);
-
     this.gameShowGunId = setInterval(showFun, 7000);
   }
 

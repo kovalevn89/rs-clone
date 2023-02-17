@@ -370,6 +370,7 @@ export const WORD_RU = [
   'автомат',
   'пушка',
   'геноцид',
+  'заговор',
 ];
 
 export const WORD_EN = [
@@ -394,6 +395,7 @@ export const WORD_EN = [
   'gun',
   'machine',
   'genocide',
+  'conspiracy',
 ];
 
 export default {
