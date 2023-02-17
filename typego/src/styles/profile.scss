@@ -96,8 +96,8 @@
       .info__block {
         margin-top: 30px;
         width: 48%;
-        height: 100px;
-        border: 1px solid black;
+        min-height: 100px;
+        border: 1px solid rgba(165, 165, 165, 0.7);
         border-radius: 10px;
         position: relative;
 
@@ -107,14 +107,154 @@
           font-size: 18px;
           line-height: 0px;
           color: $font-color-text2-light;
-          //margin-top: 0px;
           background: $base-color-addition-light;
-          // $base-color-addition-light;
-          
           top: -25px;
-         
           padding: 10px;
           margin-left: 20px;
+          user-select: none;
+        }
+
+        .info__block-cert {
+          width: 100%;
+          height: 100%;
+
+          .cert-message {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            color: $font-color-text2-light;
+
+            text-align: center;
+
+            &.hidden {
+              display: none;
+            }
+          }
+
+          .cert-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .cert-preview {
+              width: 300px;
+              height: 210px;
+              margin: 20px 0px 10px 0px;
+              background-color: rgb(111, 228, 248);
+              border-radius: 10px;
+
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+
+            }
+
+            .cert-download{
+              font-family: 'Inter';
+              font-style: normal;
+              font-weight: 400;
+              font-size: 16px;
+              text-decoration: underline;
+              margin-bottom: 15px;
+              user-select: none;
+              cursor: pointer;
+              color: $base-color-light;
+
+            }
+
+            &.hidden {
+              display: none;
+            }
+          }
+        }
+
+        .info__block-lessons {
+          margin: 15px;
+
+          .lesson__lang {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            color: $font-color-text2-light;
+
+            .lesson__lang-caption {
+            }
+
+            .lesson__lang-lesson{
+              .lesson__lang-lesson_caption {
+                margin-top: 1%;
+                margin-left: 3%;
+              }
+              .lesson__lang-levels {
+                .lesson__lang-levels__line {
+                  font-size: 14px;
+                  display: flex;
+                  gap: 10px;
+                  margin-top: 1%;
+                  margin-left: 6%;
+                  span {
+
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .info__block-games {
+          .game-line {
+            margin: 10px;
+            padding-top: 12px;
+
+            display: flex;
+            gap: 10px;
+
+            .game_line-image{
+              width: 50px;
+              height: 50px;
+              background-color: orange;
+              border-radius: 10px;
+            }
+
+            .game_line-info{
+              display: flex;
+              flex-direction: column;
+
+              .game_line-info_gamename{
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 18px;
+                color: $font-color-text2-light;
+                flex-grow: 1;
+                display: flex;
+                align-items: center;
+              }
+
+              .game_line-info_results{
+                display: flex;
+                gap: 20px;
+                margin-bottom: 5px;
+                .game_line-info_results-level,
+                .game_line-info_results-score {
+                  font-family: 'Inter';
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 14px;
+                  color: $font-color-text2-light;
+                }
+              }
+            }
+          }
         }
       }
     }
