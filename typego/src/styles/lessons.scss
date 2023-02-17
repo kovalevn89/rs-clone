@@ -1,0 +1,69 @@
+@import './mixin.scss';
+@import './constants.scss';
+
+.main {
+  .lessons__wrapper {
+    @include flex-center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5vw;
+  }
+  .training__levels {
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .training__level {
+    @include flex-center;
+    flex-direction: column;
+    min-width: 200px;
+    color: $font-color-text2-light;
+    padding: 10px;
+
+    border: $font-color-text2-light solid 1px;
+    border-radius: 12px;
+
+    & .training__img {
+      filter: grayscale(1);
+      width: 120px;
+      height: 120px;
+    }
+
+    &.done {
+      & .training__img {
+        filter: grayscale(0);
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: $base-color-light;
+      border-color: $base-color-light;
+      transition: all ease 0.5s;
+
+      & .training__level__title {
+        color: $base-color-light;
+      }
+
+      & img {
+        filter: grayscale(0.3);
+      }
+    }
+  }
+
+  &.dark {
+    .training__level {
+      & .training__level__title {
+        color: $font-color-text1-dark;
+      }
+
+      &:hover {
+        & .training__level__title {
+          color: $button-color-dark;
+        }
+      }
+
+    }
+  }
+}

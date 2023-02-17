@@ -1,22 +1,26 @@
 import { Status } from '../../types/enums';
 import { isSpecial } from '../../helper/isSpecial';
-import Keyboard from '../keyboard/keyboard';
-import Text from './text';
-import TextTraining from './textTraining';
 import correctKey from '../../../assets/media/correctKey.mp3';
 import incorrectKey from '../../../assets/media/incorrectKey.mp3';
 import bacspaseKey from '../../../assets/media/backspaseKey.mp3';
+// eslint-disable-next-line import/no-cycle
+import TrainingTask from './trainingTask';
+import FinishLevel from './finish';
 
-export const keyDowmHandler = (e: KeyboardEvent, keyboard: Keyboard, text: Text): void => {
+export const keyDowmHandler = (
+  e: KeyboardEvent,
+  { keyboard, textTraining }: TrainingTask,
+): void => {
   e.preventDefault();
   const id = e.code.toLowerCase();
 
   keyboard.activate(id, Status.active);
+  const { text } = textTraining;
   let { index, mistakes } = text;
   const { letters } = text;
   const sound = new Audio(correctKey);
   sound.pause();
-  sound.volume = 0.3;
+  sound.volume = 0.5;
 
   if (isSpecial(e.code)) {
     text.setIndex(index);
@@ -56,6 +60,7 @@ export const keyDowmHandler = (e: KeyboardEvent, keyboard: Keyboard, text: Text)
     }
     mistakes += 1;
     sound.pause();
+    sound.volume = 0.3;
     sound.src = incorrectKey;
     sound.play();
   }
@@ -65,20 +70,22 @@ export const keyDowmHandler = (e: KeyboardEvent, keyboard: Keyboard, text: Text)
   text.updateActive();
 };
 
-export const keyUpHandler = (keyboard: Keyboard, training: TextTraining): void => {
+export const keyUpHandler = (training: TrainingTask): void => {
+  const { keyboard, textTraining, input } = training;
+  const { text } = textTraining;
+
   keyboard.init();
-  const { text } = training;
+
   text.setCurrentTime(Date.now());
   text.updateSpeed();
 
   text.keyboardHint(keyboard);
-  training.updateProgress();
+  textTraining.updateProgress();
   if (text.index === text.letters.length - 1) {
-    // temporary solution
+    input.stopListen();
 
-    // eslint-disable-next-line no-alert
-    alert('Level done!');
-    // todo finish level function
+    const finish = new FinishLevel();
+    finish.renderComplete();
   }
 };
 

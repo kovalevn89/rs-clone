@@ -1,15 +1,19 @@
-import { TrainingStatus } from '../../types/enums';
-import Keyboard from '../keyboard/keyboard';
+/* eslint-disable import/no-cycle */
+import { createElement } from '../../helper';
+import TrainingState from '../../model/trainingState';
+import { Tag, TrainingStatus } from '../../types/enums';
 import { keyDowmHandler, keyUpHandler } from './keybordHandlers';
-import TextTraining from './textTraining';
+import TrainingTask from './trainingTask';
 
-class TextInput {
+export default class TextInput {
   input;
   private status;
+  private isComplete;
+  private state;
 
   constructor() {
-    const input = document.createElement('input');
-    input.className = 'level__input';
+    const input = createElement<HTMLInputElement>(Tag.input, 'level__input');
+    input.id = 'main_input';
     input.type = 'text';
     input.autofocus = true;
     input.autocomplete = 'off';
@@ -18,38 +22,54 @@ class TextInput {
 
     this.input = input;
     this.status = false;
+    this.isComplete = false;
+    this.state = new TrainingState();
   }
 
-  listen(keyboard: Keyboard, training: TextTraining): void {
-    const { text } = training;
+  listen(training: TrainingTask): void {
+    const { textTraining, keyboard } = training;
+    const { text } = textTraining;
+
+    this.input.addEventListener('blur', () => {
+      if (!this.isComplete) {
+        this.input.focus();
+      }
+    });
 
     this.input.addEventListener('keydown', (e) => {
-      if (e.code !== 'Escape' && !this.status) {
-        text.setStartTime(Date.now());
-        this.status = true;
-        training.updateInstructions(TrainingStatus.pause);
-        return;
+      if (!this.isComplete) {
+        if (e.code !== 'Escape' && !this.status) {
+          text.setStartTime(Date.now());
+          this.status = true;
+          textTraining.updateInstructions(TrainingStatus.pause);
+          return;
+        }
+        if (e.code === 'Escape') {
+          text.time += text.currenTime - text.startTime;
+          this.status = false;
+          keyboard.init();
+          textTraining.updateInstructions(TrainingStatus.continue);
+          return;
+        }
+        keyDowmHandler(e, training);
       }
-      if (e.code === 'Escape') {
-        text.time += text.currenTime - text.startTime;
-        this.status = false;
-        keyboard.init();
-        training.updateInstructions(TrainingStatus.continue);
-        return;
-      }
-      keyDowmHandler(e, keyboard, text);
     });
 
     this.input.addEventListener('keyup', () => {
       if (this.status) {
-        keyUpHandler(keyboard, training);
+        keyUpHandler(training);
       }
     });
+  }
 
-    this.input.addEventListener('blur', () => {
-      this.input.focus();
-    });
+  stopListen(): void {
+    this.isComplete = true;
+    this.status = false;
+    this.input.blur();
+  }
+
+  startListen(): void {
+    this.isComplete = false;
+    this.input.focus();
   }
 }
-
-export default TextInput;
