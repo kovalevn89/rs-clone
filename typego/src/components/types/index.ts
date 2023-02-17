@@ -65,7 +65,7 @@ export interface LevelSettings {
 
 export interface Lesson {
   index: number;
-  name: string,
+  name: string;
   lang: 'en' | 'ru';
   levels?: Levels;
 }
@@ -83,6 +83,14 @@ export type Levels = Level[];
 export interface Test {
   text: string;
   lang: 'en' | 'ru';
+}
+
+export interface IShooter {
+  shooterElement: HTMLElement | null;
+  isShowed: boolean;
+  wordElement: HTMLElement | null;
+  curentword: string;
+  timer: NodeJS.Timeout | null;
 }
 
 export interface User {

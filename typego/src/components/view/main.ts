@@ -26,7 +26,7 @@ class Main extends PageView {
     const app: HTMLElement | null = document.querySelector('.app');
 
     if (app !== null) {
-      this.translation.cleanObserver(); // clear translate obserber hook
+      // this.translation.cleanObserver(); // clear translate obserber hook
 
       removeChild(app);
       const main = createElement('div', 'main', app);
@@ -46,17 +46,23 @@ class Main extends PageView {
       const leftColCaptionText = createElement('span', 'text', leftColCaption);
       // leftColCaptionText.textContent = 'печатай быстрее';
       leftColCaptionText.textContent = this.translation.getString('typigFasterCaption');
-      this.translation.regObserver(() => { leftColCaptionText.textContent = this.translation.getString('typigFasterCaption'); });
+      this.translation.regObserver(() => {
+        leftColCaptionText.textContent = this.translation.getString('typigFasterCaption');
+      });
       const leftColText = createElement('div', 'left-col__text', leftCol);
       const typingFasterDescription = createElement('span', 'text', leftColText);
       typingFasterDescription.innerHTML = this.translation.getString('typigFasterDescription');
-      this.translation.regObserver(() => { typingFasterDescription.innerHTML = this.translation.getString('typigFasterDescription'); });
+      this.translation.regObserver(() => {
+        typingFasterDescription.innerHTML = this.translation.getString('typigFasterDescription');
+      });
 
       const leftColButton = createElement('div', 'left-col__button', leftCol);
 
       const typingFasterBtn = createElement('div', 'button', leftColButton);
       typingFasterBtn.textContent = this.translation.getString('typigFasterButton');
-      this.translation.regObserver(() => { typingFasterBtn.textContent = this.translation.getString('typigFasterButton'); });
+      this.translation.regObserver(() => {
+        typingFasterBtn.textContent = this.translation.getString('typigFasterButton');
+      });
       const rightCol = createElement('div', 'typig-faster__right-col', wrapper1);
       const image = createElement('div', 'image', rightCol);
       this.setBackground(image, image1);
@@ -77,14 +83,20 @@ class Main extends PageView {
       const cardContext1 = createElement('div', 'card__context', cardRight1);
       const proposaleCaption1 = createElement('h2', 'card__context-caption', cardContext1);
       proposaleCaption1.textContent = this.translation.getString('proposaleCaption1');
-      this.translation.regObserver(() => { proposaleCaption1.textContent = this.translation.getString('proposaleCaption1'); });
+      this.translation.regObserver(() => {
+        proposaleCaption1.textContent = this.translation.getString('proposaleCaption1');
+      });
       const proposaleText1 = createElement('div', 'card__context-text', cardContext1);
       proposaleText1.textContent = this.translation.getString('proposaleText1');
-      this.translation.regObserver(() => { proposaleText1.textContent = this.translation.getString('proposaleText1'); });
+      this.translation.regObserver(() => {
+        proposaleText1.textContent = this.translation.getString('proposaleText1');
+      });
       const contextLink1 = createElement('div', 'card__context-link', cardContext1);
       const proposaleButton1 = createElement('div', 'context-link__button', contextLink1);
       proposaleButton1.textContent = this.translation.getString('proposaleButton1');
-      this.translation.regObserver(() => { proposaleButton1.textContent = this.translation.getString('proposaleButton1'); });
+      this.translation.regObserver(() => {
+        proposaleButton1.textContent = this.translation.getString('proposaleButton1');
+      });
 
       // propo2
       const card2 = createElement('div', 'proposales__card', wrapper2);
@@ -98,14 +110,20 @@ class Main extends PageView {
       const cardContext2 = createElement('div', 'card__context', cardRight2);
       const proposaleCaption2 = createElement('h2', 'card__context-caption', cardContext2);
       proposaleCaption2.textContent = this.translation.getString('proposaleCaption2');
-      this.translation.regObserver(() => { proposaleCaption2.textContent = this.translation.getString('proposaleCaption2'); });
+      this.translation.regObserver(() => {
+        proposaleCaption2.textContent = this.translation.getString('proposaleCaption2');
+      });
       const proposaleText2 = createElement('div', 'card__context-text', cardContext2);
       proposaleText2.textContent = this.translation.getString('proposaleText2');
-      this.translation.regObserver(() => { proposaleText2.textContent = this.translation.getString('proposaleText2'); });
+      this.translation.regObserver(() => {
+        proposaleText2.textContent = this.translation.getString('proposaleText2');
+      });
       const contextLink2 = createElement('div', 'card__context-link', cardContext2);
       const proposaleButton2 = createElement('div', 'context-link__button', contextLink2);
       proposaleButton2.textContent = this.translation.getString('proposaleButton2');
-      this.translation.regObserver(() => { proposaleButton2.textContent = this.translation.getString('proposaleButton2'); });
+      this.translation.regObserver(() => {
+        proposaleButton2.textContent = this.translation.getString('proposaleButton2');
+      });
 
       // propo3
       const card3 = createElement('div', 'proposales__card', wrapper2);
@@ -117,26 +135,38 @@ class Main extends PageView {
       const cardContext3 = createElement('div', 'card__context', cardRight3);
       const proposaleCaption3 = createElement('h2', 'card__context-caption', cardContext3);
       proposaleCaption3.textContent = this.translation.getString('proposaleCaption3');
-      this.translation.regObserver(() => { proposaleCaption3.textContent = this.translation.getString('proposaleCaption3'); });
+      this.translation.regObserver(() => {
+        proposaleCaption3.textContent = this.translation.getString('proposaleCaption3');
+      });
       const proposaleText3 = createElement('div', 'card__context-text', cardContext3);
       proposaleText3.textContent = this.translation.getString('proposaleText3');
-      this.translation.regObserver(() => { proposaleText3.textContent = this.translation.getString('proposaleText3'); });
+      this.translation.regObserver(() => {
+        proposaleText3.textContent = this.translation.getString('proposaleText3');
+      });
       const contextLink3 = createElement('div', 'card__context-link', cardContext3);
       const proposaleButton3 = createElement('div', 'context-link__button', contextLink3);
       proposaleButton3.textContent = this.translation.getString('proposaleButton3');
-      this.translation.regObserver(() => { proposaleButton3.textContent = this.translation.getString('proposaleButton3'); });
+      this.translation.regObserver(() => {
+        proposaleButton3.textContent = this.translation.getString('proposaleButton3');
+      });
 
       // registration
       const registration = createElement('div', 'registration', wrapper2);
       const registrationCaption = createElement('h2', 'registration-caption', registration);
       registrationCaption.textContent = this.translation.getString('registrationCaption');
-      this.translation.regObserver(() => { registrationCaption.textContent = this.translation.getString('registrationCaption'); });
+      this.translation.regObserver(() => {
+        registrationCaption.textContent = this.translation.getString('registrationCaption');
+      });
       const registrationText = createElement('div', 'registration-text', registration);
       registrationText.textContent = this.translation.getString('registrationText');
-      this.translation.regObserver(() => { registrationText.textContent = this.translation.getString('registrationText'); });
+      this.translation.regObserver(() => {
+        registrationText.textContent = this.translation.getString('registrationText');
+      });
       const registrationButton = createElement('div', 'registration-button', registration);
       registrationButton.textContent = this.translation.getString('registrationButton');
-      this.translation.regObserver(() => { registrationButton.textContent = this.translation.getString('registrationButton'); });
+      this.translation.regObserver(() => {
+        registrationButton.textContent = this.translation.getString('registrationButton');
+      });
       registrationButton.addEventListener('click', () => {
         this.sign.showUp();
       });

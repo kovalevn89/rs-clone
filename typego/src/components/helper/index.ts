@@ -1,5 +1,5 @@
 import {
-  LETTER_RU, LETTER_RU_SVG, LETTER_EN, LETTER_EN_SVG,
+  LETTER_RU, LETTER_RU_SVG, LETTER_EN, LETTER_EN_SVG, WORD_RU, WORD_EN,
 } from './constants';
 
 export function createElement<T = HTMLElement>(
@@ -25,7 +25,9 @@ export function createElement<T = HTMLElement>(
         return;
       }
       if (
-        attrName.match(/value|id|href|target|src|alt|type|name|placeholder|tabindex|pattern|min|max|for|step|width|height|selected|spellcheck/i) !== null
+        attrName.match(
+          /value|id|href|target|src|alt|type|name|placeholder|tabindex|pattern|min|max|for|step|width|height|selected|spellcheck/i,
+        ) !== null
       ) {
         el.setAttribute(attrName, attrValue);
       } else {
@@ -71,12 +73,15 @@ function getRandomLetterIndex(letterArray: Array<string>): number {
 
 export function getLetter(language: string) {
   switch (language) {
-    case 'ru': return getLetterRU(getRandomLetterIndex(LETTER_RU));
-    case 'en': return getLetterEN(getRandomLetterIndex(LETTER_EN));
-    default: return {
-      letter: '-1',
-      svg: '',
-    };
+    case 'ru':
+      return getLetterRU(getRandomLetterIndex(LETTER_RU));
+    case 'en':
+      return getLetterEN(getRandomLetterIndex(LETTER_EN));
+    default:
+      return {
+        letter: '-1',
+        svg: '',
+      };
   }
 }
 
@@ -84,5 +89,16 @@ export function playSound(src: string, isSound = true): void {
   const sound = new Audio(src);
   if (isSound) {
     sound.play();
+  }
+}
+
+export function getWord(language: string) {
+  switch (language) {
+    case 'ru':
+      return WORD_RU[getRandomLetterIndex(WORD_RU)];
+    case 'en':
+      return WORD_EN[getRandomLetterIndex(WORD_EN)];
+    default:
+      return '-1';
   }
 }
