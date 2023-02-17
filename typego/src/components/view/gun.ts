@@ -102,7 +102,7 @@ class GunGame {
     this.levelChangeId = setInterval(() => {
       this.level += 1;
       Level.textContent = `${this.level}`;
-    }, 30000);
+    }, 25000);
 
     this.gameClockId = setInterval(() => {
       const tempCLock = Clock;
@@ -170,7 +170,6 @@ class GunGame {
 
   private renderEndGame(): void {
     const app: HTMLElement | null = document.querySelector('.app');
-
     if (app !== null) {
       this.playSound('winGun');
       removeChild(app);
@@ -185,7 +184,7 @@ class GunGame {
 
       const result = createElement('div', 'game_result', menu);
       const line1 = createElement('div', 'result_line', result);
-      createElement('div', 'caption', line1).textContent = 'Level:';
+      createElement('div', 'caption', line1).textContent = 'Round:';
       createElement('div', 'value', line1).textContent = `${this.level}`;
       const line2 = createElement('div', 'result_line', result);
       createElement('div', 'caption', line2).textContent = 'Score:';
@@ -267,21 +266,18 @@ class GunGame {
         this.gameField.push(currentShooter);
       }
       this.startGameClock(timerValue, levelValue);
-
       this.showShooterTimer();
-
       this.keyListener = (e: Event) => {
         this.wordHandle(e, scoreValue, accuracyValue);
       };
-
       document.addEventListener('keypress', this.keyListener);
     }
   }
+
   private backButtonListener() {
     const app: HTMLElement | null = document.querySelector('.app');
     const header: HTMLElement | null = document.querySelector('.header');
     const footer: HTMLElement | null = document.querySelector('.footer');
-    console.log(123);
     if (app) {
       removeChild(app);
       if (header) {
