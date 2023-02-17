@@ -102,6 +102,8 @@ class Profile extends PageView {
     if (app !== null) {
       removeChild(app);
       const main = createElement('div', 'main', app);
+      this.translation.cleanObserver(); // clear translate obserber hook
+
       if (this.config.getTheme() === Themes.Dark) {
         main.classList.add('dark');
       } else {
@@ -109,6 +111,51 @@ class Profile extends PageView {
       }
       const wrapper = createElement('div', 'profile-wrapper', main);
       wrapper.innerHTML = `${wrapper} ${speedImg} ${accuracyImg}, ${progressImg}`;
+      wrapper.innerHTML = `
+      <div class="user__block">
+        <div class="user__profile-image">
+        </div>
+        <div class="user__profile-info">
+          <div class="user__name">NK</div>
+          <div class="user__statistics">
+            <div class="statistics__block">
+              <div class="statistics__logo"></div>
+              <div class="statistics__progress">
+                <span class="user__statistics-title">Прогресс</span>
+                <span class="user__statistics-value"><b>6</b> уроков</span>
+              </div>
+            </div>
+
+            <div class="statistics__block">
+            <div class="statistics__logo"></div>
+              <div class="statistics__speed">
+                <span class="user__statistics-title">Скорость печати</span>
+                <span class="user__statistics-value"><b>188</b> зн./мин</span>
+              </div>
+            </div>
+
+            <div class="statistics__block">
+            <div class="statistics__logo"></div>
+              <div class="statistics__accuracy">
+                <span class="user__statistics-title">Точность</span>
+                <span class="user__statistics-value"><b>97.1</b>%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="user__info">
+        <div class="info__block">
+          <h2>Сертификат</h2>
+        </div>
+        <div class="info__block">
+          <h2>Уроки</h2>
+        </div>
+        <div class="info__block">
+          <h2>Игры</h2>
+        </div>
+      </div>
+      `;
     }
   }
 

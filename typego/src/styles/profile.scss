@@ -1,12 +1,123 @@
+@import './mixin.scss';
+@import './constants.scss';
+
 .main {
   width: 100%;
+  background-color: $base-color-addition-light;
 
   .profile-wrapper {
     box-sizing: border-box;
     width: 1440px;
     margin: 0 auto;
     padding: 0 160px;
-    background-color: $font-color-text1-dark;
+    
+
+    .user__block {
+      display: flex;
+      gap: 20px;
+
+      padding-top: 20px;
+
+      .user__profile-image{
+        width: 200px;
+        height: 200px;
+        //background-color: orange;
+        background-image: url( "data:image/svg+xml, <svg viewBox='312.809 0 401 401' xmlns='http://www.w3.org/2000/svg'><g transform='matrix(1.223 0 0 1.223 -467.5 -843.44)'><rect x='601.45' y='653.07' width='401' height='401' fill='lightgray'/><path d='m802.38 908.08c-84.515 0-153.52 48.185-157.38 108.62h314.79c-3.87-60.44-72.9-108.62-157.41-108.62z' fill='darkgrey'/><path d='m881.37 818.86c0 46.746-35.106 84.641-78.41 84.641s-78.41-37.895-78.41-84.641 35.106-84.641 78.41-84.641c43.31 0 78.41 37.9 78.41 84.64z' fill='darkgrey'/></g></svg>");
+        border-radius: 10px;
+      }
+
+      .user__profile-info{
+        display:flex;
+        flex-direction: column;
+        flex-grow: 1;
+
+        .user__name{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-grow: 1;
+
+          @include caption-text;
+          color: $font-color-text2-light;
+        }
+
+        .user__statistics{
+          display: flex;
+          justify-content: space-between;
+
+          .statistics__block {
+            min-width: 210px;
+            // background-color: red;
+
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: flex-end;
+            
+            .statistics__logo {
+              width: 50px;
+              height: 50px;
+              background-color: blueviolet;
+            }
+
+            .statistics__progress,
+            .statistics__speed,
+            .statistics__accuracy {
+              display: flex;
+              flex-direction: column;
+        
+              .user__statistics-title {
+                color: $font-color-text2-light;
+                font-family: 'Inter';
+                font-size: 12px;
+                text-transform: uppercase;
+                line-height: 14px;
+                padding-top: 5px;
+        
+              }
+        
+              .user__statistics-value {
+                color: $font-color-text2-light;
+                font-family: 'Inter';
+                font-size: 23px;
+                font-weight: 400;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .user__info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2%;
+
+      .info__block {
+        margin-top: 30px;
+        width: 48%;
+        height: 100px;
+        border: 1px solid black;
+        border-radius: 10px;
+        position: relative;
+
+        h2 {
+          position: absolute;
+          @include caption-text;
+          font-size: 18px;
+          line-height: 0px;
+          color: $font-color-text2-light;
+          //margin-top: 0px;
+          background: $base-color-addition-light;
+          // $base-color-addition-light;
+          
+          top: -25px;
+         
+          padding: 10px;
+          margin-left: 20px;
+        }
+      }
+    }
   }
 
   &.dark {
