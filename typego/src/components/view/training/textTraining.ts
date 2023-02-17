@@ -1,5 +1,5 @@
 import { createElement } from '../../helper';
-import TrainingState from '../../model/trainingState';
+// import TrainingState from '../../model/trainingState';
 import { TextResponse } from '../../types';
 import { Tag, TrainingStatus } from '../../types/enums';
 import PageView from '../baseViewClass';
@@ -19,7 +19,7 @@ class TextTraining extends PageView {
   private accurancyValue;
   private accurancyDescription;
   private separator;
-  private state;
+  // private state;
 
   constructor() {
     super();
@@ -61,7 +61,7 @@ class TextTraining extends PageView {
 
     this.training = createElement(Tag.div, 'text__instructions', this.container);
 
-    this.state = new TrainingState();
+    // this.state = new TrainingState();
   }
 
   render(response: TextResponse): void {

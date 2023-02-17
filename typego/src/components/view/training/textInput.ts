@@ -31,13 +31,13 @@ export default class TextInput {
     const { text } = textTraining;
 
     this.input.addEventListener('blur', () => {
-      if (!this.isComplete) {
+      if (this.state.isInputActive) {
         this.input.focus();
       }
     });
 
     this.input.addEventListener('keydown', (e) => {
-      if (!this.isComplete) {
+      if (this.state.isInputActive) {
         if (e.code !== 'Escape' && !this.status) {
           text.setStartTime(Date.now());
           this.status = true;
@@ -66,16 +66,23 @@ export default class TextInput {
       console.log('stop listen');
       this.stopListen();
     });
+
+    document.body.addEventListener('keydown', (e) => {
+      if (this.state.isInputActive) {
+        this.startListen();
+        console.log(e.code);
+      }
+    });
   }
 
   stopListen(): void {
-    this.isComplete = true;
+    this.state.isInputActive = false;
     this.status = false;
     this.input.blur();
   }
 
   startListen(): void {
-    this.isComplete = false;
+    this.state.isInputActive = true;
     this.input.focus();
   }
 }

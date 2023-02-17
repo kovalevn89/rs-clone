@@ -1,23 +1,26 @@
 import { createElement } from '../../helper';
-import TrainingState from '../../model/trainingState';
+// import TrainingState from '../../model/trainingState';
 import { Tag } from '../../types/enums';
 import PageView from '../baseViewClass';
 
 export default class FinishLevel extends PageView {
-  private state: TrainingState;
+  // private state: TrainingState;
   private nextBtn;
   private backBtn;
   private message;
   constructor() {
     super();
-    this.state = new TrainingState();
+    // this.state = new TrainingState();
     this.backBtn = createElement<HTMLButtonElement>(Tag.btn, 'back__btn');
     this.nextBtn = createElement<HTMLButtonElement>(Tag.btn, 'next-lvl__btn');
     this.message = createElement(Tag.div, 'finish__message');
   }
 
   renderComplete(): void {
-    const parent = document.querySelector('.training__container');
+    // const parent = document.querySelector('.training__container');
+    // eslint-disable-next-line no-bitwise
+    const parent = createElement(Tag.div, 'training__container', document.querySelector<HTMLElement>('.app'));
+
     if (!parent) return;
 
     parent.innerHTML = '';
@@ -65,6 +68,14 @@ export default class FinishLevel extends PageView {
         window.location.hash = `#/training?lang=${lang}`;
       }
     });
+  }
+
+  renderTestResult(): void {
+
+  }
+
+  private renderTable(): void {
+
   }
 
   private updateMessage(): void {

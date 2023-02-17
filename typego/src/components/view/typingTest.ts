@@ -1,6 +1,7 @@
 import { createElement, removeChild } from '../helper';
 import { DEFAULT_RESPONSE, DEFAULT_RESPONSE_RU } from '../helper/constants';
-import TrainingState from '../model/trainingState';
+// import TrainingState from '../model/trainingState';
+import { LanguageStr } from '../types';
 import {
   Lang, Tag, Themes, TrainingStatus,
 } from '../types/enums';
@@ -8,13 +9,13 @@ import PageView from './baseViewClass';
 import TrainingTask from './training/trainingTask';
 
 export default class TypingTest extends PageView {
-  private state: TrainingState;
+  // private state: TrainingState;
 
-  constructor() {
-    super();
+  // constructor() {
+  //   super();
 
-    this.state = new TrainingState();
-  }
+  //   this.state = new TrainingState();
+  // }
   private async render(): Promise<void> {
     const app = document.querySelector<HTMLElement>('.app');
     if (!app) return;
@@ -73,10 +74,11 @@ export default class TypingTest extends PageView {
   }
 
   run(): void {
+    this.state.isTest = true;
     this.render();
   }
 
-  renderTest(lang: 'en' | 'ru', parent: HTMLElement): void {
+  renderTest(lang: LanguageStr, parent: HTMLElement): void {
     parent.innerHTML = '';
 
     const test = new TrainingTask();

@@ -1,8 +1,9 @@
+import { LanguageStr } from '../types';
 import { Lang } from '../types/enums';
 
 export default class TrainingState {
   private static instance: TrainingState;
-  lang!: 'en' | 'ru';
+  lang!: LanguageStr;
   progress!: {
     lesson: number;
     level: number;
@@ -15,6 +16,14 @@ export default class TrainingState {
   accurancy!: number;
   time!: number;
   mistakes!: number;
+  isTest!: boolean;
+  testResult!: {
+    speed: number,
+    accurancy: number,
+    time: number,
+    mistakes: number,
+  };
+  isInputActive!: boolean;
 
   constructor() {
     if (TrainingState.instance) {
@@ -31,6 +40,14 @@ export default class TrainingState {
     this.accurancy = 0;
     this.time = 0;
     this.mistakes = 0;
+    this.isTest = false;
+    this.testResult = {
+      speed: 0,
+      accurancy: 0,
+      time: 0,
+      mistakes: 0,
+    };
+    this.isInputActive = false;
 
     TrainingState.instance = this;
 

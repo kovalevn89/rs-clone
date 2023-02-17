@@ -10,18 +10,18 @@ import cover4 from '../../../assets/png/cover4.png';
 import cover5 from '../../../assets/png/cover5.png';
 import cover6 from '../../../assets/png/cover6.png';
 import Api from '../../controller/api';
-import { Lessons } from '../../types';
+import { LanguageStr, Lessons } from '../../types';
 import { LESSONS, LESSONS_RU } from '../../helper/constants';
-import TrainingState from '../../model/trainingState';
+// import TrainingState from '../../model/trainingState';
 
 export default class TrainingLessons extends PageView {
-  private state: TrainingState;
+  // private state: TrainingState;
 
-  constructor() {
-    super();
+  // constructor() {
+  //   super();
 
-    this.state = new TrainingState();
-  }
+  //   this.state = new TrainingState();
+  // }
 
   private async render(): Promise<void> {
     const main = document.querySelector<HTMLElement>('.app');
@@ -79,7 +79,7 @@ export default class TrainingLessons extends PageView {
     });
   }
 
-  private async getLessons(lang: 'en' | 'ru'): Promise<Lessons> {
+  private async getLessons(lang: LanguageStr): Promise<Lessons> {
     const api = new Api();
     try {
       const result = await api.getLessons('', lang);
@@ -90,7 +90,7 @@ export default class TrainingLessons extends PageView {
     }
   }
 
-  run(lang: 'en' | 'ru'): void {
+  run(lang: LanguageStr): void {
     this.state.lang = lang;
     this.render();
   }

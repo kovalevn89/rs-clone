@@ -4,18 +4,18 @@ import PageView from '../baseViewClass';
 import Api from '../../controller/api';
 import { LESSON } from '../../helper/constants';
 import TrainingTask from './trainingTask';
-import TrainingState from '../../model/trainingState';
+import { Lesson } from '../../types';
+// import TrainingState from '../../model/trainingState';
 
 export default class TrainingLevels extends PageView {
-  private progress!: number;
-  private lesson;
-  private state;
+  private lesson!: Lesson;
+  // private state;
 
   constructor() {
     super();
 
     this.lesson = LESSON;
-    this.state = new TrainingState();
+    // this.state = new TrainingState();
     this.state.levels = this.lesson.levels?.length || 0;
   }
 
@@ -105,11 +105,6 @@ export default class TrainingLevels extends PageView {
     training.render(response, parent);
   }
 
-  nextLevel(): void {
-    this.progress += 1;
-    this.updatePagination();
-  }
-
   updatePagination(): void {
     const pagination = document.querySelectorAll('.level_');
     const { level } = this.state;
@@ -128,6 +123,7 @@ export default class TrainingLevels extends PageView {
     this.state.level = id;
     this.state.lesson = index;
     this.state.lang = lang;
+    this.state.isTest = false;
     this.render(lang, index);
   }
 }
