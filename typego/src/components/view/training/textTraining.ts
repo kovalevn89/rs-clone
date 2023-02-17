@@ -25,7 +25,10 @@ class TextTraining extends PageView {
     super();
 
     this.container = createElement(Tag.div, 'level__text__container');
+    this.container.innerHTML = '';
     this.text = new Text();
+
+    this.container.append(this.text.container);
 
     this.separator = createElement(Tag.div, 'separator', this.container);
     this.progress = createElement(Tag.div, 'text__progress', this.container);
@@ -62,7 +65,7 @@ class TextTraining extends PageView {
   }
 
   render(response: TextResponse): void {
-    this.container.append(this.text.init(response));
+    this.text.render(response);
   }
 
   updateProgress(): void {

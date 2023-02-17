@@ -9,7 +9,7 @@ import { Lang, Status, Tag } from '../../types/enums';
 import Keyboard from '../keyboard/keyboard';
 
 export default class Text {
-  private container;
+  container;
   letters: HTMLElement[];
   index: number;
   mistakes: number;
@@ -35,15 +35,15 @@ export default class Text {
     this.state = new TrainingState();
   }
 
-  init(response: TextResponse): HTMLElement {
+  render(response: TextResponse): void {
     const content = response.text;
     const { lang } = response;
 
-    const container = createElement(Tag.div, 'text__container');
+    this.container.innerHTML = '';
 
     const splitedContent = stringSplitter(content);
     splitedContent.map((word) => {
-      const elem = createElement(Tag.div, 'word', container);
+      const elem = createElement(Tag.div, 'word', this.container);
       word.map((letter) => {
         const id = lang === Lang.en ? KEYS_EN[letter] : KEYS_RU[letter];
         const ID = lang === Lang.en ? KEYS_EN_SHIFT[letter] : KEYS_RU_SHIFT[letter];
@@ -55,8 +55,6 @@ export default class Text {
       });
       return elem;
     });
-
-    return container;
   }
 
   updateActive() {

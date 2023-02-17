@@ -19,10 +19,10 @@ h3 {
     }
 
     @include flex-center;
-    width: 100%;
+    width: 79%;
+    max-width: 1120px;
 
-    padding: 0 11vw 30px;
-    margin: 0;
+    margin: 0 auto;
     flex-direction: column;
     box-sizing: border-box;
   }

@@ -261,10 +261,6 @@ const data: ITranslation = {
     en: 'Accurancy',
     ru: 'Точность',
   },
-  // pressAnyKey: {
-  //   en: '',
-  //   ru: '',
-  // },
   start: {
     en: 'Press any key to Start',
     ru: 'Нажмите любую клавишу, чтобы НАЧАТЬ',
@@ -305,6 +301,13 @@ const data: ITranslation = {
     en: 'Mistakes',
     ru: 'Ошибки',
   },
+
+  // test
+  test: {
+    en: 'Typing test',
+    ru: 'Тест печати',
+  },
+
 };
 
 export default data;

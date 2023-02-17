@@ -10,6 +10,7 @@ import { Lang } from '../types/enums';
 import TrainingLevels from '../view/training/levels';
 import Main from '../view/main';
 import FinishLevel from '../view/training/finish';
+import TypingTest from '../view/typingTest';
 // import State from '../model/state';
 
 class Router {
@@ -18,6 +19,7 @@ class Router {
   private training;
   private lessons;
   private levels;
+  private test;
   private whac;
   private error;
   private about;
@@ -28,12 +30,10 @@ class Router {
   constructor() {
     this.validPage = new Array<IPage>();
     this.validPage.push({ page: 'main', params: [] });
-    // this.validPage.push({ page: 'test', params: [] });
+    this.validPage.push({ page: 'test', params: [] });
     // this.validPage.push({ page: 'learn', params: [] });
     this.validPage.push({ page: 'training', params: ['lang'] });
     this.validPage.push({ page: 'lesson', params: ['lang', 'index', 'id'] });
-    // this.validPage.push({ page: 'lern', params: [] });
-    // this.validPage.push({ page: 'lesson', params: [] });
     this.validPage.push({ page: 'about', params: [] });
     this.validPage.push({ page: 'games', params: ['name'] });
 
@@ -41,6 +41,7 @@ class Router {
     this.training = new Training();
     this.lessons = new TrainingLessons();
     this.levels = new TrainingLevels();
+    this.test = new TypingTest();
     this.whac = new WhacAMole();
     this.error = new Error();
     this.about = new AboutPage();
@@ -89,7 +90,7 @@ class Router {
       }
 
       if (page === 'test') {
-        // PLACE THIS RENDER TEST PAGE
+        this.test.run();
       }
 
       if (page === 'learn') {
