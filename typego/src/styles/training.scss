@@ -19,12 +19,16 @@ h3 {
     }
 
     @include flex-center;
+    flex-direction: column;
+
     width: 79%;
     max-width: 1120px;
+    box-sizing: border-box;
+
 
     margin: 0 auto;
-    flex-direction: column;
-    box-sizing: border-box;
+    gap: 15px;
+
   }
 
   & .training__title {
@@ -34,8 +38,6 @@ h3 {
     color: $font-color-text2-light;
     margin: 10px auto;
   }
-
-  // background: linear-gradient($base-color-light, 5%, $base-color-addition-light);
 
   .select {
     display: flex;
@@ -79,11 +81,9 @@ h3 {
   }
 
   .training__levels {
-    display: flex;
+    @include flex-center;
     flex-wrap: wrap;
     gap: 30px;
-    align-items: center;
-    justify-content: center;
   }
 
   &.dark {

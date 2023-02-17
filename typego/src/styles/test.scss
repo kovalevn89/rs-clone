@@ -12,52 +12,41 @@
 }
 
 .main {
-  .wrapper {
-    // background: linear-gradient($font-color-text1-dark, $base-color-addition-light);
-  }
   .test__select {
     @include flex-center;
     text-align: center;
 
     padding: 10px;
 
-    border: $font-color-text2-light 2px solid;
+    border: $font-color-text2-light 1px solid;
     border-radius: 25px;
-
-    // background-color: $base-color-addition-light;
 
     &:hover {
       cursor: pointer;
       color: $base-color-light;
-      border: $base-color-light 2px solid;
+      border-color: $base-color-light;
     }
 
     &.active {
       color: $font-color-text2-light;
       background-color: $button-color-light;
+      border-color: $button-color-light;
     }
   }
 
   &.dark {
-    .wrapper {
-      // background: linear-gradient($base-color-dark, $footer-background-dark);
-    }
-
     .test__select {
-      border: $base-color-dark 2px solid;
-      border-radius: 25px;
-
-      // background-color: $base-color-addition-light;
+      border-color: $base-color-dark;
 
       &:hover {
-        cursor: pointer;
-        color: $base-color-light;
-        border: $base-color-light 2px solid;
+        color: $font-color-text1-dark;
+        border-color: $button-color-dark;
       }
 
       &.active {
-        color: $font-color-text2-light;
-        background-color: $button-color-light;
+        color: $font-color-text1-dark;
+        background-color: $button-color-dark;
+        border-color: $button-color-dark;
       }
     }
   }

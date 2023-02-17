@@ -7,6 +7,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 5vw;
+    margin-bottom: 20px;
   }
   .training__levels {
     @include flex-center;
@@ -17,7 +18,8 @@
   .training__level {
     @include flex-center;
     flex-direction: column;
-    min-width: 200px;
+    min-width: 230px;
+    min-height: 230px;
     color: $font-color-text2-light;
     padding: 10px;
 
@@ -26,8 +28,8 @@
 
     & .training__img {
       filter: grayscale(1);
-      width: 120px;
-      height: 120px;
+      width: 150px;
+      height: 150px;
     }
 
     &.done {
