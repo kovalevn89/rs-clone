@@ -8,7 +8,7 @@ import TrainingTask from './trainingTask';
 export default class TextInput {
   input;
   private status;
-  private isComplete;
+  isComplete;
   private state;
 
   constructor() {
@@ -59,6 +59,12 @@ export default class TextInput {
       if (this.status) {
         keyUpHandler(training);
       }
+    });
+
+    const signBtn = document.querySelector('.sign__btn');
+    signBtn?.addEventListener('click', () => {
+      console.log('stop listen');
+      this.stopListen();
     });
   }
 

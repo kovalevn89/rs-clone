@@ -53,12 +53,16 @@ h3 {
     width: 40%;
     height: 40%;
     max-width: 500px;
-    min-width: 200px;
+    min-width: 250px;
 
     border: $font-color-text2-light 2px solid;
     border-radius: 25px;
 
     // background-color: $base-color-addition-light;
+
+    .select__title {
+      text-align: center;
+    }
 
     &:hover {
       cursor: pointer;

@@ -54,21 +54,25 @@ export default class TrainingLessons extends PageView {
       createElement(Tag.h3, 'training__level__title', lev).textContent = lesson.name;
       createElement<HTMLImageElement>(Tag.img, 'training__img', lev, ['alt', `Lesson ${lesson.index} cover`]).src = cover[i];
 
-      if (this.state.complitedLessons && this.state.complitedLessons.indexOf(lesson.index) !== -1) {
-        lev.classList.add('done');
-      }
+      // eslint-disable-next-line max-len
+      // if (this.state.complitedLessons && this.state.complitedLessons.indexOf(lesson.index) !== -1) {
+      //   lev.classList.add('done');
+      // }
       // lev.classList.add('done');
       // console.log(this.state.complitedLessons);
 
       lev.addEventListener('click', () => {
+        console.log('lessob click');
         if (this.state.lesson === lesson.index) {
-          window.location.hash = `#/lesson?lang=${this.state.lang}&index=${this.state.lesson}&id=${this.state.level}`;
+          console.log('current lesson');
         } else {
+          console.log('new lesson');
           this.state.progress.push({ lesson: this.state.lesson, level: this.state.level });
           this.state.lesson = lesson.index;
           this.state.level = this.state.progress
             .find((item) => item.lesson === lesson.index)?.level || 0;
         }
+        window.location.hash = `#/lesson?lang=${this.state.lang}&index=${lesson.index}&id=${this.state.level}`;
       });
 
       return lev;
