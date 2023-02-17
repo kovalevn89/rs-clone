@@ -4,8 +4,9 @@ import clickSound from '../../assets/media/click.mp3';
 import pressSound from '../../assets/media/press.mp3';
 import winGunSound from '../../assets/media/winGun.mp3';
 import { IShooter } from '../types/index';
+import PageView from './baseViewClass';
 
-class GunGame {
+class GunGame extends PageView {
   language: string;
   isSound: boolean;
   score: number;
@@ -21,6 +22,7 @@ class GunGame {
   inputStr: string;
 
   constructor() {
+    super();
     this.language = 'ru';
     this.isSound = true;
     this.score = 0;
@@ -171,6 +173,7 @@ class GunGame {
   private renderEndGame(): void {
     const app: HTMLElement | null = document.querySelector('.app');
     if (app !== null) {
+      this.translation.cleanObserver(); // clear translate obserber hook
       this.playSound('winGun');
       removeChild(app);
       const gunWrapper = createElement('div', 'gun-wrapper', app);
@@ -180,17 +183,32 @@ class GunGame {
       const bgrWrapper = createElement('div', 'bgr-wrapper', gunWrapper);
       const menu = createElement('div', 'menu', bgrWrapper);
       const caption = createElement('div', 'game_caption', menu);
-      caption.textContent = 'Game over';
+      caption.textContent = this.translation.getString('captionGun');
+      this.translation.regObserver(() => {
+        caption.textContent = this.translation.getString('captionGun');
+      });
 
       const result = createElement('div', 'game_result', menu);
       const line1 = createElement('div', 'result_line', result);
-      createElement('div', 'caption', line1).textContent = 'Round:';
+      const round = createElement('div', 'caption', line1);
+      round.textContent = this.translation.getString('roundGun');
+      this.translation.regObserver(() => {
+        round.textContent = this.translation.getString('roundGun');
+      });
       createElement('div', 'value', line1).textContent = `${this.level}`;
       const line2 = createElement('div', 'result_line', result);
-      createElement('div', 'caption', line2).textContent = 'Score:';
+      const score = createElement('div', 'caption', line2);
+      score.textContent = this.translation.getString('scoreGun');
+      this.translation.regObserver(() => {
+        score.textContent = this.translation.getString('scoreGun');
+      });
       createElement('div', 'value', line2).textContent = `${this.score}`;
       const line3 = createElement('div', 'result_line', result);
-      createElement('div', 'caption', line3).textContent = 'Gun accuracy:';
+      const accuracy = createElement('div', 'caption', line3);
+      accuracy.textContent = this.translation.getString('accuracyGun');
+      this.translation.regObserver(() => {
+        accuracy.textContent = this.translation.getString('accuracyGun');
+      });
       createElement('div', 'value', line3).textContent = `${this.accuracy}%`;
       const controls = createElement('div', 'game_controls', menu);
       const startButton = createElement('div', 'controls_restart-btn', controls);
@@ -230,22 +248,38 @@ class GunGame {
       });
 
       const statsLevel = createElement('div', 'stats_level', bgrWrapper);
-      createElement('div', 'label', statsLevel).textContent = 'R=';
+      const raund = createElement('div', 'label', statsLevel);
+      raund.textContent = this.translation.getString('roundGunGame');
+      this.translation.regObserver(() => {
+        raund.textContent = this.translation.getString('roundGunGame');
+      });
       const levelValue = createElement('div', 'value', statsLevel);
       levelValue.textContent = '1';
 
       const statsScore = createElement('div', 'stats_score', bgrWrapper);
-      createElement('div', 'label', statsScore).textContent = 'Score:';
+      const score = createElement('div', 'label', statsScore);
+      score.textContent = this.translation.getString('scoreGun');
+      this.translation.regObserver(() => {
+        score.textContent = this.translation.getString('scoreGun');
+      });
       const scoreValue = createElement('div', 'value', statsScore);
       scoreValue.textContent = '0';
 
       const statsAccuracy = createElement('div', 'stats_accuracy', bgrWrapper);
-      createElement('div', 'label', statsAccuracy).textContent = 'Gun accuracy:';
+      const accuracy = createElement('div', 'label', statsAccuracy);
+      accuracy.textContent = this.translation.getString('accuracyGun');
+      this.translation.regObserver(() => {
+        accuracy.textContent = this.translation.getString('accuracyGun');
+      });
       const accuracyValue = createElement('div', 'value', statsAccuracy);
       accuracyValue.textContent = `${this.accuracy}%`;
 
       const statsTime = createElement('div', 'stats_time', bgrWrapper);
-      createElement('div', 'label', statsTime).textContent = 'Time:';
+      const time = createElement('div', 'label', statsTime);
+      time.textContent = this.translation.getString('timeGun');
+      this.translation.regObserver(() => {
+        time.textContent = this.translation.getString('timeGun');
+      });
       const timerValue = createElement('div', 'value', statsTime);
       timerValue.textContent = `${this.gameClock} s`;
 

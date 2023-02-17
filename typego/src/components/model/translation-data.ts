@@ -388,6 +388,32 @@ Tired of playing on factory settings?! Now you can customize the game according 
     en: 'OM-NOM-NOM. Thanks for the food!',
     ru: 'НЯM-НЯМ. Спасибо за еду!',
   },
+
+  // Gun game
+  captionGun: {
+    en: 'Game over',
+    ru: 'Конец игры',
+  },
+  roundGun: {
+    en: 'Round:',
+    ru: 'Раунд:',
+  },
+  scoreGun: {
+    en: 'Score:',
+    ru: 'Счет:',
+  },
+  accuracyGun: {
+    en: 'Gun accuracy:',
+    ru: 'Точность выстрелов:',
+  },
+  roundGunGame: {
+    en: 'R=',
+    ru: 'Р=',
+  },
+  timeGun: {
+    en: 'Time:',
+    ru: 'Время:',
+  },
 };
 
 export default data;
