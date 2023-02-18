@@ -131,6 +131,12 @@
       gap: 20px;
 
     }
+    .results__table {
+      display: grid;
+      grid-auto-flow: row;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: auto;
+    }
     .finish__message {
       @include flex-center;
       @include normal-text;

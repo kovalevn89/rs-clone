@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createElement } from '../../helper';
 // import TrainingState from '../../model/trainingState';
 import { Tag } from '../../types/enums';
@@ -74,18 +75,86 @@ export default class FinishLevel extends PageView {
 
   }
 
-  private renderTable(): void {
+  private renderTable(parent: HTMLElement): void {
+    const {
+      time, accurancy, speed, mistakes,
+    } = this.state;
+    const tableContainer = createElement(Tag.div, 'results__table', parent);
 
+    const timeTitle = createElement(Tag.div, 'table__row table__time', parent);
+    const timeValue = createElement(Tag.div, 'table__row table__time value', parent);
+    const timeUnits = createElement(Tag.div, 'table__row table__time units', parent);
+
+    timeTitle.textContent = this.translation.getString('time');
+    this.translation.regObserver(() => {
+      timeTitle.textContent = this.translation.getString('time');
+    });
+
+    timeTitle.textContent = this.translation.getString('time');
+    this.translation.regObserver(() => {
+      timeTitle.textContent = this.translation.getString('time');
+    });
+
+    timeTitle.textContent = this.translation.getString('time');
+    this.translation.regObserver(() => {
+      timeTitle.textContent = this.translation.getString('time');
+    });
+
+    const accurancyTitle = createElement(Tag.div, 'table__row table__accurancy', parent);
+    const accurancyValue = createElement(Tag.div, 'table__row table__accurancy value', parent);
+    const accurancyUnits = createElement(Tag.div, 'table__row table__accurancy units', parent);
+
+    accurancyTitle.textContent = this.translation.getString('accurancy');
+    this.translation.regObserver(() => {
+      accurancyTitle.textContent = this.translation.getString('accurancy');
+    });
+
+    accurancyTitle.textContent = this.translation.getString('accurancy');
+    this.translation.regObserver(() => {
+      accurancyTitle.textContent = this.translation.getString('accurancy');
+    });
+
+    accurancyTitle.textContent = this.translation.getString('accurancy');
+    this.translation.regObserver(() => {
+      accurancyTitle.textContent = this.translation.getString('accurancy');
+    });
+
+    const speedTitle = createElement(Tag.div, 'table__row table__speed', parent);
+    const speedValue = createElement(Tag.div, 'table__row table__speed value', parent);
+    const speedUnits = createElement(Tag.div, 'table__row table__speed units', parent);
+
+    speedTitle.textContent = this.translation.getString('speed');
+    this.translation.regObserver(() => {
+      speedTitle.textContent = this.translation.getString('speed');
+    });
+
+    speedTitle.textContent = this.translation.getString('speed');
+    this.translation.regObserver(() => {
+      speedTitle.textContent = this.translation.getString('speed');
+    });
+
+    const mistakesTitle = createElement(Tag.div, 'table__row table__mistakes', parent);
+    const mistakesValue = createElement(Tag.div, 'table__row table__mistakes value', parent);
+    const mistakesUnits = createElement(Tag.div, 'table__row table__mistakes units', parent);
+
+    mistakesTitle.textContent = this.translation.getString('mistakes');
+    this.translation.regObserver(() => {
+      mistakesTitle.textContent = this.translation.getString('mistakes');
+    });
   }
 
   private updateMessage(): void {
-    const { accurancy } = this.state;
+    const { accurancy, isTest } = this.state;
 
     this.nextBtn.textContent = 'Next level';
     this.nextBtn.textContent = this.translation.getString('nextLvl');
     this.translation.regObserver(() => {
       this.nextBtn.textContent = this.translation.getString('nextLvl');
     });
+
+    if (isTest) {
+      console.log('test');
+    }
 
     if (accurancy < 80) {
       this.messageContent('mistakeMsg');
@@ -98,16 +167,11 @@ export default class FinishLevel extends PageView {
     } else {
       this.messageContent('finishMsg');
       this.nextBtn.disabled = false;
-      this.backBtn.textContent = this.translation.getString('backBtn');
-      this.translation.regObserver(() => {
-        this.backBtn.textContent = this.translation.getString('backBtn');
-      });
+      // this.backBtn.textContent = this.translation.getString('backBtn');
+      this.translation.translateField(this.backBtn, 'backBtn');
     }
   }
   private messageContent(text: string): void {
-    // const {
-    //   accurancy, mistakes, speed, time,
-    // } = this.state;
     this.message.innerHTML = '';
 
     const finishMessage = createElement(Tag.par, 'finish__message__span', this.message);
