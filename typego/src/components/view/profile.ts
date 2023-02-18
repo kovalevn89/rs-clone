@@ -9,7 +9,7 @@ import whacamoleGameLogo from '../../assets/png/whacamole.png';
 import dropfoodGameLogo from '../../assets/png/drop-food.png';
 import gunGameLogo from '../../assets/png/gun-game.png';
 
-// import certTemplate from '../../assets/png/certificate-template.png';
+import certTemplate from '../../assets/png/certificate-template.png';
 
 interface IGameScore {
   _id: string,
@@ -87,18 +87,18 @@ const userData: IUser = {
     },
     {
       _id: '63dd6137632f2101530332af',
-      lesson: 2,
+      lesson: 1,
       lang: 'en',
-      level: 1,
+      level: 2,
       accuracy: 11,
       speed: 22,
       __v: 0,
     },
     {
       _id: '63dd6137632f2101530332af',
-      lesson: 3,
+      lesson: 1,
       lang: 'en',
-      level: 1,
+      level: 3,
       accuracy: 11,
       speed: 22,
       __v: 0,
@@ -134,6 +134,48 @@ const userData: IUser = {
 };
 
 class Profile extends PageView {
+  private createCertificate(name: string, speed: number, accuracu: number) {
+    // cert generator
+    const canvas = document.createElement('canvas');
+    const ctx = canvas!.getContext('2d');
+    if (ctx) {
+      ctx.canvas.width = 1024;
+      ctx.canvas.height = 768;
+
+      const image = new Image();
+      image.crossOrigin = 'anonymous';
+      image.src = certTemplate;
+
+      const drawImage = () => {
+        ctx.drawImage(image, 0, 0, 1024, 768);
+        ctx.font = 'italic bold 48px Arial';
+        ctx.fillStyle = 'gray';
+        ctx.textAlign = 'center';
+        ctx.fillText('TypeGo', 512, 120);
+        ctx.font = 'bold 48px Arial';
+        ctx.fillStyle = 'black';
+        ctx.fillText(name, 512, 320);
+        ctx.font = 'italic 26px Arial';
+        ctx.fillText(`за скорость набора в ${speed} зн./мин с точностью ${accuracu}%`, 512, 400);
+
+        const date1 = new Date();
+        ctx.fillText(`${String(date1.getDay()).padStart(2, '0')}.${String(date1.getMonth()).padStart(2, '0')}.${String(date1.getFullYear()).padStart(2, '0')}`, 450, 620);
+
+        document.getElementById('canvas')!.style.backgroundImage = `url(${canvas.toDataURL()})`;
+      };
+
+      image.onload = () => {
+        drawImage();
+      };
+
+      document.querySelector('.cert-download')!.addEventListener('click', (event) => {
+        const btn = event.target as HTMLAnchorElement;
+        btn.href = canvas.toDataURL('image/jpg');
+        btn.download = `Certificate - ${name}.jpg`;
+      });
+    }
+  }
+
   private render(currentUser: IUser): void {
     const app: HTMLElement | null = document.querySelector('.app');
 
@@ -148,45 +190,6 @@ class Profile extends PageView {
         main.classList.remove('dark');
       }
       const wrapper = createElement('div', 'profile-wrapper', main);
-
-      // cert generator
-      // const canvas = document.createElement('canvas');
-      // const ctx = canvas!.getContext('2d');
-      // ctx!.canvas.width = 1024;
-      // ctx!.canvas.height = 768;
-
-      // const image = new Image();
-      // image.crossOrigin = 'anonymous';
-      // image.src = certTemplate;
-
-      // const drawImage = () => {
-      //   ctx!.drawImage(image, 0, 0, 1024, 768);
-      //   ctx!.font = 'italic bold 48px Arial';
-      //   ctx!.fillStyle = 'gray';
-      //   ctx!.textAlign = 'center';
-      //   ctx!.fillText('TypeGo', 512, 120);
-      //   ctx!.font = 'bold 48px Arial';
-      //   ctx!.fillStyle = 'black';
-      //   ctx!.fillText('Nikolay Kovalev', 512, 320);
-      //   ctx!.font = 'italic 26px Arial';
-      //   ctx!.fillText('за скорость набора на русском 290 зн.мин с точностью 98.3%', 512, 400);
-
-      //   ctx!.fillText('18.02.2023', 450, 620);
-
-      //   document.getElementById('canvas')!.style.backgroundImage = `url(${canvas.toDataURL()})`;
-      // };
-
-      // image.onload = () => {
-      //   drawImage();
-      // };
-
-      // document.querySelector('.cert-download')!.addEventListener('click', (event) => {
-      //   const btn = event.target as HTMLAnchorElement;
-      //   btn.href = canvas.toDataURL('image/jpg');
-      //   btn.download = 'Certificate - name.jpg';
-      // });
-
-      // cert generator
 
       const userBlock = createElement('div', 'user__block', wrapper);
       createElement('div', 'user__profile-image', userBlock);
@@ -241,6 +244,11 @@ class Profile extends PageView {
         createElement('canvas', 'cert-preview', certBlock, ['id', 'canvas']);
         const certDownload = createElement('a', 'cert-download', certBlock);
         certDownload.textContent = 'Скачать сертификат';
+        this.createCertificate(
+          currentUser.username,
+          Number(currentUser.speed),
+          currentUser.accuracy,
+        );
       } else {
         const certMessage = createElement('div', 'cert-message', infoBlockCert);
         certMessage.textContent = 'До получения сертификата осталось совсем чуть-чуть - пройти тест!';
@@ -251,13 +259,11 @@ class Profile extends PageView {
       const caption2 = createElement('h2', '', infoBlock2);
       caption2.textContent = 'Уроки';
       const infoBlockLessons = createElement('div', 'info__block-lessons', infoBlock2);
-      console.log(infoBlockLessons);
 
       if (currentUser.progress.length) {
         ['ru', 'en'].forEach((lessonLanguage) => {
-          console.log(lessonLanguage);
           const lessonsRu = currentUser.progress.filter((lesson) => lesson.lang === lessonLanguage);
-          console.log(lessonsRu);
+
           if (lessonsRu.length) {
             const lessonLang = createElement('div', 'lesson__lang', infoBlockLessons);
             const lessonLangCaption = createElement('div', 'lesson__lang-caption', lessonLang);
