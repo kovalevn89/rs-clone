@@ -305,6 +305,81 @@ const data: ITranslation = {
     en: 'Mistakes',
     ru: 'Ошибки',
   },
+
+  // profile
+  profileProgressLabel: {
+    en: 'Progress',
+    ru: 'Прогресс',
+  },
+  profileLevels: {
+    en: 'levels',
+    ru: 'уровней',
+  },
+  profileTypingSpeedLabel: {
+    en: 'Typing speed',
+    ru: 'Скорость печати',
+  },
+  profileTypingSpeed: {
+    en: 'ch./min',
+    ru: 'зн./мин',
+  },
+  profileAccuracyLabel: {
+    en: 'Accuracy',
+    ru: 'Точность',
+  },
+  profileCertBlockCaption: {
+    en: 'Certificate',
+    ru: 'Сертификат',
+  },
+  profileDownloadCertificate: {
+    en: 'Download certificate',
+    ru: 'Скачать сертификат',
+  },
+  profileCertificateError: {
+    en: 'To get certified, you need to pass the test!',
+    ru: 'До получения сертификата осталось совсем чуть-чуть - пройти тест!',
+  },
+  profileLessonBlockCaption: {
+    en: 'Lessons',
+    ru: 'Уроки',
+  },
+  profileLessonLangRUCaption: {
+    en: 'Lessons in <i>Russian</i> language:',
+    ru: 'Уроки на <i>русском</i> языке:',
+  },
+  profileLessonLangENGCaption: {
+    en: 'Lessons in <i>english</i> language:',
+    ru: 'Уроки на <i>английском</i> языке:',
+  },
+  profileLesson: {
+    en: 'Lesson',
+    ru: 'Урок',
+  },
+  profileLessonLevel: {
+    en: 'Level',
+    ru: 'Уровень',
+  },
+  profileLessonAccuracy: {
+    en: 'Accuracy',
+    ru: 'Точность',
+  },
+  profileLessonSpeed: {
+    en: 'Speed',
+    ru: 'Скорость',
+  },
+
+  profileGamesBlockCaption: {
+    en: 'Games',
+    ru: 'Игры',
+  },
+  profileGamesLevel: {
+    en: 'level',
+    ru: 'уровень',
+  },
+  profileGamesScore: {
+    en: 'score',
+    ru: 'счёт',
+  },
 };
 
 export default data;

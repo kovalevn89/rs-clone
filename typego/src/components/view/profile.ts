@@ -204,9 +204,11 @@ class Profile extends PageView {
         statisticsLogo.style.background = `url(${progressImg}) center no-repeat`;
         const statisticsProgress = createElement('div', 'statistics__progress', statisticsBlock1);
         const userStatisticsTitle = createElement('span', 'user__statistics-title', statisticsProgress);
-        userStatisticsTitle.textContent = 'Прогресс';
+        userStatisticsTitle.textContent = this.translation.getString('profileProgressLabel');
+        this.translation.regObserver(() => { userStatisticsTitle.textContent = this.translation.getString('profileProgressLabel'); });
         const userStatisticsValue = createElement('span', 'user__statistics-value', statisticsProgress);
-        userStatisticsValue.innerHTML = `<b>${currentUser.progress.length}</b> уровней`;
+        userStatisticsValue.innerHTML = `<b>${currentUser.progress.length}</b> ${this.translation.getString('profileLevels')}`;
+        this.translation.regObserver(() => { userStatisticsValue.innerHTML = `<b>${currentUser.progress.length}</b> ${this.translation.getString('profileLevels')}`; });
       }
 
       // speed
@@ -216,9 +218,11 @@ class Profile extends PageView {
         statisticsLogo.style.background = `url(${speedImg}) center no-repeat`;
         const statisticsAccuracy = createElement('div', 'statistics__accuracy', statisticsBlock2);
         const userStatisticsTitle = createElement('span', 'user__statistics-title', statisticsAccuracy);
-        userStatisticsTitle.textContent = 'Скорость печати';
+        userStatisticsTitle.textContent = this.translation.getString('profileTypingSpeedLabel');
+        this.translation.regObserver(() => { userStatisticsTitle.textContent = this.translation.getString('profileTypingSpeedLabel'); });
         const userStatisticsValue = createElement('span', 'user__statistics-value', statisticsAccuracy);
-        userStatisticsValue.innerHTML = `<b>${currentUser.speed}</b> зн./мин`;
+        userStatisticsValue.innerHTML = `<b>${currentUser.speed}</b> ${this.translation.getString('profileTypingSpeed')}`;
+        this.translation.regObserver(() => { userStatisticsValue.innerHTML = `<b>${currentUser.speed}</b> ${this.translation.getString('profileTypingSpeed')}`; });
       }
 
       // accuracy
@@ -228,7 +232,8 @@ class Profile extends PageView {
         statisticsLogo.style.background = `url(${accuracyImg}) center no-repeat`;
         const statisticsSpeed = createElement('div', 'statistics__speed', statisticsBlock3);
         const userStatisticsTitle = createElement('span', 'user__statistics-title', statisticsSpeed);
-        userStatisticsTitle.textContent = 'Точность';
+        userStatisticsTitle.textContent = this.translation.getString('profileAccuracyLabel');
+        this.translation.regObserver(() => { userStatisticsTitle.textContent = this.translation.getString('profileAccuracyLabel'); });
         const userStatisticsValue = createElement('span', 'user__statistics-value', statisticsSpeed);
         userStatisticsValue.innerHTML = `<b>${currentUser.accuracy}</b>%`;
       }
@@ -237,13 +242,15 @@ class Profile extends PageView {
       const userInfo = createElement('div', 'user__info', wrapper);
       const infoBlock1 = createElement('div', 'info__block', userInfo);
       const caption1 = createElement('h2', '', infoBlock1);
-      caption1.textContent = 'Сертификат';
+      caption1.textContent = this.translation.getString('profileCertBlockCaption');
+      this.translation.regObserver(() => { caption1.textContent = this.translation.getString('profileCertBlockCaption'); });
       const infoBlockCert = createElement('div', 'info__block-cert', infoBlock1);
       if (currentUser.accuracy && currentUser.speed) {
         const certBlock = createElement('div', 'cert-block', infoBlockCert);
         createElement('canvas', 'cert-preview', certBlock, ['id', 'canvas']);
         const certDownload = createElement('a', 'cert-download', certBlock);
-        certDownload.textContent = 'Скачать сертификат';
+        certDownload.textContent = this.translation.getString('profileDownloadCertificate');
+        this.translation.regObserver(() => { certDownload.textContent = this.translation.getString('profileDownloadCertificate'); });
         this.createCertificate(
           currentUser.username,
           Number(currentUser.speed),
@@ -251,13 +258,15 @@ class Profile extends PageView {
         );
       } else {
         const certMessage = createElement('div', 'cert-message', infoBlockCert);
-        certMessage.textContent = 'До получения сертификата осталось совсем чуть-чуть - пройти тест!';
+        certMessage.textContent = this.translation.getString('profileCertificateError');
+        this.translation.regObserver(() => { certMessage.textContent = this.translation.getString('profileCertificateError'); });
       }
 
       // lesson
       const infoBlock2 = createElement('div', 'info__block', userInfo);
       const caption2 = createElement('h2', '', infoBlock2);
-      caption2.textContent = 'Уроки';
+      caption2.textContent = this.translation.getString('profileLessonBlockCaption');
+      this.translation.regObserver(() => { caption2.textContent = this.translation.getString('profileLessonBlockCaption'); });
       const infoBlockLessons = createElement('div', 'info__block-lessons', infoBlock2);
 
       if (currentUser.progress.length) {
@@ -267,8 +276,14 @@ class Profile extends PageView {
           if (lessonsRu.length) {
             const lessonLang = createElement('div', 'lesson__lang', infoBlockLessons);
             const lessonLangCaption = createElement('div', 'lesson__lang-caption', lessonLang);
-            if (lessonLanguage === 'ru') lessonLangCaption.innerHTML = 'Уроки на <i>русском</i> языке:';
-            if (lessonLanguage === 'en') lessonLangCaption.innerHTML = 'Уроки на <i>английском</i> языке:';
+            if (lessonLanguage === 'ru') lessonLangCaption.innerHTML = this.translation.getString('profileLessonLangRUCaption');
+            if (lessonLanguage === 'en') lessonLangCaption.innerHTML = this.translation.getString('profileLessonLangENGCaption');
+
+            this.translation.regObserver(() => {
+              if (lessonLanguage === 'ru') lessonLangCaption.innerHTML = this.translation.getString('profileLessonLangRUCaption');
+              if (lessonLanguage === 'en') lessonLangCaption.innerHTML = this.translation.getString('profileLessonLangENGCaption');
+            });
+
             const lessonLangLesson = createElement('div', 'lesson__lang-lesson', lessonLang);
 
             for (let i = 1; i <= 6; i += 1) {
@@ -276,16 +291,20 @@ class Profile extends PageView {
 
               if (currentLesson.length) {
                 const lessonLangLessonCaption = createElement('div', 'lesson__lang-lesson_caption', lessonLangLesson);
-                lessonLangLessonCaption.innerHTML = `Урок <b>${i}</b>:`;
+                lessonLangLessonCaption.innerHTML = `${this.translation.getString('profileLesson')} <b>${i}</b>:`;
+                this.translation.regObserver(() => { lessonLangLessonCaption.innerHTML = `${this.translation.getString('profileLesson')} <b>${i}</b>:`; });
                 const lessonLangLevels = createElement('div', 'lesson__lang-levels', lessonLangLesson);
                 currentLesson.forEach((level) => {
                   const line = createElement('div', 'lesson__lang-levels__line', lessonLangLevels);
                   const levelCaption = createElement('span', '', line);
-                  levelCaption.innerHTML = `Уровень <b>${level.level}</b>`;
+                  levelCaption.innerHTML = `${this.translation.getString('profileLessonLevel')} <b>${level.level}</b>`;
+                  this.translation.regObserver(() => { levelCaption.innerHTML = `${this.translation.getString('profileLessonLevel')} <b>${level.level}</b>`; });
                   const levelAccuracy = createElement('span', '', line);
-                  levelAccuracy.innerHTML = `Точность: <b>${level.accuracy}</b>%`;
+                  levelAccuracy.innerHTML = ` -  ${this.translation.getString('profileLessonAccuracy')}: <b>${level.accuracy}</b>%`;
+                  this.translation.regObserver(() => { levelAccuracy.innerHTML = ` -  ${this.translation.getString('profileLessonAccuracy')}: <b>${level.accuracy}</b>%`; });
                   const levelSpeed = createElement('span', '', line);
-                  levelSpeed.innerHTML = `Скорость: <b>${level.speed}</b> зн/мин.`;
+                  levelSpeed.innerHTML = `${this.translation.getString('profileLessonSpeed')}: <b>${level.speed}</b> ${this.translation.getString('profileTypingSpeed')}`;
+                  this.translation.regObserver(() => { levelSpeed.innerHTML = `${this.translation.getString('profileLessonSpeed')}: <b>${level.speed}</b> ${this.translation.getString('profileTypingSpeed')}`; });
                 });
               }
             }
@@ -296,7 +315,8 @@ class Profile extends PageView {
       // games
       const infoBlock3 = createElement('div', 'info__block', userInfo);
       const caption3 = createElement('h2', '', infoBlock3);
-      caption3.textContent = 'Игры';
+      caption3.textContent = this.translation.getString('profileGamesBlockCaption');
+      this.translation.regObserver(() => { caption3.textContent = this.translation.getString('profileGamesBlockCaption'); });
       const infoBlockGames = createElement('div', 'info__block-games', infoBlock3);
 
       if (currentUser.gamesScore.length) {
@@ -320,9 +340,12 @@ class Profile extends PageView {
           }
           const gameResult = createElement('div', 'game_line-info_results', gameInfo);
           const resultLevel = createElement('div', 'game_line-info_results-level', gameResult);
-          resultLevel.innerHTML = `<b>${game.level}</b> уровень.`;
+          resultLevel.innerHTML = `<b>${game.level}</b> ${this.translation.getString('profileGamesLevel')}`;
+          this.translation.regObserver(() => { resultLevel.innerHTML = `<b>${game.level}</b> ${this.translation.getString('profileGamesLevel')}.`; });
+
           const resultScore = createElement('div', 'game_line-info_results-score', gameResult);
-          resultScore.innerHTML = `<b>${game.score}</b> попаданий.`;
+          resultScore.innerHTML = `<b>${game.score}</b> ${this.translation.getString('profileGamesScore')}.`;
+          this.translation.regObserver(() => { resultScore.innerHTML = `<b>${game.score}</b> ${this.translation.getString('profileGamesScore')}.`; });
         });
       }
     }
