@@ -90,8 +90,8 @@ class Router {
       }
 
       if (page === 'test') {
-        // this.test.run();
-        this.finish.renderComplete();
+        this.test.run();
+        // this.finish.renderComplete();
       }
 
       if (page === 'learn') {

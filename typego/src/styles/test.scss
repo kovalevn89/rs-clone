@@ -16,7 +16,10 @@
     @include flex-center;
     text-align: center;
 
+    min-width: 205px;
+
     padding: 10px;
+    margin-bottom: 20px;
 
     border: $font-color-text2-light 1px solid;
     border-radius: 25px;
@@ -31,6 +34,24 @@
       color: $font-color-text2-light;
       background-color: $button-color-light;
       border-color: $button-color-light;
+    }
+  }
+
+  .results__table {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto;
+
+    gap: 3px;
+
+    @include normal-text;
+    color: $font-color-text2-light;
+
+    .table__row {
+      background-color: $font-color-text1-dark;
+      border-radius: 10px;
+      padding: 5px;
     }
   }
 
@@ -49,279 +70,16 @@
         border-color: $button-color-dark;
       }
     }
+    .results__table {
+      color: $font-color-text1-dark;
+
+      .table__row {
+        background-color: $footer-background-dark;
+      }
+    }
   }
 }
 
 @media (max-width: 699px) {
-  // .main {
-  //   .wrapper {
-  //     // background: linear-gradient($font-color-text1-dark, $base-color-addition-light);
-  //   }
-  //   .level__container {
-  //     display: flex;
-  //     width: 100%;
-  //     flex-direction: column;
-  //     align-items: center;
-  //   }
-  //   .level__text__container {
-  //     @include flex-center;
-  //     width: 100%;
-  //     flex-direction: column;
-  //   }
-  
-  //   .text__container {
-  //     display: flex;
-  //     flex-wrap: wrap;
-  //     width: 95%;
-  //     gap: 1px;
-  //   }
-  //   .word {
-  //     display: flex;
-  //     flex-wrap: nowrap;
-  //     gap: 1px;
-  //   }
-  
-  //   .word__letter {
-  //     min-width: 15px;
-  //     min-height: 38px;
-  //     text-align: center;
-  //     border-radius: 3px;
-  //     margin-bottom: 5px;
-  //     font-family: 'Roboto', sans-serif, monospace;
-  //     font-size: 32px;
-  //     font-weight: 300;
-  //     color: $font-color-text2-light;
-  
-  //     &.active {
-  //       border-bottom: 2px  solid $base-color-light;
-  //       border-radius: 1px;
-  //     }
-  //     &.correct {
-  //       background-color: #e7fbd3;
-  //       color: #0e630e;
-  //     }
-  //     &.incorrect {
-  //       background-color: #ffc0cb;
-  //       color: #8b0000;
-  //     }
-  //     &.fixed {
-  //       background-color: #ffe9b2;
-  //       color: #0e630e;
-  //     }
-  //   }
-  
-  //   .separator {
-  //     display: flex;
-  //     width: 100%;
-  //     border: 1px solid $font-color-text1-dark;
-  //     border-radius: 1px;
-  //     margin: 10px;
-  //   }
-  //   .text__progress {
-  //     display: flex;
-  //     width: 80%;
-  //     justify-content: space-between;
-  //     margin-bottom: 10px;
-  //     color: $font-color-text2-light;
-  //   }
-  //   .text__instructions {
-  //     color: rgba(95, 158, 160, 0.3);
-  //     padding: 15px;
-  
-  //     &.pause {
-  //       color: rgba(95, 158, 160, 0.8);
-  //     }
-  //   }
-  
-  //   .levels__navigation{
-  //     @include flex-center;
-  //     flex-wrap: wrap;
-  //     width: 100%;
-  //     gap: 5px;
-  //     margin: 0 auto;
-  //     padding: 15px;
-  
-  //     & .level_ {
-  //       font-family: "Inter";
-  //       font-style: normal;
-  //       font-weight: 400;
-  //       font-size: 10px;
-  //       line-height: 0;
-  //       color: #aaa;
-  //       border: solid 1px #ccc;
-  //       border-radius: 18px;
-  //       padding: 8px;
-  
-  //       &.active {
-  //       color: $base-color-light;
-  //       border-color: $base-color-light;
-  //       }
-  
-  //       &.done {
-  //         color: $button-color-light;
-  //         border-color: $button-color-light;
-  //       }
-  //     }
-  //   }
-  
-  //   & .finish__container {
-  //     @include flex-center;
-  //     flex-direction: column;
-  //     width: 100%;
-  //     gap: 20px;
-  //     padding: 20px;
-  
-  //     .btns__container {
-  //       @include flex-center;
-  //       gap: 20px;
-  
-  //     }
-  //     .finish__message {
-  //       @include flex-center;
-  //       @include normal-text;
-  //       flex-direction: column;
-  //       color: $font-color-text2-light;
-  //       gap: 15px;
-  
-  //       & p{
-  //         margin: 0;
-  //       }
-  //     }
-  
-  //     .back__btn,
-  //     .next-lvl__btn {
-  //       @include flex-center;
-  //       @include normal-text;
-  //       font-size: 16px;
-  //       line-height: 19px;
-  //       text-transform: uppercase;
-  
-  //       min-width: 160px;
-  
-  //       color: $base-color-light;
-  //       background: none;
-  
-  //       padding: 15px;
-  
-  //       border: 1px solid $base-color-light;
-  //       border-radius: 24px;
-  
-  //       user-select: none;
-  //       cursor: pointer;
-  
-  //       transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-  
-  //       &:disabled {
-  //         color: $font-color-text1-dark;
-  //         border-color: $font-color-text1-dark;
-  //         background: none;
-  //       }
-  
-  //       &:hover {
-  //         color: $font-color-text2-light;
-  //         background-color: $button-hover-color-light;
-  
-  //         &:disabled {
-  //             color: $font-color-text1-dark;
-  //             background: none;
-  //             transition: none;
-  //         }
-  //       }
-  //     }
-  //   }
-  
-  //   &.dark {
-  //     .wrapper {
-  //       // background: linear-gradient($base-color-dark, $footer-background-dark);
-  //     }
-  
-  //     .word__letter {
-  //       color: $font-color-text1-dark;
-  
-  //       &.active {
-  //         border-bottom: 2px  solid $button-color-dark;
-  //         border-radius: 1px;
-  //       }
-  //       &.correct {
-  //         background-color: #e7fbd3;
-  //         color: #0e630e;
-  //       }
-  //       &.incorrect {
-  //         background-color: #ffc0cb;
-  //         color: #8b0000;
-  //       }
-  //       &.fixed {
-  //         background-color: #ffe9b2;
-  //         color: #0e630e;
-  //       }
-  //     }
-  
-  //     .separator {
-  //       border-color: $font-color-text2-dark;
-  //     }
-  
-  //     .text__progress {
-  //       color: $font-color-text2-dark;
-  //     }
-  
-  //     .text__instructions {
-  //       color: rgba(95, 158, 160, 0.3);
-  //       padding: 15px;
-  
-  //       &.pause {
-  //         // color: rgba(95, 158, 160, 0.8);
-  //         color: $button-color-dark;
-  //       }
-  //     }
-  
-  //     .levels__navigation{
-  
-  //       & .level_ {
-  //         color: $font-color-text2-dark;
-  //         border: solid 1px $font-color-text2-dark;
-  
-  //         &.active {
-  //           color: $button-color-dark;
-  //           border-color: $button-color-dark;
-  //         }
-  
-  //         &.done {
-  //           background-color: $button-hover-color-dark;
-  //           border-color: $font-color-text1-dark;
-  //           color: $font-color-text1-dark;
-  //         }
-  //       }
-  //     }
-  
-  //     & .finish__container {
-  //       .finish__message {
-  //         color: $font-color-text1-dark;
-  //       }
-  //       .back__btn,
-  //       .next-lvl__btn {
-  //         color: $button-color-dark;
-  //         border: 1px solid $button-color-dark;
-  //         background-color: none;
-  
-  //         &:disabled {
-  //           color: $font-color-text2-dark;
-  //           border-color: $font-color-text2-dark;
-  //           background: none;
-  //         }
-  
-  //         &:hover {
-  //           color: $base-color-dark;
-  //           border: 1px solid $base-color-dark;
-  //           background-color: $button-hover-color-dark;
-  
-  //           &:disabled {
-  //             color: $font-color-text2-dark;
-  //             border-color: $font-color-text2-dark;
-  //             background: none;
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
+
 }

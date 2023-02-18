@@ -31,10 +31,11 @@ export default class TypingTest extends PageView {
     const wrapper = createElement(Tag.div, 'wrapper', container);
 
     const title = createElement(Tag.h2, 'training__title', wrapper);
-    title.textContent = this.translation.getString('test');
-    this.translation.regObserver(() => {
-      title.textContent = this.translation.getString('test');
-    });
+    this.translation.translateField(title, 'test');
+    // title.textContent = this.translation.getString('test');
+    // this.translation.regObserver(() => {
+    //   title.textContent = this.translation.getString('test');
+    // });
 
     const selectContainer = createElement(Tag.div, 'select', wrapper);
 
@@ -62,15 +63,18 @@ export default class TypingTest extends PageView {
       this.renderTest(Lang.ru, testContainer);
     });
 
-    selectEnBtn.textContent = this.translation.getString('layoutEn');
-    this.translation.regObserver(() => {
-      selectEnBtn.textContent = this.translation.getString('layoutEn');
-    });
+    this.translation.translateField(selectEnBtn, 'layoutEn');
+    this.translation.translateField(selectRuBtn, 'layoutRu');
 
-    selectRuBtn.textContent = this.translation.getString('layoutRu');
-    this.translation.regObserver(() => {
-      selectRuBtn.textContent = this.translation.getString('layoutRu');
-    });
+    // selectEnBtn.textContent = this.translation.getString('layoutEn');
+    // this.translation.regObserver(() => {
+    //   selectEnBtn.textContent = this.translation.getString('layoutEn');
+    // });
+
+    // selectRuBtn.textContent = this.translation.getString('layoutRu');
+    // this.translation.regObserver(() => {
+    //   selectRuBtn.textContent = this.translation.getString('layoutRu');
+    // });
   }
 
   run(): void {

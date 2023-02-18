@@ -16,7 +16,7 @@ export default class TrainingLevels extends PageView {
 
     this.lesson = LESSON;
     // this.state = new TrainingState();
-    this.state.levels = this.lesson.levels?.length || 0;
+    this.state.current.levels = this.lesson.levels?.length || 0;
   }
 
   private async render(lang: Lang, index: number): Promise<void> {
@@ -34,13 +34,14 @@ export default class TrainingLevels extends PageView {
     const wrapper = createElement(Tag.div, 'wrapper', container);
     const lessonHeader = createElement(Tag.h2, 'training__title', wrapper);
     const lessonTitle = createElement(Tag.span, 'training__title__span', lessonHeader);
-    const lessoDescription = createElement(Tag.span, 'training__title__span', lessonHeader);
+    const lessonDescription = createElement(Tag.span, 'training__title__span', lessonHeader);
 
-    lessonTitle.textContent = this.translation.getString('level');
-    this.translation.regObserver(() => {
-      lessonTitle.textContent = this.translation.getString('level');
-    });
-    lessoDescription.textContent = ` ${this.state.lesson}: ${this.lesson.name}`;
+    this.translation.translateField(lessonTitle, 'level');
+    // lessonTitle.textContent = this.translation.getString('level');
+    // this.translation.regObserver(() => {
+    //   lessonTitle.textContent = this.translation.getString('level');
+    // });
+    lessonDescription.textContent = ` ${this.state.current.lesson}: ${this.lesson.name}`;
 
     const levelsWrapper = createElement(Tag.div, 'levels__wrapper', wrapper);
 
@@ -90,7 +91,7 @@ export default class TrainingLevels extends PageView {
       levels,
     } = this.lesson;
 
-    const { level } = this.state;
+    const { level } = this.state.current;
 
     if (!levels) return;
     const response = {
@@ -107,7 +108,7 @@ export default class TrainingLevels extends PageView {
 
   updatePagination(): void {
     const pagination = document.querySelectorAll('.level_');
-    const { level } = this.state;
+    const { level } = this.state.current;
     pagination.forEach((el, i) => {
       if (i < level) {
         el.classList.add('done');
@@ -120,8 +121,8 @@ export default class TrainingLevels extends PageView {
   }
 
   run(lang: Lang, index: number, id: number): void {
-    this.state.level = id;
-    this.state.lesson = index;
+    this.state.current.level = id;
+    this.state.current.lesson = index;
     this.state.lang = lang;
     this.state.isTest = false;
     this.render(lang, index);

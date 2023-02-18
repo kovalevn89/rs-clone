@@ -70,7 +70,7 @@ export default class Text {
 
   setMistakes(m: number): void {
     this.mistakes = m;
-    this.state.mistakes = this.mistakes;
+    this.state.current.mistakes = this.mistakes;
   }
 
   setCurrentTime(t: number): void {
@@ -84,8 +84,8 @@ export default class Text {
   updateSpeed(): void {
     const t = (this.time + this.currenTime - this.startTime) / 1000 / 60;
     this.speed = t > 0 ? Math.ceil(this.index / t) : 0;
-    this.state.speed = this.speed;
-    this.state.time = Math.round(t * 60);
+    this.state.current.speed = this.speed;
+    this.state.current.time = Math.round(t * 60);
   }
 
   reset(): void {

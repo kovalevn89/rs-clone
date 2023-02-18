@@ -257,6 +257,10 @@ const data: ITranslation = {
     en: 'letters per minute',
     ru: 'Знаков в минуту',
   },
+  seconds: {
+    en: 'seconds',
+    ru: 'сек',
+  },
   accurancy: {
     en: 'Accurancy',
     ru: 'Точность',
@@ -306,6 +310,18 @@ const data: ITranslation = {
   test: {
     en: 'Typing test',
     ru: 'Тест печати',
+  },
+  result: {
+    en: 'Results',
+    ru: 'Результат',
+  },
+  startTraining: {
+    en: 'Start training',
+    ru: 'Начать трентровку',
+  },
+  toMain: {
+    en: 'Back to main',
+    ru: 'На главную',
   },
 
 };

@@ -131,22 +131,12 @@
       gap: 20px;
 
     }
-    .results__table {
-      display: grid;
-      grid-auto-flow: row;
-      grid-template-columns: 2fr 1fr;
-      grid-template-rows: auto;
-    }
     .finish__message {
       @include flex-center;
       @include normal-text;
       flex-direction: column;
       color: $font-color-text2-light;
       gap: 15px;
-
-      & p{
-        margin: 0;
-      }
     }
 
     .back__btn,
@@ -157,7 +147,7 @@
       line-height: 19px;
       text-transform: uppercase;
 
-      min-width: 160px;
+      min-width: 205px;
 
       color: $base-color-light;
       background: none;

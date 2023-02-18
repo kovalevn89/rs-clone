@@ -19,7 +19,6 @@ class TextTraining extends PageView {
   private accurancyValue;
   private accurancyDescription;
   private separator;
-  // private state;
 
   constructor() {
     super();
@@ -43,25 +42,13 @@ class TextTraining extends PageView {
     this.accurancyValue = createElement(Tag.span, 'accurancy__span value', this.accurancy);
     this.accurancyDescription = createElement(Tag.span, 'accurancy__span descr', this.accurancy);
 
-    this.speedTitle.textContent = this.translation.getString('speed');
-    this.translation.regObserver(() => {
-      this.speedTitle.textContent = this.translation.getString('speed');
-    });
+    this.translation.translateField(this.speedTitle, 'speed');
+    this.translation.translateField(this.speedDescription, 'WPM');
+    this.translation.translateField(this.accurancyTitle, 'accurancy');
 
-    this.speedDescription.textContent = this.translation.getString('WPM');
-    this.translation.regObserver(() => {
-      this.speedDescription.textContent = this.translation.getString('WPM');
-    });
-
-    this.accurancyTitle.textContent = this.translation.getString('accurancy');
-    this.translation.regObserver(() => {
-      this.accurancyTitle.textContent = this.translation.getString('accurancy');
-    });
     this.accurancyDescription.textContent = '%';
 
     this.training = createElement(Tag.div, 'text__instructions', this.container);
-
-    // this.state = new TrainingState();
   }
 
   render(response: TextResponse): void {
@@ -75,16 +62,14 @@ class TextTraining extends PageView {
     this.speedValue.textContent = `: ${speed} `;
     this.accurancyValue.textContent = `: ${accurancy}`;
 
-    this.state.accurancy = accurancy as number;
-    this.state.speed = speed;
-    this.state.mistakes = mistakes;
+    this.state.current.accurancy = accurancy as number;
+    this.state.current.speed = speed;
+    this.state.current.mistakes = mistakes;
   }
 
   updateInstructions(status: TrainingStatus) {
-    this.training.textContent = this.translation.getString(status);
-    this.translation.regObserver(() => {
-      this.training.textContent = this.translation.getString(status);
-    });
+    this.translation.translateField(this.training, status);
+
     if (status !== TrainingStatus.pause) {
       this.training.classList.add('pause');
     } else {

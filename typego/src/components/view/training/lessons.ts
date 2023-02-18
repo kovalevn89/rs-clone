@@ -15,14 +15,6 @@ import { LESSONS, LESSONS_RU } from '../../helper/constants';
 // import TrainingState from '../../model/trainingState';
 
 export default class TrainingLessons extends PageView {
-  // private state: TrainingState;
-
-  // constructor() {
-  //   super();
-
-  //   this.state = new TrainingState();
-  // }
-
   private async render(): Promise<void> {
     const main = document.querySelector<HTMLElement>('.app');
 
@@ -38,10 +30,12 @@ export default class TrainingLessons extends PageView {
 
     const wrapper = createElement(Tag.div, 'wrapper', container);
     const lessonsTitle = createElement(Tag.h2, 'training__title', wrapper);
-    lessonsTitle.textContent = this.translation.getString('lessons');
-    this.translation.regObserver(() => {
-      lessonsTitle.textContent = this.translation.getString('lessons');
-    });
+    this.translation.translateField(lessonsTitle, 'lessons');
+
+    // lessonsTitle.textContent = this.translation.getString('lessons');
+    // this.translation.regObserver(() => {
+    //   lessonsTitle.textContent = this.translation.getString('lessons');
+    // });
 
     const lessonsWrapper = createElement(Tag.div, 'lessons__wrapper', wrapper);
 
@@ -63,16 +57,15 @@ export default class TrainingLessons extends PageView {
 
       lev.addEventListener('click', () => {
         console.log('lessob click');
-        if (this.state.lesson === lesson.index) {
+        if (this.state.current.lesson === lesson.index) {
           console.log('current lesson');
         } else {
           console.log('new lesson');
-          this.state.progress.push({ lesson: this.state.lesson, level: this.state.level });
-          this.state.lesson = lesson.index;
-          this.state.level = this.state.progress
-            .find((item) => item.lesson === lesson.index)?.level || 0;
+          this.state.progressPush();
+          this.state.current.lesson = lesson.index;
+          this.state.findLevel(lesson.index);
         }
-        window.location.hash = `#/lesson?lang=${this.state.lang}&index=${lesson.index}&id=${this.state.level}`;
+        window.location.hash = `#/lesson?lang=${this.state.lang}&index=${lesson.index}&id=${this.state.current.level}`;
       });
 
       return lev;

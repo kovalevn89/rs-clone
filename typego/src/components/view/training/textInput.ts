@@ -67,10 +67,9 @@ export default class TextInput {
       this.stopListen();
     });
 
-    document.body.addEventListener('keydown', (e) => {
+    document.body.addEventListener('keydown', () => {
       if (this.state.isInputActive) {
         this.startListen();
-        console.log(e.code);
       }
     });
   }
