@@ -21,7 +21,6 @@
       .user__profile-image{
         width: 200px;
         height: 200px;
-        //background-color: orange;
         background-image: url( "data:image/svg+xml, <svg viewBox='312.809 0 401 401' xmlns='http://www.w3.org/2000/svg'><g transform='matrix(1.223 0 0 1.223 -467.5 -843.44)'><rect x='601.45' y='653.07' width='401' height='401' fill='lightgray'/><path d='m802.38 908.08c-84.515 0-153.52 48.185-157.38 108.62h314.79c-3.87-60.44-72.9-108.62-157.41-108.62z' fill='darkgrey'/><path d='m881.37 818.86c0 46.746-35.106 84.641-78.41 84.641s-78.41-37.895-78.41-84.641 35.106-84.641 78.41-84.641c43.31 0 78.41 37.9 78.41 84.64z' fill='darkgrey'/></g></svg>");
         border-radius: 10px;
       }
@@ -92,6 +91,8 @@
       display: flex;
       flex-wrap: wrap;
       gap: 2%;
+
+      padding-bottom: 30px;
 
       .info__block {
         margin-top: 30px;
@@ -187,9 +188,6 @@
             color: $font-color-text2-light;
             margin-top: 20px;
 
-            .lesson__lang-caption {
-            }
-
             .lesson__lang-lesson{
               .lesson__lang-lesson_caption {
                 margin-top: 1%;
@@ -202,9 +200,6 @@
                   gap: 10px;
                   margin-top: 1%;
                   margin-left: 6%;
-                  span {
-
-                  }
                 }
               }
             }
@@ -263,6 +258,79 @@
 
   &.dark {
     .profile-wrapper {
+      .user__block {
+        .user__profile-info{
+          .user__name{
+            color: $font-color-text2-dark;
+          }
+
+          .user__statistics{
+            .statistics__block {
+              .statistics__progress,
+              .statistics__speed,
+              .statistics__accuracy {
+                .user__statistics-title {
+                  color: $font-color-text1-dark;
+                }
+          
+                .user__statistics-value {
+                  color: $font-color-text1-dark;
+                }
+              }
+            }
+          }
+        }
+      }
+  
+      .user__info {
+        .info__block {
+          border: 1px solid $font-color-text2-dark;
+  
+          h2 {
+            color: $font-color-text2-dark;
+            background: $base-color-addition-dark;
+          }
+  
+          .info__block-cert {
+            .cert-message {
+              color: $font-color-text1-light;
+            }
+  
+            .cert-block {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+  
+              .cert-download {
+                color: $base-color-dark;
+              }
+            }
+          }
+  
+          .info__block-lessons {
+            .lesson__lang {
+              color: $font-color-text1-dark;
+              }
+            }
+        }
+  
+        .info__block-games {
+          .game-line {
+            .game_line-info {
+              .game_line-info_gamename {
+                color: $font-color-text1-dark;
+              }
+
+              .game_line-info_results {
+                .game_line-info_results-level,
+                .game_line-info_results-score {
+                  color: $font-color-text1-dark;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
