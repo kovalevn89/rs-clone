@@ -42,11 +42,10 @@
 
         .user__statistics{
           display: flex;
-          justify-content: space-between;
+          justify-content: space-evenly;
 
           .statistics__block {
             min-width: 210px;
-            // background-color: red;
 
             display: flex;
             gap: 10px;
@@ -56,7 +55,6 @@
             .statistics__logo {
               width: 50px;
               height: 50px;
-              background-color: blueviolet;
             }
 
             .statistics__progress,
@@ -134,10 +132,6 @@
             color: $font-color-text2-light;
 
             text-align: center;
-
-            &.hidden {
-              display: none;
-            }
           }
 
           .cert-block {
@@ -149,13 +143,11 @@
               width: 300px;
               height: 210px;
               margin: 20px 0px 10px 0px;
-              background-color: rgb(111, 228, 248);
               border-radius: 10px;
 
               background-position: center;
               background-repeat: no-repeat;
               background-size: cover;
-
             }
 
             .cert-download{
@@ -178,7 +170,27 @@
         }
 
         .info__block-lessons {
-          margin: 15px;
+          margin-left: 15px;
+          margin-bottom: 15px;
+          width: 100%;
+          height: 100%;
+
+          .lesson-message {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            color: $font-color-text2-light;
+
+            text-align: center;
+          }
 
           .lesson__lang {
             font-family: 'Inter';
@@ -207,6 +219,25 @@
         }
 
         .info__block-games {
+          width: 100%;
+          height: 100%;
+
+          .games-message {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            color: $font-color-text2-light;
+
+            text-align: center;
+          }
           .game-line {
             margin: 10px;
             padding-top: 12px;
@@ -252,6 +283,61 @@
             }
           }
         }
+
+        .info__block-administration {
+          width: 100%;
+          height: 100%;
+
+          .administration-controls {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .control__logout,
+            .control__delete {
+              width: 200px;
+              height: 35px;
+
+              margin-top: 20px;
+              
+
+              font-family: 'Inter';
+              font-style: normal;
+              font-weight: 400;
+              font-size: 14px;
+              color: $font-color-text2-light;
+
+              background-color: $base-color-light;
+              border-radius: 10px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              
+              user-select: none;
+              cursor: pointer;
+              transition: background-color 0.3s ease-in-out;
+            }
+
+            .control__logout {
+              &:hover {
+                background-color: #0d6bf0;
+              }
+            }
+
+            .control__delete {
+              margin-top: 10px;
+              margin-bottom: 10px;
+              background-color: rgb(241, 97, 97);
+              &:hover {
+                background-color: rgb(235, 61, 61);
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -293,7 +379,7 @@
   
           .info__block-cert {
             .cert-message {
-              color: $font-color-text1-light;
+              color: $font-color-text1-dark;
             }
   
             .cert-block {
@@ -306,26 +392,42 @@
               }
             }
           }
-  
+
           .info__block-lessons {
+            .lesson-message {
+              color: $font-color-text1-dark;
+            }
+  
             .lesson__lang {
               color: $font-color-text1-dark;
-              }
             }
-        }
-  
-        .info__block-games {
-          .game-line {
-            .game_line-info {
-              .game_line-info_gamename {
-                color: $font-color-text1-dark;
-              }
-
-              .game_line-info_results {
-                .game_line-info_results-level,
-                .game_line-info_results-score {
+          }
+    
+          .info__block-games {
+            .games-message {
+              color: $font-color-text1-dark;
+            }
+            .game-line {
+              .game_line-info {
+                .game_line-info_gamename {
                   color: $font-color-text1-dark;
                 }
+  
+                .game_line-info_results {
+                  .game_line-info_results-level,
+                  .game_line-info_results-score {
+                    color: $font-color-text1-dark;
+                  }
+                }
+              }
+            }
+          }
+
+          .info__block-administration {
+            .administration-controls {
+              .control__logout,
+              .control__delete {
+                color: $font-color-text1-dark;
               }
             }
           }

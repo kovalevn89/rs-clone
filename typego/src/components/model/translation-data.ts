@@ -355,6 +355,10 @@ const data: ITranslation = {
     en: 'Lesson',
     ru: 'Урок',
   },
+  profileLessonError: {
+    en: 'To display statistics, you must pass our exciting tests!',
+    ru: 'Для отображения статистики необходимо пройти наши увлекательные тесты!',
+  },
   profileLessonLevel: {
     en: 'Level',
     ru: 'Уровень',
@@ -367,10 +371,13 @@ const data: ITranslation = {
     en: 'Speed',
     ru: 'Скорость',
   },
-
   profileGamesBlockCaption: {
     en: 'Games',
     ru: 'Игры',
+  },
+  profileGamesError: {
+    en: 'Play fun games and learn at the same time!',
+    ru: 'Играй в интересные игры и учись одновременно!',
   },
   profileGamesLevel: {
     en: 'level',
@@ -379,6 +386,18 @@ const data: ITranslation = {
   profileGamesScore: {
     en: 'score',
     ru: 'счёт',
+  },
+  profileAdminBlockCaption: {
+    en: 'Administration',
+    ru: 'Администрирование',
+  },
+  profileAdminLogout: {
+    en: 'Logout',
+    ru: 'Выйти',
+  },
+  profileAdminDelete: {
+    en: 'Delete account',
+    ru: 'Удалить аккаунт',
   },
 };
 

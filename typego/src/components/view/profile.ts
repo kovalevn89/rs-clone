@@ -198,8 +198,8 @@ class Profile extends PageView {
       userName.textContent = currentUser.username;
       const userStatistics = createElement('div', 'user__statistics', userProfileInfo);
       // progress
-      const statisticsBlock1 = createElement('div', 'statistics__block', userStatistics);
       if (currentUser.progress.length) {
+        const statisticsBlock1 = createElement('div', 'statistics__block', userStatistics);
         const statisticsLogo = createElement('div', 'statistics__logo', statisticsBlock1);
         statisticsLogo.style.background = `url(${progressImg}) center no-repeat`;
         const statisticsProgress = createElement('div', 'statistics__progress', statisticsBlock1);
@@ -212,8 +212,8 @@ class Profile extends PageView {
       }
 
       // speed
-      const statisticsBlock2 = createElement('div', 'statistics__block', userStatistics);
       if (currentUser.speed) {
+        const statisticsBlock2 = createElement('div', 'statistics__block', userStatistics);
         const statisticsLogo = createElement('div', 'statistics__logo', statisticsBlock2);
         statisticsLogo.style.background = `url(${speedImg}) center no-repeat`;
         const statisticsAccuracy = createElement('div', 'statistics__accuracy', statisticsBlock2);
@@ -226,8 +226,8 @@ class Profile extends PageView {
       }
 
       // accuracy
-      const statisticsBlock3 = createElement('div', 'statistics__block', userStatistics);
       if (currentUser.accuracy) {
+        const statisticsBlock3 = createElement('div', 'statistics__block', userStatistics);
         const statisticsLogo = createElement('div', 'statistics__logo', statisticsBlock3);
         statisticsLogo.style.background = `url(${accuracyImg}) center no-repeat`;
         const statisticsSpeed = createElement('div', 'statistics__speed', statisticsBlock3);
@@ -310,6 +310,10 @@ class Profile extends PageView {
             }
           }
         });
+      } else {
+        const lessonMessage = createElement('div', 'lesson-message', infoBlockLessons);
+        lessonMessage.textContent = this.translation.getString('profileLessonError');
+        this.translation.regObserver(() => { lessonMessage.textContent = this.translation.getString('profileLessonError'); });
       }
 
       // games
@@ -347,7 +351,27 @@ class Profile extends PageView {
           resultScore.innerHTML = `<b>${game.score}</b> ${this.translation.getString('profileGamesScore')}.`;
           this.translation.regObserver(() => { resultScore.innerHTML = `<b>${game.score}</b> ${this.translation.getString('profileGamesScore')}.`; });
         });
+      } else {
+        const gamesMessage = createElement('div', 'games-message', infoBlockGames);
+        gamesMessage.textContent = this.translation.getString('profileGamesError');
+        this.translation.regObserver(() => { gamesMessage.textContent = this.translation.getString('profileGamesError'); });
       }
+
+      // administration
+      const infoBlock4 = createElement('div', 'info__block', userInfo);
+      const caption4 = createElement('h2', '', infoBlock4);
+      caption4.textContent = this.translation.getString('profileAdminBlockCaption');
+      this.translation.regObserver(() => { caption4.textContent = this.translation.getString('profileAdminBlockCaption'); });
+      // выйти
+      // удалить
+      const infoBlockAdministration = createElement('div', 'info__block-administration', infoBlock4);
+      const administrationControls = createElement('div', 'administration-controls', infoBlockAdministration);
+      const logoutBtn = createElement('div', 'control__logout', administrationControls);
+      logoutBtn.textContent = this.translation.getString('profileAdminLogout');
+      this.translation.regObserver(() => { logoutBtn.textContent = this.translation.getString('profileAdminLogout'); });
+      const deletetBtn = createElement('div', 'control__delete', administrationControls);
+      deletetBtn.textContent = this.translation.getString('profileAdminDelete');
+      this.translation.regObserver(() => { deletetBtn.textContent = this.translation.getString('profileAdminDelete'); });
     }
   }
 
