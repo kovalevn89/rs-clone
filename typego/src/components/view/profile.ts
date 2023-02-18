@@ -11,9 +11,6 @@ import gunGameLogo from '../../assets/png/gun-game.png';
 
 // import certTemplate from '../../assets/png/certificate-template.png';
 
-// ! ГЕНЕРАЦИЯ СЕРТИФИКАТА НА КАНВЕ
-console.log(whacamoleGameLogo, dropfoodGameLogo, gunGameLogo);
-
 interface IGameScore {
   _id: string,
   name: string,
@@ -55,6 +52,13 @@ const userData: IUser = {
       __v: 0,
     },
     {
+      _id: '63dcf0a66c9e5025efcb6c46',
+      name: 'whac',
+      level: 3,
+      score: 99,
+      __v: 0,
+    },
+    {
       _id: '63dcf27bd4ee89b5744b1168',
       name: 'space',
       level: 1,
@@ -70,6 +74,33 @@ const userData: IUser = {
       level: 3,
       accuracy: 83,
       speed: 115,
+      __v: 0,
+    },
+    {
+      _id: '63dd6137632f2101530332af',
+      lesson: 1,
+      lang: 'en',
+      level: 1,
+      accuracy: 11,
+      speed: 22,
+      __v: 0,
+    },
+    {
+      _id: '63dd6137632f2101530332af',
+      lesson: 2,
+      lang: 'en',
+      level: 1,
+      accuracy: 11,
+      speed: 22,
+      __v: 0,
+    },
+    {
+      _id: '63dd6137632f2101530332af',
+      lesson: 3,
+      lang: 'en',
+      level: 1,
+      accuracy: 11,
+      speed: 22,
       __v: 0,
     },
     {
@@ -157,47 +188,6 @@ class Profile extends PageView {
 
       // cert generator
 
-      /*
-      lang: 'ru',
-      lesson: 1,
-      level: 3,
-      accuracy: 83,
-      speed: 115,
-      */
-
-      /*
-      <div class="user__block">
-        <div class="user__profile-image"></div>
-        <div class="user__profile-info">
-          <div class="user__name">NK</div>
-          <div class="user__statistics">
-            <div class="statistics__block">
-              <div class="statistics__logo"></div>
-              <div class="statistics__progress">
-                <span class="user__statistics-title">Прогресс</span>
-                <span class="user__statistics-value"><b>6</b> уроков</span>
-              </div>
-            </div>
-
-            <div class="statistics__block">
-            <div class="statistics__logo"></div>
-              <div class="statistics__speed">
-                <span class="user__statistics-title">Скорость печати</span>
-                <span class="user__statistics-value"><b>188</b> зн./мин</span>
-              </div>
-            </div>
-
-            <div class="statistics__block">
-            <div class="statistics__logo"></div>
-              <div class="statistics__accuracy">
-                <span class="user__statistics-title">Точность</span>
-                <span class="user__statistics-value"><b>97.1</b>%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      */
       const userBlock = createElement('div', 'user__block', wrapper);
       createElement('div', 'user__profile-image', userBlock);
       const userProfileInfo = createElement('div', 'user__profile-info', userBlock);
@@ -213,7 +203,7 @@ class Profile extends PageView {
         const userStatisticsTitle = createElement('span', 'user__statistics-title', statisticsProgress);
         userStatisticsTitle.textContent = 'Прогресс';
         const userStatisticsValue = createElement('span', 'user__statistics-value', statisticsProgress);
-        userStatisticsValue.innerHTML = `<b>${currentUser.progress.length}</b> уроков`;
+        userStatisticsValue.innerHTML = `<b>${currentUser.progress.length}</b> уровней`;
       }
 
       // speed
@@ -238,6 +228,96 @@ class Profile extends PageView {
         userStatisticsTitle.textContent = 'Точность';
         const userStatisticsValue = createElement('span', 'user__statistics-value', statisticsSpeed);
         userStatisticsValue.innerHTML = `<b>${currentUser.accuracy}</b>%`;
+      }
+
+      // certificate
+      const userInfo = createElement('div', 'user__info', wrapper);
+      const infoBlock1 = createElement('div', 'info__block', userInfo);
+      const caption1 = createElement('h2', '', infoBlock1);
+      caption1.textContent = 'Сертификат';
+      const infoBlockCert = createElement('div', 'info__block-cert', infoBlock1);
+      if (currentUser.accuracy && currentUser.speed) {
+        const certBlock = createElement('div', 'cert-block', infoBlockCert);
+        createElement('canvas', 'cert-preview', certBlock, ['id', 'canvas']);
+        const certDownload = createElement('a', 'cert-download', certBlock);
+        certDownload.textContent = 'Скачать сертификат';
+      } else {
+        const certMessage = createElement('div', 'cert-message', infoBlockCert);
+        certMessage.textContent = 'До получения сертификата осталось совсем чуть-чуть - пройти тест!';
+      }
+
+      // lesson
+      const infoBlock2 = createElement('div', 'info__block', userInfo);
+      const caption2 = createElement('h2', '', infoBlock2);
+      caption2.textContent = 'Уроки';
+      const infoBlockLessons = createElement('div', 'info__block-lessons', infoBlock2);
+      console.log(infoBlockLessons);
+
+      if (currentUser.progress.length) {
+        ['ru', 'en'].forEach((lessonLanguage) => {
+          console.log(lessonLanguage);
+          const lessonsRu = currentUser.progress.filter((lesson) => lesson.lang === lessonLanguage);
+          console.log(lessonsRu);
+          if (lessonsRu.length) {
+            const lessonLang = createElement('div', 'lesson__lang', infoBlockLessons);
+            const lessonLangCaption = createElement('div', 'lesson__lang-caption', lessonLang);
+            if (lessonLanguage === 'ru') lessonLangCaption.innerHTML = 'Уроки на <i>русском</i> языке:';
+            if (lessonLanguage === 'en') lessonLangCaption.innerHTML = 'Уроки на <i>английском</i> языке:';
+            const lessonLangLesson = createElement('div', 'lesson__lang-lesson', lessonLang);
+
+            for (let i = 1; i <= 6; i += 1) {
+              const currentLesson = lessonsRu.filter((lesson) => lesson.lesson === i);
+
+              if (currentLesson.length) {
+                const lessonLangLessonCaption = createElement('div', 'lesson__lang-lesson_caption', lessonLangLesson);
+                lessonLangLessonCaption.innerHTML = `Урок <b>${i}</b>:`;
+                const lessonLangLevels = createElement('div', 'lesson__lang-levels', lessonLangLesson);
+                currentLesson.forEach((level) => {
+                  const line = createElement('div', 'lesson__lang-levels__line', lessonLangLevels);
+                  const levelCaption = createElement('span', '', line);
+                  levelCaption.innerHTML = `Уровень <b>${level.level}</b>`;
+                  const levelAccuracy = createElement('span', '', line);
+                  levelAccuracy.innerHTML = `Точность: <b>${level.accuracy}</b>%`;
+                  const levelSpeed = createElement('span', '', line);
+                  levelSpeed.innerHTML = `Скорость: <b>${level.speed}</b> зн/мин.`;
+                });
+              }
+            }
+          }
+        });
+      }
+
+      // games
+      const infoBlock3 = createElement('div', 'info__block', userInfo);
+      const caption3 = createElement('h2', '', infoBlock3);
+      caption3.textContent = 'Игры';
+      const infoBlockGames = createElement('div', 'info__block-games', infoBlock3);
+
+      if (currentUser.gamesScore.length) {
+        currentUser.gamesScore.forEach((game) => {
+          const gameLine = createElement('div', 'game-line', infoBlockGames);
+          const gameLineImage = createElement('div', 'game_line-image', gameLine);
+          switch (game.name) {
+            case 'whac': gameLineImage.style.background = `url(${whacamoleGameLogo}) center no-repeat`; break;
+            case 'space': gameLineImage.style.background = `url(${dropfoodGameLogo}) center no-repeat`; break;
+            case 'shooter': gameLineImage.style.background = `url(${gunGameLogo}) center no-repeat`; break;
+            default:
+          }
+          gameLineImage.style.backgroundSize = 'cover';
+          const gameInfo = createElement('div', 'game_line-info', gameLine);
+          const gameName = createElement('div', 'game_line-info_gamename', gameInfo);
+          switch (game.name) {
+            case 'whac': gameName.textContent = 'Whac A Mole'; break;
+            case 'space': gameName.textContent = 'Drop Food'; break;
+            case 'shooter': gameName.textContent = 'Hogan\'s Alley'; break;
+            default:
+          }
+          const gameResult = createElement('div', 'game_line-info_results', gameInfo);
+          const resultLevel = createElement('div', 'game_line-info_results-level', gameResult);
+          resultLevel.innerHTML = `<b>${game.level}</b> уровень.`;
+          const resultScore = createElement('div', 'game_line-info_results-score', gameResult);
+          resultScore.innerHTML = `<b>${game.score}</b> попаданий.`;
+        });
       }
     }
   }
