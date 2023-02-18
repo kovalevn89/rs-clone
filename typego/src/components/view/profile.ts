@@ -1,6 +1,6 @@
 import PageView from './baseViewClass';
 import { createElement, removeChild } from '../helper';
-import { Themes } from '../types/enums';
+import { Language, Themes } from '../types/enums';
 import speedImg from '../../assets/png/speed.png';
 import accuracyImg from '../../assets/png/accuracy.png';
 import progressImg from '../../assets/png/progress.png';
@@ -156,10 +156,13 @@ class Profile extends PageView {
         ctx.fillStyle = 'black';
         ctx.fillText(name, 512, 320);
         ctx.font = 'italic 26px Arial';
-        ctx.fillText(`за скорость набора в ${speed} зн./мин с точностью ${accuracu}%`, 512, 400);
-
+        if (this.translation.getLang() === Language.RU) {
+          ctx.fillText(`за скорость набора в ${speed} зн./мин с точностью ${accuracu}%`, 512, 400);
+        } else {
+          ctx.fillText(`for typing speed ${speed} ch./min with accuracy ${accuracu}%`, 512, 400);
+        }
         const date1 = new Date();
-        ctx.fillText(`${String(date1.getDay()).padStart(2, '0')}.${String(date1.getMonth()).padStart(2, '0')}.${String(date1.getFullYear()).padStart(2, '0')}`, 450, 620);
+        ctx.fillText(`${String(date1.getDate()).padStart(2, '0')}.${String(date1.getMonth() + 1).padStart(2, '0')}.${String(date1.getFullYear()).padStart(2, '0')}`, 450, 620);
 
         document.getElementById('canvas')!.style.backgroundImage = `url(${canvas.toDataURL()})`;
       };
@@ -250,11 +253,19 @@ class Profile extends PageView {
         createElement('canvas', 'cert-preview', certBlock, ['id', 'canvas']);
         const certDownload = createElement('a', 'cert-download', certBlock);
         certDownload.textContent = this.translation.getString('profileDownloadCertificate');
-        this.translation.regObserver(() => { certDownload.textContent = this.translation.getString('profileDownloadCertificate'); });
+        this.translation.regObserver(() => {
+          certDownload.textContent = this.translation.getString('profileDownloadCertificate');
+          this.createCertificate(
+            currentUser.username,
+            Number(currentUser.speed),
+            Number(currentUser.accuracy),
+          );
+        });
+
         this.createCertificate(
           currentUser.username,
           Number(currentUser.speed),
-          currentUser.accuracy,
+          Number(currentUser.accuracy),
         );
       } else {
         const certMessage = createElement('div', 'cert-message', infoBlockCert);

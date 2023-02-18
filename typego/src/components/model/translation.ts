@@ -36,9 +36,11 @@ class Translation {
     });
   }
 
-  // getLang(): Language {
-  //   return this.currentLang;
-  // }
+  getLang(): Language {
+    if (this.currentLang) return this.currentLang;
+
+    return Language.RU;
+  }
 
   getString(tag: string) {
     return this.currentLang === Language.RU ? this.data[tag].ru : this.data[tag].en;
