@@ -310,10 +310,10 @@ class Profile extends PageView {
                   const levelCaption = createElement('span', '', line);
                   levelCaption.innerHTML = `${this.translation.getString('profileLessonLevel')} <b>${level.level}</b>`;
                   this.translation.regObserver(() => { levelCaption.innerHTML = `${this.translation.getString('profileLessonLevel')} <b>${level.level}</b>`; });
-                  const levelAccuracy = createElement('span', '', line);
+                  const levelAccuracy = createElement('span', 'value', line);
                   levelAccuracy.innerHTML = ` -  ${this.translation.getString('profileLessonAccuracy')}: <b>${level.accuracy}</b>%`;
                   this.translation.regObserver(() => { levelAccuracy.innerHTML = ` -  ${this.translation.getString('profileLessonAccuracy')}: <b>${level.accuracy}</b>%`; });
-                  const levelSpeed = createElement('span', '', line);
+                  const levelSpeed = createElement('span', 'value', line);
                   levelSpeed.innerHTML = `${this.translation.getString('profileLessonSpeed')}: <b>${level.speed}</b> ${this.translation.getString('profileTypingSpeed')}`;
                   this.translation.regObserver(() => { levelSpeed.innerHTML = `${this.translation.getString('profileLessonSpeed')}: <b>${level.speed}</b> ${this.translation.getString('profileTypingSpeed')}`; });
                 });
