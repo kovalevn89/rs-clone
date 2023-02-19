@@ -1,42 +1,14 @@
 import PageView from './baseViewClass';
 import { createElement, removeChild } from '../helper';
 import { Language, Themes } from '../types/enums';
+import { IUser } from '../types/index';
 import speedImg from '../../assets/png/speed.png';
 import accuracyImg from '../../assets/png/accuracy.png';
 import progressImg from '../../assets/png/progress.png';
-
 import whacamoleGameLogo from '../../assets/png/whacamole.png';
 import dropfoodGameLogo from '../../assets/png/drop-food.png';
 import gunGameLogo from '../../assets/png/gun-game.png';
-
 import certTemplate from '../../assets/png/certificate-template.png';
-
-interface IGameScore {
-  _id: string,
-  name: string,
-  level: number,
-  score: number,
-  __v: number,
-}
-
-interface IProgress {
-  _id: string,
-  lesson: number,
-  lang: string,
-  level: number,
-  accuracy: number,
-  speed: number,
-  __v: number,
-}
-
-interface IUser {
-  _id: string,
-  username: string,
-  accuracy?: number,
-  speed?: number,
-  gamesScore: Array<IGameScore>,
-  progress: Array<IProgress>,
-}
 
 const userData: IUser = {
   _id: '63dbaf9cdcfe2d760c226ccd',
@@ -205,6 +177,7 @@ class Profile extends PageView {
         const statisticsBlock1 = createElement('div', 'statistics__block', userStatistics);
         const statisticsLogo = createElement('div', 'statistics__logo', statisticsBlock1);
         statisticsLogo.style.background = `url(${progressImg}) center no-repeat`;
+        statisticsLogo.style.backgroundSize = 'cover';
         const statisticsProgress = createElement('div', 'statistics__progress', statisticsBlock1);
         const userStatisticsTitle = createElement('span', 'user__statistics-title', statisticsProgress);
         userStatisticsTitle.textContent = this.translation.getString('profileProgressLabel');
@@ -219,6 +192,7 @@ class Profile extends PageView {
         const statisticsBlock2 = createElement('div', 'statistics__block', userStatistics);
         const statisticsLogo = createElement('div', 'statistics__logo', statisticsBlock2);
         statisticsLogo.style.background = `url(${speedImg}) center no-repeat`;
+        statisticsLogo.style.backgroundSize = 'cover';
         const statisticsAccuracy = createElement('div', 'statistics__accuracy', statisticsBlock2);
         const userStatisticsTitle = createElement('span', 'user__statistics-title', statisticsAccuracy);
         userStatisticsTitle.textContent = this.translation.getString('profileTypingSpeedLabel');
@@ -233,6 +207,7 @@ class Profile extends PageView {
         const statisticsBlock3 = createElement('div', 'statistics__block', userStatistics);
         const statisticsLogo = createElement('div', 'statistics__logo', statisticsBlock3);
         statisticsLogo.style.background = `url(${accuracyImg}) center no-repeat`;
+        statisticsLogo.style.backgroundSize = 'cover';
         const statisticsSpeed = createElement('div', 'statistics__speed', statisticsBlock3);
         const userStatisticsTitle = createElement('span', 'user__statistics-title', statisticsSpeed);
         userStatisticsTitle.textContent = this.translation.getString('profileAccuracyLabel');

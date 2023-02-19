@@ -253,7 +253,6 @@
 
                   .value__accuracy {
                     width: 32%;
-                    //background-color: #f59e35;
                     padding: 0 5px 0 5px;
                     border-radius: 5px;
                     overflow: hidden;
@@ -552,22 +551,35 @@
             .statistics__block {
               min-width: auto;
               .statistics__logo {
-                display: none;
+                width: 20px;
+                height: 20px;
               }
 
               .statistics__progress {
+                .user__statistics-title {
+                  display: none;
+                }
+
                 .user__statistics-value {
                   font-size: 16px;
                 }
               } 
 
               .statistics__accuracy {
+                .user__statistics-title {
+                  display: none;
+                }
+
                 .user__statistics-value {
                   font-size: 16px;
                 }
               } 
 
               .statistics__speed {
+                .user__statistics-title {
+                  display: none;
+                }
+
                 .user__statistics-value {
                   font-size: 16px;
                 }
@@ -576,27 +588,38 @@
           }  
         } 
       }
-
-      .user__info {
-        .info__block-lessons {
-          .lesson__lang {
-            .lesson__lang-lesson {
-              .lesson__lang-levels {
-                .lesson__lang-levels__line {
-                  .value {
-                    //display: none;
-                  }
-                }
-              } 
-            }
-          }
-        } 
-      }
     }
   }
 }
 
-@media (min-width: 320px) and (max-width: 420px) { 
+@media (min-width: 320px) and (max-width: 570px) { 
+  .main {
+    .profile-wrapper {
+      .user__info {
+        .info__block {
+          .info__block-lessons {
+            .lesson__lang {
+              .lesson__lang-lesson {
+                .lesson__lang-levels {
+                  .lesson__lang-levels__line {
+                    .value__speed {
+                      width: 25%;
+                    }
+                    .value__accuracy {
+                      width: 25%;
+                    }
+                  }
+                } 
+              } 
+            } 
+          }
+        }
+      }
+    }    
+  }
+}
+
+@media (min-width: 320px) and (max-width: 490px) { 
   .main {
     .profile-wrapper {
       .user__block {
@@ -622,6 +645,7 @@
           h2 {
             font-size: 12px;
           }
+
           .info__block-cert {
             .cert-block {
               .cert-preview {
@@ -630,29 +654,48 @@
               }
             }
           }
-        }
-        
-        .info__block-lessons {
-          .lesson__lang {
-            .lesson__lang-caption{
-              font-size: 14px;
-            }
-            .lesson__lang-lesson {
-              .lesson__lang-lesson_caption{
+
+          .info__block-lessons {
+            .lesson__lang {
+              .lesson__lang-caption{
                 font-size: 14px;
               }
-              .lesson__lang-levels {
-                .lesson__lang-levels__line {
-                  .value {
-                    // display: none;
-                  }
+              .lesson__lang-lesson {
+                .lesson__lang-lesson_caption{
+                  font-size: 14px;
                 }
-              } 
+  
+                .lesson__lang-levels {
+                  .lesson__lang-levels__line {
+                    .value__index {
+                      min-width: 75px;
+                    }
+                    .value__speed {
+                      width: 15%;
+                      span {
+                        display: none;
+                      }
+                    }
+                    .value__accuracy {
+                      width: 15%;
+                    }
+                  }
+                } 
+              }
+            }
+          } 
+
+          .info__block-games {
+            .game-line {
+              .game_line-info {
+                .game_line-info_results {
+                  gap: 10px;
+                }
+              }
             }
           }
-        } 
+        }
       } 
     }
   }
 }
-
