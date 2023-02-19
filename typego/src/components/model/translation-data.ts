@@ -257,14 +257,14 @@ const data: ITranslation = {
     en: 'letters per minute',
     ru: 'Знаков в минуту',
   },
+  seconds: {
+    en: 'seconds',
+    ru: 'сек',
+  },
   accurancy: {
     en: 'Accurancy',
     ru: 'Точность',
   },
-  // pressAnyKey: {
-  //   en: '',
-  //   ru: '',
-  // },
   start: {
     en: 'Press any key to Start',
     ru: 'Нажмите любую клавишу, чтобы НАЧАТЬ',
@@ -414,6 +414,25 @@ Tired of playing on factory settings?! Now you can customize the game according 
     en: 'Time:',
     ru: 'Время:',
   },
+
+  // test
+  test: {
+    en: 'Typing test',
+    ru: 'Тест печати',
+  },
+  result: {
+    en: 'Results',
+    ru: 'Результат',
+  },
+  startTraining: {
+    en: 'Start training',
+    ru: 'Начать трентровку',
+  },
+  toMain: {
+    en: 'Back to main',
+    ru: 'На главную',
+  },
+
 };
 
 export default data;

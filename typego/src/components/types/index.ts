@@ -32,6 +32,7 @@ export interface Lang {
   en: string;
   ru: string;
 }
+export type LanguageStr = 'en' | 'ru';
 
 export interface DataLang {
   [tag: string]: Lang;
@@ -53,11 +54,12 @@ export interface Progress {
 }
 
 export interface TextResponse extends Level {
-  lang: 'en' | 'ru';
+  lang: LanguageStr;
 }
 
+// todo
 export interface LevelSettings {
-  lang: 'en' | 'ru';
+  lang: LanguageStr;
   font: 's' | 'm' | 'l';
   sound: boolean;
   skin: 'default' | 'custom';
@@ -65,8 +67,8 @@ export interface LevelSettings {
 
 export interface Lesson {
   index: number;
-  name: string;
-  lang: 'en' | 'ru';
+  name: string,
+  lang: LanguageStr;
   levels?: Levels;
 }
 
@@ -82,7 +84,7 @@ export type Levels = Level[];
 
 export interface Test {
   text: string;
-  lang: 'en' | 'ru';
+  lang: LanguageStr;
 }
 
 export interface IShooter {

@@ -1,4 +1,5 @@
 import { createElement } from '../../helper';
+import { LanguageStr } from '../../types';
 import { Lang, Status, Tag } from '../../types/enums';
 import { svgKeyboard } from './svgKeyboard';
 import { svgKeybordRu } from './svgKeyboardRu';
@@ -31,7 +32,7 @@ class Keyboard {
     });
   }
 
-  render(parent: HTMLElement, lang: 'en' | 'ru'): void {
+  render(parent: HTMLElement, lang: LanguageStr): void {
     parent.append(this.keyboard);
     this.keyboard.innerHTML = lang === Lang.en ? svgKeyboard : svgKeybordRu;
     this.keys = this.keyboard.querySelectorAll('.key');

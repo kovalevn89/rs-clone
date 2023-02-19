@@ -28,7 +28,6 @@ export default class TrainingTask {
     parent.append(this.container);
 
     this.container.append(this.input.input);
-    // this.input.input.focus();
     this.input.startListen();
     this.input.listen(this);
 

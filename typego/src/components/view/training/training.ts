@@ -21,10 +21,7 @@ export class Training extends PageView {
     const wrapper = createElement(Tag.div, 'wrapper', container);
 
     const title = createElement(Tag.h2, 'training__title', wrapper);
-    title.textContent = this.translation.getString('training');
-    this.translation.regObserver(() => {
-      title.textContent = this.translation.getString('training');
-    });
+    this.translation.translateField(title, 'training');
 
     const selectContainer = createElement(Tag.div, 'select', wrapper);
 
@@ -38,17 +35,12 @@ export class Training extends PageView {
     });
 
     const selectTitleEn = createElement(Tag.h3, 'select__title', selectEn);
-    selectTitleEn.textContent = this.translation.getString('layoutEn');
-    this.translation.regObserver(() => {
-      selectTitleEn.textContent = this.translation.getString('layoutEn');
-    });
-    createElement<HTMLImageElement>(Tag.img, 'select__img', selectEn, ['alt', 'English layout']).src = selectEN;
+    this.translation.translateField(selectTitleEn, 'layoutEn');
 
     const selectTitleRu = createElement(Tag.h3, 'select__title', selectRu);
-    selectTitleRu.textContent = this.translation.getString('layoutRu');
-    this.translation.regObserver(() => {
-      selectTitleRu.textContent = this.translation.getString('layoutRu');
-    });
+    this.translation.translateField(selectTitleRu, 'layoutRu');
+
+    createElement<HTMLImageElement>(Tag.img, 'select__img', selectEn, ['alt', 'English layout']).src = selectEN;
     createElement<HTMLImageElement>(Tag.img, 'select__img', selectRu, ['alt', 'Russian layout']).src = selectRU;
 
     app.append(container);

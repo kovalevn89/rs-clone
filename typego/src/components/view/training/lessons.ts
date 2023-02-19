@@ -10,19 +10,11 @@ import cover4 from '../../../assets/png/cover4.png';
 import cover5 from '../../../assets/png/cover5.png';
 import cover6 from '../../../assets/png/cover6.png';
 import Api from '../../controller/api';
-import { Lessons } from '../../types';
+import { LanguageStr, Lessons } from '../../types';
 import { LESSONS, LESSONS_RU } from '../../helper/constants';
-import TrainingState from '../../model/trainingState';
+// import TrainingState from '../../model/trainingState';
 
 export default class TrainingLessons extends PageView {
-  private state: TrainingState;
-
-  constructor() {
-    super();
-
-    this.state = new TrainingState();
-  }
-
   private async render(): Promise<void> {
     const main = document.querySelector<HTMLElement>('.app');
 
@@ -38,10 +30,12 @@ export default class TrainingLessons extends PageView {
 
     const wrapper = createElement(Tag.div, 'wrapper', container);
     const lessonsTitle = createElement(Tag.h2, 'training__title', wrapper);
-    lessonsTitle.textContent = this.translation.getString('lessons');
-    this.translation.regObserver(() => {
-      lessonsTitle.textContent = this.translation.getString('lessons');
-    });
+    this.translation.translateField(lessonsTitle, 'lessons');
+
+    // lessonsTitle.textContent = this.translation.getString('lessons');
+    // this.translation.regObserver(() => {
+    //   lessonsTitle.textContent = this.translation.getString('lessons');
+    // });
 
     const lessonsWrapper = createElement(Tag.div, 'lessons__wrapper', wrapper);
 
@@ -54,28 +48,31 @@ export default class TrainingLessons extends PageView {
       createElement(Tag.h3, 'training__level__title', lev).textContent = lesson.name;
       createElement<HTMLImageElement>(Tag.img, 'training__img', lev, ['alt', `Lesson ${lesson.index} cover`]).src = cover[i];
 
-      if (this.state.complitedLessons && this.state.complitedLessons.indexOf(lesson.index) !== -1) {
-        lev.classList.add('done');
-      }
+      // eslint-disable-next-line max-len
+      // if (this.state.complitedLessons && this.state.complitedLessons.indexOf(lesson.index) !== -1) {
+      //   lev.classList.add('done');
+      // }
       // lev.classList.add('done');
       // console.log(this.state.complitedLessons);
 
       lev.addEventListener('click', () => {
-        if (this.state.lesson === lesson.index) {
-          window.location.hash = `#/lesson?lang=${this.state.lang}&index=${this.state.lesson}&id=${this.state.level}`;
+        console.log('lessob click');
+        if (this.state.current.lesson === lesson.index) {
+          console.log('current lesson');
         } else {
-          this.state.progress.push({ lesson: this.state.lesson, level: this.state.level });
-          this.state.lesson = lesson.index;
-          this.state.level = this.state.progress
-            .find((item) => item.lesson === lesson.index)?.level || 0;
+          console.log('new lesson');
+          this.state.progressPush();
+          this.state.current.lesson = lesson.index;
+          this.state.findLevel(lesson.index);
         }
+        window.location.hash = `#/lesson?lang=${this.state.lang}&index=${lesson.index}&id=${this.state.current.level}`;
       });
 
       return lev;
     });
   }
 
-  private async getLessons(lang: 'en' | 'ru'): Promise<Lessons> {
+  private async getLessons(lang: LanguageStr): Promise<Lessons> {
     const api = new Api();
     try {
       const result = await api.getLessons('', lang);
@@ -86,7 +83,7 @@ export default class TrainingLessons extends PageView {
     }
   }
 
-  run(lang: 'en' | 'ru'): void {
+  run(lang: LanguageStr): void {
     this.state.lang = lang;
     this.render();
   }
