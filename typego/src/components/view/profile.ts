@@ -125,7 +125,7 @@ const userData: IUser = {
       _id: '63dd63279d692009a26e866f',
       lesson: 1,
       lang: 'ru',
-      level: 7,
+      level: 1,
       accuracy: 90,
       speed: 99,
       __v: 0,
@@ -305,7 +305,7 @@ class Profile extends PageView {
                 lessonLangLessonCaption.innerHTML = `${this.translation.getString('profileLesson')} <b>${i}</b>:`;
                 this.translation.regObserver(() => { lessonLangLessonCaption.innerHTML = `${this.translation.getString('profileLesson')} <b>${i}</b>:`; });
                 const lessonLangLevels = createElement('div', 'lesson__lang-levels', lessonLangLesson);
-                currentLesson.forEach((level) => {
+                currentLesson.sort((a, b) => a.level - b.level).forEach((level) => {
                   const line = createElement('div', 'lesson__lang-levels__line', lessonLangLevels);
                   const levelCaption = createElement('span', '', line);
                   levelCaption.innerHTML = `${this.translation.getString('profileLessonLevel')} <b>${level.level}</b>`;
