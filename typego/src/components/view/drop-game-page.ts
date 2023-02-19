@@ -14,6 +14,9 @@ class DropGamePage extends PageView {
 
   createDropGamePage(lvl: string, speed: number, duration: number, columnsNum: number) {
     const app = document.querySelector('.app') as HTMLElement;
+
+    this.translation.cleanObserver(); // clear translate obserber hook
+
     removeChild(app);
     const main = createElement('div', 'main', app);
     if (this.config.getTheme() === Themes.Dark) {
@@ -32,14 +35,14 @@ class DropGamePage extends PageView {
     </div>
     <div class="drop-game-page-box-container">
       <div class="drop-game-page-overall-points-container">
-        <h3 class="drop-game-page-points-title">Статистика</h3>
+        <h3 class="drop-game-page-points-title">${this.translation.getString('pointsTitle')}</h3>
         <div class="drop-game-page-scores">
           <div class="score">
-            <p class="score-title">Всего скушано вкусняшек:</p>
+            <p class="score-title">${this.translation.getString('scoreTitle')}</p>
             <p class="score-points">0</p>
           </div>
           <div class="accuracy">
-            <p class="accuracy-title">Средний процент ловли:</p>
+            <p class="accuracy-title">${this.translation.getString('accuracyTitle')}</p>
             <p class="accuracy-points">0%</p>
           </div>
         </div>
@@ -49,7 +52,7 @@ class DropGamePage extends PageView {
         <div class="field-img-box-left"></div>
         <div class="popup">
         <div class="popup-content">
-          НЯM-НЯМ. Спасибо за еду!
+        ${this.translation.getString('popupContent')}
         </div>
         <div class="popup_back"></div>
       </div>
@@ -57,6 +60,23 @@ class DropGamePage extends PageView {
       </div>
     </div>
   </div>`;
+    const pointsTitle = document.querySelector('.drop-game-page-points-title') as HTMLElement;
+    const scoreTitle = document.querySelector('.score-title') as HTMLElement;
+    const accuracyTitle = document.querySelector('.accuracy-title') as HTMLElement;
+    const popupContent = document.querySelector('.popup-content') as HTMLElement;
+
+    this.translation.regObserver(() => {
+      pointsTitle.textContent = this.translation.getString('pointsTitle');
+    });
+    this.translation.regObserver(() => {
+      scoreTitle.textContent = this.translation.getString('scoreTitle');
+    });
+    this.translation.regObserver(() => {
+      accuracyTitle.textContent = this.translation.getString('accuracyTitle');
+    });
+    this.translation.regObserver(() => {
+      popupContent.textContent = this.translation.getString('popupContent');
+    });
 
     const сolumnsArr: HTMLElement[] = [];
     const fieldContainer = document.querySelector('.drop-game-page-field-container') as HTMLElement;
@@ -156,8 +176,10 @@ class DropGamePage extends PageView {
   }
 
   getFoodLetter() {
-    const randomLetterNum = this.randomNum(dataLang.letters.ru.length);
-    const randomLetter = dataLang.letters.ru[randomLetterNum];
+    const lang = localStorage.getItem('appLang');
+    const stringLetterLang = lang === '1' ? dataLang.letters.ru : dataLang.letters.en;
+    const randomLetterNum = this.randomNum(stringLetterLang.length);
+    const randomLetter = stringLetterLang[randomLetterNum];
     return randomLetter;
   }
 

@@ -87,6 +87,14 @@ export interface Test {
   lang: LanguageStr;
 }
 
+export interface IShooter {
+  shooterElement: HTMLElement | null;
+  isShowed: boolean;
+  wordElement: HTMLElement | null;
+  curentword: string;
+  timer: NodeJS.Timeout | null;
+}
+
 export interface User {
   username: string;
   password: string;

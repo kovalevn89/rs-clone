@@ -90,9 +90,15 @@ class WhacAMole {
   private playSound(type: string): void {
     if (this.isSound === true) {
       switch (type) {
-        case 'hit': (new Audio(hitSound)).play(); break;
-        case 'click': (new Audio(clickSound)).play(); break;
-        case 'win': (new Audio(winSound)).play(); break;
+        case 'hit':
+          new Audio(hitSound).play();
+          break;
+        case 'click':
+          new Audio(clickSound).play();
+          break;
+        case 'win':
+          new Audio(winSound).play();
+          break;
         default: {
           // console.log();
         }
@@ -135,10 +141,18 @@ class WhacAMole {
       if (this.gameField.length > 0) {
         let randomCount = 1;
         switch (this.level) {
-          case 1: randomCount = Math.floor(Math.random() * 2) + 1; break;
-          case 2: randomCount = Math.floor(Math.random() * 3) + 1; break;
-          case 3: randomCount = Math.floor(Math.random() * 3) + 2; break;
-          default: randomCount = 1; break;
+          case 1:
+            randomCount = Math.floor(Math.random() * 2) + 1;
+            break;
+          case 2:
+            randomCount = Math.floor(Math.random() * 3) + 1;
+            break;
+          case 3:
+            randomCount = Math.floor(Math.random() * 3) + 2;
+            break;
+          default:
+            randomCount = 1;
+            break;
         }
 
         this.gameField
@@ -191,7 +205,8 @@ class WhacAMole {
         Level.textContent = `${this.level}`;
       }
 
-      if (this.gameClock >= 180) { // 180
+      if (this.gameClock >= 180) {
+        // 180
         // stop game
         this.renderEndGame();
         this.clearTimers();
@@ -224,9 +239,13 @@ class WhacAMole {
               }
               value.curentLetter = '';
               value.moleElement.classList.remove('go');
-              setTimeout((v: IMole) => {
-                v.isShowed = false;
-              }, 800, value);
+              setTimeout(
+                (v: IMole) => {
+                  v.isShowed = false;
+                },
+                800,
+                value,
+              );
             }
             return true;
           }
