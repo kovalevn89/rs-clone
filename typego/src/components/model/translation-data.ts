@@ -129,8 +129,8 @@ const data: ITranslation = {
     ru: 'Руководитель команды, fullstack-разработчик',
   },
   aboutDeveloperDiscription1: {
-    en: 'Team coordination, application architecture development and support, back-end, main page layout, "Whacamole" game',
-    ru: 'Координация команды, разработка и поддержка архитектуры приложения, back-end, верстка главной страницы, игра "Whacamole"',
+    en: 'Team coordination, development and support of the application architecture, routing, back-end, layout of the main page, modal registration and authorization windows, Whacamole game, translation of static application pages',
+    ru: 'Координация команды, разработка и поддержка архитектуры приложения, роутинг, back-end, верстка главной страницы, модальные окна регистрации и авторизации, игра "Whacamole", перевод статических страниц приложения',
   },
   aboutDeveloperName2: {
     en: 'Anna Glavatskih',
@@ -141,8 +141,8 @@ const data: ITranslation = {
     ru: 'Frontend-разработчик',
   },
   aboutDeveloperDiscription2: {
-    en: 'Implementation of the virtual keyboard and lessons, design',
-    ru: 'Реализация виртуальной клавиатуры и уроков, дизайн',
+    en: 'Implementation of a virtual keyboard, lessons, testing, including their layout, translation and light/dark themes, design',
+    ru: 'Реализация виртуальной клавиатуры, уроков, тестирования, включая их верстку, перевод и светлую/темную темы, дизайн',
   },
   aboutDeveloperName3: {
     en: 'Dmitry Khorsun',
@@ -153,8 +153,9 @@ const data: ITranslation = {
     ru: 'Frontend-разработчик',
   },
   aboutDeveloperDiscription3: {
-    en: 'Development of the game "Drop Food", page layout "About us"',
-    ru: 'Разработка игры "Drop Food", верстка страницы "О нас"',
+    en: `Development of games "Drop Food", "Hogan's Alley", pages "About us", "Games", 
+    including their layout, translation and light/dark themes`,
+    ru: 'Разработка игр "Drop Food", "Hogan’s Alley", страницы "О нас", "Игры", включая их верстку, перевод и светлую/темную темы',
   },
 
   // error
@@ -316,8 +317,8 @@ const data: ITranslation = {
     ru: 'Уровень',
   },
   resetButton: {
-    en: 'Start all over again',
-    ru: 'Начать все заново',
+    en: 'Reset statistics',
+    ru: 'Обнулить статистику',
   },
   pointsTitle: {
     en: 'Statistics',
