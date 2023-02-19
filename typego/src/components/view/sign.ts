@@ -14,6 +14,8 @@ class Sign extends PageView {
   public showIn(): void {
     const modal: HTMLElement | null = document.querySelector('.header__modal');
 
+    this.state.isInputActive = false;
+
     if (modal !== null) {
       removeChild(modal);
 
@@ -75,6 +77,8 @@ class Sign extends PageView {
 
   public showUp(): void {
     const modal: HTMLElement | null = document.querySelector('.header__modal');
+
+    this.state.isInputActive = false;
 
     if (modal !== null) {
       removeChild(modal);
@@ -157,6 +161,7 @@ class Sign extends PageView {
     if (modal !== null) {
       removeChild(modal);
     }
+    this.state.isInputActive = true;
   }
 
   run(): void {
