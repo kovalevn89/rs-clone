@@ -2,67 +2,60 @@
 
 .whac{
   width: 100%;
-  min-height: calc(100vh - 300px);
-  max-width: 1120px;
-  margin: 0 160px;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-
   position: relative;
 
-  .modal_low-resolution {
+  .back-btn {
     position: absolute;
-    width: 80%;
-    margin: 10px 20px;
-    max-width: 800px;
-    aspect-ratio: 1 / 0.9;
-    border-radius: 10px;
-    overflow: hidden;
-    z-index: 10;
-    display: none;
-
-    .modal_wrapper {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      .message {
-        text-align: center;
-        font-family: 'AmaticSC Bold';
-        font-size: 3vw;
-        color: rgb(254, 110, 0);
-        user-select: none;
-      }
+    top: 15px;
+    left: 15px;
+    background: url("./assets/img/backBtnOrange.png") center center no-repeat;
+    background-size: cover;
+    box-shadow: 0px 0px 20px #ffffff;
+    border-radius: 50%;
+    width: calc(10px + 5vw);
+    height: calc(10px + 5vw);
+    transition: transform 0.1s linear;
+    z-index: 99;
+    &:hover {
+      transform: scale(1.1);
+    }
+    @include media-mobile {
+      width: calc(10px + 7vw);
+      height: calc(10px + 7vw);
     }
   }
 
   .menu{
-    width: 80%;
     margin: 10px 20px;
     max-width: 800px;
     aspect-ratio: 1 / 0.9;
     border-radius: 10px;
-    overflow: hidden;
 
     .game_caption,
     .game_caption{
       width: 100%;
       height: 15%;
       margin-top: 5%;
+      margin-bottom: 10%;
       text-align: center;
       font-family: 'AmaticSC Bold';
       font-size: 10vw;
       font-weight: 600;
       color: rgb(254, 110, 0);
       user-select: none;
+      @include media-mobile {
+        font-size: 20vw;
+      }
     }
     
     .game_result {
-      margin-top: 10%;
+      margin-top: 15%;
+      margin-left: 6%;
 
       .result_line {
         width: 100%;
@@ -70,6 +63,9 @@
         font-family: 'AmaticSC Bold';
         font-size: 3.5vw;
         color: rgb(254, 110, 0);
+        @include media-mobile {
+          font-size: 7vw;
+        }
 
         .caption {
           width: 50%;
@@ -101,6 +97,10 @@
         &:hover {
           transform: scale(1.1);
         }
+        @include media-mobile {
+        width: 16vw;
+        height: 16vw;
+        }
       }
 
       .controls_restart-btn {
@@ -112,25 +112,34 @@
         &:hover {
           transform: scale(1.1);
         }
+        @include media-mobile {
+          width: 16vw;
+          height: 16vw;
+        }
       }
     }
   }
 
   .game {
-    width: 80%;
+    height: 100%;
     margin: 10px 20px;
-    max-width: 800px;
     aspect-ratio: 1 / 0.9;
     border-radius: 10px;
     overflow: hidden;
+    @include media-mobile {
+      margin: 10px 5px;
+    }
 
     .stats{
       width: 100%;
       font-family: 'AmaticSC Regular';
-
       display: flex;
       gap: 5px;
       justify-content: space-between;
+      @include media-desktop {
+        width: calc(100% - 15px - 10vw);
+        margin-left: calc(15px + 10vw);
+        }
 
       .stats_level,
       .stats_score,
@@ -138,6 +147,7 @@
       .stats_time {
         min-width: 6vw;
         height: 5vw;
+        width: 15%;
         margin: 10px;
         margin-top: 15px;
         padding: 5px;
@@ -149,6 +159,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        @include media-mobile {
+          height: 7vw;
+        }
 
         .label {
           height: 100%;
@@ -159,6 +172,9 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          @include media-mobile {
+            font-size: 4vw;
+          }
         }
 
         .value {
@@ -167,7 +183,11 @@
           font-size: 2.5vw;
           color: rgb(254, 110, 0);
           user-select: none;
+          @include media-mobile {
+            font-size: 4vw;
+          }
         }
+       
       }
 
       .controls {      
@@ -181,13 +201,16 @@
         display: flex;
         flex-direction: column;
         gap: 10%;
+        @include media-mobile {
+          height: 7vw;
+          width: 3.5vw;
+        }
         .control_lang,
         .control_sound{
           width: 100%;
           height: 45%;
           max-width: 40px;
           max-height: 40px;
-          //background-color: orange;
           border-radius: 50%;
           aspect-ratio: 1/1;
         }
@@ -202,6 +225,10 @@
       justify-content: center;
       align-items: center;
       gap: 5px;
+      @include media-mobile {
+        margin-top: 10%;
+        height: 60%;
+      }
 
       .cell{
         width: 30%;
@@ -247,6 +274,9 @@
               margin-top: 8px;
               margin-right: 14%;
               padding: 0;
+              @media (max-width: 400px) { 
+                margin-top: -5px;
+               }
 
               svg{
                 width: 100%; 
@@ -278,12 +308,3 @@
     }
   }
 }
-
-
-@media (min-width: 1px) and (max-width: 800px) { 
-  .whac{
-    .modal_low-resolution {
-      display: block;
-    }
-  }
- }

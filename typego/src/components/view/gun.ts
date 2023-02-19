@@ -369,7 +369,6 @@ class GunGame extends PageView {
             }
             this.playSound('shot');
             this.score += 1;
-            console.log(this.inputStr);
             return true;
           }
 
