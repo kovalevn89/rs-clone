@@ -333,8 +333,8 @@ class GunGame extends PageView {
         .filter((value) => value.isShowed === true)
         .some((value) => {
           if (
-            this.inputStr.toLocaleLowerCase().includes(value.curentword.toLocaleLowerCase())
-            && value.curentword.length !== 0
+            this.inputStr.toLocaleLowerCase().includes(value.curentword.toLocaleLowerCase()) &&
+            value.curentword.length !== 0
           ) {
             if (value.wordElement !== null) {
               value.wordElement.style.color = 'green';
@@ -369,7 +369,6 @@ class GunGame extends PageView {
             }
             this.playSound('shot');
             this.score += 1;
-            console.log(this.inputStr);
             return true;
           }
 
