@@ -414,6 +414,34 @@ Tired of playing on factory settings?! Now you can customize the game according 
     en: 'Time:',
     ru: 'Время:',
   },
+
+  // gamePage
+  captiongamePage: {
+    en: 'Games',
+    ru: 'Игры',
+  },
+
+  // Whack game
+  captionWhack: {
+    en: 'Game end',
+    ru: 'Игра окончена',
+  },
+  roundWhack: {
+    en: 'Level:',
+    ru: 'Уровень:',
+  },
+  scoreWhack: {
+    en: 'Score:',
+    ru: 'Счет:',
+  },
+  accuracyWhack: {
+    en: 'Accuracy:',
+    ru: 'Точность:',
+  },
+  timeWhack: {
+    en: 'Time:',
+    ru: 'Время:',
+  },
 };
 
 export default data;

@@ -14,7 +14,14 @@ class DropStartPage extends PageView {
   }
   createDropStartPage() {
     const app = document.querySelector('.app') as HTMLElement;
-
+    const header: HTMLElement | null = document.querySelector('.header');
+    const footer: HTMLElement | null = document.querySelector('.footer');
+    if (header) {
+      header.style.display = 'none';
+    }
+    if (footer) {
+      footer.style.display = 'none';
+    }
     this.translation.cleanObserver(); // clear translate obserber hook
 
     removeChild(app);
@@ -190,8 +197,16 @@ class DropStartPage extends PageView {
     const backBtn = document.querySelector('.drop-game-startpage-btn') as HTMLElement;
 
     backBtn.addEventListener('click', () => {
-      removeChild(app);
-      window.location.hash = '#/games';
+      if (app) {
+        removeChild(app);
+        if (header) {
+          header.style.display = 'block';
+        }
+        if (footer) {
+          footer.style.display = 'block';
+        }
+        window.location.hash = '#/games';
+      }
     });
 
     const resetBtn = document.querySelector('.drop-game-startpage-reset-button') as HTMLElement;
