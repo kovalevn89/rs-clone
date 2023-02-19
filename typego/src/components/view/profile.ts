@@ -82,7 +82,7 @@ const userData: IUser = {
       lang: 'en',
       level: 1,
       accuracy: 11,
-      speed: 22,
+      speed: 33,
       __v: 0,
     },
     {
@@ -91,7 +91,7 @@ const userData: IUser = {
       lang: 'en',
       level: 2,
       accuracy: 11,
-      speed: 22,
+      speed: 44,
       __v: 0,
     },
     {
@@ -304,18 +304,29 @@ class Profile extends PageView {
                 const lessonLangLessonCaption = createElement('div', 'lesson__lang-lesson_caption', lessonLangLesson);
                 lessonLangLessonCaption.innerHTML = `${this.translation.getString('profileLesson')} <b>${i}</b>:`;
                 this.translation.regObserver(() => { lessonLangLessonCaption.innerHTML = `${this.translation.getString('profileLesson')} <b>${i}</b>:`; });
-                const lessonLangLevels = createElement('div', 'lesson__lang-levels', lessonLangLesson);
+                const lessonLangLevels = createElement('table', 'lesson__lang-levels', lessonLangLesson);
                 currentLesson.sort((a, b) => a.level - b.level).forEach((level) => {
-                  const line = createElement('div', 'lesson__lang-levels__line', lessonLangLevels);
-                  const levelCaption = createElement('span', '', line);
+                  const line = createElement('tr', 'lesson__lang-levels__line', lessonLangLevels);
+                  const levelCaption = createElement('td', 'value__index', line);
                   levelCaption.innerHTML = `${this.translation.getString('profileLessonLevel')} <b>${level.level}</b>`;
                   this.translation.regObserver(() => { levelCaption.innerHTML = `${this.translation.getString('profileLessonLevel')} <b>${level.level}</b>`; });
-                  const levelAccuracy = createElement('span', 'value', line);
-                  levelAccuracy.innerHTML = ` -  ${this.translation.getString('profileLessonAccuracy')}: <b>${level.accuracy}</b>%`;
-                  this.translation.regObserver(() => { levelAccuracy.innerHTML = ` -  ${this.translation.getString('profileLessonAccuracy')}: <b>${level.accuracy}</b>%`; });
-                  const levelSpeed = createElement('span', 'value', line);
-                  levelSpeed.innerHTML = `${this.translation.getString('profileLessonSpeed')}: <b>${level.speed}</b> ${this.translation.getString('profileTypingSpeed')}`;
-                  this.translation.regObserver(() => { levelSpeed.innerHTML = `${this.translation.getString('profileLessonSpeed')}: <b>${level.speed}</b> ${this.translation.getString('profileTypingSpeed')}`; });
+                  // insert
+                  const levelSpeed = createElement('td', 'value value__speed', line);
+                  const levelSpeedValue = createElement('b', '', levelSpeed);
+                  levelSpeedValue.textContent = String(level.speed);
+                  const levelSpeedText = createElement('span', '', levelSpeed);
+                  levelSpeedText.textContent = ` ${this.translation.getString('profileLessonTypingSpeed')}`;
+                  const levelSpeedPercent = createElement('div', 'value__speed-percent', levelSpeed);
+                  levelSpeedPercent.style.width = `${(level.speed / 200) * 100}%`;
+                  this.translation.regObserver(() => { levelSpeedText.textContent = ` ${this.translation.getString('profileLessonTypingSpeed')}`; });
+
+                  const levelAccuracy = createElement('td', 'value value__accuracy', line);
+                  const levelAccuracyValue = createElement('b', '', levelAccuracy);
+                  levelAccuracyValue.textContent = String(level.accuracy);
+                  const levelAccuracyText = createElement('span', '', levelAccuracy);
+                  levelAccuracyText.textContent = '%';
+                  const levelAccuracyPercent = createElement('div', 'value__accuracy-percent', levelAccuracy);
+                  levelAccuracyPercent.style.width = `${level.accuracy}%`;
                 });
               }
             }

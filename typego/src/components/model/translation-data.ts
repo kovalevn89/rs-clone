@@ -343,6 +343,10 @@ const data: ITranslation = {
     en: 'Lessons',
     ru: 'Уроки',
   },
+  profileLessonTypingSpeed: {
+    en: 'ch.',
+    ru: 'зн.',
+  },
   profileLessonLangRUCaption: {
     en: 'Lessons in <i>Russian</i> language:',
     ru: 'Уроки на <i>русском</i> языке:',

@@ -209,12 +209,75 @@
                 margin-left: 3%;
               }
               .lesson__lang-levels {
+                width: 98%;
+                min-width: 250px;
+
                 .lesson__lang-levels__line {
                   font-size: 14px;
                   display: flex;
                   gap: 10px;
                   margin-top: 1%;
                   margin-left: 6%;
+
+                  .value__index {
+                    width: 10%;
+                    min-width: 80px;
+                  }
+
+                  .value__speed {
+                    width: 32%;
+                    padding: 0 5px 0 5px;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    text-align: center;
+                    border: 1px solid gray;
+
+                    position: relative;
+
+                    b,
+                    span {
+                      position: relative;
+                      z-index: 2;
+                    }
+
+                    .value__speed-percent {
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      width: 100%;
+                      height: 100%;
+                      background-color: #bd6496;
+                      z-index: 1;
+                    }
+                  }
+
+                  .value__accuracy {
+                    width: 32%;
+                    //background-color: #f59e35;
+                    padding: 0 5px 0 5px;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    text-align: center;
+                    border: 1px solid gray;
+
+                    position: relative;
+
+                    b,
+                    span {
+                      position: relative;
+                      z-index: 2;
+                    }
+
+                    .value__accuracy-percent {
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      width: 100%;
+                      height: 100%;
+                      background-color: #f59e35;
+                      z-index: 1;
+                    }
+                  }
                 }
               }
             }
@@ -521,7 +584,7 @@
               .lesson__lang-levels {
                 .lesson__lang-levels__line {
                   .value {
-                    display: none;
+                    //display: none;
                   }
                 }
               } 
@@ -581,7 +644,7 @@
               .lesson__lang-levels {
                 .lesson__lang-levels__line {
                   .value {
-                    display: none;
+                    // display: none;
                   }
                 }
               } 
