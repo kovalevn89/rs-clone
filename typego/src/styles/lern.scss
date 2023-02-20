@@ -100,5 +100,33 @@
         }
       }
     }
+
+    .block__controls__wrapper {
+      display: flex;
+      justify-content: center;
+
+      .training__button {
+        width: 270px;
+        height: 50px;
+        border-radius: 10px;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 17px;
+        line-height: 22px;
+        color: $font-color-text2-light;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        user-select: none;
+        cursor: pointer;
+        background: $button-color-light;
+        text-transform: uppercase;
+
+        &:hover {
+          background: $button-hover-color-light;
+        }
+      }
+    }
   }
 }
