@@ -19,12 +19,12 @@ class App {
 
   constructor() {
     this.config = new AppConfig();
+    this.translate = new Translation();
     this.model = new Model();
     this.controller = new Controller();
     this.header = new Header();
     this.footer = new Footer();
     this.router = new Router();
-    this.translate = new Translation();
     this.state = new State();
   }
 
