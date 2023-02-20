@@ -96,6 +96,22 @@ class Lern extends PageView {
       const blockMiddleContentImage3 = createElement('div', 'block__middle-content__image', blockMiddleContent3);
       blockMiddleContentImage3.style.background = `url(${lern4}) center no-repeat`;
       blockMiddleContentImage3.style.backgroundSize = 'contain';
+
+      // middle 5
+      const blockMiddleWrapper4 = createElement('div', 'block__middle__wrapper', wrapper);
+      const blockMiddle4 = createElement('div', 'block__middle', blockMiddleWrapper4);
+      const blockMiddleCaption4 = createElement('div', 'block__middle-caption', blockMiddle4);
+      blockMiddleCaption4.textContent = 'Скорость печати';
+      const blockMiddleContent4 = createElement('div', 'block__middle-content', blockMiddle4);
+      const blockMiddleContentText4 = createElement('div', 'block__middle-content__text', blockMiddleContent4);
+      blockMiddleContentText4.style.width = '98%';
+      const contentTextList4 = createElement('ul', '', blockMiddleContentText4);
+      createElement('li', '', contentTextList4).textContent = 'Не пытайся сразу печатать со скоростью света. Начинай ускоряться, только когда все 10 пальцев привыкнут нажимать правильные клавиши.';
+      createElement('li', '', contentTextList4).textContent = 'Не торопись когда печатаешь, чтобы избежать ошибок. Скорость будет возрастать постепенно.';
+      createElement('li', '', contentTextList4).textContent = 'Всегда просматривай текст на одно-два слова вперед.';
+      createElement('li', '', contentTextList4).textContent = 'Пройди все уроки на клавиатурном тренажере TypeGo. И твоя скорость станет выше средней скорости печати.';
+      const blockMiddleContentImage4 = createElement('div', 'block__middle-content__image', blockMiddleContent4);
+      blockMiddleContentImage4.style.width = '0px';
     }
   }
 
