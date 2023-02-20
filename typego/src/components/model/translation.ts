@@ -58,6 +58,13 @@ class Translation {
   regObserverPermanent(callback: () => void) {
     this.observerPermanent.push(callback);
   }
+
+  translateField(element: HTMLElement, content: string): void {
+    element.textContent = this.getString(content);
+    this.regObserver(() => {
+      element.textContent = this.getString(content);
+    });
+  }
 }
 
 export default Translation;

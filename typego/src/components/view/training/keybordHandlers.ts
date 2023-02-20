@@ -83,6 +83,7 @@ export const keyUpHandler = (training: TrainingTask): void => {
   textTraining.updateProgress();
   if (text.index === text.letters.length - 1) {
     input.stopListen();
+    input.isComplete = true;
 
     const finish = new FinishLevel();
     finish.renderComplete();

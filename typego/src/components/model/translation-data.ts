@@ -129,8 +129,8 @@ const data: ITranslation = {
     ru: 'Руководитель команды, fullstack-разработчик',
   },
   aboutDeveloperDiscription1: {
-    en: 'Team coordination, application architecture development and support, back-end, main page layout, "Whacamole" game',
-    ru: 'Координация команды, разработка и поддержка архитектуры приложения, back-end, верстка главной страницы, игра "Whacamole"',
+    en: 'Team coordination, development and support of the application architecture, routing, back-end, layout of the main page, modal registration and authorization windows, Whacamole game, translation of static application pages',
+    ru: 'Координация команды, разработка и поддержка архитектуры приложения, роутинг, back-end, верстка главной страницы, модальные окна регистрации и авторизации, игра "Whacamole", перевод статических страниц приложения',
   },
   aboutDeveloperName2: {
     en: 'Anna Glavatskih',
@@ -141,8 +141,8 @@ const data: ITranslation = {
     ru: 'Frontend-разработчик',
   },
   aboutDeveloperDiscription2: {
-    en: 'Implementation of the virtual keyboard and lessons, design',
-    ru: 'Реализация виртуальной клавиатуры и уроков, дизайн',
+    en: 'Implementation of a virtual keyboard, lessons, testing, including their layout, translation and light/dark themes, design',
+    ru: 'Реализация виртуальной клавиатуры, уроков, тестирования, включая их верстку, перевод и светлую/темную темы, дизайн',
   },
   aboutDeveloperName3: {
     en: 'Dmitry Khorsun',
@@ -153,8 +153,9 @@ const data: ITranslation = {
     ru: 'Frontend-разработчик',
   },
   aboutDeveloperDiscription3: {
-    en: 'Development of the game "Drop Food", page layout "About us"',
-    ru: 'Разработка игры "Drop Food", верстка страницы "О нас"',
+    en: `Development of games "Drop Food", "Hogan's Alley", pages "About us", "Games", 
+    including their layout, translation and light/dark themes`,
+    ru: 'Разработка игр "Drop Food", "Hogan’s Alley", страницы "О нас", "Игры", включая их верстку, перевод и светлую/темную темы',
   },
 
   // error
@@ -217,7 +218,7 @@ const data: ITranslation = {
     ru: 'Ошибка! Пароль может содержать "A-Za-z0-9_" и быть не меньше 6 символов!',
   },
   regPasswordMatchError: {
-    en: 'Passwords don\'t match!',
+    en: "Passwords don't match!",
     ru: 'Пароли не совпадают!',
   },
   regAuthNow: {
@@ -257,14 +258,14 @@ const data: ITranslation = {
     en: 'letters per minute',
     ru: 'Знаков в минуту',
   },
+  seconds: {
+    en: 'seconds',
+    ru: 'сек',
+  },
   accurancy: {
     en: 'Accurancy',
     ru: 'Точность',
   },
-  // pressAnyKey: {
-  //   en: '',
-  //   ru: '',
-  // },
   start: {
     en: 'Press any key to Start',
     ru: 'Нажмите любую клавишу, чтобы НАЧАТЬ',
@@ -402,6 +403,161 @@ const data: ITranslation = {
   profileAdminDelete: {
     en: 'Delete account',
     ru: 'Удалить аккаунт',
+ 
+  // auth modal
+  letters: {
+    en: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    ru: 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
+  },
+  levelTitle: {
+    en: 'Level',
+    ru: 'Уровень',
+  },
+  resetButton: {
+    en: 'Reset statistics',
+    ru: 'Обнулить статистику',
+  },
+  pointsTitle: {
+    en: 'Statistics',
+    ru: 'Статистика',
+  },
+  scoreTitle: {
+    en: 'In total, delicious snacks were eaten:',
+    ru: 'Всего скушано вкусняшек:',
+  },
+  accuracyTitle: {
+    en: 'Average catch percentage:',
+    ru: 'Средний процент ловли:',
+  },
+  ruleTitle: {
+    en: 'Rules of the game',
+    ru: 'Правила игры',
+  },
+  ruleText: {
+    en: `The goal of this game is to catch all the falling food!
+    Don't let them fall to the ground!
+    Enjoy this game.
+    You will get a lot of fun!
+    Press the keys on the keyboard according to the letters indicated on the falling food.
+    Collect all food to earn maximum points! It will also take into account the statistics of incorrect hits (your accuracy of typing letters).
+    Depending on the selected difficulty level, the amount and speed of food falling, as well as the duration of the level, will change.`,
+    ru: `Цель этой игры состоит в том, чтобы поймать всю падающую еду!
+    Не дайте им упасть на землю!
+    Наслаждайтесь этой игрой.
+    Вы получите массу удовольствия!
+    Нажимайте клавиши на клавиатуре в соответствии с буквами, указанными на падающей еде.
+    Соберите всю еду, чтобы заработать максимальные очки! Также будет учитываться статистика неправильных попаданий (ваша точность набора букв).
+    В зависимости от выбранного уровня сложности, будет меняться количество и скорость падения еды, а также продолжительность уровня.`,
+  },
+  personDetailsTitle: {
+    en: 'SETTINGS',
+    ru: 'НАСТРОЙКИ',
+  },
+  personDetailsText: {
+    en: `
+Tired of playing on factory settings?! Now you can customize the game according to your wishes. Choose the duration of the level, speed and amount of food and go!`,
+    ru: 'Устали играть на заводских настройках?! Теперь вы можете настроить игру с учетом своих пожеланий. Выбирайте продолжительность уровня, скорость и количество еды и вперед!',
+  },
+  settingDuration: {
+    en: 'Duration 20 to 90 s',
+    ru: 'Продолжительность от 20 до 90 с',
+  },
+  settingSpeed: {
+    en: 'Fall time 2 to 10 s',
+    ru: 'Время падения от 2 до 10 с',
+  },
+  settingColumns: {
+    en: 'Amount of food at a time from 4 to 8',
+    ru: 'Количество еды за раз от 4 до 8',
+  },
+  errorMessage: {
+    en: 'Error',
+    ru: 'Ошибка',
+  },
+  errorMessageEmpty: {
+    en: 'This field is empty',
+    ru: 'Заполните поле',
+  },
+  btnStart: {
+    en: 'Start',
+    ru: 'Старт',
+  },
+  popupContent: {
+    en: 'OM-NOM-NOM. Thanks for the food!',
+    ru: 'НЯM-НЯМ. Спасибо за еду!',
+  },
+
+  // Gun game
+  captionGun: {
+    en: 'Game over',
+    ru: 'Конец игры',
+  },
+  roundGun: {
+    en: 'Round:',
+    ru: 'Раунд:',
+  },
+  scoreGun: {
+    en: 'Score:',
+    ru: 'Счет:',
+  },
+  accuracyGun: {
+    en: 'Gun accuracy:',
+    ru: 'Точность выстрелов:',
+  },
+  roundGunGame: {
+    en: 'R=',
+    ru: 'Р=',
+  },
+  timeGun: {
+    en: 'Time:',
+    ru: 'Время:',
+  },
+
+
+  // gamePage
+  captiongamePage: {
+    en: 'Games',
+    ru: 'Игры',
+  },
+
+  // Whack game
+  captionWhack: {
+    en: 'Game end',
+    ru: 'Игра окончена',
+  },
+  roundWhack: {
+    en: 'Level:',
+    ru: 'Уровень:',
+  },
+  scoreWhack: {
+    en: 'Score:',
+    ru: 'Счет:',
+  },
+  accuracyWhack: {
+    en: 'Accuracy:',
+    ru: 'Точность:',
+  },
+  timeWhack: {
+    en: 'Time:',
+    ru: 'Время:',
+  },
+
+  // test
+  test: {
+    en: 'Typing test',
+    ru: 'Тест печати',
+  },
+  result: {
+    en: 'Results',
+    ru: 'Результат',
+  },
+  startTraining: {
+    en: 'Start training',
+    ru: 'Начать трентровку',
+  },
+  toMain: {
+    en: 'Back to main',
+    ru: 'На главную',
   },
 };
 

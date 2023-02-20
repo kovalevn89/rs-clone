@@ -19,12 +19,16 @@ h3 {
     }
 
     @include flex-center;
-    width: 100%;
-
-    padding: 0 11vw 30px;
-    margin: 0;
     flex-direction: column;
+
+    width: 79%;
+    max-width: 1120px;
     box-sizing: border-box;
+
+
+    margin: 0 auto;
+    gap: 15px;
+
   }
 
   & .training__title {
@@ -34,8 +38,6 @@ h3 {
     color: $font-color-text2-light;
     margin: 10px auto;
   }
-
-  // background: linear-gradient($base-color-light, 5%, $base-color-addition-light);
 
   .select {
     display: flex;
@@ -53,12 +55,16 @@ h3 {
     width: 40%;
     height: 40%;
     max-width: 500px;
-    min-width: 200px;
+    min-width: 250px;
 
     border: $font-color-text2-light 2px solid;
     border-radius: 25px;
 
     // background-color: $base-color-addition-light;
+
+    .select__title {
+      text-align: center;
+    }
 
     &:hover {
       cursor: pointer;
@@ -75,11 +81,9 @@ h3 {
   }
 
   .training__levels {
-    display: flex;
+    @include flex-center;
     flex-wrap: wrap;
     gap: 30px;
-    align-items: center;
-    justify-content: center;
   }
 
   &.dark {

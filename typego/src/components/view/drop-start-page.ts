@@ -14,6 +14,16 @@ class DropStartPage extends PageView {
   }
   createDropStartPage() {
     const app = document.querySelector('.app') as HTMLElement;
+    const header: HTMLElement | null = document.querySelector('.header');
+    const footer: HTMLElement | null = document.querySelector('.footer');
+    if (header) {
+      header.style.display = 'none';
+    }
+    if (footer) {
+      footer.style.display = 'none';
+    }
+    this.translation.cleanObserver(); // clear translate obserber hook
+
     removeChild(app);
     const main = createElement('div', 'main', app);
     if (this.config.getTheme() === Themes.Dark) {
@@ -35,52 +45,45 @@ class DropStartPage extends PageView {
       <div class="drop-game-startpage-left-container">
         <div class="drop-game-startpage-levels">
           <button class="level-btn">
-            <p class="level-title">Уровень 1</p>
+            <p class="level-title">${this.translation.getString('levelTitle')} 1</p>
           </button>
           <button class="level-btn">
-            <p class="level-title">Уровень 2</p>
+            <p class="level-title">${this.translation.getString('levelTitle')} 2</p>
           </button>
           <button class="level-btn">
-            <p class="level-title">Уровень 3</p>
+            <p class="level-title">${this.translation.getString('levelTitle')} 3</p>
           </button>
           <button class="level-btn">
-            <p class="level-title">Уровень 4</p>
+            <p class="level-title">${this.translation.getString('levelTitle')} 4</p>
           </button>
           <button class="level-btn">
-            <p class="level-title">Уровень 5</p>
+            <p class="level-title">${this.translation.getString('levelTitle')} 5</p>
           </button>
         </div>
-        <button class="drop-game-startpage-reset-button">Начать все заново</button>
+        <button class="drop-game-startpage-reset-button"> ${this.translation.getString('resetButton')} </button>
       </div>
       <div class="drop-game-startpage-right-container">
         <div class="drop-game-startpage-points-container">
           <div class="drop-game-startpage-overall-points-container">
             <h3 class="drop-game-startpage-points-title">
-              Статистика
+            ${this.translation.getString('pointsTitle')}
             </h3>
             <div class="drop-game-startpage-scores">
               <div class="score">
-                <p class="score-title">Всего скушано вкусняшек:</p>
+                <p class="score-title">${this.translation.getString('scoreTitle')}</p>
                 <p class="score-points">0</p>
               </div>
               <div class="accuracy">
-                <p class="accuracy-title">Средний процент ловли:</p>
+                <p class="accuracy-title">${this.translation.getString('accuracyTitle')}</p>
                 <p class="accuracy-points">0%</p>
               </div>
             </div>
           </div>
           <div class="drop-game-startpage-rule-container">
             <h3 class="drop-game-startpage-rule-title">
-              Правила игры
+            ${this.translation.getString('ruleTitle')}
             </h3>
-            <p class="drop-game-startpage-rule-text">Цель этой игры состоит в том, чтобы поймать всю падающую еду!
-              Не дайте им упасть на землю!
-              Наслаждайтесь этой игрой.
-              Вы получите массу удовольствия!
-              Нажимайте клавиши на клавиатуре в соответствии с буквами, указанными на падающей еде.
-              Соберите всю еду, чтобы заработать максимальные очки! Также будет учитываться статистика неправильных попаданий (ваша точность набора букв).
-              В зависимости от выбранного уровня сложности, будет меняться количество и скорость падения еды, а также продолжительность уровня.
-              </p>
+            <p class="drop-game-startpage-rule-text">${this.translation.getString('ruleText')}</p>
           </div>
         </div>
       </div>
@@ -90,27 +93,89 @@ class DropStartPage extends PageView {
   <div class="popup-content popup-content-setting">
     <form class="popup-form">
       <div class="person-details">
-        <h2>НАСТРОЙКИ</h2>
-        <p class="">Устали играть на заводских настройках?! Теперь вы можете настроить игру с учетом своих пожеланий. Выбирайте продолжительность уровня, скорость и количество еды и вперед!</p>
+        <h2>${this.translation.getString('personDetailsTitle')}</h2>
+        <p class="">${this.translation.getString('personDetailsText')}</p>
         <div class="form-item">
-          <input type="number" placeholder="Продолжительность от 20 до 90 с" name="duration" />
+          <input type="number" placeholder="${this.translation.getString('settingDuration')}" name="duration" />
           <div class="error-message"></div>
         </div>
         <div class="form-item">
-          <input type="number" placeholder="Время падения от 2 до 10 с" name="speed" />
+          <input type="number" placeholder="${this.translation.getString('settingSpeed')}" name="speed" />
           <div class="error-message"></div>
         </div>
         <div class="form-item">
-          <input type="number" placeholder="Количество еды за раз от 4 до 8" name="columns" />
+          <input type="number" placeholder="${this.translation.getString('settingColumns')}" name="columns" />
           <div class="error-message"></div>
         </div>
       </div>
-      <button class="btn btn_confirm" type="submit">Старт</button>
+      <button class="btn btn_confirm" type="submit">${this.translation.getString('btnStart')}</button>
     </form>
     <div><div class="popup_close"></div></div>
   </div>
   <div class="popup_back"></div>
 </div>`;
+    const levelTitles = document.querySelectorAll('.level-title');
+    const resetButton = document.querySelector('.drop-game-startpage-reset-button') as HTMLElement;
+    const pointsTitle = document.querySelector('.drop-game-startpage-points-title') as HTMLElement;
+    const scoreTitle = document.querySelector('.score-title') as HTMLElement;
+    const accuracyTitle = document.querySelector('.accuracy-title') as HTMLElement;
+    const ruleTitle = document.querySelector('.drop-game-startpage-rule-title') as HTMLElement;
+    const ruleText = document.querySelector('.drop-game-startpage-rule-text') as HTMLElement;
+    const personDetailsTitle = document.querySelector('.person-details h2') as HTMLElement;
+    const personDetailsText = document.querySelector('.person-details p') as HTMLElement;
+    const form = document.querySelector('.popup-form') as HTMLFormElement;
+    const settingDuration = form.duration;
+    const settingSpeed = form.speed;
+    const settingColumns = form.columns;
+    const btnStart = document.querySelector('.btn_confirm') as HTMLElement;
+
+    levelTitles.forEach((levelTitle, index) => {
+      this.translation.regObserver(() => {
+        levelTitle.textContent = `${this.translation.getString('levelTitle')} ${index + 1}`;
+      });
+    });
+    this.translation.regObserver(() => {
+      resetButton.textContent = this.translation.getString('resetButton');
+    });
+    this.translation.regObserver(() => {
+      pointsTitle.textContent = this.translation.getString('pointsTitle');
+    });
+    this.translation.regObserver(() => {
+      scoreTitle.textContent = this.translation.getString('scoreTitle');
+    });
+    this.translation.regObserver(() => {
+      accuracyTitle.textContent = this.translation.getString('accuracyTitle');
+    });
+    this.translation.regObserver(() => {
+      ruleTitle.textContent = this.translation.getString('ruleTitle');
+    });
+    this.translation.regObserver(() => {
+      ruleText.textContent = this.translation.getString('ruleText');
+    });
+    this.translation.regObserver(() => {
+      personDetailsTitle.textContent = this.translation.getString('personDetailsTitle');
+    });
+
+    this.translation.regObserver(() => {
+      personDetailsText.textContent = this.translation.getString('personDetailsText');
+    });
+
+    this.translation.regObserver(() => {
+      settingDuration.placeholder = this.translation.getString('settingDuration');
+    });
+
+    this.translation.regObserver(() => {
+      settingSpeed.placeholder = this.translation.getString('settingSpeed');
+    });
+
+    this.translation.regObserver(() => {
+      settingColumns.placeholder = this.translation.getString('settingColumns');
+    });
+
+    this.translation.regObserver(() => {
+      btnStart.textContent = this.translation.getString('btnStart');
+    });
+
     const levelBtns = document.querySelectorAll('.level-btn');
     levelBtns.forEach((levelBtn) => {
       levelBtn.addEventListener('click', (e) => {
@@ -132,8 +197,16 @@ class DropStartPage extends PageView {
     const backBtn = document.querySelector('.drop-game-startpage-btn') as HTMLElement;
 
     backBtn.addEventListener('click', () => {
-      removeChild(app);
-      window.location.hash = '#/games';
+      if (app) {
+        removeChild(app);
+        if (header) {
+          header.style.display = 'block';
+        }
+        if (footer) {
+          footer.style.display = 'block';
+        }
+        window.location.hash = '#/games';
+      }
     });
 
     const resetBtn = document.querySelector('.drop-game-startpage-reset-button') as HTMLElement;
@@ -207,7 +280,7 @@ class DropStartPage extends PageView {
           return;
         }
         if (elem.value === '') {
-          nextElem.textContent = 'This field is empty';
+          nextElem.textContent = 'Empty';
         } else {
           nextElem.textContent = '';
         }

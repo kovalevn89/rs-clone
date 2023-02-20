@@ -11,6 +11,8 @@ import TrainingLevels from '../view/training/levels';
 import Main from '../view/main';
 import FinishLevel from '../view/training/finish';
 import Profile from '../view/profile';
+import TypingTest from '../view/typingTest';
+import GunGame from '../view/gun';
 // import State from '../model/state';
 
 class Router {
@@ -19,18 +21,20 @@ class Router {
   private training;
   private lessons;
   private levels;
+  private test;
   private whac;
   private error;
   private about;
   private dropGame;
   private games;
   private profile;
+  private gunGame;
   finish;
 
   constructor() {
     this.validPage = new Array<IPage>();
     this.validPage.push({ page: 'main', params: [] });
-    // this.validPage.push({ page: 'test', params: [] });
+    this.validPage.push({ page: 'test', params: [] });
     // this.validPage.push({ page: 'learn', params: [] });
     this.validPage.push({ page: 'training', params: ['lang'] });
     this.validPage.push({ page: 'lesson', params: ['lang', 'index', 'id'] });
@@ -43,11 +47,13 @@ class Router {
     this.training = new Training();
     this.lessons = new TrainingLessons();
     this.levels = new TrainingLevels();
+    this.test = new TypingTest();
     this.whac = new WhacAMole();
     this.error = new Error();
     this.about = new AboutPage();
     this.dropGame = new DropStartPage();
     this.games = new Games();
+    this.gunGame = new GunGame();
     this.finish = new FinishLevel();
     this.profile = new Profile();
   }
@@ -96,7 +102,8 @@ class Router {
       }
 
       if (page === 'test') {
-        // PLACE THIS RENDER TEST PAGE
+        this.test.run();
+        // this.finish.renderComplete();
       }
 
       if (page === 'learn') {
@@ -166,9 +173,15 @@ class Router {
           validParams.forEach((item) => {
             if (item.parametr === 'name') {
               switch (item.value) {
-                case 'whac': this.whac.run(); break;
-                case 'drop': this.dropGame.run(); break;
-                case 'shoter': console.log('render shooter game'); break; // PLACE THIS RENDER SHOOTER GAME
+                case 'whac':
+                  this.whac.run();
+                  break;
+                case 'drop':
+                  this.dropGame.run();
+                  break;
+                case 'shooter':
+                  this.gunGame.run();
+                  break;
                 default: {
                   this.error.run('pageNotFound');
                   // console.log('RENDER 404');

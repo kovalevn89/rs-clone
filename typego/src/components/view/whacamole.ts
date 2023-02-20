@@ -13,8 +13,9 @@ import soundOn from '../../assets/png/sound_on.png';
 import hitSound from '../../assets/media/hit.mp3';
 import clickSound from '../../assets/media/click.mp3';
 import winSound from '../../assets/media/win.mp3';
+import PageView from './baseViewClass';
 
-class WhacAMole {
+class WhacAMole extends PageView {
   language: string;
   isSound: boolean;
   gameField: Array<IMole>;
@@ -29,6 +30,7 @@ class WhacAMole {
   keyHandler: (event: Event) => void;
 
   constructor() {
+    super();
     this.language = 'ru';
     this.isSound = true;
     this.gameField = [];
@@ -90,9 +92,15 @@ class WhacAMole {
   private playSound(type: string): void {
     if (this.isSound === true) {
       switch (type) {
-        case 'hit': (new Audio(hitSound)).play(); break;
-        case 'click': (new Audio(clickSound)).play(); break;
-        case 'win': (new Audio(winSound)).play(); break;
+        case 'hit':
+          new Audio(hitSound).play();
+          break;
+        case 'click':
+          new Audio(clickSound).play();
+          break;
+        case 'win':
+          new Audio(winSound).play();
+          break;
         default: {
           // console.log();
         }
@@ -135,10 +143,18 @@ class WhacAMole {
       if (this.gameField.length > 0) {
         let randomCount = 1;
         switch (this.level) {
-          case 1: randomCount = Math.floor(Math.random() * 2) + 1; break;
-          case 2: randomCount = Math.floor(Math.random() * 3) + 1; break;
-          case 3: randomCount = Math.floor(Math.random() * 3) + 2; break;
-          default: randomCount = 1; break;
+          case 1:
+            randomCount = Math.floor(Math.random() * 2) + 1;
+            break;
+          case 2:
+            randomCount = Math.floor(Math.random() * 3) + 1;
+            break;
+          case 3:
+            randomCount = Math.floor(Math.random() * 3) + 2;
+            break;
+          default:
+            randomCount = 1;
+            break;
         }
 
         this.gameField
@@ -191,7 +207,8 @@ class WhacAMole {
         Level.textContent = `${this.level}`;
       }
 
-      if (this.gameClock >= 180) { // 180
+      if (this.gameClock >= 180) {
+        // 180
         // stop game
         this.renderEndGame();
         this.clearTimers();
@@ -224,9 +241,13 @@ class WhacAMole {
               }
               value.curentLetter = '';
               value.moleElement.classList.remove('go');
-              setTimeout((v: IMole) => {
-                v.isShowed = false;
-              }, 800, value);
+              setTimeout(
+                (v: IMole) => {
+                  v.isShowed = false;
+                },
+                800,
+                value,
+              );
             }
             return true;
           }
@@ -268,13 +289,6 @@ class WhacAMole {
     }
   }
 
-  private renderModal(whac: HTMLElement): void {
-    const modal = createElement('div', 'modal_low-resolution', whac);
-    this.setBackground(modal, whackBackground);
-    const wrap = createElement('div', 'modal_wrapper', modal);
-    createElement('div', 'message', wrap).textContent = 'Low screen width (nedd more then 800px)!';
-  }
-
   private renderGame(): void {
     this.resetGame();
 
@@ -283,28 +297,46 @@ class WhacAMole {
     if (app !== null) {
       removeChild(app);
       const whac = createElement('div', 'whac', app);
-      this.renderModal(whac);
+      this.setBackground(whac, whackBackground);
+      const backButton = createElement('div', 'back-btn', whac);
+      const goHomeListener = this.backButtonListener;
+      backButton.addEventListener('click', goHomeListener);
       const game = createElement('div', 'game', whac);
-      this.setBackground(game, whackBackground);
       const statsBlock = createElement('div', 'stats', game);
       // level
       const statsLevel = createElement('div', 'stats_level', statsBlock);
-      createElement('div', 'label', statsLevel).textContent = 'Level:';
+      const raund = createElement('div', 'label', statsLevel);
+      raund.textContent = this.translation.getString('roundWhack');
+      this.translation.regObserver(() => {
+        raund.textContent = this.translation.getString('roundWhack');
+      });
       const levelValue = createElement('div', 'value', statsLevel);
       levelValue.textContent = '1';
       // score
       const statsScore = createElement('div', 'stats_score', statsBlock);
-      createElement('div', 'label', statsScore).textContent = 'Score:';
+      const score = createElement('div', 'label', statsScore);
+      score.textContent = this.translation.getString('scoreWhack');
+      this.translation.regObserver(() => {
+        score.textContent = this.translation.getString('scoreWhack');
+      });
       const scoreValue = createElement('div', 'value', statsScore);
       scoreValue.textContent = '0';
       // accuracy
       const statsAccuracy = createElement('div', 'stats_accuracy', statsBlock);
-      createElement('div', 'label', statsAccuracy).textContent = 'Accuracy:';
+      const accuracy = createElement('div', 'label', statsAccuracy);
+      accuracy.textContent = this.translation.getString('accuracyWhack');
+      this.translation.regObserver(() => {
+        accuracy.textContent = this.translation.getString('accuracyWhack');
+      });
       const accuracyValue = createElement('div', 'value', statsAccuracy);
       accuracyValue.textContent = '100%';
       // time
       const statsTime = createElement('div', 'stats_time', statsBlock);
-      createElement('div', 'label', statsTime).textContent = 'Time:';
+      const time = createElement('div', 'label', statsTime);
+      time.textContent = this.translation.getString('timeWhack');
+      this.translation.regObserver(() => {
+        time.textContent = this.translation.getString('timeWhack');
+      });
       const timerValue = createElement('div', 'value', statsTime);
       timerValue.textContent = '00s';
 
@@ -373,13 +405,23 @@ class WhacAMole {
 
   private renderMenu(): void {
     const app: HTMLElement | null = document.querySelector('.app');
+    const header: HTMLElement | null = document.querySelector('.header');
+    const footer: HTMLElement | null = document.querySelector('.footer');
+    if (header) {
+      header.style.display = 'none';
+    }
+    if (footer) {
+      footer.style.display = 'none';
+    }
 
     if (app !== null) {
       removeChild(app);
       const whac = createElement('div', 'whac', app);
-      this.renderModal(whac);
+      this.setBackground(whac, whackBackground);
+      const backButton = createElement('div', 'back-btn', whac);
+      const goHomeListener = this.backButtonListener;
+      backButton.addEventListener('click', goHomeListener);
       const menu = createElement('div', 'menu', whac);
-      this.setBackground(menu, whackBackground);
       const caption = createElement('div', 'game_caption', menu);
       caption.textContent = 'Whac A Mole';
       const controls = createElement('div', 'game_controls', menu);
@@ -398,22 +440,38 @@ class WhacAMole {
       this.playSound('win');
       removeChild(app);
       const whac = createElement('div', 'whac', app);
-      this.renderModal(whac);
+      const backButton = createElement('div', 'back-btn', whac);
+      const goHomeListener = this.backButtonListener;
+      backButton.addEventListener('click', goHomeListener);
+      this.setBackground(whac, whackBackground);
       const menu = createElement('div', 'menu', whac);
-      this.setBackground(menu, whackBackground);
       const caption = createElement('div', 'game_caption', menu);
-      caption.textContent = 'Game end...';
-      caption.style.fontSize = '8vw';
+      caption.textContent = this.translation.getString('captionWhack');
+      this.translation.regObserver(() => {
+        caption.textContent = this.translation.getString('captionWhack');
+      });
 
       const result = createElement('div', 'game_result', menu);
       const line1 = createElement('div', 'result_line', result);
-      createElement('div', 'caption', line1).textContent = 'Level:';
+      const round = createElement('div', 'caption', line1);
+      round.textContent = this.translation.getString('roundWhack');
+      this.translation.regObserver(() => {
+        round.textContent = this.translation.getString('roundWhack');
+      });
       createElement('div', 'value', line1).textContent = `${this.level}`;
       const line2 = createElement('div', 'result_line', result);
-      createElement('div', 'caption', line2).textContent = 'Score:';
+      const score = createElement('div', 'caption', line2);
+      score.textContent = this.translation.getString('scoreWhack');
+      this.translation.regObserver(() => {
+        score.textContent = this.translation.getString('scoreWhack');
+      });
       createElement('div', 'value', line2).textContent = `${this.score}`;
       const line3 = createElement('div', 'result_line', result);
-      createElement('div', 'caption', line3).textContent = 'Accuracy:';
+      const accuracy = createElement('div', 'caption', line3);
+      accuracy.textContent = this.translation.getString('accuracyWhack');
+      this.translation.regObserver(() => {
+        accuracy.textContent = this.translation.getString('accuracyWhack');
+      });
       createElement('div', 'value', line3).textContent = `${this.accuracy}%`;
       const controls = createElement('div', 'game_controls', menu);
       const startButton = createElement('div', 'controls_restart-btn', controls);
@@ -421,6 +479,22 @@ class WhacAMole {
       startButton.addEventListener('click', () => {
         this.renderGame();
       });
+    }
+  }
+
+  private backButtonListener() {
+    const app: HTMLElement | null = document.querySelector('.app');
+    const header: HTMLElement | null = document.querySelector('.header');
+    const footer: HTMLElement | null = document.querySelector('.footer');
+    if (app) {
+      removeChild(app);
+      if (header) {
+        header.style.display = 'block';
+      }
+      if (footer) {
+        footer.style.display = 'block';
+      }
+      window.location.hash = '#/games';
     }
   }
 

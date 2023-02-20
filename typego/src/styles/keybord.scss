@@ -1,44 +1,47 @@
 @import './mixin.scss';
 @import './constants.scss';
 
-.keyboard {
-  display: flex;
-  width: 95%;
-  margin: 0 auto;
-
-  font-family: 'ArialMT', Verdana, Geneva, Tahoma, sans-serif;
-  color: $font-color-text2-light;
+.main {
+  .keyboard {
+    display: flex;
+    width: 95%;
+    margin: 0 auto;
+  
+    font-family: 'ArialMT', Verdana, Geneva, Tahoma, sans-serif;
+    color: $font-color-text2-light;
+  }
+  .key {
+    fill: rgba(96, 157, 159, 0.1);
+    stroke: $font-color-text2-light ;
+  
+    &.active {
+      fill: $base-color-light;
+    }
+  
+    &.correct {
+      fill: #e7fbd3
+    }
+  
+    &.incorrect {
+      fill:#ffc0cb;
+    }
+  }
+  
+  .letter {
+    font-size: 18px;
+    color: $font-color-text2-light;
+  
+  
+    &.num {
+      font-size: 12px;
+    }
+  
+    &.special {
+      font-size: 10px;
+    }
+  }
 }
-.key {
-  fill: rgba(96, 157, 159, 0.1);
-  stroke: $font-color-text2-light ;
 
-  &.active {
-    fill: $base-color-light;
-  }
-
-  &.correct {
-    fill: #e7fbd3
-  }
-
-  &.incorrect {
-    fill:#ffc0cb;
-  }
-}
-
-.letter {
-  font-size: 18px;
-  color: $font-color-text2-light;
-
-
-  &.num {
-    font-size: 12px;
-  }
-
-  &.special {
-    font-size: 10px;
-  }
-}
 
 .main.dark {
   .key {

@@ -8,7 +8,7 @@ import TrainingTask from './trainingTask';
 export default class TextInput {
   input;
   private status;
-  private isComplete;
+  isComplete;
   private state;
 
   constructor() {
@@ -31,13 +31,13 @@ export default class TextInput {
     const { text } = textTraining;
 
     this.input.addEventListener('blur', () => {
-      if (!this.isComplete) {
+      if (this.state.isInputActive) {
         this.input.focus();
       }
     });
 
     this.input.addEventListener('keydown', (e) => {
-      if (!this.isComplete) {
+      if (this.state.isInputActive) {
         if (e.code !== 'Escape' && !this.status) {
           text.setStartTime(Date.now());
           this.status = true;
@@ -60,16 +60,28 @@ export default class TextInput {
         keyUpHandler(training);
       }
     });
+
+    const signBtn = document.querySelector('.sign__btn');
+    signBtn?.addEventListener('click', () => {
+      console.log('stop listen');
+      this.stopListen();
+    });
+
+    document.body.addEventListener('keydown', () => {
+      if (this.state.isInputActive) {
+        this.startListen();
+      }
+    });
   }
 
   stopListen(): void {
-    this.isComplete = true;
+    this.state.isInputActive = false;
     this.status = false;
     this.input.blur();
   }
 
   startListen(): void {
-    this.isComplete = false;
+    this.state.isInputActive = true;
     this.input.focus();
   }
 }
