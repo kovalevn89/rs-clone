@@ -129,4 +129,35 @@
       }
     }
   }
+
+  &.dark {
+    .lern__wrapper {
+      .block__top__wrapper{
+        .block__top {
+          color: $font-color-text1-dark;
+        }
+      }
+  
+      .block__middle__wrapper {
+        .block__middle{
+          color: $font-color-text1-dark;
+        }
+      }
+  
+      .block__controls__wrapper {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 2vw;
+  
+        .training__button {
+          background: $button-color-dark;
+          color: $font-color-text1-dark;
+  
+          &:hover {
+            background: $button-hover-color-dark;
+          }
+        }
+      }
+    }
+  }
 }

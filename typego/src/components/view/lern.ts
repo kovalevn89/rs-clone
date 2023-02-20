@@ -125,7 +125,7 @@ class Lern extends PageView {
       const blockMiddleContentImage5 = createElement('div', 'block__middle-content__image', blockMiddleContent5);
       blockMiddleContentImage5.style.width = '0px';
 
-      // const trainingBtn =
+      // btn
       const blockControlsrapper5 = createElement('div', 'block__controls__wrapper', wrapper);
       const trainingBtn = createElement('div', 'training__button', blockControlsrapper5);
       trainingBtn.textContent = 'Пора потренироваться';
