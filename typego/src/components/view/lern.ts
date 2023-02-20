@@ -3,7 +3,7 @@ import { Themes } from '../types/enums';
 import { createElement, removeChild } from '../helper';
 import lern1 from '../../assets/png/lern_1.png';
 import lern2 from '../../assets/png/lern_2.png';
-// import lern3 from '../../assets/png/lern_3.png';
+import lern3 from '../../assets/png/lern_3.png';
 // import lern4 from '../../assets/png/lern_4.png';
 
 class Lern extends PageView {
@@ -61,6 +61,27 @@ class Lern extends PageView {
       const blockMiddleContentImage1 = createElement('div', 'block__middle-content__image', blockMiddleContent1);
       blockMiddleContentImage1.style.background = `url(${lern2}) center no-repeat`;
       blockMiddleContentImage1.style.backgroundSize = 'contain';
+
+      // midle 3
+      const blockMiddleWrapper2 = createElement('div', 'block__middle__wrapper', wrapper);
+      const blockMiddle2 = createElement('div', 'block__middle', blockMiddleWrapper2);
+      const blockMiddleCaption2 = createElement('div', 'block__middle-caption', blockMiddle2);
+      blockMiddleCaption2.textContent = 'Схема клавиатуры';
+      const blockMiddleContent2 = createElement('div', 'block__middle-content vertical', blockMiddle2);
+      const blockMiddleContentText2 = createElement('div', 'block__middle-content__text', blockMiddleContent2);
+      createElement('p', '', blockMiddleContentText2).textContent = 'Цвет клавиш на этой клавиатуре поможет тебе понять и запомнить, каким пальцем на какую клавишу нужно нажимать.';
+      const contentTextList2 = createElement('ul', '', blockMiddleContentText2);
+      createElement('li', '', contentTextList2).textContent = 'Нажимай клавиши только тем пальцем, который для них предназначен.';
+      createElement('li', '', contentTextList2).textContent = 'Всегда возвращай пальцы в исходную позицию «ФЫВА – ОЛДЖ».';
+      createElement('li', '', contentTextList2).textContent = 'Когда набираешь текст, представляй расположение клавиш.';
+      createElement('li', '', contentTextList2).textContent = 'Установи ритм и соблюдай его, пока печатаешь. Нажимай на клавиши с одинаковым интервалом.';
+      createElement('li', '', contentTextList2).textContent = 'Клавишу SHIFT всегда нажимает мизинец с противоположной стороны от нужной буквы.';
+      createElement('li', '', contentTextList2).textContent = 'Пробел отбивай большим пальцем левой или правой руки, как тебе удобнее.';
+      createElement('p', '', blockMiddleContentText2).textContent = 'Сначала такой метод печати может показаться неудобным. Но не останавливайся. Со временем все будет получаться быстро, легко и удобно. Чтобы добиться максимального результата, выбирай курс слепой печати для твоей раскладки клавиатуры и на нужном языке.';
+      const blockMiddleContentImage2 = createElement('div', 'block__middle-content__image', blockMiddleContent2);
+      blockMiddleContentImage2.style.background = `url(${lern3}) center no-repeat`;
+      blockMiddleContentImage2.style.backgroundSize = 'contain';
+      blockMiddleContentImage2.style.height = '16vw';
     }
   }
 
