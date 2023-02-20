@@ -20,6 +20,9 @@ class AboutPage extends PageView {
     if (app !== null) {
       removeChild(app);
       const about = createElement('div', 'main', app);
+
+      this.translation.cleanObserver(); // clear translate obserber hook
+
       if (this.config.getTheme() === Themes.Dark) {
         about.classList.add('dark');
       } else {

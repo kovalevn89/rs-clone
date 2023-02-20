@@ -12,6 +12,8 @@ class Footer extends PageView {
       if (footer === null) {
         footer = createElement('footer', 'footer');
         if (footer !== null) {
+          this.translation.cleanObserver(); // clear translate obserber hook
+
           if (this.config.getTheme() === Themes.Dark) {
             footer.classList.add('dark');
           }

@@ -307,6 +307,103 @@ const data: ITranslation = {
     ru: 'Ошибки',
   },
 
+  // profile
+  profileProgressLabel: {
+    en: 'Progress',
+    ru: 'Прогресс',
+  },
+  profileLevels: {
+    en: 'levels',
+    ru: 'уровней',
+  },
+  profileTypingSpeedLabel: {
+    en: 'Typing speed',
+    ru: 'Скорость печати',
+  },
+  profileTypingSpeed: {
+    en: 'ch./min',
+    ru: 'зн./мин',
+  },
+  profileAccuracyLabel: {
+    en: 'Accuracy',
+    ru: 'Точность',
+  },
+  profileCertBlockCaption: {
+    en: 'Certificate',
+    ru: 'Сертификат',
+  },
+  profileDownloadCertificate: {
+    en: 'Download certificate',
+    ru: 'Скачать сертификат',
+  },
+  profileCertificateError: {
+    en: 'To get certified, you need to pass the test!',
+    ru: 'До получения сертификата осталось совсем чуть-чуть - пройти тест!',
+  },
+  profileLessonBlockCaption: {
+    en: 'Lessons',
+    ru: 'Уроки',
+  },
+  profileLessonTypingSpeed: {
+    en: 'ch.',
+    ru: 'зн.',
+  },
+  profileLessonLangRUCaption: {
+    en: 'Lessons in <i>Russian</i> language:',
+    ru: 'Уроки на <i>русском</i> языке:',
+  },
+  profileLessonLangENGCaption: {
+    en: 'Lessons in <i>english</i> language:',
+    ru: 'Уроки на <i>английском</i> языке:',
+  },
+  profileLesson: {
+    en: 'Lesson',
+    ru: 'Урок',
+  },
+  profileLessonError: {
+    en: 'To display statistics, you must pass our exciting tests!',
+    ru: 'Для отображения статистики необходимо пройти наши увлекательные тесты!',
+  },
+  profileLessonLevel: {
+    en: 'Level',
+    ru: 'Уровень',
+  },
+  profileLessonAccuracy: {
+    en: 'Accuracy',
+    ru: 'Точность',
+  },
+  profileLessonSpeed: {
+    en: 'Speed',
+    ru: 'Скорость',
+  },
+  profileGamesBlockCaption: {
+    en: 'Games',
+    ru: 'Игры',
+  },
+  profileGamesError: {
+    en: 'Play fun games and learn at the same time!',
+    ru: 'Играй в интересные игры и учись одновременно!',
+  },
+  profileGamesLevel: {
+    en: 'level',
+    ru: 'уровень',
+  },
+  profileGamesScore: {
+    en: 'score',
+    ru: 'счёт',
+  },
+  profileAdminBlockCaption: {
+    en: 'Administration',
+    ru: 'Администрирование',
+  },
+  profileAdminLogout: {
+    en: 'Logout',
+    ru: 'Выйти',
+  },
+  profileAdminDelete: {
+    en: 'Delete account',
+    ru: 'Удалить аккаунт',
+ 
   // auth modal
   letters: {
     en: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',

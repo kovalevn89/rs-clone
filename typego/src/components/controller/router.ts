@@ -10,6 +10,7 @@ import { Lang } from '../types/enums';
 import TrainingLevels from '../view/training/levels';
 import Main from '../view/main';
 import FinishLevel from '../view/training/finish';
+import Profile from '../view/profile';
 import TypingTest from '../view/typingTest';
 import GunGame from '../view/gun';
 // import State from '../model/state';
@@ -26,6 +27,7 @@ class Router {
   private about;
   private dropGame;
   private games;
+  private profile;
   private gunGame;
   finish;
 
@@ -36,6 +38,8 @@ class Router {
     // this.validPage.push({ page: 'learn', params: [] });
     this.validPage.push({ page: 'training', params: ['lang'] });
     this.validPage.push({ page: 'lesson', params: ['lang', 'index', 'id'] });
+    // this.validPage.push({ page: 'lern', params: [] });
+    this.validPage.push({ page: 'profile', params: [] });
     this.validPage.push({ page: 'about', params: [] });
     this.validPage.push({ page: 'games', params: ['name'] });
 
@@ -51,6 +55,7 @@ class Router {
     this.games = new Games();
     this.gunGame = new GunGame();
     this.finish = new FinishLevel();
+    this.profile = new Profile();
   }
 
   private isPageValid(page: string): boolean {
@@ -90,6 +95,10 @@ class Router {
 
       if (page === 'main') {
         this.main.run();
+      }
+
+      if (page === 'profile') {
+        this.profile.run();
       }
 
       if (page === 'test') {

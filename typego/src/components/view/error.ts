@@ -10,6 +10,7 @@ class Error extends PageView {
     if (app !== null) {
       removeChild(app);
       const main = createElement('div', 'main', app);
+      this.translation.cleanObserver(); // clear translate obserber hook
       if (this.config.getTheme() === Themes.Dark) {
         main.classList.add('dark');
       } else {

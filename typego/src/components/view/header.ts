@@ -49,6 +49,8 @@ class Header extends PageView {
         header = createElement('header', 'header');
 
         if (header !== null) {
+          this.translation.cleanObserver(); // clear translate obserber hook
+
           if (this.config.getTheme() === Themes.Dark) {
             header.classList.add('dark');
           }

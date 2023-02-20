@@ -109,3 +109,30 @@ export interface ITranslationData {
 export interface ITranslation {
   [key: string]: ITranslationData;
 }
+
+export interface IGameScore {
+  _id: string,
+  name: string,
+  level: number,
+  score: number,
+  __v: number,
+}
+
+export interface IProgress {
+  _id: string,
+  lesson: number,
+  lang: string,
+  level: number,
+  accuracy: number,
+  speed: number,
+  __v: number,
+}
+
+export interface IUser {
+  _id: string,
+  username: string,
+  accuracy?: number,
+  speed?: number,
+  gamesScore: Array<IGameScore>,
+  progress: Array<IProgress>,
+}
