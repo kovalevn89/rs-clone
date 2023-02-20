@@ -1,0 +1,16 @@
+@import './mixin.scss';
+@import './constants.scss';
+
+.main {
+  width: 100%;
+  margin: 0 auto;
+  background-color: $footer-background-light;
+
+  .lern__wrapper {
+    box-sizing: border-box;
+    width: 1440px;
+    margin: 0 auto;
+    min-height: 150px;
+    padding: 0 160px;
+  }
+}
