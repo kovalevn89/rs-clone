@@ -2,7 +2,7 @@ import PageView from './baseViewClass';
 import { Themes } from '../types/enums';
 import { createElement, removeChild } from '../helper';
 import lern1 from '../../assets/png/lern_1.png';
-// import lern2 from '../../assets/png/lern_2.png';
+import lern2 from '../../assets/png/lern_2.png';
 // import lern3 from '../../assets/png/lern_3.png';
 // import lern4 from '../../assets/png/lern_4.png';
 
@@ -32,7 +32,7 @@ class Lern extends PageView {
       const blockTopText = createElement('div', 'block__top-text', blockTop);
       blockTopText.textContent = 'Главная идея слепой печати в том, что за каждым пальцем закреплена своя зона клавиш. Это позволяет печатать не глядя на клавиатуру. Регулярно тренируйся и, благодаря мышечной памяти, все твои десять пальцев будут знать, куда нажать.';
 
-      // middle
+      // middle 1
       const blockMiddleWrapper = createElement('div', 'block__middle__wrapper', wrapper);
       const blockMiddle = createElement('div', 'block__middle', blockMiddleWrapper);
       const blockMiddleCaption = createElement('div', 'block__middle-caption', blockMiddle);
@@ -48,6 +48,19 @@ class Lern extends PageView {
       const blockMiddleContentImage = createElement('div', 'block__middle-content__image', blockMiddleContent);
       blockMiddleContentImage.style.background = `url(${lern1}) center no-repeat`;
       blockMiddleContentImage.style.backgroundSize = 'contain';
+
+      // middle 2
+      const blockMiddleWrapper1 = createElement('div', 'block__middle__wrapper', wrapper);
+      const blockMiddle1 = createElement('div', 'block__middle', blockMiddleWrapper1);
+      const blockMiddleCaption1 = createElement('div', 'block__middle-caption', blockMiddle1);
+      blockMiddleCaption1.textContent = 'Исходная позиция';
+      const blockMiddleContent1 = createElement('div', 'block__middle-content vertical', blockMiddle1);
+      const blockMiddleContentText1 = createElement('div', 'block__middle-content__text', blockMiddleContent1);
+      createElement('p', '', blockMiddleContentText1).textContent = 'Немного согни пальцы и положи их на клавиши ФЫВА и ОЛДЖ, которые находятся в среднем ряду. Эта строка называется ОСНОВНОЙ СТРОКОЙ, потому что ты всегда будешь начинать с этих клавиш и возвращаться к ним.';
+      createElement('p', '', blockMiddleContentText1).textContent = 'На клавишах А и О, под указательными пальцами, находятся небольшие выступы. Они позволяют ориентироваться на клавиатуре вслепую.';
+      const blockMiddleContentImage1 = createElement('div', 'block__middle-content__image', blockMiddleContent1);
+      blockMiddleContentImage1.style.background = `url(${lern2}) center no-repeat`;
+      blockMiddleContentImage1.style.backgroundSize = 'contain';
     }
   }
 

@@ -40,7 +40,8 @@
 
         position: relative;
 
-        padding-bottom: 2vw;
+        padding-bottom: 1vw;
+        margin-bottom: 2vw;
 
         .block__middle-caption {
           width: 20%;
@@ -56,10 +57,12 @@
           .block__middle-content__text {
             width: 70%;
 
-            ul{
+            ul,
+            p{
               margin: 0;
               @include normal-text;
               font-size: 16px;
+              margin-bottom: 1vw;
             }
 
           }
@@ -67,6 +70,23 @@
           .block__middle-content__image {
             width: 28%;
             background-color: $base-color-addition-dark;
+          }
+
+          &.vertical {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+  
+            .block__middle-content__text {
+              width: 100%;
+            }
+  
+            .block__middle-content__image {
+              order: -1;
+              width: 100%;
+              height: 12vw;
+            }
           }
         }
 
