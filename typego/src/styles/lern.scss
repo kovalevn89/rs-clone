@@ -161,3 +161,108 @@
     }
   }
 }
+
+@media (min-width: 320px) and (max-width: 1440px) { 
+  .main {
+    width: 100%;
+    background-color: $base-color-addition-light;
+  
+    .lern__wrapper {
+      box-sizing: border-box;
+      width: auto;
+      max-width: 1440px;
+      padding: 0 11vw;
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 1000px) { 
+  .main {
+    .lern__wrapper {
+      .block__top__wrapper{
+        .block__top {
+          padding-bottom: 35px;
+        }
+      }
+
+      .block__middle__wrapper {
+        .block__middle{
+          flex-direction: column;
+  
+          .block__middle-caption {
+            width: 100%;
+            text-align: center;
+          }
+  
+          .block__middle-content {
+            width: 100%;
+  
+            &.vertical {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .block__controls__wrapper {
+        margin-top: 35px;
+      }
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 750px) { 
+  .main {
+    .lern__wrapper {
+      .block__top__wrapper{
+        .block__top {
+          .block__top-caption {
+            font-size: 28px;
+          }
+          .block__top-text {
+            font-size: 14px;
+          }
+        }
+      }
+  
+      .block__middle__wrapper {
+        .block__middle {
+          .block__middle-content {
+            
+            width: 98%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            
+  
+            .block__middle-content__text {
+              width: 100%;
+              p,
+              ul {
+                font-size: 14px;
+              }
+
+              ul {
+                padding-left: 10px;
+              }
+              
+            }
+  
+            .block__middle-content__image {
+              order: -1;
+              width: 100%;
+              height: 12vw;
+              min-height: 200px;
+            }
+          }
+        }
+      }
+  
+      .block__controls__wrapper {
+        .training__button {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

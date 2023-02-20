@@ -111,7 +111,7 @@ class Lern extends PageView {
       createElement('li', '', contentTextList4).textContent = 'Всегда просматривай текст на одно-два слова вперед.';
       createElement('li', '', contentTextList4).textContent = 'Пройди все уроки на клавиатурном тренажере TypeGo. И твоя скорость станет выше средней скорости печати.';
       const blockMiddleContentImage4 = createElement('div', 'block__middle-content__image', blockMiddleContent4);
-      blockMiddleContentImage4.style.width = '0px';
+      blockMiddleContentImage4.style.display = 'none';
 
       // middle 6
       const blockMiddleWrapper5 = createElement('div', 'block__middle__wrapper', wrapper);
@@ -123,12 +123,13 @@ class Lern extends PageView {
       blockMiddleContentText5.style.width = '98%';
       createElement('p', '', blockMiddleContentText5).textContent = 'Сделай паузу, если чувствуешь, что сбиваешься и делаешь много ошибок. Небольшой перерыв вернет силы и внимательность.';
       const blockMiddleContentImage5 = createElement('div', 'block__middle-content__image', blockMiddleContent5);
-      blockMiddleContentImage5.style.width = '0px';
+      blockMiddleContentImage5.style.display = 'none';
 
       // btn
       const blockControlsrapper5 = createElement('div', 'block__controls__wrapper', wrapper);
       const trainingBtn = createElement('div', 'training__button', blockControlsrapper5);
       trainingBtn.textContent = 'Пора потренироваться';
+      trainingBtn.addEventListener('click', () => { window.location.hash = '#/training'; });
     }
   }
 
