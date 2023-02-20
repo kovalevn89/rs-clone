@@ -16,6 +16,8 @@ class Footer extends PageView {
 
           if (this.config.getTheme() === Themes.Dark) {
             footer.classList.add('dark');
+          } else {
+            footer.classList.remove('dark');
           }
           const footerWrapper = createElement('div', 'footer__wrapper', footer);
           const footerTop = createElement('div', 'footer__top', footerWrapper);
