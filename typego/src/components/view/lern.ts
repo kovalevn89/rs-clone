@@ -112,6 +112,18 @@ class Lern extends PageView {
       createElement('li', '', contentTextList4).textContent = 'Пройди все уроки на клавиатурном тренажере TypeGo. И твоя скорость станет выше средней скорости печати.';
       const blockMiddleContentImage4 = createElement('div', 'block__middle-content__image', blockMiddleContent4);
       blockMiddleContentImage4.style.width = '0px';
+
+      // middle 6
+      const blockMiddleWrapper5 = createElement('div', 'block__middle__wrapper', wrapper);
+      const blockMiddle5 = createElement('div', 'block__middle', blockMiddleWrapper5);
+      const blockMiddleCaption5 = createElement('div', 'block__middle-caption', blockMiddle5);
+      blockMiddleCaption5.textContent = 'Береги себя';
+      const blockMiddleContent5 = createElement('div', 'block__middle-content', blockMiddle5);
+      const blockMiddleContentText5 = createElement('div', 'block__middle-content__text', blockMiddleContent5);
+      blockMiddleContentText5.style.width = '98%';
+      createElement('p', '', blockMiddleContentText5).textContent = 'Сделай паузу, если чувствуешь, что сбиваешься и делаешь много ошибок. Небольшой перерыв вернет силы и внимательность.';
+      const blockMiddleContentImage5 = createElement('div', 'block__middle-content__image', blockMiddleContent5);
+      blockMiddleContentImage5.style.width = '0px';
     }
   }
 
