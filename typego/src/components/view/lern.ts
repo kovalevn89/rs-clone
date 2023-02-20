@@ -4,7 +4,7 @@ import { createElement, removeChild } from '../helper';
 import lern1 from '../../assets/png/lern_1.png';
 import lern2 from '../../assets/png/lern_2.png';
 import lern3 from '../../assets/png/lern_3.png';
-// import lern4 from '../../assets/png/lern_4.png';
+import lern4 from '../../assets/png/lern_4.png';
 
 class Lern extends PageView {
   private render() {
@@ -82,6 +82,20 @@ class Lern extends PageView {
       blockMiddleContentImage2.style.background = `url(${lern3}) center no-repeat`;
       blockMiddleContentImage2.style.backgroundSize = 'contain';
       blockMiddleContentImage2.style.height = '16vw';
+
+      // middle 4
+      const blockMiddleWrapper3 = createElement('div', 'block__middle__wrapper', wrapper);
+      const blockMiddle3 = createElement('div', 'block__middle', blockMiddleWrapper3);
+      const blockMiddleCaption3 = createElement('div', 'block__middle-caption', blockMiddle3);
+      blockMiddleCaption3.textContent = 'Движение пальцев';
+      const blockMiddleContent3 = createElement('div', 'block__middle-content', blockMiddle3);
+      const blockMiddleContentText3 = createElement('div', 'block__middle-content__text', blockMiddleContent3);
+      createElement('p', '', blockMiddleContentText3).textContent = 'Не подглядывай на клавиатуру во время печати. Просто скользи пальцами по клавишам, пока не найдешь основную строку.';
+      createElement('p', '', blockMiddleContentText3).textContent = 'Ограничь движение кистей и пальцев до минимума, только чтобы нажимать нужные клавиши. Держи руки и пальцы как можно ближе к исходной позиции. Это увеличит скорость набора текста и снизит нагрузку на кисти.';
+      createElement('p', '', blockMiddleContentText3).textContent = 'Следи за безымянными пальцами и мизинцами, так как они часто остаются незадействованными.';
+      const blockMiddleContentImage3 = createElement('div', 'block__middle-content__image', blockMiddleContent3);
+      blockMiddleContentImage3.style.background = `url(${lern4}) center no-repeat`;
+      blockMiddleContentImage3.style.backgroundSize = 'contain';
     }
   }
 
