@@ -403,7 +403,8 @@ const data: ITranslation = {
   profileAdminDelete: {
     en: 'Delete account',
     ru: 'Удалить аккаунт',
- 
+  },
+
   // auth modal
   letters: {
     en: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -512,7 +513,6 @@ Tired of playing on factory settings?! Now you can customize the game according 
     en: 'Time:',
     ru: 'Время:',
   },
-
 
   // gamePage
   captiongamePage: {
