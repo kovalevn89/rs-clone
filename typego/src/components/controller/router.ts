@@ -13,6 +13,7 @@ import FinishLevel from '../view/training/finish';
 import Profile from '../view/profile';
 import TypingTest from '../view/typingTest';
 import GunGame from '../view/gun';
+import Lern from '../view/lern';
 // import State from '../model/state';
 
 class Router {
@@ -29,16 +30,16 @@ class Router {
   private games;
   private profile;
   private gunGame;
+  private Lern;
   finish;
 
   constructor() {
     this.validPage = new Array<IPage>();
     this.validPage.push({ page: 'main', params: [] });
     this.validPage.push({ page: 'test', params: [] });
-    // this.validPage.push({ page: 'learn', params: [] });
     this.validPage.push({ page: 'training', params: ['lang'] });
     this.validPage.push({ page: 'lesson', params: ['lang', 'index', 'id'] });
-    // this.validPage.push({ page: 'lern', params: [] });
+    this.validPage.push({ page: 'lern', params: [] });
     this.validPage.push({ page: 'profile', params: [] });
     this.validPage.push({ page: 'about', params: [] });
     this.validPage.push({ page: 'games', params: ['name'] });
@@ -56,6 +57,7 @@ class Router {
     this.gunGame = new GunGame();
     this.finish = new FinishLevel();
     this.profile = new Profile();
+    this.Lern = new Lern();
   }
 
   private isPageValid(page: string): boolean {
@@ -103,11 +105,10 @@ class Router {
 
       if (page === 'test') {
         this.test.run();
-        // this.finish.renderComplete();
       }
 
-      if (page === 'learn') {
-        // PLACE THIS RENDER LERN PAGE
+      if (page === 'lern') {
+        this.Lern.run();
       }
 
       if (page === 'training') {
