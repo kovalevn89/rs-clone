@@ -44,7 +44,6 @@ class Main extends PageView {
       const leftCol = createElement('div', 'typig-faster__left-col', wrapper1);
       const leftColCaption = createElement('h1', 'left-col__caption', leftCol);
       const leftColCaptionText = createElement('span', 'text', leftColCaption);
-      // leftColCaptionText.textContent = 'печатай быстрее';
       leftColCaptionText.textContent = this.translation.getString('typigFasterCaption');
       this.translation.regObserver(() => {
         leftColCaptionText.textContent = this.translation.getString('typigFasterCaption');
@@ -63,6 +62,7 @@ class Main extends PageView {
       this.translation.regObserver(() => {
         typingFasterBtn.textContent = this.translation.getString('typigFasterButton');
       });
+      typingFasterBtn.addEventListener('click', () => { window.location.hash = '#/training'; });
       const rightCol = createElement('div', 'typig-faster__right-col', wrapper1);
       const image = createElement('div', 'image', rightCol);
       this.setBackground(image, image1);
@@ -93,6 +93,7 @@ class Main extends PageView {
       });
       const contextLink1 = createElement('div', 'card__context-link', cardContext1);
       const proposaleButton1 = createElement('div', 'context-link__button', contextLink1);
+      proposaleButton1.addEventListener('click', () => { window.location.hash = '#/training'; });
       proposaleButton1.textContent = this.translation.getString('proposaleButton1');
       this.translation.regObserver(() => {
         proposaleButton1.textContent = this.translation.getString('proposaleButton1');
@@ -120,6 +121,7 @@ class Main extends PageView {
       });
       const contextLink2 = createElement('div', 'card__context-link', cardContext2);
       const proposaleButton2 = createElement('div', 'context-link__button', contextLink2);
+      proposaleButton2.addEventListener('click', () => { window.location.hash = '#/test'; });
       proposaleButton2.textContent = this.translation.getString('proposaleButton2');
       this.translation.regObserver(() => {
         proposaleButton2.textContent = this.translation.getString('proposaleButton2');
@@ -145,6 +147,7 @@ class Main extends PageView {
       });
       const contextLink3 = createElement('div', 'card__context-link', cardContext3);
       const proposaleButton3 = createElement('div', 'context-link__button', contextLink3);
+      proposaleButton3.addEventListener('click', () => { window.location.hash = '#/games'; });
       proposaleButton3.textContent = this.translation.getString('proposaleButton3');
       this.translation.regObserver(() => {
         proposaleButton3.textContent = this.translation.getString('proposaleButton3');

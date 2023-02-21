@@ -34,9 +34,9 @@ h3 {
   & .training__title {
     text-align: left;
     @include caption-text;
-    font-size: 24px;
+    font-size: 36px;
     color: $font-color-text2-light;
-    margin: 10px auto;
+    margin: 2vw auto;
   }
 
   .select {
@@ -63,6 +63,7 @@ h3 {
     box-shadow: 2px 2px 16px 3px rgb(0 0 0 / 75%);
 
     // background-color: $base-color-addition-light;
+    transition: all ease 0.5s, box-shadow linear 0.1s;
 
     .select__title {
       text-align: center;
@@ -101,6 +102,14 @@ h3 {
     }
     & .training__select {
       background-color: $base-color-addition-dark;
+
+      border: $base-color-dark solid 2px;
+      box-shadow: 2px 2px 16px 3px $base-color-dark;
+
+      &:hover {
+        border-color: $button-hover-color-dark;
+        box-shadow: 2px 2px 16px 3px $button-hover-color-dark;
+      }
     }
     & .select__title{
       color: $font-color-text1-dark;

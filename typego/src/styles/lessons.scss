@@ -23,8 +23,9 @@
     color: $font-color-text2-light;
     padding: 10px;
 
-    border: $font-color-text2-light solid 1px;
+    border: $font-color-text2-light solid 2px;
     border-radius: 12px;
+    box-shadow: 2px 2px 16px 3px rgb(0 0 0 / 75%);
 
     & .training__img {
       filter: grayscale(1);
@@ -42,7 +43,8 @@
       cursor: pointer;
       color: $base-color-light;
       border-color: $base-color-light;
-      transition: all ease 0.5s;
+      box-shadow: 2px 2px 16px 3px rgb(41 129 254 / 75%);
+      transition: all ease 0.5s, box-shadow linear 0.1s;
 
       & .training__level__title {
         color: $base-color-light;
@@ -56,11 +58,19 @@
 
   &.dark {
     .training__level {
+      border: $base-color-dark solid 2px;
+      border-radius: 12px;
+      box-shadow: 2px 2px 16px 3px $base-color-dark;
+
       & .training__level__title {
         color: $font-color-text1-dark;
       }
 
       &:hover {
+        border-color: $button-hover-color-dark;
+        box-shadow: 2px 2px 16px 3px $button-hover-color-dark;
+        transition: all ease 0.5s, box-shadow linear 0.1s;
+        
         & .training__level__title {
           color: $button-color-dark;
         }
