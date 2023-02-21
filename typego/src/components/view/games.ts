@@ -1,9 +1,9 @@
 import PageView from './baseViewClass';
 import { createElement, removeChild } from '../helper';
 import { Themes } from '../types/enums';
-import whack from '../../assets/img/mole.png';
-import drop from '../../assets/img/drob-food.png';
-import gun from '../../assets/img/gun-game.png';
+import whack from '../../assets/png/whacamole.png';
+import drop from '../../assets/png/drop-food.png';
+import gun from '../../assets/png/gun-game.png';
 
 class Games extends PageView {
   private render(): void {
@@ -17,6 +17,8 @@ class Games extends PageView {
       } else {
         main.classList.remove('dark');
       }
+
+      this.translation.cleanObserver();
 
       const wrapper = createElement('div', 'games-wrapper', main);
       const title = createElement('h2', 'games-title', wrapper);
@@ -32,14 +34,16 @@ class Games extends PageView {
         window.location.hash = '#/games?name=whac';
       });
       createElement('h3', 'games-title', game1).textContent = 'whack-a-mole';
-      createElement<HTMLImageElement>('img', 'bgr', game1, ['alt', 'whack-a-mole']).src = whack;
+      game1.style.background = `url(${whack}) center no-repeat`;
+      game1.style.backgroundSize = 'cover';
 
       const game2 = createElement('div', 'game2', gamesBlock);
       game2.addEventListener('click', () => {
         window.location.hash = '#/games?name=drop';
       });
       createElement('h3', 'games-title', game2).textContent = 'Drop Food';
-      createElement<HTMLImageElement>('img', 'bgr', game2, ['alt', 'whack-a-mole']).src = drop;
+      game2.style.background = `url(${drop}) center no-repeat`;
+      game2.style.backgroundSize = 'cover';
 
       const game3 = createElement('div', 'game3', gamesBlock);
       game3.addEventListener('click', () => {
@@ -47,7 +51,8 @@ class Games extends PageView {
       });
       createElement('h3', 'games-title', game3).textContent = `
       Hogan's Alley`;
-      createElement<HTMLImageElement>('img', 'bgr', game3, ['alt', 'whack-a-mole']).src = gun;
+      game3.style.background = `url(${gun}) center no-repeat`;
+      game3.style.backgroundSize = 'cover';
     }
   }
 
