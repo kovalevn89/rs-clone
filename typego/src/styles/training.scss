@@ -4,7 +4,7 @@
 .main {
   width: 100%;
   margin: 0 auto;
-  background-color: $footer-background-light;
+  //background-color: $footer-background-light;
 
   .wrapper {
     box-sizing: border-box;
@@ -106,6 +106,34 @@
     }
     & .training__select:hover {
       color: $button-color-dark;
+    }
+  }
+}
+
+
+@media (min-width: 320px) and (max-width: 1440px) { 
+  .main {
+    width: 100%;
+    background-color: $base-color-addition-light;
+  
+    .wrapper {
+      box-sizing: border-box;
+      width: auto;
+      max-width: 1440px;
+      padding: 0 11vw;
+      height: auto;
+      min-height: calc(100vh - 300px);
+
+      .training__title {
+        padding: 5% 0;
+      }
+
+      .select{
+        .training__select {
+          margin: 4% 0;
+        }
+      }
+
     }
   }
 }

@@ -1,19 +1,10 @@
 @import './mixin.scss';
 @import './constants.scss';
 
-// h2 {
-//   @include caption-text;
-// }
-
-// h3 {
-//   @include normal-text;
-//   color: $font-color-text2-light;
-// }
-
 .main {
   width: 100%;
   margin: 0 auto;
-  background-color: $footer-background-light;
+  //background-color: $footer-background-light;
 
   .games-wrapper {
     box-sizing: border-box;
@@ -26,6 +17,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex-wrap: wrap;
 
 
     .games-title {
@@ -62,6 +54,7 @@
         justify-content: center;
 
         user-select: none;
+        
 
         transition: height 0.4s ease-in-out;
       }
@@ -85,8 +78,6 @@
 
         overflow: hidden;
 
-        // background-color: $base-color-dark;
-
         &:hover {
           color: $base-color-light;
           border: $base-color-light 2px solid;
@@ -97,13 +88,6 @@
             height: 100%;
           }
         }
-  
-        // & .bgr {
-        //   display: flex;
-        //   width: 90%;
-        //   height: 90%;
-        //   padding: 10px;
-        // }
       }
 
 
@@ -124,6 +108,35 @@
     }
     & .games-title{
       color: $font-color-text1-dark;
+    }
+  }
+}
+
+
+@media (min-width: 320px) and (max-width: 1440px) { 
+  .main {
+    width: 100%;
+    background-color: $base-color-addition-light;
+  
+    .games-wrapper {
+      box-sizing: border-box;
+      width: auto;
+      max-width: 1440px;
+      padding: 0 11vw;
+      height: auto;
+      min-height: calc(100vh - 300px);
+
+      .games-title {
+        padding: 5% 0;
+      }
+
+      .games-block{
+        .game1,
+        .game2,
+        .game3 {
+          margin: 4% 0;
+        }
+      }
     }
   }
 }

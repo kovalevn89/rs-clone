@@ -6,7 +6,7 @@
     @include flex-center;
     display: flex;
     flex-wrap: wrap;
-    gap: 5vw;
+    gap: 2vw;
     margin-bottom: 20px;
   }
   .training__levels {
@@ -26,6 +26,8 @@
     border: $font-color-text2-light solid 1px;
     border-radius: 12px;
 
+    box-shadow: 2px 2px 16px 3px rgb(0 0 0 / 75%);
+
     & .training__img {
       filter: grayscale(1);
       width: 150px;
@@ -42,6 +44,7 @@
       cursor: pointer;
       color: $base-color-light;
       border-color: $base-color-light;
+      box-shadow: 2px 2px 16px 3px $base-color-light;
       transition: all ease 0.5s;
 
       & .training__level__title {
