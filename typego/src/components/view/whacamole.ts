@@ -299,8 +299,9 @@ class WhacAMole extends PageView {
       const whac = createElement('div', 'whac', app);
       this.setBackground(whac, whackBackground);
       const backButton = createElement('div', 'back-btn', whac);
-      const goHomeListener = this.backButtonListener;
-      backButton.addEventListener('click', goHomeListener);
+      backButton.addEventListener('click', () => {
+        window.location.hash = '#/games';
+      });
       const game = createElement('div', 'game', whac);
       const statsBlock = createElement('div', 'stats', game);
       // level
@@ -329,7 +330,7 @@ class WhacAMole extends PageView {
         accuracy.textContent = this.translation.getString('accuracyWhack');
       });
       const accuracyValue = createElement('div', 'value', statsAccuracy);
-      accuracyValue.textContent = '100%';
+      accuracyValue.textContent = '0%';
       // time
       const statsTime = createElement('div', 'stats_time', statsBlock);
       const time = createElement('div', 'label', statsTime);
@@ -419,8 +420,9 @@ class WhacAMole extends PageView {
       const whac = createElement('div', 'whac', app);
       this.setBackground(whac, whackBackground);
       const backButton = createElement('div', 'back-btn', whac);
-      const goHomeListener = this.backButtonListener;
-      backButton.addEventListener('click', goHomeListener);
+      backButton.addEventListener('click', () => {
+        window.location.hash = '#/games';
+      });
       const menu = createElement('div', 'menu', whac);
       const caption = createElement('div', 'game_caption', menu);
       caption.textContent = 'Whac A Mole';
@@ -441,8 +443,9 @@ class WhacAMole extends PageView {
       removeChild(app);
       const whac = createElement('div', 'whac', app);
       const backButton = createElement('div', 'back-btn', whac);
-      const goHomeListener = this.backButtonListener;
-      backButton.addEventListener('click', goHomeListener);
+      backButton.addEventListener('click', () => {
+        window.location.hash = '#/games';
+      });
       this.setBackground(whac, whackBackground);
       const menu = createElement('div', 'menu', whac);
       const caption = createElement('div', 'game_caption', menu);
@@ -479,22 +482,6 @@ class WhacAMole extends PageView {
       startButton.addEventListener('click', () => {
         this.renderGame();
       });
-    }
-  }
-
-  private backButtonListener() {
-    const app: HTMLElement | null = document.querySelector('.app');
-    const header: HTMLElement | null = document.querySelector('.header');
-    const footer: HTMLElement | null = document.querySelector('.footer');
-    if (app) {
-      removeChild(app);
-      if (header) {
-        header.style.display = 'block';
-      }
-      if (footer) {
-        footer.style.display = 'block';
-      }
-      window.location.hash = '#/games';
     }
   }
 

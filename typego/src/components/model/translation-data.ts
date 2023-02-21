@@ -502,8 +502,8 @@ Tired of playing on factory settings?! Now you can customize the game according 
     ru: 'Счет:',
   },
   accuracyGun: {
-    en: 'Gun accuracy:',
-    ru: 'Точность выстрелов:',
+    en: 'Accuracy:',
+    ru: 'Точность:',
   },
   roundGunGame: {
     en: 'R=',

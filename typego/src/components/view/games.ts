@@ -8,9 +8,17 @@ import gun from '../../assets/img/gun-game.png';
 class Games extends PageView {
   private render(): void {
     const app: HTMLElement | null = document.querySelector('.app');
+    const header: HTMLElement | null = document.querySelector('.header');
+    const footer: HTMLElement | null = document.querySelector('.footer');
 
     if (app !== null) {
       removeChild(app);
+      if (header) {
+        header.style.display = 'block';
+      }
+      if (footer) {
+        footer.style.display = 'block';
+      }
       const main = createElement('div', 'main', app);
       if (this.config.getTheme() === Themes.Dark) {
         main.classList.add('dark');

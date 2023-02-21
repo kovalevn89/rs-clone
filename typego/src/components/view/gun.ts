@@ -154,13 +154,14 @@ class GunGame extends PageView {
       removeChild(app);
       const gunWrapper = createElement('div', 'gun-wrapper', app);
       const backButton = createElement('div', 'back-btn', gunWrapper);
-      const goHomeListener = this.backButtonListener;
-      backButton.addEventListener('click', goHomeListener);
+      backButton.addEventListener('click', () => {
+        window.location.hash = '#/games';
+      });
       const bgrWrapper = createElement('div', 'bgr-wrapper', gunWrapper);
       const menu = createElement('div', 'menu', bgrWrapper);
       const caption = createElement('div', 'game_caption', menu);
-      caption.textContent = `
-      Hogan's Alley`;
+      caption.innerHTML = `
+      Hogan's<br>Alley`;
       const controls = createElement('div', 'game_controls', menu);
       const startButton = createElement('div', 'controls_start-btn', controls);
       startButton.addEventListener('click', () => {
@@ -178,8 +179,9 @@ class GunGame extends PageView {
       removeChild(app);
       const gunWrapper = createElement('div', 'gun-wrapper', app);
       const backButton = createElement('div', 'back-btn', gunWrapper);
-      const goHomeListener = this.backButtonListener;
-      backButton.addEventListener('click', goHomeListener);
+      backButton.addEventListener('click', () => {
+        window.location.hash = '#/games';
+      });
       const bgrWrapper = createElement('div', 'bgr-wrapper', gunWrapper);
       const menu = createElement('div', 'menu', bgrWrapper);
       const caption = createElement('div', 'game_caption', menu);
@@ -227,8 +229,9 @@ class GunGame extends PageView {
       removeChild(app);
       const gunWrapper = createElement('div', 'gun-wrapper', app);
       const backButton = createElement('div', 'back-btn', gunWrapper);
-      const goHomeListener = this.backButtonListener;
-      backButton.addEventListener('click', goHomeListener);
+      backButton.addEventListener('click', () => {
+        window.location.hash = '#/games';
+      });
       const bgrWrapper = createElement('div', 'bgr-wrapper', gunWrapper);
 
       const langButton = createElement('div', 'control_lang', bgrWrapper);
@@ -305,22 +308,6 @@ class GunGame extends PageView {
         this.wordHandle(e, scoreValue, accuracyValue);
       };
       document.addEventListener('keypress', this.keyListener);
-    }
-  }
-
-  private backButtonListener() {
-    const app: HTMLElement | null = document.querySelector('.app');
-    const header: HTMLElement | null = document.querySelector('.header');
-    const footer: HTMLElement | null = document.querySelector('.footer');
-    if (app) {
-      removeChild(app);
-      if (header) {
-        header.style.display = 'block';
-      }
-      if (footer) {
-        footer.style.display = 'block';
-      }
-      window.location.hash = '#/games';
     }
   }
 
