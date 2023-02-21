@@ -136,7 +136,7 @@ class Lern extends PageView {
       const blockMiddleContent5 = createElement('div', 'block__middle-content', blockMiddle5);
       const blockMiddleContentText5 = createElement('div', 'block__middle-content__text', blockMiddleContent5);
       blockMiddleContentText5.style.width = '98%';
-      this.translation.translateField(createElement('p', '', blockMiddleContentText5), 'lernMiddle6Content1'); // .textContent = 'Сделай паузу, если чувствуешь, что сбиваешься и делаешь много ошибок. Небольшой перерыв вернет силы и внимательность.';
+      this.translation.translateField(createElement('p', '', blockMiddleContentText5), 'lernMiddle6Content1');
       const blockMiddleContentImage5 = createElement('div', 'block__middle-content__image', blockMiddleContent5);
       blockMiddleContentImage5.style.display = 'none';
 
