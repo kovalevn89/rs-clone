@@ -4,7 +4,7 @@
 .main {
   width: 100%;
   margin: 0 auto;
-  background-color: $footer-background-light;
+  // background-color: $footer-background-light;
 
   .lern__wrapper {
     box-sizing: border-box;
@@ -104,6 +104,7 @@
     .block__controls__wrapper {
       display: flex;
       justify-content: center;
+      padding-bottom: 2vw;
 
       .training__button {
         width: 270px;
@@ -122,6 +123,7 @@
         cursor: pointer;
         background: $button-color-light;
         text-transform: uppercase;
+        margin: 25px 0;
 
         &:hover {
           background: $button-hover-color-light;
@@ -147,7 +149,6 @@
       .block__controls__wrapper {
         display: flex;
         justify-content: center;
-        padding-bottom: 2vw;
   
         .training__button {
           background: $button-color-dark;
