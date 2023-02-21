@@ -30,7 +30,6 @@ h3 {
   & .games-title {
     text-align: left;
     @include caption-text;
-    font-size: 32px;
     color: $font-color-text2-light;
     margin: 35px auto 35px;
   }

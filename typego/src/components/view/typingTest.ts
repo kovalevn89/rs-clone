@@ -7,6 +7,8 @@ import {
 } from '../types/enums';
 import PageView from './baseViewClass';
 import TrainingTask from './training/trainingTask';
+import selectEN from '../../assets/png/selectEN.png';
+import selectRU from '../../assets/png/selectRU.png';
 
 export default class TypingTest extends PageView {
   // private state: TrainingState;
@@ -28,14 +30,12 @@ export default class TypingTest extends PageView {
       container.classList.remove('dark');
     }
 
+    this.translation.cleanObserver();
+
     const wrapper = createElement(Tag.div, 'wrapper', container);
 
     const title = createElement(Tag.h2, 'training__title', wrapper);
     this.translation.translateField(title, 'test');
-    // title.textContent = this.translation.getString('test');
-    // this.translation.regObserver(() => {
-    //   title.textContent = this.translation.getString('test');
-    // });
 
     const selectContainer = createElement(Tag.div, 'select', wrapper);
 
@@ -53,6 +53,10 @@ export default class TypingTest extends PageView {
       // this.stopInput();
       this.renderTest(Lang.en, testContainer);
     });
+
+    selectEnBtn.style.background = `url(${selectEN}) center no-repeat`;
+    selectEnBtn.style.backgroundSize = 'cover';
+
     selectRuBtn.addEventListener('click', () => {
       // window.location.hash = '#/test?lang=ru';
 
@@ -63,18 +67,11 @@ export default class TypingTest extends PageView {
       this.renderTest(Lang.ru, testContainer);
     });
 
+    selectRuBtn.style.background = `url(${selectRU}) center no-repeat`;
+    selectRuBtn.style.backgroundSize = 'cover';
+
     this.translation.translateField(selectEnBtn, 'layoutEn');
     this.translation.translateField(selectRuBtn, 'layoutRu');
-
-    // selectEnBtn.textContent = this.translation.getString('layoutEn');
-    // this.translation.regObserver(() => {
-    //   selectEnBtn.textContent = this.translation.getString('layoutEn');
-    // });
-
-    // selectRuBtn.textContent = this.translation.getString('layoutRu');
-    // this.translation.regObserver(() => {
-    //   selectRuBtn.textContent = this.translation.getString('layoutRu');
-    // });
   }
 
   run(): void {
