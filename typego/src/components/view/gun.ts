@@ -159,8 +159,8 @@ class GunGame extends PageView {
       const bgrWrapper = createElement('div', 'bgr-wrapper', gunWrapper);
       const menu = createElement('div', 'menu', bgrWrapper);
       const caption = createElement('div', 'game_caption', menu);
-      caption.textContent = `
-      Hogan's Alley`;
+      caption.innerHTML = `
+      Hogan's<br>Alley`;
       const controls = createElement('div', 'game_controls', menu);
       const startButton = createElement('div', 'controls_start-btn', controls);
       startButton.addEventListener('click', () => {
