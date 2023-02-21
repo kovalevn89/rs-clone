@@ -197,16 +197,7 @@ class DropStartPage extends PageView {
     const backBtn = document.querySelector('.drop-game-startpage-btn') as HTMLElement;
 
     backBtn.addEventListener('click', () => {
-      if (app) {
-        removeChild(app);
-        if (header) {
-          header.style.display = 'block';
-        }
-        if (footer) {
-          footer.style.display = 'block';
-        }
-        window.location.hash = '#/games';
-      }
+      window.location.hash = '#/games';
     });
 
     const resetBtn = document.querySelector('.drop-game-startpage-reset-button') as HTMLElement;
