@@ -1,5 +1,5 @@
 import { createElement, removeChild } from '../../helper';
-import { Tag, Themes } from '../../types/enums';
+import { Lang, Tag, Themes } from '../../types/enums';
 
 import selectEN from '../../../assets/png/selectEN.png';
 import selectRU from '../../../assets/png/selectRU.png';
@@ -27,10 +27,14 @@ export class Training extends PageView {
 
     const selectEn = createElement(Tag.div, 'training__select', selectContainer, ['lang', 'en']);
     selectEn.addEventListener('click', () => {
+      this.state.current.lang = Lang.en;
+      this.state.lang = Lang.en;
       window.location.hash = '#/training?lang=en';
     });
     const selectRu = createElement(Tag.div, 'training__select', selectContainer, ['lang', 'ru']);
     selectRu.addEventListener('click', () => {
+      this.state.current.lang = Lang.ru;
+      this.state.lang = Lang.ru;
       window.location.hash = '#/training?lang=ru';
     });
 

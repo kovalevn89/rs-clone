@@ -1,23 +1,11 @@
 import { createElement, removeChild } from '../../helper';
 import { Lang, Tag, Themes } from '../../types/enums';
 import PageView from '../baseViewClass';
-import Api from '../../controller/api';
-import { LESSON } from '../../helper/constants';
 import TrainingTask from './trainingTask';
 import { Lesson } from '../../types';
-// import TrainingState from '../../model/trainingState';
 
 export default class TrainingLevels extends PageView {
   private lesson!: Lesson;
-  // private state;
-
-  constructor() {
-    super();
-
-    this.lesson = LESSON;
-    // this.state = new TrainingState();
-    this.state.current.levels = this.lesson.levels?.length || 0;
-  }
 
   private async render(lang: Lang, index: number): Promise<void> {
     const app = document.querySelector<HTMLElement>('.app');
@@ -36,16 +24,13 @@ export default class TrainingLevels extends PageView {
     const lessonTitle = createElement(Tag.span, 'training__title__span', lessonHeader);
     const lessonDescription = createElement(Tag.span, 'training__title__span', lessonHeader);
 
+    await this.getLesson(lang, index);
+
     this.translation.translateField(lessonTitle, 'level');
-    // lessonTitle.textContent = this.translation.getString('level');
-    // this.translation.regObserver(() => {
-    //   lessonTitle.textContent = this.translation.getString('level');
-    // });
     lessonDescription.textContent = ` ${this.state.current.lesson}: ${this.lesson.name}`;
 
     const levelsWrapper = createElement(Tag.div, 'levels__wrapper', wrapper);
 
-    this.getLesson(lang, index);
     this.renderLevels(levelsWrapper);
 
     const trainingContainer = createElement(Tag.div, 'training__container', levelsWrapper);
@@ -53,12 +38,11 @@ export default class TrainingLevels extends PageView {
   }
 
   private async getLesson(lang: Lang, index: number): Promise<void> {
-    const api = new Api();
     try {
-      this.lesson = await api.getLesson('', index, lang);
+      this.lesson = await this.api.getLesson('', index, lang);
+      console.log(this.lesson);
     } catch (e) {
       console.log(e);
-      this.lesson = LESSON;
 
       // throw new Error(e as string);
     }

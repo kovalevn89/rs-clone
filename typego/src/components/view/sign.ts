@@ -54,7 +54,7 @@ class Sign extends PageView {
       const authBtn = createElement('div', 'auth-btn', bottomLine);
       authBtn.textContent = this.translation.getString('authButton');
 
-      authBtn.addEventListener('click', () => {
+      authBtn.addEventListener('click', async () => {
         if (!this.isValidLogin(inputName.value)) {
           errorName.classList.add('visible');
         } else {
@@ -69,7 +69,14 @@ class Sign extends PageView {
 
         if (this.isValidLogin(inputName.value) && this.isValidPassword(inputPassword.value)) {
           // auth
+          const { token } = await this.api.auth({
+            username: inputName.value,
+            password: inputPassword.value,
+          });
           console.log(`Auth with ${inputName.value} - ${inputPassword.value}`);
+          console.log(token);
+
+          this.api.token = token || '';
         }
       });
     }
@@ -125,7 +132,7 @@ class Sign extends PageView {
       const authBtn = createElement('div', 'auth-btn', bottomLine);
       authBtn.textContent = this.translation.getString('regButton');
 
-      authBtn.addEventListener('click', () => {
+      authBtn.addEventListener('click', async () => {
         if (!this.isValidLogin(inputName.value)) {
           errorName.classList.add('visible');
         } else {
@@ -150,6 +157,13 @@ class Sign extends PageView {
         ) {
           // auth
           console.log(`Registration with ${inputName.value} - ${inputPassword1.value} - ${inputPassword2.value}`);
+          const { message } = await this.api.register({
+            username: inputName.value,
+            password: inputPassword1.value,
+          });
+
+          // this.api.token = token || '';
+          console.log(message);
         }
       });
     }

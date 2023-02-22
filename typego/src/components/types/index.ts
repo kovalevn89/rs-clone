@@ -49,8 +49,11 @@ export interface IParametr {
 }
 
 export interface Progress {
+  lesson: number;
+  level: number;
   speed: number;
   accurancy: number;
+  lang: LanguageStr;
 }
 
 export interface TextResponse extends Level {

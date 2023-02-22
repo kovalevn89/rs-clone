@@ -9,7 +9,6 @@ import Games from '../view/games';
 import { Lang } from '../types/enums';
 import TrainingLevels from '../view/training/levels';
 import Main from '../view/main';
-import FinishLevel from '../view/training/finish';
 import Profile from '../view/profile';
 import TypingTest from '../view/typingTest';
 import GunGame from '../view/gun';
@@ -31,7 +30,6 @@ class Router {
   private profile;
   private gunGame;
   private Lern;
-  finish;
 
   constructor() {
     this.validPage = new Array<IPage>();
@@ -55,7 +53,6 @@ class Router {
     this.dropGame = new DropStartPage();
     this.games = new Games();
     this.gunGame = new GunGame();
-    this.finish = new FinishLevel();
     this.profile = new Profile();
     this.Lern = new Lern();
   }
