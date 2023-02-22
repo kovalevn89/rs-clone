@@ -46,10 +46,10 @@
     gap: 3px;
 
     @include normal-text;
-    color: $font-color-text2-light;
+    color: $font-color-text1-dark;
 
     .table__row {
-      background-color: $font-color-text1-dark;
+      background-color: $font-color-text1-light;
       border-radius: 10px;
       padding: 5px;
     }

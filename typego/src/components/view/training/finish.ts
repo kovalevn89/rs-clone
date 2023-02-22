@@ -126,7 +126,7 @@ export default class FinishLevel extends PageView {
     const { current, isTest } = this.state;
     const { accurancy } = current;
 
-    // this.translation.translateField(this.nextBtn, 'nextLvl');
+    this.translation.translateField(this.nextBtn, 'nextLvl');
     // this.translation.translateField(this.backBtn, 'backBtn');
 
     if (isTest) {

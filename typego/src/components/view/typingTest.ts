@@ -1,21 +1,13 @@
 import { createElement, removeChild } from '../helper';
 import { DEFAULT_RESPONSE, DEFAULT_RESPONSE_RU } from '../helper/constants';
-// import TrainingState from '../model/trainingState';
 import { LanguageStr } from '../types';
 import {
-  Lang, Tag, Themes, TrainingStatus,
+  Lang, Language, Tag, Themes, TrainingStatus,
 } from '../types/enums';
 import PageView from './baseViewClass';
 import TrainingTask from './training/trainingTask';
 
 export default class TypingTest extends PageView {
-  // private state: TrainingState;
-
-  // constructor() {
-  //   super();
-
-  //   this.state = new TrainingState();
-  // }
   private async render(): Promise<void> {
     const app = document.querySelector<HTMLElement>('.app');
     if (!app) return;
@@ -27,54 +19,45 @@ export default class TypingTest extends PageView {
     } else {
       container.classList.remove('dark');
     }
+    this.translation.cleanObserver();
 
     const wrapper = createElement(Tag.div, 'wrapper', container);
 
     const title = createElement(Tag.h2, 'training__title', wrapper);
     this.translation.translateField(title, 'test');
-    // title.textContent = this.translation.getString('test');
-    // this.translation.regObserver(() => {
-    //   title.textContent = this.translation.getString('test');
-    // });
 
     const selectContainer = createElement(Tag.div, 'select', wrapper);
 
     const selectEnBtn = createElement(Tag.div, 'test__select', selectContainer, ['lang', 'en']);
     const selectRuBtn = createElement(Tag.div, 'test__select', selectContainer, ['lang', 'ru']);
 
+    if (this.currentLang === Language.EN) {
+      selectEnBtn.classList.add('active');
+    } else {
+      selectRuBtn.classList.add('active');
+    }
+
     const testContainer = createElement(Tag.div, 'test__container training__container', wrapper);
 
-    selectEnBtn.addEventListener('click', () => {
-      // window.location.hash = '#/test?lang=en';
+    const lang = this.currentLang === Language.EN ? Lang.en : Lang.ru;
 
+    selectEnBtn.addEventListener('click', () => {
       selectEnBtn.classList.add('active');
       selectRuBtn.classList.remove('active');
 
-      // this.stopInput();
       this.renderTest(Lang.en, testContainer);
     });
     selectRuBtn.addEventListener('click', () => {
-      // window.location.hash = '#/test?lang=ru';
-
       selectRuBtn.classList.add('active');
       selectEnBtn.classList.remove('active');
 
-      // this.stopInput();
       this.renderTest(Lang.ru, testContainer);
     });
 
     this.translation.translateField(selectEnBtn, 'layoutEn');
     this.translation.translateField(selectRuBtn, 'layoutRu');
 
-    // selectEnBtn.textContent = this.translation.getString('layoutEn');
-    // this.translation.regObserver(() => {
-    //   selectEnBtn.textContent = this.translation.getString('layoutEn');
-    // });
-
-    // selectRuBtn.textContent = this.translation.getString('layoutRu');
-    // this.translation.regObserver(() => {
-    //   selectRuBtn.textContent = this.translation.getString('layoutRu');
-    // });
+    this.renderTest(lang, testContainer);
   }
 
   run(): void {
@@ -100,9 +83,4 @@ export default class TypingTest extends PageView {
     textTraining.updateProgress();
     textTraining.updateInstructions(TrainingStatus.start);
   }
-
-  // stopInput(): void {
-  //   this.test.input.stopListen();
-  //   this.test.remove();
-  // }
 }
