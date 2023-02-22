@@ -30,9 +30,9 @@ h3 {
   & .games-title {
     text-align: left;
     @include caption-text;
-    font-size: 32px;
+    font-size: 36px;
     color: $font-color-text2-light;
-    margin: 35px auto 35px;
+    margin: 2vw auto;
   }
 
   .games-block {
@@ -66,6 +66,7 @@ h3 {
       color: $base-color-light;
       border: $base-color-light 2px solid;
       box-shadow: 2px 2px 16px 3px rgb(41 129 254 / 75%);
+      transition: all ease 0.5s, box-shadow linear 0.1s;
     }
 
     & .bgr {
@@ -87,6 +88,17 @@ h3 {
     }
     & .games-block {
       background-color: $base-color-addition-dark;
+      .game1,
+      .game2,
+      .game3 {
+        border: $base-color-dark solid 2px;
+        box-shadow: 2px 2px 16px 3px $base-color-dark;
+    
+        &:hover {
+          border-color: $button-hover-color-dark;
+          box-shadow: 2px 2px 16px 3px $button-hover-color-dark;
+        }
+      }
     }
     & .games-title{
       color: $font-color-text1-dark;
