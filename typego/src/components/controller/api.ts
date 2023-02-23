@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 /* eslint-disable max-len */
 import {
   LanguageStr, Lesson, Lessons, Progress, Test, User,
@@ -6,7 +7,7 @@ import { Lang, Method } from '../types/enums';
 
 const HOST = 'https://typego.onrender.com/api/';
 // const HOST = '127.0.0.1:3000/api/';
-const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjY5NWJkN2EwZTIyNzY3YWEwZjQ3OCIsIm5hbWUiOiJVc2VyMTIzNDU2NyIsImlhdCI6MTY3NzEwNTM5NiwiZXhwIjoxNjc3MzY0NTk2fQ.OHhUUQP8ID_WZVoNw7VP-VjxglZcS9Xw_yr_W5Y3A10';
+const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjcxM2FhYjljNGU0MTI1NTA4NjRkOSIsIm5hbWUiOiJ1c2VyMTIzNCIsImlhdCI6MTY3NzEzNjgyMCwiZXhwIjoxNjc3Mzk2MDIwfQ.vHjr69_TOZeBdPwHO9cRhRUcxvjvZvBwtbpRSl0G_VI';
 const ENDPOINT = {
   register: 'register',
   auth: 'auth',
@@ -27,18 +28,21 @@ export default class Api {
 
     const response = await fetch(`${HOST}${url}`, {
       method,
-      body: request?.body,
+      body: JSON.stringify(request?.body),
       headers: request?.headers,
     });
 
     if (!response.ok) {
-      const message = await response.json();
+      const message = response.text();
       console.log(message);
 
-      throw new Error(message);
+      throw new Error(await message);
     }
 
-    return response.json() as Promise<T>;
+    const result = await response.json();
+    console.log(result);
+
+    return result as Promise<T>;
   }
 
   async register({ username, password }: User): Promise<{ message: string }> {
@@ -57,11 +61,23 @@ export default class Api {
     const { auth } = ENDPOINT;
 
     const body = { username, password };
+    console.log(body);
 
     return this.makeFetch<{ token: string }>(auth, Method.POST, {
       body,
       headers: {
         'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  async getUser(): Promise<User> {
+    const { user } = ENDPOINT;
+
+    return this.makeFetch<any>(user, Method.GET, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: TOKEN,
       },
     });
   }

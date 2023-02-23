@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import PageView from './baseViewClass';
 import { createElement, removeChild } from '../helper';
 import { Themes } from '../types/enums'; // , Language
@@ -69,6 +70,9 @@ class Sign extends PageView {
 
         if (this.isValidLogin(inputName.value) && this.isValidPassword(inputPassword.value)) {
           // auth
+          const user = await this.api.getUser();
+          console.log(user);
+
           const { token } = await this.api.auth({
             username: inputName.value,
             password: inputPassword.value,
