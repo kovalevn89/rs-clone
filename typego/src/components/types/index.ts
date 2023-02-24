@@ -104,6 +104,22 @@ export interface User {
   token?: string;
 }
 
+export interface UserResult {
+  username: string;
+  accurancy: number;
+  speed: number;
+}
+
+export interface UserResults extends UserResult {
+  _id: string;
+  lessons: Lesson[];
+}
+
+export interface ApiError {
+  status: number;
+  message: string;
+}
+
 export interface ITranslationData {
   en: string;
   ru: string;
@@ -138,4 +154,14 @@ export interface IUser {
   speed?: number,
   gamesScore: Array<IGameScore>,
   progress: Array<IProgress>,
+}
+
+export interface GameApiState {
+  name: 'whac' | 'space' | 'shooter';
+  level: number;
+  score: number;
+}
+
+export interface Message {
+  message: string;
 }

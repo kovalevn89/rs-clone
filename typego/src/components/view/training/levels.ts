@@ -39,7 +39,8 @@ export default class TrainingLevels extends PageView {
 
   private async getLesson(lang: Lang, index: number): Promise<void> {
     try {
-      this.lesson = await this.api.getLesson('', index, lang);
+      this.lesson = await this.api.getLesson(index, lang);
+      this.state.current.levels = this.lesson.levels?.length || 0;
       console.log(this.lesson);
     } catch (e) {
       console.log(e);

@@ -70,17 +70,21 @@ class Sign extends PageView {
 
         if (this.isValidLogin(inputName.value) && this.isValidPassword(inputPassword.value)) {
           // auth
-          const user = await this.api.getUser();
-          console.log(user);
+          console.log(`Auth with ${inputName.value} - ${inputPassword.value}`);
 
           const { token } = await this.api.auth({
             username: inputName.value,
             password: inputPassword.value,
           });
-          console.log(`Auth with ${inputName.value} - ${inputPassword.value}`);
           console.log(token);
 
           this.api.token = token || '';
+          this.api.saveToStorage();
+
+          const user = await this.api.getUser();
+          console.log(user);
+
+          this.hidden();
         }
       });
     }
@@ -166,7 +170,6 @@ class Sign extends PageView {
             password: inputPassword1.value,
           });
 
-          // this.api.token = token || '';
           console.log(message);
         }
       });

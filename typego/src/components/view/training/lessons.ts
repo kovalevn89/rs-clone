@@ -9,7 +9,7 @@ import cover3 from '../../../assets/png/cover3.png';
 import cover4 from '../../../assets/png/cover4.png';
 import cover5 from '../../../assets/png/cover5.png';
 import cover6 from '../../../assets/png/cover6.png';
-import { LanguageStr, Lessons } from '../../types';
+import { ApiError, LanguageStr, Lessons } from '../../types';
 
 export default class TrainingLessons extends PageView {
   private async render(): Promise<void> {
@@ -59,10 +59,17 @@ export default class TrainingLessons extends PageView {
 
   private async getLessons(lang: LanguageStr): Promise<Lessons> {
     try {
-      const result = await this.api.getLessons('', lang);
+      const result = await this.api.getLessons(lang);
+      console.log(result);
+
       return result;
     } catch (e) {
       console.log(e);
+
+      if ((e as ApiError).status === 403) {
+        // eslint-disable-next-line no-alert
+        alert('Please, sign in');
+      }
 
       throw e;
     }

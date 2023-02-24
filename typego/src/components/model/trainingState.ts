@@ -3,6 +3,7 @@ import { Lang } from '../types/enums';
 
 export default class TrainingState {
   private static instance: TrainingState;
+  token!: string;
   lang!: LanguageStr;
   progressEn!: {
     lesson: number;
@@ -44,6 +45,7 @@ export default class TrainingState {
       return TrainingState.instance;
     }
 
+    this.token = '';
     this.progressRu = [];
     this.progressEn = [];
     this.lang = Lang.ru;
