@@ -10,10 +10,9 @@ import { Lang } from '../types/enums';
 import TrainingLevels from '../view/training/levels';
 import Main from '../view/main';
 import Profile from '../view/profile';
-import TypingTest from '../view/typingTest';
 import GunGame from '../view/gun';
 import Lern from '../view/lern';
-// import State from '../model/state';
+import TypingTest from '../view/typingTest';
 
 class Router {
   private validPage: Array<IPage>;

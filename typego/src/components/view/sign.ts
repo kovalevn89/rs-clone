@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import PageView from './baseViewClass';
 import { createElement, removeChild } from '../helper';
 import { Themes } from '../types/enums'; // , Language
@@ -54,7 +55,7 @@ class Sign extends PageView {
       const authBtn = createElement('div', 'auth-btn', bottomLine);
       authBtn.textContent = this.translation.getString('authButton');
 
-      authBtn.addEventListener('click', () => {
+      authBtn.addEventListener('click', async () => {
         if (!this.isValidLogin(inputName.value)) {
           errorName.classList.add('visible');
         } else {
@@ -70,6 +71,20 @@ class Sign extends PageView {
         if (this.isValidLogin(inputName.value) && this.isValidPassword(inputPassword.value)) {
           // auth
           console.log(`Auth with ${inputName.value} - ${inputPassword.value}`);
+
+          const { token } = await this.api.auth({
+            username: inputName.value,
+            password: inputPassword.value,
+          });
+          console.log(token);
+
+          this.api.token = token || '';
+          this.api.saveToStorage();
+
+          const user = await this.api.getUser();
+          console.log(user);
+
+          this.hidden();
         }
       });
     }
@@ -125,7 +140,7 @@ class Sign extends PageView {
       const authBtn = createElement('div', 'auth-btn', bottomLine);
       authBtn.textContent = this.translation.getString('regButton');
 
-      authBtn.addEventListener('click', () => {
+      authBtn.addEventListener('click', async () => {
         if (!this.isValidLogin(inputName.value)) {
           errorName.classList.add('visible');
         } else {
@@ -150,6 +165,12 @@ class Sign extends PageView {
         ) {
           // auth
           console.log(`Registration with ${inputName.value} - ${inputPassword1.value} - ${inputPassword2.value}`);
+          const { message } = await this.api.register({
+            username: inputName.value,
+            password: inputPassword1.value,
+          });
+
+          console.log(message);
         }
       });
     }

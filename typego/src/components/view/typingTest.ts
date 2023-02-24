@@ -1,5 +1,4 @@
 import { createElement, removeChild } from '../helper';
-import { DEFAULT_RESPONSE, DEFAULT_RESPONSE_RU } from '../helper/constants';
 import { LanguageStr } from '../types';
 import {
   Lang, Language, Tag, Themes, TrainingStatus,
@@ -65,13 +64,18 @@ export default class TypingTest extends PageView {
     this.render();
   }
 
-  renderTest(lang: LanguageStr, parent: HTMLElement): void {
+  async renderTest(lang: LanguageStr, parent: HTMLElement): Promise<void> {
     parent.innerHTML = '';
 
     const test = new TrainingTask();
     const { input, keyboard, textTraining } = test;
 
-    const response = lang === Lang.en ? DEFAULT_RESPONSE : DEFAULT_RESPONSE_RU;
+    const testResponse = await this.api.getTest(lang);
+    const response = {
+      name: 'test',
+      index: 0,
+      ...testResponse,
+    };
     parent.append(input.input);
     input.startListen();
     input.listen(test);

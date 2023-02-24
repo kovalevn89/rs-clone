@@ -69,11 +69,13 @@ export default class FinishLevel extends PageView {
     });
 
     this.nextBtn.addEventListener('click', () => {
-      console.log('next level', this.state);
+      console.log('next level', this.state, isTest, levels);
       if (isTest) {
+        this.state.isTest = false;
         window.location.hash = '#/training';
       } else if (level < levels - 1) {
         this.state.current.level += 1;
+        console.log(this.state.current.level);
         this.state.saveToStorage();
         window.location.hash = `#/lesson?lang=${lang}&index=${lesson}&id=${this.state.current.level}`;
       } else {
