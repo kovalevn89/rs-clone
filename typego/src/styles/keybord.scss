@@ -6,36 +6,35 @@
     display: flex;
     width: 95%;
     margin: 0 auto;
-  
+
     font-family: 'ArialMT', Verdana, Geneva, Tahoma, sans-serif;
     color: $font-color-text2-light;
   }
   .key {
     fill: rgba(96, 157, 159, 0.1);
     stroke: $font-color-text2-light ;
-  
+
     &.active {
       fill: $base-color-light;
     }
-  
+
     &.correct {
-      fill: #e7fbd3
+      fill: #c8ffeb;
     }
-  
+
     &.incorrect {
-      fill:#ffc0cb;
+      fill: #fbc8aa;
     }
   }
-  
+
   .letter {
     font-size: 18px;
     color: $font-color-text2-light;
-  
-  
+
     &.num {
       font-size: 12px;
     }
-  
+
     &.special {
       font-size: 10px;
     }
@@ -53,11 +52,11 @@
     }
 
     &.correct {
-      fill: #e7fbd3
+      fill: #c8ffeb;
     }
 
     &.incorrect {
-      fill:#ffc0cb;
+      fill: #fbc8aa;
     }
   }
 

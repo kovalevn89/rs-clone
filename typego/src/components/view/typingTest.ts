@@ -1,7 +1,7 @@
 import { createElement, removeChild } from '../helper';
 import { LanguageStr } from '../types';
 import {
-  Lang, Tag, Themes, TrainingStatus,
+  Lang, Language, Tag, Themes, TrainingStatus,
 } from '../types/enums';
 import PageView from './baseViewClass';
 import TrainingTask from './training/trainingTask';
@@ -18,6 +18,7 @@ export default class TypingTest extends PageView {
     } else {
       container.classList.remove('dark');
     }
+    this.translation.cleanObserver();
 
     const wrapper = createElement(Tag.div, 'wrapper', container);
 
@@ -29,7 +30,15 @@ export default class TypingTest extends PageView {
     const selectEnBtn = createElement(Tag.div, 'test__select', selectContainer, ['lang', 'en']);
     const selectRuBtn = createElement(Tag.div, 'test__select', selectContainer, ['lang', 'ru']);
 
+    if (this.currentLang === Language.EN) {
+      selectEnBtn.classList.add('active');
+    } else {
+      selectRuBtn.classList.add('active');
+    }
+
     const testContainer = createElement(Tag.div, 'test__container training__container', wrapper);
+
+    const lang = this.currentLang === Language.EN ? Lang.en : Lang.ru;
 
     selectEnBtn.addEventListener('click', () => {
       selectEnBtn.classList.add('active');
@@ -46,6 +55,8 @@ export default class TypingTest extends PageView {
 
     this.translation.translateField(selectEnBtn, 'layoutEn');
     this.translation.translateField(selectRuBtn, 'layoutRu');
+
+    this.renderTest(lang, testContainer);
   }
 
   run(): void {

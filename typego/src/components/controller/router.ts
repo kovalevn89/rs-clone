@@ -84,7 +84,6 @@ class Router {
         });
       }
     }
-    // console.log(validParams);
     return validParams;
   }
 
