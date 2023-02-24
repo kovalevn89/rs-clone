@@ -365,6 +365,15 @@ class Controller {
       res.status(400).json({message: 'top score error'});
     }
   }
+
+  async wakeup(req, res) {
+    try {
+      return res.json({matrix: 'Follow the white rabbit.'});
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({message: 'wakeup error'});
+    }
+  }
 }
 
 export default new Controller();
