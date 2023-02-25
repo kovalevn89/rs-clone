@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createElement } from '../../helper';
+import { Progress } from '../../types';
 // import TrainingState from '../../model/trainingState';
 import { Tag } from '../../types/enums';
 import PageView from '../baseViewClass';
@@ -21,20 +22,37 @@ export default class FinishLevel extends PageView {
       const { testResult } = this.state;
       try {
         await this.api.updateTestResults(testResult);
-        console.log('update', testResult);
+        console.log('update test', testResult);
       } catch (e) {
         console.log(this.api.error);
         throw e;
       }
     } else {
-      const { current } = this.state;
+      const {
+        level, lesson, speed, accuracy, lang,
+      } = this.state.current;
+      console.log(this.state.current);
       try {
-        await this.api.updateProgress(current);
-        console.log('update', current);
+        await this.api.updateProgress({
+          lang,
+          level,
+          lesson,
+          speed,
+          accuracy,
+        } as Progress);
+        console.log('update');
       } catch (e) {
         console.log(this.api.error);
         throw e;
       }
+    }
+    try {
+      const user = await this.api.getUser();
+      console.log(user);
+    } catch (e) {
+      console.log(this.api.error);
+
+      throw e;
     }
     console.log(this.state);
     this.renderComplete();
@@ -50,15 +68,15 @@ export default class FinishLevel extends PageView {
     const { lang } = this.state;
     const {
       speed,
-      accurancy,
+      accuracy,
       time,
       mistakes,
-      lesson,
-      level,
-      levels,
+      // lesson,
+      // level,
+      // levels,
     } = this.state.current;
 
-    console.log(speed, accurancy, time, mistakes);
+    console.log(speed, accuracy, time, mistakes);
 
     parent.append(container);
     container.append(this.message);
@@ -73,13 +91,13 @@ export default class FinishLevel extends PageView {
 
   listenButtons(): void {
     const {
-      accurancy, level, levels, lesson,
+      accuracy, level, levels, lesson,
     } = this.state.current;
     const { lang, isTest } = this.state;
     this.backBtn.addEventListener('click', () => {
       if (isTest) {
         window.location.hash = '#/main';
-      } else if (accurancy < 80) {
+      } else if (accuracy < 80) {
         // window.location.hash = `#/lesson?lang=${lang}&index=${lesson}&id=${this.state.level}`;
         window.location.reload();
       } else {
@@ -107,7 +125,7 @@ export default class FinishLevel extends PageView {
 
   private renderTable(parent: HTMLElement): void {
     const {
-      time, accurancy, speed, mistakes,
+      time, accuracy, speed, mistakes,
     } = this.state.current;
     const tableContainer = createElement(Tag.div, 'results__table', parent);
 
@@ -119,13 +137,13 @@ export default class FinishLevel extends PageView {
     timeValue.textContent = `${time}`;
     this.translation.translateField(timeUnits, 'seconds');
 
-    const accurancyTitle = createElement(Tag.div, 'table__row table__accurancy', tableContainer);
-    const accurancyValue = createElement(Tag.div, 'table__row table__accurancy value', tableContainer);
-    const accurancyUnits = createElement(Tag.div, 'table__row table__accurancy units', tableContainer);
+    const accuracyTitle = createElement(Tag.div, 'table__row table__accuracy', tableContainer);
+    const accuracyValue = createElement(Tag.div, 'table__row table__accuracy value', tableContainer);
+    const accuracyUnits = createElement(Tag.div, 'table__row table__accuracy units', tableContainer);
 
-    this.translation.translateField(accurancyTitle, 'accurancy');
-    accurancyValue.textContent = `${accurancy}`;
-    accurancyUnits.textContent = '%';
+    this.translation.translateField(accuracyTitle, 'accuracy');
+    accuracyValue.textContent = `${accuracy}`;
+    accuracyUnits.textContent = '%';
 
     const speedTitle = createElement(Tag.div, 'table__row table__speed', tableContainer);
     const speedValue = createElement(Tag.div, 'table__row table__speed value', tableContainer);
@@ -145,7 +163,7 @@ export default class FinishLevel extends PageView {
 
   private updateMessage(): void {
     const { current, isTest } = this.state;
-    const { accurancy } = current;
+    const { accuracy } = current;
 
     this.translation.translateField(this.nextBtn, 'nextLvl');
     // this.translation.translateField(this.backBtn, 'backBtn');
@@ -156,7 +174,7 @@ export default class FinishLevel extends PageView {
       this.nextBtn.disabled = false;
       this.translation.translateField(this.nextBtn, 'startTraining');
       this.translation.translateField(this.backBtn, 'toMain');
-    } else if (accurancy < 80) {
+    } else if (accuracy < 80) {
       this.messageContent('mistakeMsg');
 
       this.nextBtn.disabled = true;

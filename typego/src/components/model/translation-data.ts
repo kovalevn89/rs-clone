@@ -262,8 +262,8 @@ const data: ITranslation = {
     en: 'seconds',
     ru: 'сек',
   },
-  accurancy: {
-    en: 'Accurancy',
+  accuracy: {
+    en: 'Accuracy',
     ru: 'Точность',
   },
   start: {

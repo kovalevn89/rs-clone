@@ -52,13 +52,13 @@ export interface Progress {
   lesson: number;
   level: number;
   speed: number;
-  accurancy: number;
+  accuracy: number;
   lang: LanguageStr;
 }
 
 export interface TestResults {
   speed: number,
-  accurancy: number,
+  accuracy: number,
   time: number,
   mistakes: number,
 }
@@ -120,7 +120,7 @@ export interface User {
 
 export interface UserResult {
   username: string;
-  accurancy: number;
+  accuracy: number;
   speed: number;
 }
 

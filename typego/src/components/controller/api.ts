@@ -164,9 +164,9 @@ export default class Api {
     return this.makeFetch(url);
   }
 
-  async updateTestResults({ speed, accurancy }: TestResults): Promise<void> {
+  async updateTestResults({ speed, accuracy }: TestResults): Promise<void> {
     const { user } = ENDPOINT;
-    const body = { speed, accurancy };
+    const body = { speed, accuracy };
     this.loadFromStorage();
     return this.makeFetch(user, Method.PUT, {
       body: JSON.stringify(body),

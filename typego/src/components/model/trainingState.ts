@@ -12,7 +12,7 @@ export default class TrainingState {
   current!: CurrentTrainingProgress;
   best!: {
     speed: number;
-    accurancy: number;
+    accuracy: number;
     time: number;
     mistakes: number;
   };
@@ -37,7 +37,7 @@ export default class TrainingState {
       level: 1,
       levels: 0,
       speed: 0,
-      accurancy: 0,
+      accuracy: 0,
       time: 0,
       mistakes: 0,
       lang: this.lang,
@@ -45,7 +45,7 @@ export default class TrainingState {
 
     this.best = {
       speed: 0,
-      accurancy: 0,
+      accuracy: 0,
       time: 1000,
       mistakes: 1000,
     };
@@ -53,7 +53,7 @@ export default class TrainingState {
     this.isTest = false;
     this.testResult = {
       speed: 0,
-      accurancy: 0,
+      accuracy: 0,
       time: 0,
       mistakes: 0,
     };
@@ -66,7 +66,7 @@ export default class TrainingState {
 
   progressPush():void {
     const {
-      lesson, level, lang, speed, accurancy,
+      lesson, level, lang, speed, accuracy,
     } = this.current;
 
     if (this.lang === Lang.en) {
@@ -75,7 +75,7 @@ export default class TrainingState {
         level,
         lang,
         speed,
-        accurancy,
+        accuracy,
       });
     } else {
       this.progressRu.push({
@@ -83,7 +83,7 @@ export default class TrainingState {
         level,
         lang,
         speed,
-        accurancy,
+        accuracy,
       });
     }
   }
@@ -121,13 +121,13 @@ export default class TrainingState {
 
   saveStatistic(): void {
     if (this.isTest) {
-      this.testResult.accurancy = this.current.accurancy;
+      this.testResult.accuracy = this.current.accuracy;
       this.testResult.speed = this.current.speed;
       this.testResult.mistakes = this.current.mistakes;
       this.testResult.time = this.current.time;
     }
-    if (this.current.accurancy > this.best.accurancy) {
-      this.best.accurancy = this.current.accurancy;
+    if (this.current.accuracy > this.best.accuracy) {
+      this.best.accuracy = this.current.accuracy;
     }
     if (this.current.speed > this.best.speed) {
       this.best.speed = this.current.speed;
