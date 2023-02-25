@@ -15,8 +15,27 @@ export default class FinishLevel extends PageView {
     this.message = createElement(Tag.div, 'finish__message');
   }
 
-  run(): void {
+  async run(): Promise<void> {
     this.state.saveStatistic();
+    if (this.state.isTest) {
+      const { testResult } = this.state;
+      try {
+        await this.api.updateTestResults(testResult);
+        console.log('update', testResult);
+      } catch (e) {
+        console.log(this.api.error);
+        throw e;
+      }
+    } else {
+      const { current } = this.state;
+      try {
+        await this.api.updateProgress(current);
+        console.log('update', current);
+      } catch (e) {
+        console.log(this.api.error);
+        throw e;
+      }
+    }
     console.log(this.state);
     this.renderComplete();
   }

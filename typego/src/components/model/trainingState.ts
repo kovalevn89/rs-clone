@@ -1,29 +1,15 @@
-import { LanguageStr } from '../types';
+import {
+  CurrentTrainingProgress, LanguageStr, Progress, TestResults,
+} from '../types';
 import { Lang } from '../types/enums';
 
 export default class TrainingState {
   private static instance: TrainingState;
   token!: string;
   lang!: LanguageStr;
-  progressEn!: {
-    lesson: number;
-    level: number;
-  }[];
-  progressRu!: {
-    lesson: number;
-    level: number;
-  }[];
-  current!: {
-    lesson: number;
-    complitedLessons: number[];
-    level: number;
-    levels: number;
-    speed: number;
-    accurancy: number;
-    time: number;
-    mistakes: number;
-    lang: LanguageStr;
-  };
+  progressEn!: Progress[];
+  progressRu!: Progress[];
+  current!: CurrentTrainingProgress;
   best!: {
     speed: number;
     accurancy: number;
@@ -32,12 +18,7 @@ export default class TrainingState {
   };
 
   isTest!: boolean;
-  testResult!: {
-    speed: number,
-    accurancy: number,
-    time: number,
-    mistakes: number,
-  };
+  testResult!: TestResults;
   isInputActive!: boolean;
 
   constructor() {
@@ -84,10 +65,26 @@ export default class TrainingState {
   }
 
   progressPush():void {
+    const {
+      lesson, level, lang, speed, accurancy,
+    } = this.current;
+
     if (this.lang === Lang.en) {
-      this.progressEn.push({ lesson: this.current.lesson, level: this.current.level });
+      this.progressEn.push({
+        lesson,
+        level,
+        lang,
+        speed,
+        accurancy,
+      });
     } else {
-      this.progressRu.push({ lesson: this.current.lesson, level: this.current.level });
+      this.progressRu.push({
+        lesson,
+        level,
+        lang,
+        speed,
+        accurancy,
+      });
     }
   }
 
@@ -99,7 +96,6 @@ export default class TrainingState {
       this.current.level = this.progressRu
         .find((item) => item.lesson === index)?.level || 0;
     }
-    console.log(this.lang, this.current.lesson, this.current.level);
     this.saveToStorage();
   }
 

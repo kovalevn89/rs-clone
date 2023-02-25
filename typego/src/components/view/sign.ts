@@ -81,8 +81,8 @@ class Sign extends PageView {
           this.api.token = token || '';
           this.api.saveToStorage();
 
-          const user = await this.api.getUser();
-          console.log(user);
+          // const user = await this.api.getUser();
+          // console.log(user);
 
           this.hidden();
         }

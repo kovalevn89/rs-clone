@@ -56,6 +56,20 @@ export interface Progress {
   lang: LanguageStr;
 }
 
+export interface TestResults {
+  speed: number,
+  accurancy: number,
+  time: number,
+  mistakes: number,
+}
+
+export interface CurrentTrainingProgress extends Progress {
+  complitedLessons: number[];
+  levels: number;
+  time: number;
+  mistakes: number;
+}
+
 export interface TextResponse extends Level {
   lang: LanguageStr;
 }

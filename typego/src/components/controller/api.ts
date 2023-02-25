@@ -1,14 +1,11 @@
-/* eslint-disable quote-props */
-/* eslint-disable max-len */
 import {
   ApiError,
   GameApiState,
-  LanguageStr, Lesson, Lessons, Message, Progress, Test, User, UserResult,
+  LanguageStr, Lesson, Lessons, Message, Progress, Test, TestResults, User, UserResult,
 } from '../types';
 import { Lang, Method } from '../types/enums';
 
 const HOST = 'https://typego.onrender.com/api/';
-// const HOST = '127.0.0.1:3000/api/';
 const ENDPOINT = {
   register: 'register',
   auth: 'auth',
@@ -48,8 +45,6 @@ export default class Api {
   }
 
   private async makeFetch<T>(url: string, method = Method.GET, request?: RequestInit): Promise<T> {
-    console.log(`${HOST}${url}`);
-
     const response = await fetch(`${HOST}${url}`, {
       method,
       body: request?.body,
@@ -93,7 +88,6 @@ export default class Api {
     const { auth } = ENDPOINT;
 
     const body = { username, password };
-    console.log(body);
 
     return this.makeFetch<{ token: string }>(auth, Method.POST, {
       body: JSON.stringify(body),
@@ -170,7 +164,7 @@ export default class Api {
     return this.makeFetch(url);
   }
 
-  async updateTestResults({ speed, accurancy }: Progress): Promise<void> {
+  async updateTestResults({ speed, accurancy }: TestResults): Promise<void> {
     const { user } = ENDPOINT;
     const body = { speed, accurancy };
     this.loadFromStorage();
