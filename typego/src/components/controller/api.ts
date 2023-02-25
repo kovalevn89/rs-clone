@@ -17,6 +17,7 @@ const ENDPOINT = {
   test: 'test',
   top: 'top',
   game: 'game',
+  wakeup: 'wakeup',
 };
 
 export default class Api {
@@ -68,6 +69,12 @@ export default class Api {
     console.log(result);
 
     return result as Promise<T>;
+  }
+
+  async wakeUp(): Promise<void> {
+    const { wakeup } = ENDPOINT;
+
+    return this.makeFetch(wakeup);
   }
 
   async register({ username, password }: User): Promise<Message> {
