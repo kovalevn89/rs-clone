@@ -55,6 +55,9 @@ class Header extends PageView {
             header.classList.add('dark');
           }
 
+          // проверка авторизирован ли юзер.
+          const userAuth = false;
+
           const wrapper = createElement('div', 'header__wrapper', header);
 
           // logo
@@ -113,11 +116,20 @@ class Header extends PageView {
           this.translation.regObserverPermanent(() => { item4.textContent = this.translation.getString('headerManu4'); });
           item4.addEventListener('click', () => { window.location.hash = '#/games'; });
           const item5 = createElement('li', 'menu__item', list);
-          item5.textContent = this.translation.getString('loginButton');
-          item5.addEventListener('click', () => {
-            this.sign.showIn();
-          });
-          this.translation.regObserverPermanent(() => { item5.textContent = this.translation.getString('loginButton'); });
+
+          if (userAuth) {
+            item5.textContent = 'UserName';
+            item5.addEventListener('click', () => {
+              window.location.hash = '#/profile';
+            });
+          } else {
+            item5.textContent = this.translation.getString('loginButton');
+            item5.addEventListener('click', () => {
+              this.sign.showIn();
+            });
+            this.translation.regObserverPermanent(() => { item5.textContent = this.translation.getString('loginButton'); });
+          }
+
           const item6 = createElement('li', 'menu__item', list);
           item6.textContent = '';
           const themeBtn2 = createElement('div', 'theme__btn', item6);
@@ -154,14 +166,25 @@ class Header extends PageView {
             this.translation.setLang(this.currentLang);
           });
 
-          const signBtn = createElement('div', 'sign__btn', controls);
-          signBtn.textContent = this.translation.getString('loginButton');
-          this.translation.regObserverPermanent(() => { signBtn.textContent = this.translation.getString('loginButton'); });
+          if (userAuth) {
+            const profileBtn = createElement('div', 'profile__btn', controls);
+            profileBtn.textContent = 'UserName';
 
-          // login
-          signBtn.addEventListener('click', () => {
-            this.sign.showIn();
-          });
+            // profile
+            profileBtn.addEventListener('click', () => {
+              window.location.hash = '#/profile';
+            });
+          } else {
+            const signBtn = createElement('div', 'sign__btn', controls);
+            signBtn.textContent = this.translation.getString('loginButton');
+            this.translation.regObserverPermanent(() => { signBtn.textContent = this.translation.getString('loginButton'); });
+
+            // login
+            signBtn.addEventListener('click', () => {
+              this.sign.showIn();
+            });
+          }
+
           // modal wrapper
           createElement('div', 'header__modal', wrapper);
           body.prepend(header);
