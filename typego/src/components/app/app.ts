@@ -1,5 +1,3 @@
-import Model from '../model/model';
-import Controller from '../controller/controler';
 import Header from '../view/header';
 import Footer from '../view/footer';
 import AppConfig from '../model/appconfig';
@@ -8,8 +6,6 @@ import Translation from '../model/translation';
 import State from '../model/trainingState';
 
 class App {
-  model;
-  controller;
   header;
   footer;
   router;
@@ -20,8 +16,6 @@ class App {
   constructor() {
     this.config = new AppConfig();
     this.translate = new Translation();
-    this.model = new Model();
-    this.controller = new Controller();
     this.header = new Header();
     this.footer = new Footer();
     this.router = new Router();
