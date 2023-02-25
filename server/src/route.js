@@ -17,5 +17,6 @@ router.get('/test', Controller.randomTest);
 router.get('/lessons', Controller.getLessons);
 router.put('/lessons', Controller.updateStadyProgress);
 router.get('/top', Controller.getTopScore);
+router.get('/wakeup', Controller.wakeup);
 
 export default router;

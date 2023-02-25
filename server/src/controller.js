@@ -353,7 +353,7 @@ class Controller {
 
   async getTopScore(req, res) {
     try {
-      const topUsers = await User.find().sort({speed: -1}).limit(10);
+      const topUsers = await User.find({accuracy:{$exists:true}, speed:{$exists:true}}).sort({speed: -1}).limit(10);
 
       if (topUsers.length !== 0) {
         return res.json(topUsers.map(value => ({'username': value.username, 'accuracy': value.accuracy, 'speed': value.speed})));
@@ -363,6 +363,15 @@ class Controller {
     } catch (error) {
       console.log(error);
       res.status(400).json({message: 'top score error'});
+    }
+  }
+
+  async wakeup(req, res) {
+    try {
+      return res.json({matrix: 'Follow the white rabbit.'});
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({message: 'wakeup error'});
     }
   }
 }
