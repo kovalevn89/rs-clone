@@ -27,12 +27,12 @@ class User {
     localStorage.setItem('userToken', this.userToken);
   }
 
-  set token(userToken: string) {
+  public setToken(userToken: string) {
     this.userToken = userToken;
     this.saveLocalStorage();
   }
 
-  get token(): string {
+  public getToken(): string {
     return this.userToken;
   }
 

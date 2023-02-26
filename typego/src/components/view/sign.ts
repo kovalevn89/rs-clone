@@ -28,9 +28,19 @@ class Sign extends PageView {
 
       const wrapper = createElement('div', 'signin_modal__wrapper', modal);
 
+      let modalRequestToClose = false;
+
+      wrapper.addEventListener('mousedown', (event) => {
+        if (event.target === wrapper) {
+          modalRequestToClose = true;
+        }
+      });
+
       wrapper.addEventListener('click', (event) => {
         if (event.target === wrapper) {
-          this.hidden();
+          if (modalRequestToClose === true) {
+            this.hidden();
+          }
         }
       });
 
@@ -44,6 +54,7 @@ class Sign extends PageView {
       createElement('div', 'input__label', inputForm).textContent = this.translation.getString('authPassword');
       const inputPassword = createElement<HTMLInputElement>('input', 'input__password', inputForm, ['type', 'password']);
       const errorPassword = createElement('div', 'input__password-error', inputForm);
+      const errorLogin = createElement('div', 'login__error', inputForm);
       errorPassword.textContent = this.translation.getString('authPasswordError');
       const registrationBtn = createElement('div', 'go-reg_btn', inputForm);
       registrationBtn.textContent = this.translation.getString('authRegNow');
@@ -56,6 +67,8 @@ class Sign extends PageView {
       authBtn.textContent = this.translation.getString('authButton');
 
       authBtn.addEventListener('click', async () => {
+        errorLogin.classList.remove('visible');
+
         if (!this.isValidLogin(inputName.value)) {
           errorName.classList.add('visible');
         } else {
@@ -72,19 +85,35 @@ class Sign extends PageView {
           // auth
           console.log(`Auth with ${inputName.value} - ${inputPassword.value}`);
 
-          const { token } = await this.api.auth({
-            username: inputName.value,
-            password: inputPassword.value,
-          });
-          console.log(token);
+          try {
+            const { token } = await this.api.auth({
+              username: inputName.value,
+              password: inputPassword.value,
+            });
+            console.log(token);
 
-          this.api.token = token || '';
-          this.api.saveToStorage();
+            this.user.setToken(token);
 
-          const user = await this.api.getUser();
-          console.log(user);
+            // this.api.token = token || '';
+            // this.api.saveToStorage();
 
-          this.hidden();
+            // const user = await this.api.getUser();
+            // console.log(user);
+
+            this.hidden();
+          } catch (e) {
+            console.log((e as Error).message);
+
+            errorLogin.classList.add('visible');
+
+            const errorMsg = JSON.parse((e as Error).message).message;
+
+            switch (errorMsg) {
+              case 'user not exists': errorLogin.textContent = this.translation.getString('authUserNotExist'); break;
+              case 'invalid password': errorLogin.textContent = this.translation.getString('authInvalidPassword'); break;
+              default: errorLogin.textContent = this.translation.getString('authOtherError');
+            }
+          }
         }
       });
     }
@@ -106,9 +135,19 @@ class Sign extends PageView {
 
       const wrapper = createElement('div', 'signup_modal__wrapper', modal);
 
+      let modalRequestToClose = false;
+
+      wrapper.addEventListener('mousedown', (event) => {
+        if (event.target === wrapper) {
+          modalRequestToClose = true;
+        }
+      });
+
       wrapper.addEventListener('click', (event) => {
         if (event.target === wrapper) {
-          this.hidden();
+          if (modalRequestToClose === true) {
+            this.hidden();
+          }
         }
       });
 

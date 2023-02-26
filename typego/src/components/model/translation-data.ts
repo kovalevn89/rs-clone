@@ -193,6 +193,18 @@ const data: ITranslation = {
     en: 'Error! The password can contain "A-Za-z0-9_" and be at 6 characters long!',
     ru: 'Ошибка! Пароль может содержать "A-Za-z0-9_" и быть не меньше 6 символов!',
   },
+  authUserNotExist: {
+    en: 'Authentication error! User not exists.',
+    ru: 'Ошибка авторизации! Пользователь не найден.',
+  },
+  authInvalidPassword: {
+    en: 'Authentication error! Invalid password.',
+    ru: 'Ошибка авторизации! Не верный пароль.',
+  },
+  authOtherError: {
+    en: 'Authentication error! Unknown error.',
+    ru: 'Ошибка авторизации! Не известная ошибка.',
+  },
   regCaption: {
     en: 'Registration',
     ru: 'Регистрация',
