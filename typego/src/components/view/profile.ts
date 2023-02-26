@@ -375,6 +375,12 @@ class Profile extends PageView {
       const deletetBtn = createElement('div', 'control__delete', administrationControls);
       deletetBtn.textContent = this.translation.getString('profileAdminDelete');
       this.translation.regObserver(() => { deletetBtn.textContent = this.translation.getString('profileAdminDelete'); });
+
+      logoutBtn.addEventListener('click', () => {
+        this.user.setToken('');
+        window.location.hash = '#/main';
+        window.location.reload();
+      });
     }
   }
 
