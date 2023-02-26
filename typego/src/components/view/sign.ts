@@ -66,7 +66,7 @@ class Sign extends PageView {
       const authBtn = createElement('div', 'auth-btn', bottomLine);
       authBtn.textContent = this.translation.getString('authButton');
 
-      authBtn.addEventListener('click', async () => {
+      const loginFunc = async () => {
         errorLogin.classList.remove('visible');
 
         if (!this.isValidLogin(inputName.value)) {
@@ -115,6 +115,22 @@ class Sign extends PageView {
               default: errorLogin.textContent = this.translation.getString('authOtherError');
             }
           }
+        }
+      };
+
+      authBtn.addEventListener('click', async () => {
+        loginFunc();
+      });
+
+      inputName.addEventListener('keypress', (Event) => {
+        if (Event.keyCode === 13) {
+          loginFunc();
+        }
+      });
+
+      inputPassword.addEventListener('keypress', (Event) => {
+        if (Event.keyCode === 13) {
+          loginFunc();
         }
       });
     }
