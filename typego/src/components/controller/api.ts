@@ -107,14 +107,14 @@ export default class Api {
     });
   }
 
-  async getUser(): Promise<User> {
+  async getUser(token: string): Promise<User> {
     const { user } = ENDPOINT;
     this.loadFromStorage();
 
     return this.makeFetch<any>(user, Method.GET, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: this.token,
+        Authorization: token,
       },
     });
   }

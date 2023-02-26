@@ -203,6 +203,14 @@
         }
       }
 
+      .profile__btn {
+        background-color: $button-color-light;
+        color: $font-color-text2-light;
+        &:hover {
+          background-color: $button-hover-color-light;
+        }
+      }
+
       .sign__btn {
         width: 98px;
         height: 36px;
@@ -255,6 +263,14 @@
           
           &:hover {
             color: $font-color-text1-dark;
+            background-color: $button-hover-color-dark;
+          }
+        }
+
+        .profile__btn {
+          background-color: $button-color-dark;
+          color: $font-color-text1-dark;
+          &:hover {
             background-color: $button-hover-color-dark;
           }
         }

@@ -94,11 +94,12 @@ class Sign extends PageView {
 
             this.user.setToken(token);
 
-            // this.api.token = token || '';
-            // this.api.saveToStorage();
+            const header = document.querySelector('.header');
 
-            // const user = await this.api.getUser();
-            // console.log(user);
+            if (header !== null) {
+              const event = new Event('auth');
+              header.dispatchEvent(event);
+            }
 
             this.hidden();
           } catch (e) {
