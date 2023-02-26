@@ -18,6 +18,8 @@ export class Training extends PageView {
       container.classList.remove('dark');
     }
 
+    this.translation.cleanObserver(); // clear translate obserber hook
+
     const wrapper = createElement(Tag.div, 'wrapper', container);
 
     const title = createElement(Tag.h2, 'training__title', wrapper);
