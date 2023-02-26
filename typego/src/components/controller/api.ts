@@ -3,7 +3,7 @@
 import {
   ApiError,
   GameApiState,
-  LanguageStr, Lesson, Lessons, Message, Progress, Test, User, UserResult,
+  LanguageStr, Lesson, Lessons, Message, Progress, Test, User, UserResult, IUser,
 } from '../types';
 import { Lang, Method } from '../types/enums';
 
@@ -107,7 +107,7 @@ export default class Api {
     });
   }
 
-  async getUser(token: string): Promise<User> {
+  async getUser(token: string): Promise<IUser> {
     const { user } = ENDPOINT;
     this.loadFromStorage();
 

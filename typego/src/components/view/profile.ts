@@ -10,100 +10,100 @@ import dropfoodGameLogo from '../../assets/png/drop-food.png';
 import gunGameLogo from '../../assets/png/gun-game.png';
 import certTemplate from '../../assets/png/certificate-template.png';
 
-const userData: IUser = {
-  _id: '63dbaf9cdcfe2d760c226ccd',
-  username: 'admin',
-  accuracy: 99.4,
-  speed: 134,
-  gamesScore: [
-    {
-      _id: '63dcf0a66c9e5025efcb6c46',
-      name: 'shooter',
-      level: 14,
-      score: 51,
-      __v: 0,
-    },
-    {
-      _id: '63dcf0a66c9e5025efcb6c46',
-      name: 'whac',
-      level: 3,
-      score: 99,
-      __v: 0,
-    },
-    {
-      _id: '63dcf27bd4ee89b5744b1168',
-      name: 'space',
-      level: 1,
-      score: 1,
-      __v: 0,
-    },
-  ],
-  progress: [
-    {
-      _id: '63dd6137632f2101530332af',
-      lesson: 1,
-      lang: 'ru',
-      level: 3,
-      accuracy: 83,
-      speed: 115,
-      __v: 0,
-    },
-    {
-      _id: '63dd6137632f2101530332af',
-      lesson: 1,
-      lang: 'en',
-      level: 1,
-      accuracy: 11,
-      speed: 33,
-      __v: 0,
-    },
-    {
-      _id: '63dd6137632f2101530332af',
-      lesson: 1,
-      lang: 'en',
-      level: 2,
-      accuracy: 11,
-      speed: 44,
-      __v: 0,
-    },
-    {
-      _id: '63dd6137632f2101530332af',
-      lesson: 1,
-      lang: 'en',
-      level: 3,
-      accuracy: 11,
-      speed: 22,
-      __v: 0,
-    },
-    {
-      _id: '63dd6186632f2101530332b8',
-      lesson: 1,
-      lang: 'ru',
-      level: 4,
-      accuracy: 90,
-      speed: 135,
-      __v: 0,
-    },
-    {
-      _id: '63dd622e632f2101530332c1',
-      lesson: 1,
-      lang: 'ru',
-      level: 5,
-      accuracy: 91,
-      speed: 115,
-      __v: 0,
-    },
-    {
-      _id: '63dd63279d692009a26e866f',
-      lesson: 1,
-      lang: 'ru',
-      level: 1,
-      accuracy: 90,
-      speed: 99,
-      __v: 0,
-    },
-  ],
-};
+// const userData: IUser = {
+//   _id: '63dbaf9cdcfe2d760c226ccd',
+//   username: 'admin',
+//   accuracy: 99.4,
+//   speed: 134,
+//   gamesScore: [
+//     {
+//       _id: '63dcf0a66c9e5025efcb6c46',
+//       name: 'shooter',
+//       level: 14,
+//       score: 51,
+//       __v: 0,
+//     },
+//     {
+//       _id: '63dcf0a66c9e5025efcb6c46',
+//       name: 'whac',
+//       level: 3,
+//       score: 99,
+//       __v: 0,
+//     },
+//     {
+//       _id: '63dcf27bd4ee89b5744b1168',
+//       name: 'space',
+//       level: 1,
+//       score: 1,
+//       __v: 0,
+//     },
+//   ],
+//   progress: [
+//     {
+//       _id: '63dd6137632f2101530332af',
+//       lesson: 1,
+//       lang: 'ru',
+//       level: 3,
+//       accuracy: 83,
+//       speed: 115,
+//       __v: 0,
+//     },
+//     {
+//       _id: '63dd6137632f2101530332af',
+//       lesson: 1,
+//       lang: 'en',
+//       level: 1,
+//       accuracy: 11,
+//       speed: 33,
+//       __v: 0,
+//     },
+//     {
+//       _id: '63dd6137632f2101530332af',
+//       lesson: 1,
+//       lang: 'en',
+//       level: 2,
+//       accuracy: 11,
+//       speed: 44,
+//       __v: 0,
+//     },
+//     {
+//       _id: '63dd6137632f2101530332af',
+//       lesson: 1,
+//       lang: 'en',
+//       level: 3,
+//       accuracy: 11,
+//       speed: 22,
+//       __v: 0,
+//     },
+//     {
+//       _id: '63dd6186632f2101530332b8',
+//       lesson: 1,
+//       lang: 'ru',
+//       level: 4,
+//       accuracy: 90,
+//       speed: 135,
+//       __v: 0,
+//     },
+//     {
+//       _id: '63dd622e632f2101530332c1',
+//       lesson: 1,
+//       lang: 'ru',
+//       level: 5,
+//       accuracy: 91,
+//       speed: 115,
+//       __v: 0,
+//     },
+//     {
+//       _id: '63dd63279d692009a26e866f',
+//       lesson: 1,
+//       lang: 'ru',
+//       level: 1,
+//       accuracy: 90,
+//       speed: 99,
+//       __v: 0,
+//     },
+//   ],
+// };
 
 class Profile extends PageView {
   private createCertificate(name: string, speed: number, accuracu: number) {
@@ -149,6 +149,12 @@ class Profile extends PageView {
         btn.download = `Certificate - ${name}.jpg`;
       });
     }
+  }
+
+  private async getUserData() {
+    const userData1 = await this.api.getUser(this.user.getToken());
+    console.log(`TEST = ${JSON.stringify(userData1)}`);
+    return userData1;
   }
 
   private render(currentUser: IUser): void {
@@ -372,8 +378,9 @@ class Profile extends PageView {
     }
   }
 
-  public run(): void {
-    this.render(userData);
+  public async run() {
+    const test = await this.getUserData();
+    this.render(test); // userData);
   }
 }
 
