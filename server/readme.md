@@ -392,4 +392,16 @@ Api for Rolling Scopes School task "RS-Clone".
       "message": "not authorized"  
       "message": "invalid token"  
   }  
-```
+```  
+
+
+# Запрос "Wake UP" сервера. (отправляеется на сервер при загрузке начальной страницы, должен нивелировать задержку на "пробуждение" сервера, возникающую в случае если сервер не получал запросы больше 15 минут) (https://render.com/docs/free#free-web-services)   
+* **Method:** GET    
+* **Endpoint:**  /api/wakeup   
+   
+**200 - OK**   
+```   
+  {   
+    "matrix": "Follow the white rabbit."   
+  }   
+```   
