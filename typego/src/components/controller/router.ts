@@ -68,7 +68,6 @@ class Router {
 
     if (currentPage.length === 1 && currentPage[0].params.length > 0) {
       if (params.length > 0) {
-        // console.log(params);
         params.forEach((param) => {
           const parametr = param.split('=')[0];
           let value = param.split('=')[1];
@@ -180,7 +179,6 @@ class Router {
                   break;
                 default: {
                   this.error.run('pageNotFound');
-                  // console.log('RENDER 404');
                 }
               }
             }
@@ -193,8 +191,6 @@ class Router {
     } else {
       // render 404
       this.error.run('pageNotFound');
-      // console.log('RENDER 404');
-      // this.error.render();
     }
   }
 
@@ -210,7 +206,6 @@ class Router {
     const page = hash.split('?')[0];
     const params = hash.split('?')[1] ? hash.split('?')[1].split('&') : [''];
 
-    console.log({ page, params });
     this.render(page, params);
   }
 

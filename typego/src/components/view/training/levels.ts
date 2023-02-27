@@ -42,9 +42,7 @@ export default class TrainingLevels extends PageView {
       this.lesson = await this.api.getLesson(index, this.user.getToken(), lang);
       this.state.current.levels = this.lesson.levels?.length || 0;
     } catch (e) {
-      console.log(e);
-
-      // throw new Error(e as string);
+      // console.log(e);
     }
   }
 

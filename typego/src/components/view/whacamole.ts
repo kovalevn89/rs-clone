@@ -102,7 +102,7 @@ class WhacAMole extends PageView {
           new Audio(winSound).play();
           break;
         default: {
-          // console.log();
+          //
         }
       }
     }
@@ -208,7 +208,6 @@ class WhacAMole extends PageView {
       }
 
       if (this.gameClock >= 180) {
-        // 180
         // stop game
         this.renderEndGame();
         this.clearTimers();

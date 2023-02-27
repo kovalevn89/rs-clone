@@ -25,10 +25,8 @@ h3 {
     max-width: 1120px;
     box-sizing: border-box;
 
-
     margin: 0 auto;
     gap: 15px;
-
   }
 
   & .training__title {
@@ -63,7 +61,6 @@ h3 {
     border: #474747 2px solid;
     box-shadow: 2px 2px 16px 3px rgb(0 0 0 / 75%);
 
-    // background-color: $base-color-addition-light;
     transition: all ease 0.5s, box-shadow linear 0.1s;
 
     .select__title {

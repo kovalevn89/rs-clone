@@ -55,13 +55,6 @@ export default class FinishLevel extends PageView {
 
     parent.innerHTML = '';
     const container = createElement(Tag.div, 'finish__container');
-    // const { lang } = this.state;
-    // const {
-    //   speed,
-    //   accuracy,
-    //   time,
-    //   mistakes,
-    // } = this.state.current;
 
     parent.append(container);
     container.append(this.message);

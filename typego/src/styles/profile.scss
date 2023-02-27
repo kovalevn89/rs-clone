@@ -3,7 +3,6 @@
 
 .main {
   width: 100%;
-  //background-color: $base-color-addition-light;
 
   .profile-wrapper {
     box-sizing: border-box;
@@ -167,7 +166,6 @@
               user-select: none;
               cursor: pointer;
               color: $base-color-light;
-
             }
 
             &.hidden {
