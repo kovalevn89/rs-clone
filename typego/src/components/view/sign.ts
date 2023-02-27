@@ -186,6 +186,8 @@ class Sign extends PageView {
       const errorPassword2 = createElement('div', 'input__password-error', inputForm);
       errorPassword2.textContent = this.translation.getString('regPasswordMatchError');
 
+      const errorReg = createElement('div', 'registration__error', inputForm);
+
       const autBtn = createElement('div', 'go-reg_btn', inputForm);
       autBtn.textContent = this.translation.getString('regAuthNow');
       autBtn.addEventListener('click', () => {
@@ -197,6 +199,9 @@ class Sign extends PageView {
       authBtn.textContent = this.translation.getString('regButton');
 
       authBtn.addEventListener('click', async () => {
+        errorReg.classList.remove('visible');
+        errorReg.classList.remove('successful');
+
         if (!this.isValidLogin(inputName.value)) {
           errorName.classList.add('visible');
         } else {
@@ -219,14 +224,34 @@ class Sign extends PageView {
         && this.isValidPassword(inputPassword1.value)
         && inputPassword1.value === inputPassword2.value
         ) {
-          // auth
+          // reg
           console.log(`Registration with ${inputName.value} - ${inputPassword1.value} - ${inputPassword2.value}`);
-          const { message } = await this.api.register({
-            username: inputName.value,
-            password: inputPassword1.value,
-          });
 
-          console.log(message);
+          try {
+            const { message } = await this.api.register({
+              username: inputName.value,
+              password: inputPassword1.value,
+            });
+            console.log(message);
+
+            errorReg.classList.add('successful');
+            errorReg.classList.add('visible');
+            errorReg.textContent = this.translation.getString('regSuccessful');
+          } catch (e) {
+            console.log((e as Error).message);
+
+            errorReg.classList.add('visible');
+
+            const errorMsg = JSON.parse((e as Error).message).message;
+
+            switch (errorMsg) {
+              case 'registration error': errorReg.textContent = this.translation.getString('regError'); break;
+              case 'user exists': errorReg.textContent = this.translation.getString('regUserExistError'); break;
+              case 'input validation error: invalid username length': errorReg.textContent = this.translation.getString('regUsernameLengthError'); break;
+              case 'input validation error: invalid password length': errorReg.textContent = this.translation.getString('regPasswordLengthError'); break;
+              default: errorReg.textContent = this.translation.getString('regError');
+            }
+          }
         }
       });
     }

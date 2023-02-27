@@ -241,6 +241,26 @@ const data: ITranslation = {
     en: 'Registration',
     ru: 'Зарегистрироваться',
   },
+  regSuccessful: {
+    en: 'User registered successfully!',
+    ru: 'Пользователь успешно зарегистрирован!',
+  },
+  regError: {
+    en: 'Registration error! Unknown error.',
+    ru: 'Ошибка регистрации! Неизвестная ошибка.',
+  },
+  regUserExistError: {
+    en: 'Registration error! User alredy exists.',
+    ru: 'Ошибка регистрации! Пользователь уже существует.',
+  },
+  regUsernameLengthError: {
+    en: 'Registration error! Invalid username length.',
+    ru: 'Ошибка регистрации! Не верная длинна логина.',
+  },
+  regPasswordLengthError: {
+    en: 'Registration error! Invalid password length.',
+    ru: 'Ошибка регистрации! Не верная длинна пароля.',
+  },
   // training
   training: {
     en: 'Training',
