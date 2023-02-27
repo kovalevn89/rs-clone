@@ -1,2 +1,2 @@
 # rs-clone
-TypeGo
+TypeGo for RSSchool
