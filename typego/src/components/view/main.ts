@@ -35,6 +35,8 @@ class Main extends PageView {
       } else {
         main.classList.remove('dark');
       }
+      this.translation.cleanObserver(); // clear translate obserber hook
+
       const wrapper = createElement('div', 'main_wrapper', main);
 
       // block1

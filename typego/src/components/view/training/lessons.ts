@@ -54,7 +54,7 @@ export default class TrainingLessons extends PageView {
 
   private async getLessons(lang: LanguageStr): Promise<Lessons> {
     try {
-      const result = await this.api.getLessons(lang);
+      const result = await this.api.getLessons(lang, this.user.getToken());
       return result;
     } catch (e) {
       console.log(e);

@@ -70,7 +70,8 @@
         }
 
         .input__password-error,
-        .input__name-error {
+        .input__name-error,
+        .login__error {
           @include normal-text;
           margin-top: -10px;
           font-size: 12px;
@@ -78,6 +79,7 @@
           color: red;
           line-height: 18px;
           display: none;
+          margin-top: 0px;
           margin-left: 10px;
           margin-right: 10px;
 
@@ -179,7 +181,8 @@
           }
   
           .input__password-error,
-          .input__name-error {
+          .input__name-error,
+          .login__error {
             color: rgb(244 108 108);
           }
   
