@@ -1,6 +1,6 @@
 import Api from '../controller/api';
 import {
-  CurrentTrainingProgress, LanguageStr, Progress, TestResults,
+  CurrentTrainingProgress, Progress, LanguageStr, TestResults,
 } from '../types';
 import { Lang } from '../types/enums';
 
@@ -62,8 +62,6 @@ export default class TrainingState {
     this.isInputActive = false;
 
     TrainingState.instance = this;
-
-    this.loadFromStorage();
   }
 
   progressPush():void {
@@ -81,33 +79,20 @@ export default class TrainingState {
     }
   }
 
-  async findLevel(index: number): Promise<void> {
+  async findLevel(index: number, token: string): Promise<void> {
     const api = new Api();
 
-    this.progress = (await api.getUser()).progress;
+    this.progress = (await api.getUser(token)).progress;
 
     if (!this.progress) {
       this.progress = [];
     }
 
-    const level = this.progress
+    const complited = this.progress
       .filter((item) => item.lesson === index && item.lang === this.lang)
       .sort((a, b) => b.level - a.level);
 
-    this.current.level = level.length ? level[0].level + 1 : 1;
-  }
-
-  private async loadFromStorage(): Promise<void> {
-    const api = new Api();
-
-    try {
-      const user = await api.getUser();
-      this.progress = user.progress || [];
-    } catch (e) {
-      console.log(e);
-
-      throw e;
-    }
+    this.current.level = complited.length ? complited[0].level + 1 : 1;
   }
 
   saveStatistic(): void {

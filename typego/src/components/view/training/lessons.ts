@@ -40,9 +40,9 @@ export default class TrainingLessons extends PageView {
       createElement(Tag.h3, 'training__level__title', lev).textContent = lesson.name;
       createElement<HTMLImageElement>(Tag.img, 'training__img', lev, ['alt', `Lesson ${lesson.index} cover`]).src = cover[i];
 
-      lev.addEventListener('click', () => {
+      lev.addEventListener('click', async () => {
         this.state.current.lesson = lesson.index;
-        this.state.findLevel(lesson.index);
+        await this.state.findLevel(lesson.index, this.user.getToken());
 
         this.state.isLevelComplete = false;
         window.location.hash = `#/lesson?lang=${this.state.lang}&index=${lesson.index}&id=${this.state.current.level}`;

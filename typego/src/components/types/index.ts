@@ -120,11 +120,11 @@ export interface User {
 
 export interface UserResult {
   username: string;
-  accuracy: number;
-  speed: number;
+  accuracy?: number;
+  speed?: number;
 }
 
-export interface UserResults extends UserResult {
+export interface UserResults extends UserResult, IUser {
   _id: string;
   progress: Progress[];
 }
@@ -167,7 +167,7 @@ export interface IUser {
   accuracy?: number,
   speed?: number,
   gamesScore: Array<IGameScore>,
-  progress: Array<IProgress>,
+  progress: Array<Progress>,
 }
 
 export interface GameApiState {

@@ -1,7 +1,7 @@
 import {
   ApiError,
   GameApiState,
-  LanguageStr, Lesson, Lessons, Message, Progress, Test, TestResults, User, UserResult, IUser, UserResults,
+  LanguageStr, Lesson, Lessons, Message, Progress, Test, TestResults, User, UserResult, UserResults,
 } from '../types';
 import { Lang, Method } from '../types/enums';
 
@@ -19,11 +19,9 @@ const ENDPOINT = {
 
 export default class Api {
   private static instance: Api;
-  // public token!: string;
   public error!: ApiError;
 
   constructor() {
-    // this.token = '';
     this.error = {
       status: 200,
       message: '',
@@ -36,14 +34,6 @@ export default class Api {
     Api.instance = this;
   }
 
-  // private loadFromStorage(): void {
-  //   this.token = localStorage.getItem('typeGoToken') || '';
-  // }
-
-  // saveToStorage(): void {
-  //   localStorage.setItem('typeGoToken', this.token);
-  // }
-
   private async makeFetch<T>(url: string, method = Method.GET, request?: RequestInit): Promise<T> {
     const response = await fetch(`${HOST}${url}`, {
       method,
@@ -55,18 +45,10 @@ export default class Api {
       this.error.status = response.status;
       this.error.message = await response.text();
 
-      if (response.status === 403) {
-        // eslint-disable-next-line no-alert
-        alert('please, sign in');
-      }
-
-      console.log(this.error.message);
-
       throw new Error(this.error.message);
     }
 
     const result = await response.json();
-    console.log(result);
 
     return result as Promise<T>;
   }
@@ -105,7 +87,6 @@ export default class Api {
   async deleteUser(token: string): Promise<Message> {
     const { user } = ENDPOINT;
 
-    // this.loadFromStorage();
     return this.makeFetch<Message>(user, Method.DELETE, {
       headers: {
         Authorization: token,
@@ -113,11 +94,10 @@ export default class Api {
     });
   }
 
-  async getUser(token: string): Promise<IUser> {
+  async getUser(token: string): Promise<UserResults> {
     const { user } = ENDPOINT;
-    // this.loadFromStorage();
 
-    return this.makeFetch<IUser>(user, Method.GET, {
+    return this.makeFetch<UserResults>(user, Method.GET, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: token,
@@ -128,8 +108,6 @@ export default class Api {
   async getLessons(lang: LanguageStr, token: string): Promise<Lessons> {
     const { lessons } = ENDPOINT;
     const url = `${lessons}?lang=${lang}`;
-    // this.loadFromStorage();
-    console.log(token);
 
     return this.makeFetch<Lessons>(url, Method.GET, {
       headers: {
@@ -142,7 +120,6 @@ export default class Api {
     const { lessons } = ENDPOINT;
     const url = `${lessons}?lang=${lang}&id=${index}`;
 
-    // this.loadFromStorage();
     return this.makeFetch<Lesson>(url, Method.GET, {
       headers: {
         'Content-Type': 'application/json',
@@ -153,7 +130,6 @@ export default class Api {
 
   async updateProgress(body: Progress, token: string): Promise<Progress> {
     const { lessons } = ENDPOINT;
-    // this.loadFromStorage();
     return this.makeFetch<Progress>(lessons, Method.PUT, {
       body: JSON.stringify(body),
       headers: {
@@ -172,7 +148,6 @@ export default class Api {
   async updateTestResults({ speed, accuracy }: TestResults, token: string): Promise<void> {
     const { user } = ENDPOINT;
     const body = { speed, accuracy };
-    // this.loadFromStorage();
     return this.makeFetch(user, Method.PUT, {
       body: JSON.stringify(body),
       headers: {
@@ -191,7 +166,6 @@ export default class Api {
   async updateGameState(body: GameApiState, token: string) {
     const { game } = ENDPOINT;
 
-    // this.loadFromStorage();
     return this.makeFetch<GameApiState>(game, Method.PUT, {
       body: JSON.stringify(body),
       headers: {

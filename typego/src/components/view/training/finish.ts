@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { createElement } from '../../helper';
-import { Progress } from '../../types';
 import { Tag } from '../../types/enums';
 import PageView from '../baseViewClass';
 
@@ -22,7 +20,7 @@ export default class FinishLevel extends PageView {
     if (this.state.isTest) {
       const { testResult } = this.state;
       try {
-        await this.api.updateTestResults(testResult);
+        await this.api.updateTestResults(testResult, this.user.getToken());
       } catch (e) {
         console.log(this.api.error);
         throw e;
@@ -38,7 +36,7 @@ export default class FinishLevel extends PageView {
           lesson,
           speed,
           accuracy,
-        } as Progress);
+        }, this.user.getToken());
       } catch (e) {
         console.log(this.api.error);
         throw e;
@@ -55,13 +53,13 @@ export default class FinishLevel extends PageView {
 
     parent.innerHTML = '';
     const container = createElement(Tag.div, 'finish__container');
-    const { lang } = this.state;
-    const {
-      speed,
-      accuracy,
-      time,
-      mistakes,
-    } = this.state.current;
+    // const { lang } = this.state;
+    // const {
+    //   speed,
+    //   accuracy,
+    //   time,
+    //   mistakes,
+    // } = this.state.current;
 
     parent.append(container);
     container.append(this.message);
