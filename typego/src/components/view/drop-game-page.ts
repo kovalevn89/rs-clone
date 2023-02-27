@@ -3,6 +3,7 @@ import { gameState, state } from '../helper/state';
 import { GameData, Themes } from '../types/enums';
 import { dataLang } from '../helper/data';
 import PageView from './baseViewClass';
+import { GameApiState } from '../types';
 
 class DropGamePage extends PageView {
   container: HTMLElement;
@@ -10,6 +11,13 @@ class DropGamePage extends PageView {
   constructor() {
     super();
     this.container = document.body;
+  }
+
+  private async updateResult(gameResult: GameApiState) {
+    const token = this.user.getToken();
+    if (token !== '') {
+      await this.api.updateGameState(gameResult, this.user.getToken());
+    }
   }
 
   createDropGamePage(lvl: string, speed: number, duration: number, columnsNum: number) {
@@ -98,6 +106,15 @@ class DropGamePage extends PageView {
       setTimeout(() => {
         popup.style.display = 'block';
         this.setTotalScoreAccuracy();
+
+        const gameResult: GameApiState = {
+          name: 'space',
+          level: Number(lvl),
+          score: gameState.curScore,
+        };
+
+        this.updateResult(gameResult);
+
         this.resetState();
         setTimeout(() => {
           popup.style.display = 'none';

@@ -163,6 +163,10 @@ const data: ITranslation = {
     en: 'PAGE NOT FOUND (404)',
     ru: 'Страница не найдена (404)',
   },
+  notAuthorized: {
+    en: 'Not authorized (403)',
+    ru: 'Необходимо авторизироваться (403)',
+  },
 
   // auth modal
   authCaption: {
