@@ -1,4 +1,5 @@
 import { createElement } from '../../helper';
+import { Progress } from '../../types';
 import { Tag } from '../../types/enums';
 import PageView from '../baseViewClass';
 
@@ -6,6 +7,7 @@ export default class FinishLevel extends PageView {
   private nextBtn;
   private backBtn;
   private message;
+
   constructor() {
     super();
     this.backBtn = createElement<HTMLButtonElement>(Tag.btn, 'back__btn');
@@ -36,7 +38,7 @@ export default class FinishLevel extends PageView {
           lesson,
           speed,
           accuracy,
-        }, this.user.getToken());
+        } as Progress, this.user.getToken());
       } catch (e) {
         console.log(this.api.error);
         throw e;
@@ -77,6 +79,7 @@ export default class FinishLevel extends PageView {
       accuracy, level, levels, lesson,
     } = this.state.current;
     const { lang, isTest } = this.state;
+
     this.backBtn.addEventListener('click', () => {
       if (isTest) {
         window.location.hash = '#/main';
@@ -92,9 +95,7 @@ export default class FinishLevel extends PageView {
         this.state.isTest = false;
         window.location.hash = '#/training';
       } else if (level < levels) {
-        this.state.current.level += 1;
-
-        window.location.hash = `#/lesson?lang=${lang}&index=${lesson}&id=${this.state.current.level}`;
+        window.location.hash = `#/lesson?lang=${lang}&index=${lesson}&id=${this.state.current.level + 1}`;
       } else {
         this.state.current.level = 1;
         this.state.current.complitedLessons.push(this.state.current.lesson);
