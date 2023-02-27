@@ -56,12 +56,13 @@ class TextTraining extends PageView {
 
   updateProgress(): void {
     const { index, mistakes, speed } = this.text;
-    const accuracy = index >= 3 ? Math.floor((1 - mistakes / index) * 100) : '';
+
+    const accuracy = index > 0 ? Math.floor((1 - mistakes / index) * 100) : 0;
 
     this.speedValue.textContent = `: ${speed} `;
     this.accuracyValue.textContent = `: ${accuracy}`;
 
-    this.state.current.accuracy = accuracy as number;
+    this.state.current.accuracy = accuracy;
     this.state.current.speed = speed;
     this.state.current.mistakes = mistakes;
   }

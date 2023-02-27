@@ -31,17 +31,19 @@ export default class FinishLevel extends PageView {
       const {
         level, lesson, speed, accuracy, lang,
       } = this.state.current;
-      try {
-        await this.api.updateProgress({
-          lang,
-          level,
-          lesson,
-          speed,
-          accuracy,
-        } as Progress, this.user.getToken());
-      } catch (e) {
-        console.log(this.api.error);
-        throw e;
+      if (accuracy >= 80) {
+        try {
+          await this.api.updateProgress({
+            lang,
+            level,
+            lesson,
+            speed,
+            accuracy,
+          } as Progress, this.user.getToken());
+        } catch (e) {
+          console.log(this.api.error);
+          throw e;
+        }
       }
     }
 
