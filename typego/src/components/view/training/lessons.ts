@@ -1,4 +1,5 @@
 import PageView from '../baseViewClass';
+import Error from '../error';
 
 import { createElement, removeChild } from '../../helper';
 import { Tag, Themes } from '../../types/enums';
@@ -33,23 +34,30 @@ export default class TrainingLessons extends PageView {
 
     const cover = [cover1, cover2, cover3, cover4, cover5, cover6];
 
-    const lessons = await this.getLessons(this.state.lang);
+    try {
+      const lessons = await this.getLessons(this.state.lang);
 
-    lessons.map((lesson, i) => {
-      const lev = createElement<HTMLDivElement>(Tag.div, 'training__level', lessonsWrapper, ['id', `level_${lesson.index}`]);
-      createElement(Tag.h3, 'training__level__title', lev).textContent = lesson.name;
-      createElement<HTMLImageElement>(Tag.img, 'training__img', lev, ['alt', `Lesson ${lesson.index} cover`]).src = cover[i];
+      lessons.map((lesson, i) => {
+        const lev = createElement<HTMLDivElement>(Tag.div, 'training__level', lessonsWrapper, ['id', `level_${lesson.index}`]);
+        createElement(Tag.h3, 'training__level__title', lev).textContent = lesson.name;
+        createElement<HTMLImageElement>(Tag.img, 'training__img', lev, ['alt', `Lesson ${lesson.index} cover`]).src = cover[i];
 
-      lev.addEventListener('click', async () => {
-        this.state.current.lesson = lesson.index;
-        await this.state.findLevel(lesson.index, this.user.getToken());
+        lev.addEventListener('click', async () => {
+          this.state.current.lesson = lesson.index;
+          await this.state.findLevel(lesson.index, this.user.getToken());
 
-        this.state.isLevelComplete = false;
-        window.location.hash = `#/lesson?lang=${this.state.lang}&index=${lesson.index}&id=${this.state.current.level}`;
+          this.state.isLevelComplete = false;
+          window.location.hash = `#/lesson?lang=${this.state.lang}&index=${lesson.index}&id=${this.state.current.level}`;
+        });
+
+        return lev;
       });
-
-      return lev;
-    });
+    } catch (e) {
+      if (String(e).includes('not authorized')) {
+        const error = new Error();
+        error.run('notAuthorized');
+      }
+    }
   }
 
   private async getLessons(lang: LanguageStr): Promise<Lessons> {
