@@ -30,7 +30,7 @@ export default class TypingTest extends PageView {
     const selectEnBtn = createElement(Tag.div, 'test__select', selectContainer, ['lang', 'en']);
     const selectRuBtn = createElement(Tag.div, 'test__select', selectContainer, ['lang', 'ru']);
 
-    if (this.currentLang === Language.EN) {
+    if (this.config.getLang() === Language.EN) {
       selectEnBtn.classList.add('active');
     } else {
       selectRuBtn.classList.add('active');
@@ -38,7 +38,7 @@ export default class TypingTest extends PageView {
 
     const testContainer = createElement(Tag.div, 'test__container training__container', wrapper);
 
-    const lang = this.currentLang === Language.EN ? Lang.en : Lang.ru;
+    const lang = this.config.getLang() === Language.EN ? Lang.en : Lang.ru;
 
     selectEnBtn.addEventListener('click', () => {
       selectEnBtn.classList.add('active');

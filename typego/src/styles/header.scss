@@ -173,7 +173,8 @@
       }
 
       .lang__btn,
-      .sign__btn {
+      .sign__btn,
+      .profile__btn {
         @include normal-text;
         font-size: 16px;
         line-height: 19px;
@@ -202,9 +203,24 @@
         }
       }
 
+      .profile__btn {
+        background-color: $button-color-light;
+        color: $font-color-text2-light;
+        &:hover {
+          background-color: $button-hover-color-light;
+        }
+      }
+
       .sign__btn {
         width: 98px;
         height: 36px;
+      }
+
+      .profile__btn{
+        text-transform: none;
+        border-radius: 10px;
+        width: max-content;
+        padding: 0px 10px;
       }
     }
   }
@@ -240,12 +256,21 @@
         }
   
         .lang__btn,
-        .sign__btn {
+        .sign__btn,
+        .profile__btn {
           color: $font-color-text1-dark;
           border: 1px solid $font-color-text1-dark;
           
           &:hover {
             color: $font-color-text1-dark;
+            background-color: $button-hover-color-dark;
+          }
+        }
+
+        .profile__btn {
+          background-color: $button-color-dark;
+          color: $font-color-text1-dark;
+          &:hover {
             background-color: $button-hover-color-dark;
           }
         }
@@ -417,7 +442,8 @@
         .theme__btn,
         .lang__btn,
         .sign__btn,
-        .sign__btn {
+        .sign__btn,
+        .profile__btn {
           display: none;
         }
       }

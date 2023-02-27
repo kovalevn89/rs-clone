@@ -39,7 +39,61 @@ class Header extends PageView {
     }
   }
 
-  private render(): void {
+  private async auth(
+    parrent1: HTMLElement,
+    child1: HTMLElement,
+    parrent2: HTMLElement,
+    child2: HTMLElement,
+  ) {
+    try {
+      const token = this.user.getToken();
+      if (token !== '') {
+        const { username } = await this.api.getUser(this.user.getToken());
+        console.log(username);
+
+        if (username !== '') {
+          // boorger
+          const item = createElement('li', 'menu__item burger_user');
+          item.textContent = username;
+          item.addEventListener('click', () => {
+            window.location.hash = '#/profile';
+          });
+
+          const child1ext = document.querySelector('.burger_user');
+          if (child1ext === null) {
+            // console.log(child1);
+            parrent1.replaceChild(item, child1);
+          } else {
+            parrent1.replaceChild(item, child1ext);
+          }
+
+          // nav
+          const profileBtn = createElement('div', 'profile__btn');
+          profileBtn.textContent = username;
+
+          // profile
+          profileBtn.addEventListener('click', () => {
+            window.location.hash = '#/profile';
+          });
+
+          const child2ext = document.querySelector('.profile__btn');
+          if (child2ext === null) {
+            parrent2.replaceChild(profileBtn, child2);
+          } else {
+            parrent2.replaceChild(profileBtn, child2ext);
+          }
+        } else {
+          throw new Error('unknown error');
+        }
+      } else {
+        throw new Error('unknown token');
+      }
+    } catch (Error) {
+      // console.log(Error);
+    }
+  }
+
+  private render() {
     const body: HTMLElement | null = document.querySelector('.body');
 
     if (body !== null) {
@@ -112,12 +166,7 @@ class Header extends PageView {
           item4.textContent = this.translation.getString('headerManu4');
           this.translation.regObserverPermanent(() => { item4.textContent = this.translation.getString('headerManu4'); });
           item4.addEventListener('click', () => { window.location.hash = '#/games'; });
-          const item5 = createElement('li', 'menu__item', list);
-          item5.textContent = this.translation.getString('loginButton');
-          item5.addEventListener('click', () => {
-            this.sign.showIn();
-          });
-          this.translation.regObserverPermanent(() => { item5.textContent = this.translation.getString('loginButton'); });
+          const item5 = createElement('li', 'menu__item burger_user', list);
           const item6 = createElement('li', 'menu__item', list);
           item6.textContent = '';
           const themeBtn2 = createElement('div', 'theme__btn', item6);
@@ -154,6 +203,15 @@ class Header extends PageView {
             this.translation.setLang(this.currentLang);
           });
 
+          // LOGIN ________________________________
+          // boorger
+          item5.textContent = this.translation.getString('loginButton');
+          item5.addEventListener('click', () => {
+            this.sign.showIn();
+          });
+          this.translation.regObserverPermanent(() => { item5.textContent = this.translation.getString('loginButton'); });
+
+          // nav
           const signBtn = createElement('div', 'sign__btn', controls);
           signBtn.textContent = this.translation.getString('loginButton');
           this.translation.regObserverPermanent(() => { signBtn.textContent = this.translation.getString('loginButton'); });
@@ -162,6 +220,15 @@ class Header extends PageView {
           signBtn.addEventListener('click', () => {
             this.sign.showIn();
           });
+
+          // проверка авторизирован ли юзер.
+          this.auth(list, item5, controls, signBtn);
+
+          header.addEventListener('auth', () => {
+            console.log('header auth event!');
+            this.auth(list, item5, controls, signBtn);
+          });
+
           // modal wrapper
           createElement('div', 'header__modal', wrapper);
           body.prepend(header);

@@ -26,6 +26,8 @@ class Games extends PageView {
         main.classList.remove('dark');
       }
 
+      this.translation.cleanObserver(); // clear translate obserber hook
+
       const wrapper = createElement('div', 'games-wrapper', main);
       const title = createElement('h2', 'games-title', wrapper);
       title.textContent = this.translation.getString('captiongamePage');

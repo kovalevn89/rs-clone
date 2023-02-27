@@ -3,7 +3,7 @@
 import {
   ApiError,
   GameApiState,
-  LanguageStr, Lesson, Lessons, Message, Progress, Test, User, UserResult,
+  LanguageStr, Lesson, Lessons, Message, Progress, Test, User, UserResult, IUser,
 } from '../types';
 import { Lang, Method } from '../types/enums';
 
@@ -21,11 +21,11 @@ const ENDPOINT = {
 
 export default class Api {
   private static instance: Api;
-  public token!: string;
+  // public token!: string;
   public error!: ApiError;
 
   constructor() {
-    this.token = '';
+    // this.token = '';
     this.error = {
       status: 200,
       message: '',
@@ -38,13 +38,13 @@ export default class Api {
     Api.instance = this;
   }
 
-  private loadFromStorage(): void {
-    this.token = localStorage.getItem('typeGoToken') || '';
-  }
+  // private loadFromStorage(): void {
+  //   this.token = localStorage.getItem('typeGoToken') || '';
+  // }
 
-  saveToStorage(): void {
-    localStorage.setItem('typeGoToken', this.token);
-  }
+  // saveToStorage(): void {
+  //   localStorage.setItem('typeGoToken', this.token);
+  // }
 
   private async makeFetch<T>(url: string, method = Method.GET, request?: RequestInit): Promise<T> {
     console.log(`${HOST}${url}`);
@@ -96,63 +96,63 @@ export default class Api {
     });
   }
 
-  async deleteUser(): Promise<Message> {
+  async deleteUser(token: string): Promise<Message> {
     const { user } = ENDPOINT;
 
-    this.loadFromStorage();
+    // this.loadFromStorage();
     return this.makeFetch<Message>(user, Method.DELETE, {
       headers: {
-        Authorization: this.token,
+        Authorization: token,
       },
     });
   }
 
-  async getUser(): Promise<User> {
+  async getUser(token: string): Promise<IUser> {
     const { user } = ENDPOINT;
-    this.loadFromStorage();
+    // this.loadFromStorage();
 
-    return this.makeFetch<any>(user, Method.GET, {
+    return this.makeFetch<IUser>(user, Method.GET, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: this.token,
+        Authorization: token,
       },
     });
   }
 
-  async getLessons(lang: LanguageStr): Promise<Lessons> {
+  async getLessons(lang: LanguageStr, token: string): Promise<Lessons> {
     const { lessons } = ENDPOINT;
     const url = `${lessons}?lang=${lang}`;
-    this.loadFromStorage();
-    console.log(this.token);
+    // this.loadFromStorage();
+    console.log(token);
 
     return this.makeFetch<Lessons>(url, Method.GET, {
       headers: {
-        Authorization: this.token,
+        Authorization: token,
       },
     });
   }
 
-  async getLesson(index: number, lang = Lang.en): Promise<Lesson> {
+  async getLesson(index: number, token: string, lang = Lang.en): Promise<Lesson> {
     const { lessons } = ENDPOINT;
     const url = `${lessons}?lang=${lang}&id=${index}`;
 
-    this.loadFromStorage();
+    // this.loadFromStorage();
     return this.makeFetch<Lesson>(url, Method.GET, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: this.token,
+        Authorization: token,
       },
     });
   }
 
-  async updateProgress(body: Progress): Promise<Progress> {
+  async updateProgress(body: Progress, token: string): Promise<Progress> {
     const { lessons } = ENDPOINT;
-    this.loadFromStorage();
+    // this.loadFromStorage();
     return this.makeFetch<Progress>(lessons, Method.PUT, {
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
-        Authorization: this.token,
+        Authorization: token,
       },
     });
   }
@@ -163,15 +163,15 @@ export default class Api {
     return this.makeFetch(url);
   }
 
-  async updateTestResults({ speed, accurancy }: Progress): Promise<void> {
+  async updateTestResults({ speed, accurancy }: Progress, token: string): Promise<void> {
     const { user } = ENDPOINT;
     const body = { speed, accurancy };
-    this.loadFromStorage();
+    // this.loadFromStorage();
     return this.makeFetch(user, Method.PUT, {
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
-        Authorization: this.token,
+        Authorization: token,
       },
     });
   }
@@ -182,15 +182,15 @@ export default class Api {
     return this.makeFetch<UserResult[]>(top);
   }
 
-  async updateGameState(body: GameApiState) {
+  async updateGameState(body: GameApiState, token: string) {
     const { game } = ENDPOINT;
 
-    this.loadFromStorage();
+    // this.loadFromStorage();
     return this.makeFetch<GameApiState>(game, Method.PUT, {
       body: JSON.stringify(body),
       headers: {
         'Content-Type': 'application/json',
-        Authorization: this.token,
+        Authorization: token,
       },
     });
   }

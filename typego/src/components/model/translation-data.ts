@@ -193,6 +193,18 @@ const data: ITranslation = {
     en: 'Error! The password can contain "A-Za-z0-9_" and be at 6 characters long!',
     ru: 'Ошибка! Пароль может содержать "A-Za-z0-9_" и быть не меньше 6 символов!',
   },
+  authUserNotExist: {
+    en: 'Authentication error! User not exists.',
+    ru: 'Ошибка авторизации! Пользователь не найден.',
+  },
+  authInvalidPassword: {
+    en: 'Authentication error! Invalid password.',
+    ru: 'Ошибка авторизации! Не верный пароль.',
+  },
+  authOtherError: {
+    en: 'Authentication error! Unknown error.',
+    ru: 'Ошибка авторизации! Не известная ошибка.',
+  },
   regCaption: {
     en: 'Registration',
     ru: 'Регистрация',
@@ -228,6 +240,26 @@ const data: ITranslation = {
   regButton: {
     en: 'Registration',
     ru: 'Зарегистрироваться',
+  },
+  regSuccessful: {
+    en: 'User registered successfully!',
+    ru: 'Пользователь успешно зарегистрирован!',
+  },
+  regError: {
+    en: 'Registration error! Unknown error.',
+    ru: 'Ошибка регистрации! Неизвестная ошибка.',
+  },
+  regUserExistError: {
+    en: 'Registration error! User alredy exists.',
+    ru: 'Ошибка регистрации! Пользователь уже существует.',
+  },
+  regUsernameLengthError: {
+    en: 'Registration error! Invalid username length.',
+    ru: 'Ошибка регистрации! Не верная длинна логина.',
+  },
+  regPasswordLengthError: {
+    en: 'Registration error! Invalid password length.',
+    ru: 'Ошибка регистрации! Не верная длинна пароля.',
   },
   // training
   training: {
