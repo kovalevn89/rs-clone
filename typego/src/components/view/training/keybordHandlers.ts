@@ -87,6 +87,7 @@ export const keyUpHandler = (training: TrainingTask): void => {
 
     const finish = new FinishLevel();
     finish.renderComplete();
+    finish.run();
   }
 };
 

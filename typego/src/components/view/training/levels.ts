@@ -41,7 +41,6 @@ export default class TrainingLevels extends PageView {
     try {
       this.lesson = await this.api.getLesson(index, this.user.getToken(), lang);
       this.state.current.levels = this.lesson.levels?.length || 0;
-      console.log(this.lesson);
     } catch (e) {
       console.log(e);
 
@@ -59,6 +58,7 @@ export default class TrainingLevels extends PageView {
         ...level,
         lang,
       };
+
       const element = createElement(Tag.div, `level_ _${index}`, navigationContainer);
       element.textContent = `${response.index} ${response.name.toUpperCase()}`;
 
@@ -80,7 +80,7 @@ export default class TrainingLevels extends PageView {
 
     if (!levels) return;
     const response = {
-      ...levels[level],
+      ...levels[level - 1],
       lang,
     };
 
@@ -95,11 +95,11 @@ export default class TrainingLevels extends PageView {
     const pagination = document.querySelectorAll('.level_');
     const { level } = this.state.current;
     pagination.forEach((el, i) => {
-      if (i < level) {
+      if (i < level - 1) {
         el.classList.add('done');
         el.classList.remove('active');
       }
-      if (i === level) {
+      if (i === level - 1) {
         el.classList.add('active');
       }
     });

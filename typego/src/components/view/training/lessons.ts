@@ -9,7 +9,7 @@ import cover3 from '../../../assets/png/cover3.png';
 import cover4 from '../../../assets/png/cover4.png';
 import cover5 from '../../../assets/png/cover5.png';
 import cover6 from '../../../assets/png/cover6.png';
-import { ApiError, LanguageStr, Lessons } from '../../types';
+import { LanguageStr, Lessons } from '../../types';
 
 export default class TrainingLessons extends PageView {
   private async render(): Promise<void> {
@@ -40,16 +40,11 @@ export default class TrainingLessons extends PageView {
       createElement(Tag.h3, 'training__level__title', lev).textContent = lesson.name;
       createElement<HTMLImageElement>(Tag.img, 'training__img', lev, ['alt', `Lesson ${lesson.index} cover`]).src = cover[i];
 
-      lev.addEventListener('click', () => {
-        console.log('lessob click');
-        if (this.state.current.lesson === lesson.index) {
-          console.log('current lesson');
-        } else {
-          console.log('new lesson');
-          this.state.progressPush();
-          this.state.current.lesson = lesson.index;
-          this.state.findLevel(lesson.index);
-        }
+      lev.addEventListener('click', async () => {
+        this.state.current.lesson = lesson.index;
+        await this.state.findLevel(lesson.index, this.user.getToken());
+
+        this.state.isLevelComplete = false;
         window.location.hash = `#/lesson?lang=${this.state.lang}&index=${lesson.index}&id=${this.state.current.level}`;
       });
 
@@ -60,16 +55,9 @@ export default class TrainingLessons extends PageView {
   private async getLessons(lang: LanguageStr): Promise<Lessons> {
     try {
       const result = await this.api.getLessons(lang, this.user.getToken());
-      console.log(result);
-
       return result;
     } catch (e) {
       console.log(e);
-
-      if ((e as ApiError).status === 403) {
-        // eslint-disable-next-line no-alert
-        alert('Please, sign in');
-      }
 
       throw e;
     }

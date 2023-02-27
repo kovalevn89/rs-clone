@@ -52,8 +52,22 @@ export interface Progress {
   lesson: number;
   level: number;
   speed: number;
-  accurancy: number;
+  accuracy: number;
   lang: LanguageStr;
+}
+
+export interface TestResults {
+  speed: number,
+  accuracy: number,
+  time: number,
+  mistakes: number,
+}
+
+export interface CurrentTrainingProgress extends Progress {
+  complitedLessons: number[];
+  levels: number;
+  time: number;
+  mistakes: number;
 }
 
 export interface TextResponse extends Level {
@@ -106,13 +120,13 @@ export interface User {
 
 export interface UserResult {
   username: string;
-  accurancy: number;
-  speed: number;
+  accuracy?: number;
+  speed?: number;
 }
 
-export interface UserResults extends UserResult {
+export interface UserResults extends UserResult, IUser {
   _id: string;
-  lessons: Lesson[];
+  progress: Progress[];
 }
 
 export interface ApiError {
@@ -153,7 +167,7 @@ export interface IUser {
   accuracy?: number,
   speed?: number,
   gamesScore: Array<IGameScore>,
-  progress: Array<IProgress>,
+  progress: Array<Progress>,
 }
 
 export interface GameApiState {

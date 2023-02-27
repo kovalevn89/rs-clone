@@ -13,7 +13,7 @@ export default class Text {
   letters: HTMLElement[];
   index: number;
   mistakes: number;
-  accurancy: number;
+  accuracy: number;
   startTime: number;
   currenTime: number;
   time: number;
@@ -31,7 +31,7 @@ export default class Text {
     this.currenTime = 0;
     this.time = 0;
     this.speed = 0;
-    this.accurancy = 0;
+    this.accuracy = 0;
     this.state = new TrainingState();
   }
 

@@ -1,5 +1,4 @@
 import { createElement } from '../../helper';
-// import TrainingState from '../../model/trainingState';
 import { TextResponse } from '../../types';
 import { Tag, TrainingStatus } from '../../types/enums';
 import PageView from '../baseViewClass';
@@ -14,10 +13,10 @@ class TextTraining extends PageView {
   private speedTitle;
   private speedValue;
   private speedDescription;
-  private accurancy;
-  private accurancyTitle;
-  private accurancyValue;
-  private accurancyDescription;
+  private accuracy;
+  private accuracyTitle;
+  private accuracyValue;
+  private accuracyDescription;
   private separator;
 
   constructor() {
@@ -37,16 +36,16 @@ class TextTraining extends PageView {
     this.speedValue = createElement(Tag.span, 'speed__span value', this.speed);
     this.speedDescription = createElement(Tag.span, 'speed__span descr', this.speed);
 
-    this.accurancy = createElement(Tag.div, 'accurancy__container', this.progress);
-    this.accurancyTitle = createElement(Tag.span, 'accurancy__span', this.accurancy);
-    this.accurancyValue = createElement(Tag.span, 'accurancy__span value', this.accurancy);
-    this.accurancyDescription = createElement(Tag.span, 'accurancy__span descr', this.accurancy);
+    this.accuracy = createElement(Tag.div, 'accuracy__container', this.progress);
+    this.accuracyTitle = createElement(Tag.span, 'accuracy__span', this.accuracy);
+    this.accuracyValue = createElement(Tag.span, 'accuracy__span value', this.accuracy);
+    this.accuracyDescription = createElement(Tag.span, 'accuracy__span descr', this.accuracy);
 
     this.translation.translateField(this.speedTitle, 'speed');
     this.translation.translateField(this.speedDescription, 'WPM');
-    this.translation.translateField(this.accurancyTitle, 'accurancy');
+    this.translation.translateField(this.accuracyTitle, 'accuracy');
 
-    this.accurancyDescription.textContent = '%';
+    this.accuracyDescription.textContent = '%';
 
     this.training = createElement(Tag.div, 'text__instructions', this.container);
   }
@@ -57,12 +56,12 @@ class TextTraining extends PageView {
 
   updateProgress(): void {
     const { index, mistakes, speed } = this.text;
-    const accurancy = index >= 3 ? Math.floor((1 - mistakes / index) * 100) : '';
+    const accuracy = index >= 3 ? Math.floor((1 - mistakes / index) * 100) : '';
 
     this.speedValue.textContent = `: ${speed} `;
-    this.accurancyValue.textContent = `: ${accurancy}`;
+    this.accuracyValue.textContent = `: ${accuracy}`;
 
-    this.state.current.accurancy = accurancy as number;
+    this.state.current.accuracy = accuracy as number;
     this.state.current.speed = speed;
     this.state.current.mistakes = mistakes;
   }

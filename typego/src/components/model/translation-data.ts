@@ -133,7 +133,7 @@ const data: ITranslation = {
     ru: 'Координация команды, разработка и поддержка архитектуры приложения, роутинг, back-end, верстка главной страницы, модальные окна регистрации и авторизации, игра "Whacamole", перевод статических страниц приложения',
   },
   aboutDeveloperName2: {
-    en: 'Anna Glavatskih',
+    en: 'Hanna Hlavatskikh',
     ru: 'Анна Главатских',
   },
   aboutDeveloperPosition2: {
@@ -294,8 +294,8 @@ const data: ITranslation = {
     en: 'seconds',
     ru: 'сек',
   },
-  accurancy: {
-    en: 'Accurancy',
+  accuracy: {
+    en: 'Accuracy',
     ru: 'Точность',
   },
   start: {

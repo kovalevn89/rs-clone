@@ -20,6 +20,8 @@ export default class TypingTest extends PageView {
     }
     this.translation.cleanObserver();
 
+    const lang = this.currentLang === Language.EN ? Lang.en : Lang.ru;
+
     const wrapper = createElement(Tag.div, 'wrapper', container);
 
     const title = createElement(Tag.h2, 'training__title', wrapper);
@@ -38,7 +40,7 @@ export default class TypingTest extends PageView {
 
     const testContainer = createElement(Tag.div, 'test__container training__container', wrapper);
 
-    const lang = this.config.getLang() === Language.EN ? Lang.en : Lang.ru;
+    this.renderTest(lang, testContainer);
 
     selectEnBtn.addEventListener('click', () => {
       selectEnBtn.classList.add('active');
@@ -55,8 +57,6 @@ export default class TypingTest extends PageView {
 
     this.translation.translateField(selectEnBtn, 'layoutEn');
     this.translation.translateField(selectRuBtn, 'layoutRu');
-
-    this.renderTest(lang, testContainer);
   }
 
   run(): void {

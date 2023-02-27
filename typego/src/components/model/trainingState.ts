@@ -1,43 +1,25 @@
-import { LanguageStr } from '../types';
+import Api from '../controller/api';
+import {
+  CurrentTrainingProgress, Progress, LanguageStr, TestResults,
+} from '../types';
 import { Lang } from '../types/enums';
 
 export default class TrainingState {
   private static instance: TrainingState;
   token!: string;
   lang!: LanguageStr;
-  progressEn!: {
-    lesson: number;
-    level: number;
-  }[];
-  progressRu!: {
-    lesson: number;
-    level: number;
-  }[];
-  current!: {
-    lesson: number;
-    complitedLessons: number[];
-    level: number;
-    levels: number;
-    speed: number;
-    accurancy: number;
-    time: number;
-    mistakes: number;
-    lang: LanguageStr;
-  };
+  progress!: Progress[];
+  current!: CurrentTrainingProgress;
   best!: {
     speed: number;
-    accurancy: number;
+    accuracy: number;
     time: number;
     mistakes: number;
   };
+  isLevelComplete!: boolean;
 
   isTest!: boolean;
-  testResult!: {
-    speed: number,
-    accurancy: number,
-    time: number,
-    mistakes: number,
-  };
+  testResult!: TestResults;
   isInputActive!: boolean;
 
   constructor() {
@@ -46,25 +28,26 @@ export default class TrainingState {
     }
 
     this.token = '';
-    this.progressRu = [];
-    this.progressEn = [];
+    this.progress = [];
     this.lang = Lang.ru;
 
     this.current = {
-      lesson: 0,
+      lesson: 1,
       complitedLessons: [],
       level: 1,
       levels: 0,
       speed: 0,
-      accurancy: 0,
+      accuracy: 0,
       time: 0,
       mistakes: 0,
       lang: this.lang,
     };
 
+    this.isLevelComplete = false;
+
     this.best = {
       speed: 0,
-      accurancy: 0,
+      accuracy: 0,
       time: 1000,
       mistakes: 1000,
     };
@@ -72,66 +55,55 @@ export default class TrainingState {
     this.isTest = false;
     this.testResult = {
       speed: 0,
-      accurancy: 0,
+      accuracy: 0,
       time: 0,
       mistakes: 0,
     };
     this.isInputActive = false;
 
     TrainingState.instance = this;
-
-    this.loadFromStorage();
   }
 
   progressPush():void {
-    if (this.lang === Lang.en) {
-      this.progressEn.push({ lesson: this.current.lesson, level: this.current.level });
-    } else {
-      this.progressRu.push({ lesson: this.current.lesson, level: this.current.level });
+    const {
+      lesson, level, lang, speed, accuracy,
+    } = this.current;
+    if (this.isLevelComplete) {
+      this.progress.push({
+        lesson,
+        level,
+        lang,
+        speed,
+        accuracy,
+      });
     }
   }
 
-  findLevel(index: number): void {
-    if (this.lang === Lang.en) {
-      this.current.level = this.progressEn
-        .find((item) => item.lesson === index)?.level || 0;
-    } else {
-      this.current.level = this.progressRu
-        .find((item) => item.lesson === index)?.level || 0;
+  async findLevel(index: number, token: string): Promise<void> {
+    const api = new Api();
+
+    this.progress = (await api.getUser(token)).progress;
+
+    if (!this.progress) {
+      this.progress = [];
     }
-    console.log(this.lang, this.current.lesson, this.current.level);
-    this.saveToStorage();
-  }
 
-  private loadFromStorage(): void {
-    const json = localStorage.getItem('typeGoState');
-    if (!json) return;
-    const state = JSON.parse(json);
+    const complited = this.progress
+      .filter((item) => item.lesson === index && item.lang === this.lang)
+      .sort((a, b) => b.level - a.level);
 
-    this.progressRu = state.progressRu;
-    this.progressEn = state.progressEn;
-
-    this.lang = state.lang;
-    this.current = state.current;
-    this.best = state.best;
-    this.testResult = state.testResult;
-  }
-
-  saveToStorage(): void {
-    const state = JSON.stringify(this);
-
-    localStorage.setItem('typeGoState', state);
+    this.current.level = complited.length ? complited[0].level + 1 : 1;
   }
 
   saveStatistic(): void {
     if (this.isTest) {
-      this.testResult.accurancy = this.current.accurancy;
+      this.testResult.accuracy = this.current.accuracy;
       this.testResult.speed = this.current.speed;
       this.testResult.mistakes = this.current.mistakes;
       this.testResult.time = this.current.time;
     }
-    if (this.current.accurancy > this.best.accurancy) {
-      this.best.accurancy = this.current.accurancy;
+    if (this.current.accuracy > this.best.accuracy) {
+      this.best.accuracy = this.current.accuracy;
     }
     if (this.current.speed > this.best.speed) {
       this.best.speed = this.current.speed;
