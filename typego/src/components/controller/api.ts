@@ -111,7 +111,7 @@ export default class Api {
     const { user } = ENDPOINT;
     this.loadFromStorage();
 
-    return this.makeFetch<any>(user, Method.GET, {
+    return this.makeFetch<IUser>(user, Method.GET, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: token,

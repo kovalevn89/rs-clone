@@ -53,13 +53,20 @@ class Header extends PageView {
 
         if (username !== '') {
           // boorger
-          const item = createElement('li', 'menu__item');
+          const item = createElement('li', 'menu__item burger_user');
           item.textContent = username;
           item.addEventListener('click', () => {
             window.location.hash = '#/profile';
           });
 
-          parrent1.replaceChild(item, child1);
+          const child1ext = document.querySelector('.burger_user');
+          if (child1ext === null) {
+            // console.log(child1);
+            parrent1.replaceChild(item, child1);
+          } else {
+            parrent1.replaceChild(item, child1ext);
+          }
+
           // nav
           const profileBtn = createElement('div', 'profile__btn');
           profileBtn.textContent = username;
@@ -69,7 +76,12 @@ class Header extends PageView {
             window.location.hash = '#/profile';
           });
 
-          parrent2.replaceChild(profileBtn, child2);
+          const child2ext = document.querySelector('.profile__btn');
+          if (child2ext === null) {
+            parrent2.replaceChild(profileBtn, child2);
+          } else {
+            parrent2.replaceChild(profileBtn, child2ext);
+          }
         } else {
           throw new Error('unknown error');
         }
@@ -154,7 +166,7 @@ class Header extends PageView {
           item4.textContent = this.translation.getString('headerManu4');
           this.translation.regObserverPermanent(() => { item4.textContent = this.translation.getString('headerManu4'); });
           item4.addEventListener('click', () => { window.location.hash = '#/games'; });
-          const item5 = createElement('li', 'menu__item', list);
+          const item5 = createElement('li', 'menu__item burger_user', list);
           const item6 = createElement('li', 'menu__item', list);
           item6.textContent = '';
           const themeBtn2 = createElement('div', 'theme__btn', item6);
