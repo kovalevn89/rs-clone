@@ -30,8 +30,6 @@ class Main extends PageView {
     const app: HTMLElement | null = document.querySelector('.app');
 
     if (app !== null) {
-      // this.translation.cleanObserver(); // clear translate obserber hook
-
       removeChild(app);
       const main = createElement('div', 'main', app);
       if (this.config.getTheme() === Themes.Dark) {

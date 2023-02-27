@@ -16,7 +16,6 @@ class View {
   }
 
   run(): void {
-    // this.training.render(document.body);
   }
 }
 

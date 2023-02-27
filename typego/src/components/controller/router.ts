@@ -68,7 +68,6 @@ class Router {
 
     if (currentPage.length === 1 && currentPage[0].params.length > 0) {
       if (params.length > 0) {
-        // console.log(params);
         params.forEach((param) => {
           const parametr = param.split('=')[0];
           let value = param.split('=')[1];

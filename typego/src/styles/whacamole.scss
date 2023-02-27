@@ -139,7 +139,7 @@
       @include media-desktop {
         width: calc(100% - 15px - 10vw);
         margin-left: calc(15px + 10vw);
-        }
+      }
 
       .stats_level,
       .stats_score,
@@ -187,7 +187,6 @@
             font-size: 4vw;
           }
         }
-       
       }
 
       .controls {      
@@ -276,7 +275,7 @@
               padding: 0;
               @media (max-width: 400px) { 
                 margin-top: -5px;
-               }
+              }
 
               svg{
                 width: 100%; 

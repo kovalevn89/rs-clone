@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import PageView from './baseViewClass';
 import { createElement, removeChild } from '../helper';
-import { Themes } from '../types/enums'; // , Language
+import { Themes } from '../types/enums';
 
 class Sign extends PageView {
   private isValidLogin(login: string) {

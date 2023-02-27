@@ -61,7 +61,6 @@ class Header extends PageView {
 
           const child1ext = document.querySelector('.burger_user');
           if (child1ext === null) {
-            // console.log(child1);
             parrent1.replaceChild(item, child1);
           } else {
             parrent1.replaceChild(item, child1ext);
@@ -89,7 +88,7 @@ class Header extends PageView {
         throw new Error('unknown token');
       }
     } catch (Error) {
-      // console.log(Error);
+      //
     }
   }
 
@@ -221,7 +220,7 @@ class Header extends PageView {
             this.sign.showIn();
           });
 
-          // проверка авторизирован ли юзер.
+          // check user auth
           this.auth(list, item5, controls, signBtn);
 
           header.addEventListener('auth', () => {

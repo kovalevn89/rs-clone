@@ -2,7 +2,6 @@
 @import './constants.scss';
 
 .main {
-  // width: 100%;
   background-color: $base-color-addition-light;
   .about_wrapper {
     .block_proposales {
@@ -187,7 +186,6 @@
               .card__context-caption {
                 @include caption-text;
                 text-transform: none;
-                // margin-top: 60px;
                 font-size: 33px;
                 line-height: 40px;
                 color: $font-color-text2-light;
