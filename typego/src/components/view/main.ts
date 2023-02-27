@@ -15,6 +15,10 @@ class Main extends PageView {
     this.sign = new Sign();
   }
 
+  private async wakeUp() {
+    await this.api.wakeUp();
+  }
+
   private setBackground(element: HTMLElement, image: string): void {
     element.style.background = `url(${image})`;
     element.style.backgroundRepeat = 'no-repeat';
@@ -175,6 +179,8 @@ class Main extends PageView {
       registrationButton.addEventListener('click', () => {
         this.sign.showUp();
       });
+
+      this.wakeUp();
     }
   }
 
