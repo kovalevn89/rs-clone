@@ -254,6 +254,24 @@ class Sign extends PageView {
           }
         }
       });
+
+      inputName.addEventListener('keypress', (event) => {
+        if (event.keyCode === 13) {
+          authBtn.dispatchEvent(new Event('click'));
+        }
+      });
+
+      inputPassword1.addEventListener('keypress', (event) => {
+        if (event.keyCode === 13) {
+          authBtn.dispatchEvent(new Event('click'));
+        }
+      });
+
+      inputPassword2.addEventListener('keypress', (event) => {
+        if (event.keyCode === 13) {
+          authBtn.dispatchEvent(new Event('click'));
+        }
+      });
     }
   }
 
