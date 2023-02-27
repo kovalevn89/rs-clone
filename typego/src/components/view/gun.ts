@@ -3,7 +3,7 @@ import shotSound from '../../assets/media/shot.mp3';
 import clickSound from '../../assets/media/click.mp3';
 import pressSound from '../../assets/media/press.mp3';
 import winGunSound from '../../assets/media/winGun.mp3';
-import { IShooter } from '../types/index';
+import { IShooter, GameApiState } from '../types/index';
 import PageView from './baseViewClass';
 
 class GunGame extends PageView {
@@ -171,6 +171,13 @@ class GunGame extends PageView {
     }
   }
 
+  private async updateResult(gameResult: GameApiState) {
+    const token = this.user.getToken();
+    if (token !== '') {
+      await this.api.updateGameState(gameResult, this.user.getToken());
+    }
+  }
+
   private renderEndGame(): void {
     const app: HTMLElement | null = document.querySelector('.app');
     if (app !== null) {
@@ -218,6 +225,14 @@ class GunGame extends PageView {
         this.renderGame();
         this.playSound('click');
       });
+
+      const gameResult: GameApiState = {
+        name: 'shooter',
+        level: this.level,
+        score: this.score,
+      };
+
+      this.updateResult(gameResult);
     }
   }
 
