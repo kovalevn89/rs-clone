@@ -9,7 +9,7 @@ import cover3 from '../../../assets/png/cover3.png';
 import cover4 from '../../../assets/png/cover4.png';
 import cover5 from '../../../assets/png/cover5.png';
 import cover6 from '../../../assets/png/cover6.png';
-import { ApiError, LanguageStr, Lessons } from '../../types';
+import { LanguageStr, Lessons } from '../../types';
 
 export default class TrainingLessons extends PageView {
   private async render(): Promise<void> {
@@ -41,7 +41,6 @@ export default class TrainingLessons extends PageView {
       createElement<HTMLImageElement>(Tag.img, 'training__img', lev, ['alt', `Lesson ${lesson.index} cover`]).src = cover[i];
 
       lev.addEventListener('click', () => {
-        console.log('new lesson', this.state.current.lesson, lesson.index, this.state.current.level);
         this.state.current.lesson = lesson.index;
         this.state.findLevel(lesson.index);
 
@@ -59,13 +58,6 @@ export default class TrainingLessons extends PageView {
       return result;
     } catch (e) {
       console.log(e);
-
-      if ((e as ApiError).status === 403) {
-        console.log('please, sign in');
-
-        // eslint-disable-next-line no-alert
-        alert('Please, sign in');
-      }
 
       throw e;
     }

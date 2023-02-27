@@ -1,5 +1,4 @@
 import { createElement } from '../../helper';
-// import TrainingState from '../../model/trainingState';
 import { TextResponse } from '../../types';
 import { Tag, TrainingStatus } from '../../types/enums';
 import PageView from '../baseViewClass';

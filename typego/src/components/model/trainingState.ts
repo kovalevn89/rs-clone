@@ -82,12 +82,10 @@ export default class TrainingState {
   }
 
   async findLevel(index: number): Promise<void> {
-    console.log(this.current.lang, this.lang);
     const api = new Api();
 
     this.progress = (await api.getUser()).progress;
 
-    console.log(this.progress);
     if (!this.progress) {
       this.progress = [];
     }
@@ -96,10 +94,7 @@ export default class TrainingState {
       .filter((item) => item.lesson === index && item.lang === this.lang)
       .sort((a, b) => b.level - a.level);
 
-    console.log(level);
-
     this.current.level = level.length ? level[0].level + 1 : 1;
-    console.log(this.current.level);
   }
 
   private async loadFromStorage(): Promise<void> {
@@ -107,29 +102,13 @@ export default class TrainingState {
 
     try {
       const user = await api.getUser();
-      this.progress = user.progress;
-      console.log(user, this.progress);
+      this.progress = user.progress || [];
     } catch (e) {
       console.log(e);
 
       throw e;
     }
-
-    // const json = localStorage.getItem('typeGoState');
-    // if (!json) return;
-    // const state = JSON.parse(json);
-
-    // this.lang = state.lang;
-    // this.current = state.current;
-    // this.best = state.best;
-    // this.testResult = state.testResult;
   }
-
-  // private saveToStorage(): void {
-  //   const state = JSON.stringify(this);
-
-  //   localStorage.setItem('typeGoState', state);
-  // }
 
   saveStatistic(): void {
     if (this.isTest) {

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createElement } from '../../helper';
 import { Progress } from '../../types';
-// import TrainingState from '../../model/trainingState';
 import { Tag } from '../../types/enums';
 import PageView from '../baseViewClass';
 
@@ -24,7 +23,6 @@ export default class FinishLevel extends PageView {
       const { testResult } = this.state;
       try {
         await this.api.updateTestResults(testResult);
-        console.log('update test', testResult);
       } catch (e) {
         console.log(this.api.error);
         throw e;
@@ -41,21 +39,12 @@ export default class FinishLevel extends PageView {
           speed,
           accuracy,
         } as Progress);
-        console.log('update');
       } catch (e) {
         console.log(this.api.error);
         throw e;
       }
     }
-    try {
-      const user = await this.api.getUser();
-      console.log(user);
-    } catch (e) {
-      console.log(this.api.error);
 
-      throw e;
-    }
-    console.log(this.state);
     this.renderComplete();
   }
 
@@ -73,8 +62,6 @@ export default class FinishLevel extends PageView {
       time,
       mistakes,
     } = this.state.current;
-
-    console.log(speed, accuracy, time, mistakes);
 
     parent.append(container);
     container.append(this.message);
@@ -96,7 +83,6 @@ export default class FinishLevel extends PageView {
       if (isTest) {
         window.location.hash = '#/main';
       } else if (accuracy < 80) {
-        // window.location.hash = `#/lesson?lang=${lang}&index=${lesson}&id=${this.state.level}`;
         window.location.reload();
       } else {
         window.location.hash = `#/training?lang=${lang}`;
@@ -104,13 +90,11 @@ export default class FinishLevel extends PageView {
     });
 
     this.nextBtn.addEventListener('click', () => {
-      console.log('next level', this.state, isTest, levels);
       if (isTest) {
         this.state.isTest = false;
         window.location.hash = '#/training';
       } else if (level < levels) {
         this.state.current.level += 1;
-        console.log(this.state.current.level);
 
         window.location.hash = `#/lesson?lang=${lang}&index=${lesson}&id=${this.state.current.level}`;
       } else {
@@ -167,7 +151,6 @@ export default class FinishLevel extends PageView {
     this.translation.translateField(this.nextBtn, 'nextLvl');
 
     if (isTest) {
-      console.log('test');
       this.messageContent('result');
       this.nextBtn.disabled = false;
       this.translation.translateField(this.nextBtn, 'startTraining');

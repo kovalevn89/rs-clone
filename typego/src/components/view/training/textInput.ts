@@ -63,7 +63,6 @@ export default class TextInput {
 
     const signBtn = document.querySelector('.sign__btn');
     signBtn?.addEventListener('click', () => {
-      console.log('stop listen');
       this.stopListen();
     });
 

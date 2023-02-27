@@ -21,7 +21,6 @@ export default class TypingTest extends PageView {
     this.translation.cleanObserver();
 
     const lang = this.currentLang === Language.EN ? Lang.en : Lang.ru;
-    console.log(lang, this.currentLang);
 
     const wrapper = createElement(Tag.div, 'wrapper', container);
 
