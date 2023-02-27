@@ -1,5 +1,5 @@
 import { createElement, removeChild, getLetter } from '../helper/index';
-import { IMole, ILetter } from '../types/index';
+import { IMole, ILetter, GameApiState } from '../types/index';
 import whackBackground from '../../assets/png/whac_background.png';
 import whackHoleImg from '../../assets/png/whac_hole.png';
 import whackHoleEmptyImg from '../../assets/png/whac_hole_empty.png';
@@ -435,6 +435,13 @@ class WhacAMole extends PageView {
     }
   }
 
+  private async updateResult(gameResult: GameApiState) {
+    const token = this.user.getToken();
+    if (token !== '') {
+      await this.api.updateGameState(gameResult, this.user.getToken());
+    }
+  }
+
   private renderEndGame(): void {
     const app: HTMLElement | null = document.querySelector('.app');
 
@@ -482,6 +489,14 @@ class WhacAMole extends PageView {
       startButton.addEventListener('click', () => {
         this.renderGame();
       });
+
+      const gameResult: GameApiState = {
+        name: 'whac',
+        level: this.level,
+        score: this.score,
+      };
+
+      this.updateResult(gameResult);
     }
   }
 
