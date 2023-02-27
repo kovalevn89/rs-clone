@@ -179,7 +179,6 @@ class Router {
                   break;
                 default: {
                   this.error.run('pageNotFound');
-                  // console.log('RENDER 404');
                 }
               }
             }
@@ -192,8 +191,6 @@ class Router {
     } else {
       // render 404
       this.error.run('pageNotFound');
-      // console.log('RENDER 404');
-      // this.error.render();
     }
   }
 
@@ -209,7 +206,6 @@ class Router {
     const page = hash.split('?')[0];
     const params = hash.split('?')[1] ? hash.split('?')[1].split('&') : [''];
 
-    console.log({ page, params });
     this.render(page, params);
   }
 

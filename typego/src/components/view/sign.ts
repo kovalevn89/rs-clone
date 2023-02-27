@@ -83,14 +83,12 @@ class Sign extends PageView {
 
         if (this.isValidLogin(inputName.value) && this.isValidPassword(inputPassword.value)) {
           // auth
-          console.log(`Auth with ${inputName.value} - ${inputPassword.value}`);
 
           try {
             const { token } = await this.api.auth({
               username: inputName.value,
               password: inputPassword.value,
             });
-            console.log(token);
 
             this.user.setToken(token);
 
@@ -103,8 +101,6 @@ class Sign extends PageView {
 
             this.hidden();
           } catch (e) {
-            console.log((e as Error).message);
-
             errorLogin.classList.add('visible');
 
             const errorMsg = JSON.parse((e as Error).message).message;
@@ -225,21 +221,18 @@ class Sign extends PageView {
         && inputPassword1.value === inputPassword2.value
         ) {
           // reg
-          console.log(`Registration with ${inputName.value} - ${inputPassword1.value} - ${inputPassword2.value}`);
 
           try {
-            const { message } = await this.api.register({
+            // const { message } =
+            await this.api.register({
               username: inputName.value,
               password: inputPassword1.value,
             });
-            console.log(message);
 
             errorReg.classList.add('successful');
             errorReg.classList.add('visible');
             errorReg.textContent = this.translation.getString('regSuccessful');
           } catch (e) {
-            console.log((e as Error).message);
-
             errorReg.classList.add('visible');
 
             const errorMsg = JSON.parse((e as Error).message).message;

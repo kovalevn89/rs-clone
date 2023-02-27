@@ -58,7 +58,6 @@ class Profile extends PageView {
 
   private async getUserData() {
     const userData1 = await this.api.getUser(this.user.getToken());
-    console.log(`TEST = ${JSON.stringify(userData1)}`);
     return userData1;
   }
 

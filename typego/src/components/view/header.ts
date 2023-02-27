@@ -49,7 +49,6 @@ class Header extends PageView {
       const token = this.user.getToken();
       if (token !== '') {
         const { username } = await this.api.getUser(this.user.getToken());
-        console.log(username);
 
         if (username !== '') {
           // boorger
@@ -224,7 +223,6 @@ class Header extends PageView {
           this.auth(list, item5, controls, signBtn);
 
           header.addEventListener('auth', () => {
-            console.log('header auth event!');
             this.auth(list, item5, controls, signBtn);
           });
 
