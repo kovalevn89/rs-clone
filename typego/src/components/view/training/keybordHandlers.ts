@@ -30,7 +30,9 @@ export const keyDowmHandler = (
     text.updateLetterStatus(index, Status.reset);
     if (index > 0) {
       index -= 1;
-      mistakes = mistakes > 0 ? mistakes - 1 : 0;
+      if (letters[index].classList.contains(Status.incorrect)) {
+        mistakes = mistakes > 0 ? mistakes - 1 : 0;
+      }
       letters[index].dataset.fix = 'true';
       sound.pause();
       sound.src = bacspaseKey;
@@ -67,6 +69,7 @@ export const keyDowmHandler = (
 
   text.setIndex(index);
   text.setMistakes(mistakes);
+
   text.updateActive();
 };
 
