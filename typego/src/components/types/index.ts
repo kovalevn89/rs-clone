@@ -126,7 +126,7 @@ export interface UserResult {
 
 export interface UserResults extends UserResult {
   _id: string;
-  lessons: Lesson[];
+  progress: Progress[];
 }
 
 export interface ApiError {

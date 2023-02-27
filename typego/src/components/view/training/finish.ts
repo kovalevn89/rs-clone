@@ -18,6 +18,8 @@ export default class FinishLevel extends PageView {
 
   async run(): Promise<void> {
     this.state.saveStatistic();
+    this.state.isLevelComplete = true;
+    this.state.progressPush();
     if (this.state.isTest) {
       const { testResult } = this.state;
       try {
@@ -31,7 +33,6 @@ export default class FinishLevel extends PageView {
       const {
         level, lesson, speed, accuracy, lang,
       } = this.state.current;
-      console.log(this.state.current);
       try {
         await this.api.updateProgress({
           lang,
@@ -71,9 +72,6 @@ export default class FinishLevel extends PageView {
       accuracy,
       time,
       mistakes,
-      // lesson,
-      // level,
-      // levels,
     } = this.state.current;
 
     console.log(speed, accuracy, time, mistakes);
@@ -110,14 +108,15 @@ export default class FinishLevel extends PageView {
       if (isTest) {
         this.state.isTest = false;
         window.location.hash = '#/training';
-      } else if (level < levels - 1) {
+      } else if (level < levels) {
         this.state.current.level += 1;
         console.log(this.state.current.level);
-        this.state.saveToStorage();
+
         window.location.hash = `#/lesson?lang=${lang}&index=${lesson}&id=${this.state.current.level}`;
       } else {
-        this.state.current.level = 0;
+        this.state.current.level = 1;
         this.state.current.complitedLessons.push(this.state.current.lesson);
+
         window.location.hash = `#/training?lang=${lang}`;
       }
     });
@@ -166,7 +165,6 @@ export default class FinishLevel extends PageView {
     const { accuracy } = current;
 
     this.translation.translateField(this.nextBtn, 'nextLvl');
-    // this.translation.translateField(this.backBtn, 'backBtn');
 
     if (isTest) {
       console.log('test');

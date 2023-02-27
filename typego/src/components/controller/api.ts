@@ -1,7 +1,7 @@
 import {
   ApiError,
   GameApiState,
-  LanguageStr, Lesson, Lessons, Message, Progress, Test, TestResults, User, UserResult,
+  LanguageStr, Lesson, Lessons, Message, Progress, Test, TestResults, User, UserResult, UserResults,
 } from '../types';
 import { Lang, Method } from '../types/enums';
 
@@ -54,6 +54,11 @@ export default class Api {
     if (!response.ok) {
       this.error.status = response.status;
       this.error.message = await response.text();
+
+      if (response.status === 403) {
+        // eslint-disable-next-line no-alert
+        alert('please, sign in');
+      }
 
       console.log(this.error.message);
 
@@ -108,11 +113,11 @@ export default class Api {
     });
   }
 
-  async getUser(): Promise<User> {
+  async getUser(): Promise<UserResults> {
     const { user } = ENDPOINT;
     this.loadFromStorage();
 
-    return this.makeFetch<any>(user, Method.GET, {
+    return this.makeFetch<UserResults>(user, Method.GET, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: this.token,

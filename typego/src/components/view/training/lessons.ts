@@ -41,15 +41,11 @@ export default class TrainingLessons extends PageView {
       createElement<HTMLImageElement>(Tag.img, 'training__img', lev, ['alt', `Lesson ${lesson.index} cover`]).src = cover[i];
 
       lev.addEventListener('click', () => {
-        console.log('lessob click');
-        if (this.state.current.lesson === lesson.index) {
-          console.log('current lesson');
-        } else {
-          console.log('new lesson');
-          this.state.progressPush();
-          this.state.current.lesson = lesson.index;
-          this.state.findLevel(lesson.index);
-        }
+        console.log('new lesson', this.state.current.lesson, lesson.index, this.state.current.level);
+        this.state.current.lesson = lesson.index;
+        this.state.findLevel(lesson.index);
+
+        this.state.isLevelComplete = false;
         window.location.hash = `#/lesson?lang=${this.state.lang}&index=${lesson.index}&id=${this.state.current.level}`;
       });
 
@@ -60,13 +56,13 @@ export default class TrainingLessons extends PageView {
   private async getLessons(lang: LanguageStr): Promise<Lessons> {
     try {
       const result = await this.api.getLessons(lang);
-      console.log(result);
-
       return result;
     } catch (e) {
       console.log(e);
 
       if ((e as ApiError).status === 403) {
+        console.log('please, sign in');
+
         // eslint-disable-next-line no-alert
         alert('Please, sign in');
       }

@@ -125,8 +125,8 @@ class Router {
       if (page === 'lesson') {
         const path = {
           lang: '',
-          lesson: 0,
-          id: 0,
+          lesson: 1,
+          id: 1,
         };
         if (validParams.length === 3) {
           validParams.forEach((item) => {
@@ -140,7 +140,7 @@ class Router {
                 break;
               }
               case 'id': {
-                path.id = Number(item.value);
+                path.id = Number(item.value) > 0 ? Number(item.value) : 1;
                 break;
               }
               default: {

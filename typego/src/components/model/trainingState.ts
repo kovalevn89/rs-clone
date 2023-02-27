@@ -1,3 +1,4 @@
+import Api from '../controller/api';
 import {
   CurrentTrainingProgress, LanguageStr, Progress, TestResults,
 } from '../types';
@@ -7,8 +8,7 @@ export default class TrainingState {
   private static instance: TrainingState;
   token!: string;
   lang!: LanguageStr;
-  progressEn!: Progress[];
-  progressRu!: Progress[];
+  progress!: Progress[];
   current!: CurrentTrainingProgress;
   best!: {
     speed: number;
@@ -16,6 +16,7 @@ export default class TrainingState {
     time: number;
     mistakes: number;
   };
+  isLevelComplete!: boolean;
 
   isTest!: boolean;
   testResult!: TestResults;
@@ -27,12 +28,11 @@ export default class TrainingState {
     }
 
     this.token = '';
-    this.progressRu = [];
-    this.progressEn = [];
+    this.progress = [];
     this.lang = Lang.ru;
 
     this.current = {
-      lesson: 0,
+      lesson: 1,
       complitedLessons: [],
       level: 1,
       levels: 0,
@@ -42,6 +42,8 @@ export default class TrainingState {
       mistakes: 0,
       lang: this.lang,
     };
+
+    this.isLevelComplete = false;
 
     this.best = {
       speed: 0,
@@ -68,17 +70,8 @@ export default class TrainingState {
     const {
       lesson, level, lang, speed, accuracy,
     } = this.current;
-
-    if (this.lang === Lang.en) {
-      this.progressEn.push({
-        lesson,
-        level,
-        lang,
-        speed,
-        accuracy,
-      });
-    } else {
-      this.progressRu.push({
+    if (this.isLevelComplete) {
+      this.progress.push({
         lesson,
         level,
         lang,
@@ -88,36 +81,55 @@ export default class TrainingState {
     }
   }
 
-  findLevel(index: number): void {
-    if (this.lang === Lang.en) {
-      this.current.level = this.progressEn
-        .find((item) => item.lesson === index)?.level || 0;
-    } else {
-      this.current.level = this.progressRu
-        .find((item) => item.lesson === index)?.level || 0;
+  async findLevel(index: number): Promise<void> {
+    console.log(this.current.lang, this.lang);
+    const api = new Api();
+
+    this.progress = (await api.getUser()).progress;
+
+    console.log(this.progress);
+    if (!this.progress) {
+      this.progress = [];
     }
-    this.saveToStorage();
+
+    const level = this.progress
+      .filter((item) => item.lesson === index && item.lang === this.lang)
+      .sort((a, b) => b.level - a.level);
+
+    console.log(level);
+
+    this.current.level = level.length ? level[0].level + 1 : 1;
+    console.log(this.current.level);
   }
 
-  private loadFromStorage(): void {
-    const json = localStorage.getItem('typeGoState');
-    if (!json) return;
-    const state = JSON.parse(json);
+  private async loadFromStorage(): Promise<void> {
+    const api = new Api();
 
-    this.progressRu = state.progressRu;
-    this.progressEn = state.progressEn;
+    try {
+      const user = await api.getUser();
+      this.progress = user.progress;
+      console.log(user, this.progress);
+    } catch (e) {
+      console.log(e);
 
-    this.lang = state.lang;
-    this.current = state.current;
-    this.best = state.best;
-    this.testResult = state.testResult;
+      throw e;
+    }
+
+    // const json = localStorage.getItem('typeGoState');
+    // if (!json) return;
+    // const state = JSON.parse(json);
+
+    // this.lang = state.lang;
+    // this.current = state.current;
+    // this.best = state.best;
+    // this.testResult = state.testResult;
   }
 
-  saveToStorage(): void {
-    const state = JSON.stringify(this);
+  // private saveToStorage(): void {
+  //   const state = JSON.stringify(this);
 
-    localStorage.setItem('typeGoState', state);
-  }
+  //   localStorage.setItem('typeGoState', state);
+  // }
 
   saveStatistic(): void {
     if (this.isTest) {
