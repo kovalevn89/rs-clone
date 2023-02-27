@@ -16,7 +16,9 @@ class DropGamePage extends PageView {
   private async updateResult(gameResult: GameApiState) {
     const token = this.user.getToken();
     if (token !== '') {
-      await this.api.updateGameState(gameResult, this.user.getToken());
+      if (gameResult.score > 0) {
+        await this.api.updateGameState(gameResult, this.user.getToken());
+      }
     }
   }
 
@@ -194,7 +196,14 @@ class DropGamePage extends PageView {
 
   getFoodLetter() {
     const lang = localStorage.getItem('appLang');
-    const stringLetterLang = lang === '1' ? dataLang.letters.ru : dataLang.letters.en;
+    if (lang) {
+      const stringLetterLang = lang === '1' ? dataLang.letters.ru : dataLang.letters.en;
+      const randomLetterNum = this.randomNum(stringLetterLang.length);
+      const randomLetter = stringLetterLang[randomLetterNum];
+      return randomLetter;
+    }
+
+    const stringLetterLang = dataLang.letters.ru;
     const randomLetterNum = this.randomNum(stringLetterLang.length);
     const randomLetter = stringLetterLang[randomLetterNum];
     return randomLetter;

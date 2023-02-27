@@ -437,7 +437,9 @@ class WhacAMole extends PageView {
   private async updateResult(gameResult: GameApiState) {
     const token = this.user.getToken();
     if (token !== '') {
-      await this.api.updateGameState(gameResult, this.user.getToken());
+      if (gameResult.score > 0) {
+        await this.api.updateGameState(gameResult, this.user.getToken());
+      }
     }
   }
 
