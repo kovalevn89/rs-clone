@@ -1,0 +1,134 @@
+@import './mixin.scss';
+@import './constants.scss';
+
+.footer {
+  width: 100%;
+  margin: 0 auto;
+  background-color: $footer-background-light;
+
+  .footer__wrapper {
+    box-sizing: border-box;
+    width: 1440px;
+    margin: 0 auto;
+    min-height: 150px;
+    padding: 0 160px;
+    display: flex;
+    flex-direction: column;
+
+    .footer__top {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 22px;
+
+      .footer__caption {
+        font-family: 'Inter';
+        font-style: italic;
+        font-weight: 700;
+        font-size: 45px;
+        line-height: 70px;
+        color: $base-color-light;
+        user-select: none;
+      }
+
+      .footer__about {
+        padding-top: 25px;
+        @include normal-text;
+        color: $base-color-light;
+        user-select: none;
+        cursor: pointer;
+
+        text-decoration: underline;
+      }
+    }
+
+    .footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 5px;
+
+      .footer__credits {
+        @include normal-text;
+        color: $base-color-light;
+      }
+
+      .footer__controls-discription {
+        @include normal-text;
+        color: $base-color-light;
+        text-align: right;
+      }
+    }
+  }
+
+  &.dark {
+    background-color: $footer-background-dark;
+  
+    .footer__wrapper {
+      .footer__top {
+        .footer__caption {
+          color: $font-color-text1-dark;
+        }
+  
+        .footer__about {
+          color: $font-color-text1-dark;
+        }
+      }
+  
+      .footer__bottom {
+        .footer__credits {
+          color: $font-color-text1-dark;
+        }
+  
+        .footer__controls-discription {
+          color: $font-color-text1-dark;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 1440px) { 
+  .footer {
+    .footer__wrapper {
+      width: auto;
+      max-width: 1440px;
+      padding: 0 11vw;
+    }
+  }
+}
+
+
+@media (min-width: 320px) and (max-width: 850px) { 
+  .footer {
+    .footer__wrapper {
+      padding-bottom: 10px;
+      .footer__top {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+  
+        .footer__about {
+          padding-top: 1px;
+        }
+      }
+  
+      .footer__bottom {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        .footer__credits {
+          order: 2;
+          text-align: center;
+        }
+  
+        .footer__controls-discription {
+          padding-top: 10px;
+          order: 1;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+

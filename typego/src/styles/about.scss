@@ -1,0 +1,430 @@
+@import './mixin.scss';
+@import './constants.scss';
+
+.main {
+  background-color: $base-color-addition-light;
+  .about_wrapper {
+    .block_proposales {
+      width: 100%;
+      min-height: 1614px;
+      overflow: hidden;
+      position: relative;
+
+      .ellipse1 {
+        width: 25%;
+        aspect-ratio: 1 / 1;
+        background: rgba(133, 167, 255, 0.6);
+        filter: blur(250px);
+        position: absolute;
+        left: -2%;
+        top: -5%;
+        z-index: 1;
+      }
+
+      .ellipse2 {
+        width: 40%;
+        aspect-ratio: 1 / 1;
+        background: rgba(133, 167, 255, 0.9);
+        filter: blur(250px);
+        position: absolute;
+        right: -5%;
+        bottom: 8%;
+        z-index: 1;
+      }
+
+      .block_wrapper {
+        max-width: 1125px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        padding: 0 40px;
+        padding-top: 3%;
+        position: relative;
+
+        .card__context-caption {
+          @include caption-text;
+
+          margin-top: 60px;
+          font-size: 33px;
+          line-height: 40px;
+          color: $font-color-text2-light;
+          text-align: center;
+          margin-bottom: 25px;
+          
+        }
+        .proposales__card {
+          width: 100%;
+          padding: 10px;
+          display: flex;
+          align-items: stretch;
+
+          .card__left {
+            width: 20%;
+
+            .card__image {
+              width: 96%;
+              height: 99%;
+            }
+          }
+
+          .card__right {
+            width: 80%;
+
+            .card__context {
+         
+              .card__context-text {
+                width: 90%;
+                text-indent: 1.5em; 
+                text-align: justify; 
+
+                @include normal-text;
+                
+                color: $font-color-text2-light;
+              }
+
+              .card__context-link {
+                margin-top: 1.5vw;
+
+                .context-link__button {
+                  @include normal-text;
+                  
+                  color: $base-color-light;
+                  display: flex;
+                  user-select: none;
+                  cursor: pointer;
+
+                  &::after {
+                    content: '->';
+
+                    box-sizing:border-box;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+
+                    width: 54px;
+                    height: 25px;
+
+                    margin: 0 16px;
+                    padding-right: 8px;
+
+                    border: 1.5px solid $base-color-light;
+                    border-radius: 40px;
+
+                    @keyframes go-left-right {
+                      from { padding-right: 8px; }
+                      to { padding-right: 25px; } 
+                    }
+                  }
+
+                  &:hover {
+                    &::after {
+                      animation: go-left-right 1s infinite alternate;
+                    }
+                  }
+                  a{
+                    text-decoration: none;
+                    color: $base-color-light;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .block_wrapper-developers {
+        max-width: 1125px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        padding: 0 40px;
+
+        padding-top: 3%;
+        position: relative;
+
+        .proposales__title {
+          @include caption-text;
+          margin-top: 60px;
+          font-size: 33px;
+          line-height: 40px;
+          text-align: center;
+          margin-bottom: 55px;
+        }
+
+        .proposales__card {
+          width: 100%;
+          padding: 10px;
+
+          display: flex;
+          align-items: center;
+          border-radius: 40px;
+          box-shadow: 2px 2px 16px 3px rgb(0 0 0 / 75%);
+          margin-bottom: 55px;
+
+          position: relative; 
+          background-color: rgba($base-color-addition-light, 0.8); 
+          z-index: 4; 
+
+          .card__left {
+            width: 280px;
+
+            .card__image {
+              background-color: #fddac5;
+              border-radius: 50%;
+              box-shadow: 2px 2px 7px 2px rgb(0 0 0 / 75%);
+              height: 200px;
+              width: 200px;
+              margin-left: 4%;
+            }
+          }
+
+          .card__right {
+            width: 75%;
+
+            .card__context {
+              .card__context-caption {
+                @include caption-text;
+                text-transform: none;
+                font-size: 33px;
+                line-height: 40px;
+                color: $font-color-text2-light;
+                a{
+                  text-decoration: none;
+                  color: $base-color-light;
+                  &:hover{
+                    color: $base-footer-gradient-color1-light; 
+                    }
+                }
+              }
+
+              .card__context-subtitle {
+                font-family: 'Montserrat Alternates';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 40px;
+              }
+
+              .card__context-text {
+                width: 90%;
+
+                @include normal-text;
+                
+                color: $font-color-text2-light;
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  // DARK THEME STYLE
+  &.dark {
+    .about_wrapper {
+      background-color: $base-color-addition-dark;
+
+      .block_proposales {
+        .ellipse1 {
+          background: rgba(133, 167, 255, 0.8);
+        }
+
+        .ellipse2 {
+          background: rgba(133, 167, 255, 0.9);
+        }
+
+        .block_wrapper-developers {
+          .proposales__title{
+            color: $font-color-text2-dark;
+          }
+          .proposales__card {
+            background-color: rgba($base-color-addition-dark, 0.8); 
+            .card__right {
+              .card__context {
+                .card__context-caption {
+                  color: $font-color-text2-dark;
+                  a{
+                    color: $base-color-dark;
+                    &:hover{
+                      color: $button-hover-color-dark;
+                      }
+                  }
+                }
+                .card__context-subtitle{
+                  color: $base-color-dark;
+                }
+
+
+                .card__context-text {
+                  color: $font-color-text1-dark;
+                }
+
+                .card__context-link {
+                  .context-link__button {
+                    color: $base-color-dark;
+
+                    &::after {
+                      border: 1.5px solid $base-color-dark;
+                    }
+                    a{
+                      color: $base-color-dark;
+                    }
+                   
+                  }
+                }
+              }
+            }
+          }
+        }
+        .block_wrapper {
+          .card__context-caption {
+            color: $font-color-text2-dark;
+          }
+          .proposales__card {
+            .card__right {
+              .card__context {
+                
+
+                .card__context-text {
+                  color: $font-color-text1-dark;
+                }
+
+                .card__context-link {
+                  .context-link__button {
+                    color: $base-color-dark;
+
+                    &::after {
+                      border: 1.5px solid $base-color-dark;
+                    }
+                    a{
+                      color: $base-color-dark;
+                    }
+                  }
+                }
+                @media (min-width: 320px) and (max-width: 699px) { 
+                  .card__context-link {
+                    .context-link__button {
+                      border: 1.5px solid $base-color-dark;
+                
+                      &::after {
+                        border: 0px solid $base-color-dark;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+    }
+    a{
+      color: $base-color-dark;
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 1440px) { 
+  .main {
+    .about_wrapper {
+      width: auto; 
+      max-width: 1440px; 
+
+      .block_proposales {
+        .block_wrapper, .block_wrapper-developers {
+          padding: 0 11vw; 
+          padding-top: 7.8%;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 699px) { 
+  .main {
+    .about_wrapper {
+      .block_proposales {
+        .block_wrapper, .block_wrapper-developers {
+          .proposales__card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            margin-top: 10vw !important;
+            margin-left: 0px !important;
+  
+            .card__left {
+              order: 1 !important;
+              width: 100%;
+  
+              .card__image {
+                height: 200px;
+                width: 200px;
+                margin: 20px auto 0px;
+                aspect-ratio: 1 / 1;
+              }
+            }
+  
+            .card__right {
+              width: 100%;
+              order: 2 !important;
+  
+              .card__context {
+                .card__context-caption {
+                  margin-top: 3vw;
+                  text-align: center;
+                }
+
+                .card__context-subtitle {
+                  text-align: center;
+                }
+  
+                .card__context-text {
+                  width: 100%;
+                  text-align: center;
+                 text-align: center;
+                }
+  
+                .card__context-link {
+                  margin-top: 4vw;
+  
+                  .context-link__button {
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: 1.5px solid $base-color-light;
+                    border-radius: 40px;
+                    padding: 5px;
+                    cursor: pointer;
+
+                    &::after {
+                      justify-content: center;
+                      width: 13vw;
+                      margin: 0 5px;
+                      border: 0px solid $base-color-light;
+  
+                      @keyframes go-left-right {
+                        from { padding-right: 1px; }
+                        to { padding-right: 10px; }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+ }
+
+ a{
+  @include link;
+}
+
+ 

@@ -1,0 +1,81 @@
+@import './mixin.scss';
+@import './constants.scss';
+
+.main {
+  .lessons__wrapper {
+    @include flex-center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5vw;
+    margin-bottom: 20px;
+  }
+  .training__levels {
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .training__level {
+    @include flex-center;
+    flex-direction: column;
+    min-width: 230px;
+    min-height: 230px;
+    color: $font-color-text2-light;
+    padding: 10px;
+
+    border: $font-color-text2-light solid 2px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 16px 3px rgb(0 0 0 / 75%);
+
+    & .training__img {
+      filter: grayscale(1);
+      width: 150px;
+      height: 150px;
+    }
+
+    &.done {
+      & .training__img {
+        filter: grayscale(0);
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: $base-color-light;
+      border-color: $base-color-light;
+      box-shadow: 2px 2px 16px 3px rgb(41 129 254 / 75%);
+      transition: all ease 0.5s, box-shadow linear 0.1s;
+
+      & .training__level__title {
+        color: $base-color-light;
+      }
+
+      & img {
+        filter: grayscale(0.3);
+      }
+    }
+  }
+
+  &.dark {
+    .training__level {
+      border: $base-color-dark solid 2px;
+      border-radius: 12px;
+      box-shadow: 2px 2px 16px 3px $base-color-dark;
+
+      & .training__level__title {
+        color: $font-color-text1-dark;
+      }
+
+      &:hover {
+        border-color: $button-hover-color-dark;
+        box-shadow: 2px 2px 16px 3px $button-hover-color-dark;
+        transition: all ease 0.5s, box-shadow linear 0.1s;
+        
+        & .training__level__title {
+          color: $button-color-dark;
+        }
+      }
+
+    }
+  }
+}

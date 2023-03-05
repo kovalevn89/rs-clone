@@ -1,0 +1,309 @@
+@import './fonts.scss';
+
+.whac{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+
+  .back-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: url("./assets/img/backBtnOrange.png") center center no-repeat;
+    background-size: cover;
+    box-shadow: 0px 0px 20px #ffffff;
+    border-radius: 50%;
+    width: calc(10px + 5vw);
+    height: calc(10px + 5vw);
+    transition: transform 0.1s linear;
+    z-index: 99;
+    &:hover {
+      transform: scale(1.1);
+    }
+    @include media-mobile {
+      width: calc(10px + 7vw);
+      height: calc(10px + 7vw);
+    }
+  }
+
+  .menu{
+    margin: 10px 20px;
+    max-width: 800px;
+    aspect-ratio: 1 / 0.9;
+    border-radius: 10px;
+
+    .game_caption,
+    .game_caption{
+      width: 100%;
+      height: 15%;
+      margin-top: 5%;
+      margin-bottom: 10%;
+      text-align: center;
+      font-family: 'AmaticSC Bold';
+      font-size: 10vw;
+      font-weight: 600;
+      color: rgb(254, 110, 0);
+      user-select: none;
+      @include media-mobile {
+        font-size: 20vw;
+      }
+    }
+    
+    .game_result {
+      margin-top: 15%;
+      margin-left: 6%;
+
+      .result_line {
+        width: 100%;
+        display: flex;
+        font-family: 'AmaticSC Bold';
+        font-size: 3.5vw;
+        color: rgb(254, 110, 0);
+        @include media-mobile {
+          font-size: 7vw;
+        }
+
+        .caption {
+          width: 50%;
+          text-align: right;
+          padding-right: 1%;
+          user-select: none;
+        }
+
+        .value{
+          width: 50%;
+          padding-left: 1%;
+          user-select: none;
+        }
+      }
+    }
+
+    .game_controls{
+      width: 100%;
+      height: 70%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .controls_start-btn {
+        width: 10vw;
+        height: 10vw;
+        transition: transform 0.1s linear;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+        @include media-mobile {
+        width: 16vw;
+        height: 16vw;
+        }
+      }
+
+      .controls_restart-btn {
+        width: 6vw;
+        height: 6vw;
+        margin-top: -10vw;
+        transition: transform 0.1s linear;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+        @include media-mobile {
+          width: 16vw;
+          height: 16vw;
+        }
+      }
+    }
+  }
+
+  .game {
+    height: 100%;
+    margin: 10px 20px;
+    aspect-ratio: 1 / 0.9;
+    border-radius: 10px;
+    overflow: hidden;
+    @include media-mobile {
+      margin: 10px 5px;
+    }
+
+    .stats{
+      width: 100%;
+      font-family: 'AmaticSC Regular';
+      display: flex;
+      gap: 5px;
+      justify-content: space-between;
+      @include media-desktop {
+        width: calc(100% - 15px - 10vw);
+        margin-left: calc(15px + 10vw);
+      }
+
+      .stats_level,
+      .stats_score,
+      .stats_accuracy,
+      .stats_time {
+        min-width: 6vw;
+        height: 5vw;
+        width: 15%;
+        margin: 10px;
+        margin-top: 15px;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: rgba($color: #ffffff, $alpha: 0.4);
+        backdrop-filter: blur(5px);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        @include media-mobile {
+          height: 7vw;
+        }
+
+        .label {
+          height: 100%;
+          font-family: 'AmaticSC Bold';
+          font-size: 2vw;
+          color: rgb(254, 110, 0);
+          user-select: none;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          @include media-mobile {
+            font-size: 4vw;
+          }
+        }
+
+        .value {
+          height: 100%;
+          font-family: 'AmaticSC Bold';
+          font-size: 2.5vw;
+          color: rgb(254, 110, 0);
+          user-select: none;
+          @include media-mobile {
+            font-size: 4vw;
+          }
+        }
+      }
+
+      .controls {      
+        width: 2.5vw;
+        height: 5vw;
+        margin: 10px;
+        margin-top: 15px;
+        padding: 5px;
+        border-radius: 5px;
+        margin-left: -3%;
+        display: flex;
+        flex-direction: column;
+        gap: 10%;
+        @include media-mobile {
+          height: 7vw;
+          width: 3.5vw;
+        }
+        .control_lang,
+        .control_sound{
+          width: 100%;
+          height: 45%;
+          max-width: 40px;
+          max-height: 40px;
+          border-radius: 50%;
+          aspect-ratio: 1/1;
+        }
+      }
+    }
+
+    .game-area {
+      width: 100%;
+      height: 80%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      @include media-mobile {
+        margin-top: 10%;
+        height: 60%;
+      }
+
+      .cell{
+        width: 30%;
+        aspect-ratio: 1 / 1;
+        position: relative;
+        overflow: hidden;
+
+        .layer1,
+        .layer2,
+        .layer3 {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+        }
+
+        .layer1 {
+          z-index: 1;
+        }
+
+        .layer2 {
+          z-index: 2;
+          bottom: -100%;
+
+          transition: bottom 0.7s linear; 
+
+          &.go {
+            bottom: 0%;
+          }
+
+          .char_block {
+            font-size: 2em;
+            width: 100%;
+            height: 30%;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            .char {
+              width: 18%;
+              height: 75%;
+              margin: 0;
+              margin-top: 8px;
+              margin-right: 14%;
+              padding: 0;
+              @media (max-width: 400px) { 
+                margin-top: -5px;
+              }
+
+              svg{
+                width: 100%; 
+                height: 100%;
+                margin: 0; 
+                padding: 0;
+
+                path {
+                  fill:#9966ff;
+                  opacity: 1;
+                  transition: opacity 0.9s linear;
+                }
+
+                &.handle{
+                  path {
+                    fill:rgb(250, 48, 48);
+                    opacity: 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .layer3 {
+          z-index: 3;
+        }
+      }
+    }
+  }
+}

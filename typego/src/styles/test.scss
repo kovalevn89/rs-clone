@@ -1,0 +1,61 @@
+@import './mixin.scss';
+@import './constants.scss';
+
+.level__input {
+  position: fixed;
+  top: -100%;
+  left: -100%;
+  outline: none;
+  color: rgba(255, 255, 255, 0.1);
+  border: none;
+  font-size: 1px;
+}
+
+.main {
+  .test__select {
+    @include flex-center;
+    @include normal-text;
+    text-align: center;
+
+    min-width: 205px;
+
+    padding: 10px;
+    margin-bottom: 20px;
+
+    border: $font-color-text2-light 1px solid;
+    border-radius: 25px;
+
+    &:hover {
+      cursor: pointer;
+      color: $base-color-light;
+      border-color: $base-color-light;
+    }
+
+    &.active {
+      color: $font-color-text2-light;
+      background-color: $button-color-light;
+      border-color: $button-color-light;
+    }
+  }
+
+  &.dark {
+    .test__select {
+      border-color: $base-color-dark;
+
+      &:hover {
+        color: $font-color-text1-dark;
+        border-color: $button-color-dark;
+      }
+
+      &.active {
+        color: $font-color-text1-dark;
+        background-color: $button-color-dark;
+        border-color: $button-color-dark;
+      }
+    }
+  }
+}
+
+@media (max-width: 699px) {
+
+}

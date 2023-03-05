@@ -1,0 +1,118 @@
+@import './mixin.scss';
+@import './constants.scss';
+
+h2 {
+  @include caption-text;
+}
+
+h3 {
+  @include normal-text;
+  color: $font-color-text2-light;
+}
+
+.main {
+  @include main-height;
+
+  .wrapper {
+    & * {
+      box-sizing: border-box;
+    }
+
+    @include flex-center;
+    flex-direction: column;
+
+    width: 79%;
+    max-width: 1120px;
+    box-sizing: border-box;
+
+    margin: 0 auto;
+    gap: 15px;
+  }
+
+  & .training__title {
+    text-align: left;
+    @include caption-text;
+    font-size: 36px;
+    color: $font-color-text2-light;
+    margin: 2vw auto;
+  }
+
+  .select {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 20px;
+    margin-bottom: 20px;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .training__select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    height: 40%;
+    max-width: 500px;
+    min-width: 250px;
+
+    border-radius: 25px;
+
+    border: #474747 2px solid;
+    box-shadow: 2px 2px 16px 3px rgb(0 0 0 / 75%);
+
+    transition: all ease 0.5s, box-shadow linear 0.1s;
+
+    .select__title {
+      text-align: center;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: $base-color-light;
+      border: $base-color-light 2px solid;
+      box-shadow: 2px 2px 16px 3px rgb(41 129 254 / 75%);
+    }
+
+    & img {
+      display: flex;
+      width: 90%;
+      height: 90%;
+      padding: 10px;
+    }
+  }
+
+  .training__levels {
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  &.dark {
+    background-color: $base-color-addition-dark;
+
+    & .training__title {
+      text-align: left;
+      @include caption-text;
+      font-size: 24px;
+      color: $font-color-text1-dark;
+    }
+    & .training__select {
+      background-color: $base-color-addition-dark;
+
+      border: $base-color-dark solid 2px;
+      box-shadow: 2px 2px 16px 3px $base-color-dark;
+
+      &:hover {
+        border-color: $button-hover-color-dark;
+        box-shadow: 2px 2px 16px 3px $button-hover-color-dark;
+      }
+    }
+    & .select__title{
+      color: $font-color-text1-dark;
+    }
+    & .training__select:hover {
+      color: $button-color-dark;
+    }
+  }
+}

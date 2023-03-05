@@ -1,0 +1,107 @@
+@import './mixin.scss';
+@import './constants.scss';
+
+h2 {
+  @include caption-text;
+}
+
+h3 {
+  @include normal-text;
+  color: $font-color-text2-light;
+}
+
+.main {
+  @include main-height;
+
+  .games-wrapper {
+    & * {
+      box-sizing: border-box;
+    }
+
+    @include flex-center;
+    width: 100%;
+
+    padding: 0 11vw 30px;
+    margin: 0;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
+
+  & .games-title {
+    text-align: left;
+    @include caption-text;
+    font-size: 36px;
+    color: $font-color-text2-light;
+    margin: 2vw auto;
+  }
+
+  .games-block {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 20px;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+     .games-title{
+      font-size: 24px;
+    }
+  }
+
+  .game1,
+  .game2,
+  .game3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    max-width: 500px;
+    min-width: 200px;
+    border: $font-color-text2-light 2px solid;
+    border-radius: 25px;
+    box-shadow: 2px 2px 16px 3px rgb(0 0 0 / 75%);
+
+    &:hover {
+      cursor: pointer;
+      color: $base-color-light;
+      border: $base-color-light 2px solid;
+      box-shadow: 2px 2px 16px 3px rgb(41 129 254 / 75%);
+      transition: all ease 0.5s, box-shadow linear 0.1s;
+    }
+
+    & .bgr {
+      display: flex;
+      width: 90%;
+      height: 90%;
+      padding: 10px;
+    }
+  }
+
+  &.dark {
+    background-color: $base-color-addition-dark;
+
+    & .games-title {
+      text-align: center;
+      @include caption-text;
+      font-size: 24px;
+      color: $font-color-text1-dark;
+    }
+    & .games-block {
+      background-color: $base-color-addition-dark;
+      .game1,
+      .game2,
+      .game3 {
+        border: $base-color-dark solid 2px;
+        box-shadow: 2px 2px 16px 3px $base-color-dark;
+    
+        &:hover {
+          border-color: $button-hover-color-dark;
+          box-shadow: 2px 2px 16px 3px $button-hover-color-dark;
+        }
+      }
+    }
+    & .games-title{
+      color: $font-color-text1-dark;
+    }
+  }
+}

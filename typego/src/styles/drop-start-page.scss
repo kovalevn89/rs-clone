@@ -1,0 +1,352 @@
+@import './fonts.scss';
+@import './constants.scss';
+@import './mixin.scss';
+
+.drop-game-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #55c5ff;
+  padding: 1rem;
+  color: #fff;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+}
+
+.drop-game-page-container{
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.drop-game-page-header {
+  min-width: 70vw;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #fff;
+  background-color: #2ea3f8;
+  background-image: linear-gradient(to bottom,#39b5fa,#2ea3f8);
+  border: none;
+  border-top: 1px solid #73ccfb;
+  box-shadow: #48a8d9 0 1px 2px;
+  border-radius: 10px;
+  column-gap: calc(50% - 13rem);
+}
+
+.drop-game-page-btn {
+  margin-right: 0;
+  font-size: 1.6rem;
+  font-weight: 400;
+  border-radius: 1rem;
+  background-color: #27a2e8;
+  background-image: linear-gradient(to bottom,#29a5e8,#27a2e8);
+  border-radius: 15px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #fff;
+}
+
+.drop-game-page-title-container {
+  display: flex;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  gap: 1rem;
+}
+
+.drop-game-page-main-title {
+  color: #fff;
+  margin: 1rem;
+  font-family: 'Inter';
+  font-weight: 700;
+}
+
+.drop-game-page-box-container{
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+button {
+  font-family: inherit;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.drop-game-page-points-title{
+  font-size: 2rem;
+  font-family: 'Montserrat Alternates';
+  font-style: normal;
+  font-weight: 700;
+  text-align: center;
+  margin: 2rem auto 1rem;
+  color: #fff;
+}
+
+.drop-game-page-scores{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 2rem;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  p{
+    margin: 0.2rem;
+  }
+}
+
+.score, .accuracy {
+  font-size: 1.5rem;
+  position: relative;
+  display: flex;
+  gap: 10px;
+}
+
+.score-title, .accuracy-title{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+}
+
+.drop-game-page-field-container{
+  min-width: 70vw;
+  height: 60vh;
+  margin: 2rem auto 0;
+  border-radius: 10rem;
+  color: #fff;
+  background: url(./assets/img/nature.jpg) no-repeat center center ;
+  background-size: cover;
+  background-color: #fff;
+  border: none;
+  border-top: 1px solid #fff;
+  box-shadow: #48a8d9 0 1px 2px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.field-column {
+  overflow: hidden;
+  position: relative;
+  width: 10vw;
+  font-weight: 700;
+  font-size: 2rem;
+  @media (max-width: 767px) {
+    width: 15vw;
+  }
+}
+
+.field-letter {
+  position: absolute;
+  top: 0;
+  left: 5%;
+  width: 90%;
+  height: 7rem;
+  margin: -7rem auto;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  &.right {
+    color: #d9ff02;
+  }
+  @media (max-width: 767px) {
+    left: 1%;
+    width: 98%;
+  }
+}
+.field-letter-1 {
+  background: url(./assets/img/1.png) no-repeat center center ;
+  background-size: contain;
+}
+.field-letter-2 {
+  background: url(./assets/img/2.png) no-repeat center center ;
+  background-size: contain;
+}
+.field-letter-3 {
+  background: url(./assets/img/3.png) no-repeat center center ;
+  background-size: contain;
+}
+.field-letter-4 {
+  background: url(./assets/img/4.png) no-repeat center center ;
+  background-size: contain;
+}
+.field-letter-5 {
+  background: url(./assets/img/5.png) no-repeat center center ;
+  background-size: contain;
+}
+
+.field-img-box-right, .field-img-box-left{
+  position: absolute;
+  bottom: 0;
+  width: 25vh;
+  height: 25vh;
+  background: url(./assets/img/shiba.png) no-repeat center center ;
+  background-size: cover;
+  z-index: 10;
+  @include media-mobile {
+    width: 18vh;
+    height: 18vh;
+  }
+}
+
+.field-img-box-right {
+  right: 0;
+  background: url(./assets/img/shiba.png) no-repeat center center ;
+  background-size: cover;
+}
+
+.field-img-box-left{
+  left: 0;
+  background: url(./assets/img/cat.png) no-repeat center center ;
+  background-size: cover;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: none;
+}
+
+.popup .popup_close {
+  position: absolute;
+  top: -11px;
+  right: -30px;
+  width: 14px;
+  height: 14px;
+  background: url(./assets/img/x_icon_color.svg) no-repeat center center ;
+}
+
+.popup .popup_close:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: 0.4s;
+}
+
+.popup .popup_back {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 11;
+}
+
+.scroll-none {
+  overflow: hidden;
+}
+
+.popup-content {
+  color: rgb(139, 124, 124);
+  padding: 1%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5rem;
+  width: 30%;
+  min-height: 20%;
+  min-width: 250px;
+  background: url(./assets/img/win.png) no-repeat center center ;
+  background-size: contain;
+  z-index: 99;
+  position: fixed;
+  box-sizing: border-box;
+  font-size: calc(.55rem + 0.7vw);
+  text-align: center;
+}
+
+.popup-content-setting{
+  border: 1px solid #000;
+  background: none ;
+  background-color: #ffffff;
+}
+
+.person-details {
+  width: 90%;
+  margin: auto;
+}
+
+.person-details h2 {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 90%;
+}
+
+.form-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.person-details input {
+  background-color: #ffffff;
+  width: 100%;
+  border: 1px solid rgb(139, 124, 124);;
+  border-radius: 0.5rem;
+  padding: 0.4rem;
+  outline: none;
+  font-size: 70%;
+  text-align: center;
+  margin: 0.8rem auto;
+}
+
+.card-details {
+  margin-top: 1%;
+  width: 100%;
+}
+
+.card-details h2 {
+  margin-bottom: 2%;
+}
+
+.popup-content h2 {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 90%;
+}
+.popup-content p {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 90%;
+}
+
+.btn_confirm {
+  width: 40%;
+  padding: 1%;
+  cursor: pointer;
+  display: block;
+  margin: 5% auto;
+  border-radius: 20px;
+  border: 1px solid rgb(139, 124, 124);;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 90%;
+  color: rgb(139, 124, 124);
+
+  &:hover {
+    background-color: #a7b3c7;
+  }
+}
+
+.error-message {
+  color: red;
+  display: block;
+  padding: 0 0.5rem;
+  font-size: 70%;
+}
